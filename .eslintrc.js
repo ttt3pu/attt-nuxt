@@ -1,21 +1,15 @@
 module.exports = {
   root: true,
   env: {
+    browser: true,
     node: true
   },
-  'extends': [
-    'google',
-    'plugin:vue/recommended',
-    'eslint:recommended',
-    '@vue/typescript/recommended'
+  extends: [
+    '@nuxtjs/eslint-config-typescript',
+    'plugin:nuxt/recommended'
   ],
-  parserOptions: {
-    ecmaVersion: 2020
-  },
-  rules: {
-    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'new-cap': 'off',
-    'max-len': 'off',
-  }
+  plugins: [
+  ],
+  // add your custom rules here
+  rules: {}
 }
