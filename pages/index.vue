@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-    <!-- <h1 class="title">
+    <h1 class="title">
       attt
-    </h1> -->
+    </h1>
 
     <div class="main-contents">
       <Skillmap />
@@ -18,21 +18,28 @@ export default Vue.extend({})
 
 <style lang="scss" scoped>
 .container {
-  height: 100vh;
   display: flex;
-  align-items: center;
 }
 
 .main-contents {
+  padding: 100px 25px;
+  flex-grow: 1;
   max-width: 980px;
-  margin: 0 auto;
+  margin-right: 0;
+  margin-left: auto;
 }
 
 .title {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 50%;
+  padding: 75px 100px;
   font-family: 'Poppins', sans-serif;
   display: block;
   font-weight: 400;
-  font-size: 6rem;
+  font-size: 10rem;
+  line-height: 1;
   color: #e2f1ff;
 }
 </style>

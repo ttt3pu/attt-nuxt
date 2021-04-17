@@ -112,13 +112,11 @@ export default {
   margin-right: 0;
   margin-left: auto;
   font-family: 'Poppins', sans-serif;
-  width: 50%;
   // display: flex;
   // flex-wrap: wrap;
   // justify-content: space-between;
 
   .item {
-    width: calc(50% - 24px);
     margin-bottom: 24px;
   }
 
