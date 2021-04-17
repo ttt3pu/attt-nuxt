@@ -26,8 +26,15 @@
     "@nuxtjs/stylelint-module": "^4.0.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.23.0",
+    "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-nuxt": "^2.0.0",
+    "fibers": "^5.0.0",
+    "nuxt-webfontloader": "^1.1.0",
+    "sass": "^1.32.8",
+    "sass-loader": "^10.1.1",
     "stylelint": "^13.12.0",
-    "stylelint-config-standard": "^21.0.0"
+    "stylelint-config-standard": "^21.0.0",
+    "stylelint-config-standard-scss": "^1.1.0",
+    "stylelint-scss": "^3.19.0"
   }
 }
