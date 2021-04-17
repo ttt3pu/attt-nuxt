@@ -1,5 +1,5 @@
 <template>
-  <div class="cat">
+  <div class="the-cat">
     <!-- <img src="~/assets/mihon.png" alt> -->
     <div class="face-wrapper">
       <!-- face -->
@@ -42,7 +42,8 @@
 
 <style lang="scss" scoped>
 @function size($px) {
-  @return #{$px * 1.5}px;
+  // @return #{$px * 1.5}px;
+  @return #{($px / 1400) * 100}vw;
 }
 
 img {
@@ -52,13 +53,14 @@ img {
   opacity: 0.5;
 }
 
-.cat {
+.the-cat {
   // border: 1px solid #000;
   width: size(500);
   height: size(500);
   position: fixed;
   left: 0;
   bottom: 0;
+  z-index: 2;
 }
 
 .face-wrapper {

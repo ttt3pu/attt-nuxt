@@ -1,15 +1,17 @@
 <template>
-  <div class="skillmap">
+  <div class="the-skillmap">
+    <v-heading-lv2>My skills</v-heading-lv2>
+
     <div
       class="item"
       v-for="item in $data.items"
       :key="item.heading"
     >
-      <h2>{{ item.heading }}</h2>
+      <v-heading-lv3>{{ item.heading }}</v-heading-lv3>
 
       <ul>
         <li v-for="childItem in item.childItems" :key="childItem.heading">
-          <h3>{{ childItem.heading }}</h3>
+          <v-heading-lv4>{{ childItem.heading }}</v-heading-lv4>
           <div class="graph">
             <div class="graph__inner" :style="{'width': childItem.score + '%'}" />
             <span class="graph__text">{{ childItem.score === 0 ? 'Learning' : childItem.score + '%' }}</span>
@@ -33,6 +35,10 @@ export default {
               score: 100,
             },
             {
+              heading: 'Pug',
+              score: 100,
+            },
+            {
               heading: 'CSS',
               score: 100,
             },
@@ -46,6 +52,10 @@ export default {
             },
             {
               heading: 'TypeScript',
+              score: 25,
+            },
+            {
+              heading: 'PHP',
               score: 25,
             },
           ],
@@ -71,7 +81,7 @@ export default {
           heading: 'Frontend ops',
           childItems: [
             {
-              heading: 'Webpack',
+              heading: 'webpack',
               score: 100,
             },
             {
@@ -92,11 +102,15 @@ export default {
               score: 100,
             },
             {
-              heading: 'Accessibility',
+              heading: 'Accessibility / WAI-ARIA',
               score: 75,
             },
             {
-              heading: 'IE11 support methods',
+              heading: 'WordPress',
+              score: 25,
+            },
+            {
+              heading: 'IE11 support 😇',
               score: 100,
             },
           ],
@@ -108,35 +122,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.skillmap {
-  margin-right: 0;
-  margin-left: auto;
+.the-skillmap {
   font-family: 'Poppins', sans-serif;
-  // display: flex;
-  // flex-wrap: wrap;
-  // justify-content: space-between;
 
   .item {
-    margin-bottom: 24px;
-  }
-
-  h2 {
-    color: #ffb962;
-    font-weight: 500;
-    font-size: 2rem;
+    margin-bottom: 40px;
   }
 
   li {
     &:not(:last-child) {
       margin-bottom: 16px;
     }
-  }
-
-  h3 {
-    color: #e2f1ff;
-    font-weight: 400;
-    font-size: 1.4rem;
-    margin-bottom: 8px;
   }
 
   .graph {

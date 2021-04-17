@@ -9,7 +9,7 @@ export default {
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: 'attt',
+    title: 'attt - Frontend engineer',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -55,7 +55,10 @@ export default {
 
   webfontloader: {
     google: {
-      families: ['Poppins:400']
+      families: [
+        'Poppins:400',
+        'Noto Sans JP:400',
+      ]
     }
   }
 }

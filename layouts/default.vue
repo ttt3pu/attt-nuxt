@@ -2,7 +2,7 @@
   <div class="page-wrapper">
     <div class="background-gradation" />
 
-    <Cat />
+    <the-cat />
 
     <div class="contents-wrapper">
       <Nuxt />
@@ -20,6 +20,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
+  line-height: 1.5;
 }
 
 ul {

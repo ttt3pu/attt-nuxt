@@ -1,0 +1,15 @@
+<template>
+  <h3 class="v-heading-lv3">
+    <slot />
+  </h3>
+</template>
+
+<style lang="scss" scoped>
+.v-heading-lv3 {
+  font-family: 'Poppins', sans-serif;
+  color: #ffb962;
+  font-weight: 500;
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+</style>
