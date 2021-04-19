@@ -41,9 +41,14 @@
 </template>
 
 <style lang="scss" scoped>
-@function size($px) {
-  // @return #{$px * 1.5}px;
-  @return #{($px / 1400) * 100}vw;
+@mixin catSize($prop, $px) {
+  @media (min-width: 1601px) {
+    #{$prop}: #{$px * 1.15}px;
+  }
+
+  @media (max-width: 1600px) {
+    #{$prop}: #{($px / 1400) * 100}vw;
+  }
 }
 
 img {
@@ -54,9 +59,9 @@ img {
 }
 
 .the-cat {
-  // border: 1px solid #000;
-  width: size(500);
-  height: size(500);
+  @include catSize(width, 500);
+  @include catSize(height, 500);
+
   position: fixed;
   left: 0;
   bottom: 0;
@@ -66,7 +71,7 @@ img {
 .face-wrapper {
   position: relative;
   z-index: 1;
-  transform: translateX(#{size(30)}) rotate(5deg);
+  transform: translateX(5%) rotate(5deg);
   animation: cat-kunekune 15s infinite cubic-bezier(0.82, -0.005, 0.21, 1.13);
 
   /* stylelint-disable-next-line selector-type-no-unknown */
@@ -77,19 +82,19 @@ img {
 
   @keyframes cat-kunekune {
     50% {
-      transform: translateX(#{size(-30)}) rotate(-5deg);
+      transform: translateX(-5%) rotate(-5deg);
     }
   }
 }
 
 .face {
+  @include catSize(top, 135);
+  @include catSize(left, 65);
+  @include catSize(width, 380);
+  @include catSize(height, 270);
+
   position: absolute;
-  // background-color: rgba(#fff, 0.5);
   border-radius: 70% 70% 68% 68% / 85% 85% 57% 57%;
-  top: size(135);
-  left: size(65);
-  width: size(380);
-  height: size(270);
   overflow: hidden;
   box-shadow: 0 2px 9px rgba(#000, 0.1);
 }
@@ -97,6 +102,7 @@ img {
 .face-bg {
   width: 100%;
   height: 100%;
+  z-index: 1;
 
   &::before {
     content: "";
@@ -121,22 +127,25 @@ img {
 }
 
 .face-inner {
+  @include catSize(width, 380);
+  @include catSize(height, 200);
+
   position: absolute;
   z-index: 1;
   background-color: #121212;
   border-radius: 50%;
-  width: size(380);
-  height: size(200);
 
   &--l {
+    @include catSize(top, -15);
+
     left: -50%;
-    top: size(-15);
   }
 
   &--r {
+    @include catSize(top, -15);
+
     transform: scale(-1, 1);
     left: 50%;
-    top: size(-15);
   }
 
   &--c {
@@ -145,41 +154,46 @@ img {
 }
 
 .ear {
+  @include catSize(border-width, 20);
+  @include catSize(width, 180);
+  @include catSize(height, 165);
+  @include catSize(top, 90);
+
   position: absolute;
   border-radius: 0% 100% 61% 39% / 0% 100% 0% 100%;
   background: radial-gradient(#cecece, #fff);
-  border: size(20) solid #121212;
-  width: size(180);
-  height: size(165);
+  border: solid #121212;
   box-shadow: 0 3px 6px rgba(#000, 0.16);
-  top: size(90);
 
   &--l {
-    left: size(60);
+    @include catSize(left, 60);
+
     transform: rotate(14deg);
   }
 
   &--r {
-    left: size(270);
+    @include catSize(left, 270);
+
     transform: rotate(-14deg) scale(-1, 1);
   }
 }
 
 .eye {
+  @include catSize(width, 80);
+  @include catSize(height, 80);
+  @include catSize(top, 230);
+
   position: absolute;
   z-index: 2;
-  width: size(80);
-  height: size(80);
-  top: size(230);
   background-color: #f8e042;
   border-radius: 50%;
 
   &--l {
-    left: size(140);
+    @include catSize(left, 140);
   }
 
   &--r {
-    left: size(290);
+    @include catSize(left, 290);
   }
 
   &::before {
@@ -197,105 +211,115 @@ img {
 }
 
 .nose {
+  @include catSize(width, 30);
+  @include catSize(height, 15);
+  @include catSize(top, 320);
+  @include catSize(left, 240);
+
   position: absolute;
   z-index: 1;
-  width: size(30);
-  height: size(15);
-  top: size(320);
-  left: size(240);
   background-color: #fec6db;
   border-radius: 50% 50% 50% 50% / 76% 76% 24% 24%;
 }
 
 .marble {
+  @include catSize(width, 46);
+  @include catSize(height, 25);
+  @include catSize(top, 333);
+  @include catSize(left, 210);
+
   position: absolute;
-  width: size(46);
-  height: size(25);
-  top: size(333);
-  left: size(210);
   background-color: #121212;
   border-radius: 50% 50% 56% 44%/65% 48% 52% 35%;
   transform: rotate(-14deg);
 }
 
 .mouth {
+  @include catSize(left, 256);
+  @include catSize(top, 360);
+
   position: absolute;
-  left: size(256);
-  top: size(360);
 
   &::before,
   &::after {
+    @include catSize(width, 30);
+    @include catSize(height, 5);
+
     position: absolute;
     display: block;
     content: "";
-    width: size(30);
-    height: size(5);
     background-color: #121212;
   }
 
   &::before {
-    left: calc(100% - #{size(1)});
     left: 100%;
     transform: rotate(15deg);
   }
 
   &::after {
-    right: calc(100% - #{size(1)});
     right: 100%;
     transform: rotate(-15deg) scale(-1, 1);
   }
 }
 
 .mouth-line {
+  @include catSize(width, 5);
+  @include catSize(height, 30);
+  @include catSize(top, -30);
+  @include catSize(left, -2.5);
+
   position: absolute;
   background-color: #121212;
-  width: size(5);
-  height: size(30);
-  top: size(-30);
-  left: size(-2.5);
 }
 
 .whisker {
+  @include catSize(top, 340);
+
   position: absolute;
-  top: size(340);
   z-index: 1;
 
   span {
+    @include catSize(width, 80);
+    @include catSize(height, 3);
+
     position: absolute;
-    width: size(80);
-    height: size(3);
     background: #ddd;
     border-radius: 30%;
 
     &:first-child {
+      @include catSize(top, -20);
+
       transform: rotate(15deg);
-      top: size(-20);
     }
 
     &:last-child {
+      @include catSize(bottom, -25);
+
       transform: rotate(-15deg);
-      bottom: size(-25);
     }
   }
 
   &--l {
+    @include catSize(left, 80);
+
     transform: rotate(-7deg);
-    left: size(80);
   }
 
   &--r {
+    @include catSize(left, 425);
+
     transform: scale(-1, 1) rotate(-7deg);
-    left: size(425);
   }
 }
 
 .neck {
+  @include catSize(left, 156);
+  @include catSize(top, 330);
+  @include catSize(width, 200);
+  @include catSize(height, 168);
+
   position: absolute;
   border-radius: 50% 50% 50% 50% / 100% 100% 0% 0%;
   background-color: #fff;
-  left: size(156);
-  top: size(330);
-  width: size(200);
-  height: size(168);
 }
 </style>
