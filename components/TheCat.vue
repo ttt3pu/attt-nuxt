@@ -66,8 +66,14 @@ img {
 .face-wrapper {
   position: relative;
   z-index: 1;
-  animation: cat-kunekune 15s infinite cubic-bezier(0.82, -0.005, 0.21, 1.13);
   transform: translateX(#{size(30)}) rotate(5deg);
+  animation: cat-kunekune 15s infinite cubic-bezier(0.82, -0.005, 0.21, 1.13);
+
+  /* stylelint-disable-next-line selector-type-no-unknown */
+  *::-ms-backdrop,
+  & {
+    animation: none;
+  }
 
   @keyframes cat-kunekune {
     50% {
