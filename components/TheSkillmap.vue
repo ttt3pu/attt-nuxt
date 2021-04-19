@@ -1,6 +1,6 @@
 <template>
   <div class="the-skillmap">
-    <v-heading-lv2>My skills</v-heading-lv2>
+    <v-heading-lv2>Skills</v-heading-lv2>
 
     <div
       class="item"

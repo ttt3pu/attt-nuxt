@@ -32,6 +32,7 @@
 
     <div class="main-contents">
       <the-profile />
+      <the-works />
       <the-skillmap />
     </div><!-- /main-contents -->
   </div>
