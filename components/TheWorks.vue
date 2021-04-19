@@ -23,7 +23,6 @@ export default {
         '大規模サイトのコンポーネント作成。BEMを活用し多量のCSSを管理',
         'Vuex + Cookie / Web Storage + REST APIのやり取りで構築された、サイトの状態管理を実装',
         'ReactをベースとしたSPAサイト構築',
-        'ES5などモダンな技術で構築されたサイトの構築、IE11対応',
         'Storybookを利用したコンポーネントの管理。Story内でVue + Pugを活用できるようスタマイズ',
         '案件都合に合わせてビルド環境を細かくカスタマイズ（npm scripts、webpack、Scss、Storybook、Pug、PostCSS、ESLint、Stylelint、Babel、Cloudinaly Node.js SDK、Grunt、 etc...）',
         'レガシーなビルド環境（Grunt.js + ES5 + etc...）からモダンなビルド環境（webpack + Babel + ES6~ + etc...）への移行',
