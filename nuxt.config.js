@@ -36,7 +36,8 @@ export default {
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
     // https://go.nuxtjs.dev/stylelint
-    '@nuxtjs/stylelint-module'
+    '@nuxtjs/stylelint-module',
+    '@nuxtjs/google-analytics'
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
@@ -60,5 +61,9 @@ export default {
         'Noto Sans JP:400',
       ]
     }
+  },
+
+  googleAnalytics: {
+    id: 'G-YY7ZSN9HY4'
   }
 }
