@@ -13,7 +13,6 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -57,8 +56,8 @@ export default {
   webfontloader: {
     google: {
       families: [
-        'Poppins:400',
-        'Noto Sans JP:400',
+        'Poppins:400&display=swap',
+        'Noto Sans JP:400&display=swap',
       ]
     }
   },

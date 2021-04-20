@@ -56,7 +56,7 @@ export default {
             },
             {
               heading: 'PHP',
-              score: 10,
+              score: 15,
             },
           ],
         },
@@ -107,7 +107,7 @@ export default {
             },
             {
               heading: 'WordPress',
-              score: 10,
+              score: 15,
             },
             {
               heading: 'IE11 support 😇',
@@ -159,6 +159,7 @@ export default {
       line-height: 30px;
       left: 16px;
       top: 0;
+      text-shadow: 0 1px 3px rgba(#000, 0.3);
     }
   }
 }

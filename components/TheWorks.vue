@@ -44,7 +44,7 @@ export default {
     align-items: baseline;
 
     &:not(:last-child) {
-      margin-bottom: 2px;
+      margin-bottom: 4px;
     }
 
     &::before {
