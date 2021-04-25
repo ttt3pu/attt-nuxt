@@ -49,6 +49,10 @@
   @media (max-width: 1600px) {
     #{$prop}: #{($px / 1400) * 100}vw;
   }
+
+  @media (max-width: 768px) {
+    #{$prop}: #{($px * 1.1 / 768) * 100}vh;
+  }
 }
 
 img {
@@ -62,10 +66,19 @@ img {
   @include catSize(width, 500);
   @include catSize(height, 500);
 
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  z-index: 2;
+  @media (min-width: 769px) {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 2;
+  }
+
+  @media (max-width: 768px) {
+    position: absolute;
+    bottom: -2px;
+    right: -25%;
+    // right: #{(-300 / 768) * 100}vw;
+  }
 }
 
 .face-wrapper {

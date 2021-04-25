@@ -2,13 +2,31 @@
   <div class="page-wrapper">
     <div class="background-gradation" />
 
-    <the-cat />
-
     <div class="contents-wrapper">
       <Nuxt />
+
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  created: function() {
+    if (process.client) {
+      const setFillHeight = () => {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+      }
+
+      // 画面のサイズ変動があった時に高さを再計算する
+      window.addEventListener('resize', setFillHeight);
+
+      // 初期化
+      setFillHeight();
+    }
+  },
+}
+</script>
 
 <style>
 html {
@@ -21,6 +39,7 @@ html {
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
   line-height: 1.875;
+  scroll-behavior: smooth;
 }
 
 ul {
@@ -35,8 +54,10 @@ ul {
 }
 
 .background-gradation {
+  /* background: #2e3255; */
   background: linear-gradient(to bottom, #2e3255, #001731);
   height: 100vh;
+  height: calc(var(--vh) * 100);
   width: 100%;
   position: fixed;
   top: 0;
