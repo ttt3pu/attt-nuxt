@@ -104,10 +104,10 @@ export default {
 }
 
 .title-container {
-  padding: #{(48 / 1980) * 100}vh #{(100 / 1980) * 100}vw 0;
   position: relative;
 
   @media (min-width: 769px) {
+    padding: #{(80 / 1980) * 100}vh #{(100 / 1980) * 100}vw 0;
     position: fixed;
     top: 0;
     left: 0;
@@ -117,6 +117,7 @@ export default {
   }
 
   @media (max-width: 768px) {
+    padding: #{(48 / 1980) * 100}vh #{(100 / 1980) * 100}vw 0;
     height: 100vh;
     height: calc(var(--vh) * 100);
     display: flex;
