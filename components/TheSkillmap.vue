@@ -124,7 +124,6 @@ export default {
 <style lang="scss" scoped>
 .the-skillmap {
   font-family: 'Poppins', sans-serif;
-  padding-bottom: 40px;
 
   .item {
     &:not(:last-child) {

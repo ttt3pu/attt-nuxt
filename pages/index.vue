@@ -257,17 +257,16 @@ export default {
   flex-grow: 1;
   margin-right: 0;
   margin-left: auto;
-  padding: 75px #{(100 / 1980) * 100}vw;
   background-color: rgba(#fff, 0.05);
   // background: #001731;
 
   @media (min-width: 769px) {
     max-width: #{(980 / 1600) * 100}vw;
+    padding: 75px #{(100 / 1980) * 100}vw;
   }
 
   @media (max-width: 768px) {
-    padding-top: 0;
-    padding-bottom: 0;
+    padding: 48px #{(100 / 1980) * 100}vw;
   }
 }
 </style>

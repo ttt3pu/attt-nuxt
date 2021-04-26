@@ -10,6 +10,6 @@
   color: #e2f1ff;
   font-weight: 400;
   font-size: 1.4rem;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 }
 </style>

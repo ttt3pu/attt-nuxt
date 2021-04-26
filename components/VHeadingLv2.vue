@@ -4,7 +4,7 @@
   </h2>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .v-heading-lv2 {
   font-family: 'Poppins', sans-serif;
   color: #f9f871;
