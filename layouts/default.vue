@@ -18,10 +18,15 @@ export default {
         document.documentElement.style.setProperty('--vh', `${vh}px`);
       }
 
-      // 画面のサイズ変動があった時に高さを再計算する
-      window.addEventListener('resize', setFillHeight);
+      let beforeHeight = window.innerHeight;
 
-      // 初期化
+      window.addEventListener('resize', () => {
+        if (beforeHeight !== window.innerHeight) {
+          beforeHeight = window.innerHeight;
+          setFillHeight();
+        }
+      });
+
       setFillHeight();
     }
   },
@@ -40,6 +45,8 @@ html {
   box-sizing: border-box;
   line-height: 1.875;
   scroll-behavior: smooth;
+
+  --vh: 1vh;
 }
 
 ul {
@@ -54,8 +61,9 @@ ul {
 }
 
 .background-gradation {
-  /* background: #2e3255; */
-  background: linear-gradient(to bottom, #2e3255, #001731);
+  background: #2e3255;
+
+  /* background: linear-gradient(to bottom, #2e3255, #001731); */
   height: 100vh;
   height: calc(var(--vh) * 100);
   width: 100%;
