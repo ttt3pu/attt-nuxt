@@ -258,7 +258,7 @@ export default {
   flex-grow: 1;
   margin-right: 0;
   margin-left: auto;
-  background-color: rgba(#fff, 0.05);
+  background-color: #3c3b5c;
   // background: #001731;
 
   @media (min-width: 769px) {

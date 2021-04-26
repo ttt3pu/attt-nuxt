@@ -1,6 +1,6 @@
 <template>
   <div class="page-wrapper">
-    <div class="background-gradation" />
+    <!-- <div class="background-gradation" /> -->
 
     <div class="contents-wrapper">
       <Nuxt />
@@ -70,7 +70,6 @@ html {
 
   @include z-map((
     --z-init: auto,
-    --z-contents-wrapper: auto,
     --z-cat: auto,
     --z-cat-layer: auto,
     --z-title: auto,
@@ -87,7 +86,7 @@ ul {
 
 .contents-wrapper {
   position: relative;
-  z-index: var(--z-contents-wrapper);
+  background-color: #2e3255;
 }
 
 .background-gradation {
