@@ -33,7 +33,27 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+@mixin z-map($z-map) {
+  $before-index: -1;
+
+  @each $name, $value in $z-map {
+    $result-z: null;
+
+    @if $value == auto {
+      $result-z: $before-index + 1;
+    }
+
+    @else {
+      $result-z: $value;
+    }
+
+    $before-index: $result-z;
+
+    #{$name}: $result-z;
+  }
+}
+
 html {
   font-family: sans-serif;
   font-size: 16px;
@@ -47,6 +67,16 @@ html {
   scroll-behavior: smooth;
 
   --vh: 1vh;
+
+  @include z-map((
+    --z-init: auto,
+    --z-contents-wrapper: auto,
+    --z-cat: auto,
+    --z-cat-layer: auto,
+    --z-title: auto,
+    --z-sns: auto,
+    --z-scroll: auto,
+  ));
 }
 
 ul {
@@ -57,7 +87,7 @@ ul {
 
 .contents-wrapper {
   position: relative;
-  z-index: 1;
+  z-index: var(--z-contents-wrapper);
 }
 
 .background-gradation {
@@ -70,7 +100,7 @@ ul {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 0;
+  z-index: var(--z-init);
 }
 
 *,

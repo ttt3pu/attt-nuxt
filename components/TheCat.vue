@@ -70,7 +70,7 @@ img {
     position: fixed;
     left: 0;
     bottom: 0;
-    z-index: 2;
+    z-index: var(--z-cat-layer);
   }
 
   @media (max-width: 768px) {
@@ -83,7 +83,7 @@ img {
 
 .face-wrapper {
   position: relative;
-  z-index: 1;
+  z-index: var(--z-cat);
   transform: translateX(5%) rotate(5deg);
   animation: cat-kunekune 15s infinite cubic-bezier(0.82, -0.005, 0.21, 1.13);
 
@@ -115,7 +115,7 @@ img {
 .face-bg {
   width: 100%;
   height: 100%;
-  z-index: 1;
+  z-index: var(--z-cat);
 
   &::before {
     content: "";
@@ -144,7 +144,7 @@ img {
   @include catSize(height, 200);
 
   position: absolute;
-  z-index: 1;
+  z-index: var(--z-cat);
   background-color: #121212;
   border-radius: 50%;
 
@@ -197,7 +197,7 @@ img {
   @include catSize(top, 230);
 
   position: absolute;
-  z-index: 2;
+  z-index: var(--z-cat-layer);
   background-color: #f8e042;
   border-radius: 50%;
 
@@ -230,7 +230,7 @@ img {
   @include catSize(left, 240);
 
   position: absolute;
-  z-index: 1;
+  z-index: var(--z-cat);
   background-color: #fec6db;
   border-radius: 50% 50% 50% 50% / 76% 76% 24% 24%;
 }
@@ -289,7 +289,7 @@ img {
   @include catSize(top, 340);
 
   position: absolute;
-  z-index: 1;
+  z-index: var(--z-cat);
 
   span {
     @include catSize(width, 80);

@@ -36,7 +36,7 @@
       </div>
 
       <button class="scroll" @click="scroll">
-        <span class="scroll__txt">Scroll</span>
+        <!-- <span class="scroll__txt">Scroll</span> -->
         <i class="scroll__arr" />
       </button>
     </div><!-- /title-container -->
@@ -135,7 +135,7 @@ export default {
     align-items: center;
     justify-content: space-between;
     position: relative;
-    z-index: 2;
+    z-index: var(--z-title);
   }
 }
 
@@ -154,7 +154,7 @@ export default {
 .sns {
   display: flex;
   position: relative;
-  z-index: 1;
+  z-index: var(--z-sns);
 
   &__item {
     width: 35px;
@@ -181,6 +181,7 @@ export default {
   text-align: center;
   outline: none;
   cursor: pointer;
+  z-index: var(--z-scroll);
 
   @media (min-width: 769px) {
     display: none;
@@ -188,21 +189,44 @@ export default {
 
   @media (max-width: 768px) {
     position: absolute;
-    left: #{(100 / 1980) * 100}vw;
+    left: #{(200 / 1980) * 100}vw;
     bottom: 56px;
   }
 
   &__arr {
+    position: relative;
     display: block;
     width: 24px;
     height: 24px;
-    border-left: 3px solid #f4fb7f;
-    border-bottom: 3px solid #f4fb7f;
-    transform: rotate(-45deg);
-    animation: sdb 1.5s infinite;
-    margin-top: -4px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      top: 0;
+      left: 0;
+      display: block;
+      border-left: 3px solid;
+      border-bottom: 3px solid;
+      transform: rotate(-45deg);
+      animation: sdb 1.5s infinite;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    &::before {
+      border-color: #f4fb7f;
+      margin-top: -4px;
+    }
+
+    &::after {
+      border-color: rgba(#000, 0.25);
+      filter: blur(4px);
+      margin-top: -2px;
+    }
 
     @keyframes sdb {
       0% {
