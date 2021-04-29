@@ -24,7 +24,15 @@ export default {
       items: [
         {
           heading: '複数案件での大規模サイトの構築、改修',
-          paragraph: '数々の数百～数千ページ単位の大規模サイト制作を、フロントエンドとして担当しました。\nいくつかの案件ではメインでフロントエンドを担当し、リードを行いました。',
+          paragraph: '数々の数百～数千ページ単位の大規模サイト制作に、フロントエンド担当として携わりました。',
+        },
+        {
+          heading: 'Node.jsを用いたビルド環境周りの初期構築・カスタマイズ',
+          paragraph: '数々の案件で、ビルド環境の構築や、案件都合に合わせた細かいカスタマイズを行いました。\n特にwebpack.config周りの構築・運用は数多く行いました。\n例) npm scripts、webpack、Scss、Storybook、Pug、PostCSS、ESLint、Stylelint、Babel、Cloudinaly Node.js SDK、Grunt、 etc...',
+        },
+        {
+          heading: 'Storybook環境の構築＆活用',
+          paragraph: 'Storybookを活用し、多量のコンポーネントを管理しやすく運用しました。\nまた、Story内でVue + Pugを活用できるようにするなど、諸々のカスタマイズを実装しました。',
         },
         {
           heading: 'Vuex + Cookie / Web Storage + REST APIを活用した機能実装',
@@ -32,15 +40,7 @@ export default {
         },
         {
           heading: 'ReactをベースとしたSPAサイト構築',
-          paragraph: 'REST APIでデータをやり取りする実装の、簡易版GAのようなサイトを構築しました。',
-        },
-        {
-          heading: 'Storybook環境の構築＆活用',
-          paragraph: 'Storybookを活用し、多量のコンポーネントを管理しやすく運用しました。\nまた、Story内でVue + Pugを活用できるようにするなど、諸々のカスタマイズを実装しました。',
-        },
-        {
-          heading: '案件都合に合わせてビルド環境を細かくカスタマイズ',
-          paragraph: 'Node.jsを用いたビルド環境周りの初期構築・カスタマイズを数々の案件で行いました。\n特にwebpack.configのカスタマイズは数多く行いました。\n例) npm scripts、webpack、Scss、Storybook、Pug、PostCSS、ESLint、Stylelint、Babel、Cloudinaly Node.js SDK、Grunt、 etc...',
+          paragraph: 'REST APIでデータをやり取りするような実装の、簡易版GAのようなサイトを構築しました。',
         },
         {
           heading: 'レガシーなビルド環境からモダンなビルド環境への移行',
