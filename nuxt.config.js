@@ -58,7 +58,7 @@ export default {
     google: {
       families: [
         'Poppins:400,500',
-        'Noto Sans JP:400',
+        'Noto Sans JP:400&display=swap',
       ]
     }
   },
