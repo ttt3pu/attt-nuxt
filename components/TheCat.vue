@@ -51,6 +51,10 @@
   }
 
   @media (max-width: 768px) {
+    #{$prop}: #{($px * 1.3 / 768) * 100}vh;
+  }
+
+  @media (max-width: 568px) {
     #{$prop}: #{($px * 1.1 / 768) * 100}vh;
   }
 }
@@ -76,8 +80,7 @@ img {
   @media (max-width: 768px) {
     position: absolute;
     bottom: -2px;
-    right: -25%;
-    // right: #{(-300 / 768) * 100}vw;
+    right: calc(-25% - 3vh);
   }
 }
 

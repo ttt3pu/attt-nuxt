@@ -6,7 +6,7 @@
 
 <style lang="scss" scoped>
 .v-heading-lv4 {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-family--en);
   color: #e2f1ff;
   font-weight: 400;
   font-size: 1.4rem;

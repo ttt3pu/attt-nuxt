@@ -4,15 +4,22 @@
 
     <div
       class="item"
-      v-for="item in $data.items"
+      v-for="item, i in $data.items"
       :key="item.heading"
     >
       <v-heading-lv3>{{ item.heading }}</v-heading-lv3>
 
       <ul>
-        <li v-for="childItem in item.childItems" :key="childItem.heading">
+        <li
+          v-for="childItem, i2 in item.childItems"
+          :key="childItem.heading"
+        >
           <v-heading-lv4>{{ childItem.heading }}</v-heading-lv4>
-          <div class="graph">
+          <div
+            class="graph"
+            :ref="`graph-${i}-${i2}`"
+            :aria-hidden="!childItem.isActive"
+          >
             <div class="graph__inner" :style="{'width': childItem.score + '%'}" />
             <span class="graph__text">{{ childItem.score === 0 ? 'Learning' : childItem.score + '%' }}</span>
           </div>
@@ -117,13 +124,36 @@ export default {
         },
       ]
     }
-  }
+  },
+  mounted: function() {
+    this.$data.items.forEach((item, i) => {
+      item.childItems.forEach((item2, i2) => {
+        this.aos(i, i2);
+      });
+    });
+  },
+  methods: {
+    aos: function(i, i2) {
+      const observer = new IntersectionObserver((entries) => {
+        for(const entry of entries){
+          if (entry.isIntersecting){
+            this.$set(this.$data.items[i]['childItems'][i2], 'isActive', true);
+            observer.disconnect();
+          }
+        }
+      }, {
+        threshold: [0.25, 0.5]
+      });
+
+      observer.observe(this.$refs[`graph-${i}-${i2}`][0]);
+    },
+  },
 }
 </script>
 
 <style lang="scss" scoped>
 .the-skillmap {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-family--en);
 
   .item {
     &:not(:last-child) {
@@ -136,33 +166,44 @@ export default {
       margin-bottom: 16px;
     }
   }
+}
 
-  .graph {
-    overflow: hidden;
-    position: relative;
-    height: 30px;
-    border-radius: 4px;
-    background: #e2f1ff;
-    box-shadow:
-      inset 5px 5px 14px #d2e0ed,
-      inset -5px -5px 14px #f2ffff;
+.graph {
+  $thisGraph: &;
 
-    &__inner {
-      position: absolute;
-      left: 0;
-      top: 0;
-      height: 100%;
-      background: #ee8270;
+  overflow: hidden;
+  position: relative;
+  height: 30px;
+  border-radius: 4px;
+  background: var(--txt-color-white);
+  box-shadow:
+    inset 5px 5px 14px #d2e0ed,
+    inset -5px -5px 14px #f2ffff,
+    0 3px 6px rgba(0, 0, 0, 0.16);
+
+  &[aria-hidden="true"] {
+    #{$thisGraph}__inner {
+      transform: scale(0, 1);
     }
+  }
 
-    &__text {
-      color: #e2f1ff;
-      position: absolute;
-      line-height: 30px;
-      left: 16px;
-      top: 0;
-      text-shadow: 0 1px 3px rgba(#000, 0.3);
-    }
+  &__inner {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: #ee8270;
+    transform-origin: 0 50%;
+    transition: transform 1s ease-in-out;
+  }
+
+  &__text {
+    color: var(--txt-color-white);
+    position: absolute;
+    line-height: 30px;
+    left: 16px;
+    top: 0;
+    text-shadow: 0 1px 3px rgba(#000, 0.3);
   }
 }
 </style>

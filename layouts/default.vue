@@ -55,17 +55,16 @@ export default {
 }
 
 html {
-  font-family: sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-  line-height: 1.875;
-  scroll-behavior: smooth;
-
+  // font settings
+  --line-height: 1.875;
+  --font-family--en: 'Poppins', sans-serif;
+  --font-family--jp: 'Noto Sans JP', sans-serif;
+  // colors
+  --txt-color-white: #e2f1ff;
+  --primary-color: #f9f871;
+  --secondary-color: #ffb962;
+  --tertiary-color: #b95d7b;
+  // etc
   --vh: 1vh;
 
   @include z-map((
@@ -76,6 +75,17 @@ html {
     --z-sns: auto,
     --z-scroll: auto,
   ));
+
+  font-family: sans-serif;
+  font-size: 16px;
+  word-spacing: 1px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+  line-height: var(--line-height);
+  scroll-behavior: smooth;
 }
 
 ul {

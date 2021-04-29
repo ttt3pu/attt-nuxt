@@ -42,9 +42,17 @@
     </div><!-- /title-container -->
 
     <div class="main-contents">
-      <the-profile />
-      <the-works />
-      <the-skillmap />
+      <div class="main-contents__box">
+        <the-profile />
+      </div>
+
+      <div class="main-contents__box">
+        <the-works />
+      </div>
+
+      <div class="main-contents__box">
+        <the-skillmap />
+      </div>
     </div><!-- /main-contents -->
   </div>
 </template>
@@ -85,24 +93,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@mixin line-height-crop($line-height: 1.5) {
-  &::before {
-    display: block;
-    width: 0;
-    height: 0;
-    margin-top: calc((1 - #{$line-height}) * 0.5em);
-    content: "";
-  }
-
-  &::after {
-    display: block;
-    width: 0;
-    height: 0;
-    margin-bottom: calc((1 - #{$line-height}) * 0.5em);
-    content: "";
-  }
-}
-
 .title-container {
   position: relative;
 
@@ -141,7 +131,7 @@ export default {
 }
 
 .title {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-family--en);
   display: block;
   font-weight: 400;
   font-size: 9rem;
@@ -169,6 +159,7 @@ export default {
     width: 100%;
     fill: #f4fb7f;
     transition: fill 0.2s;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.16));
 
     &:hover {
       fill: lighten(#f4fb7f, 20%);
@@ -177,6 +168,8 @@ export default {
 }
 
 .scroll {
+  $size: 32px;
+
   background: none;
   border: none;
   text-align: center;
@@ -191,22 +184,22 @@ export default {
   @media (max-width: 768px) {
     position: absolute;
     left: #{(200 / 1980) * 100}vw;
-    bottom: 56px;
+    bottom: calc(#{$size} * 2);
   }
 
   &__arr {
     position: relative;
     display: block;
-    width: 24px;
-    height: 24px;
+    width: $size;
+    height: $size;
     margin: 0 auto;
 
     &::before,
     &::after {
       content: "";
       position: absolute;
-      width: 24px;
-      height: 24px;
+      width: $size;
+      height: $size;
       top: 0;
       left: 0;
       display: block;
@@ -249,7 +242,7 @@ export default {
   &__txt {
     display: block;
     color: #f4fb7f;
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--font-family--en);
     font-size: 24px;
   }
 }
@@ -258,8 +251,7 @@ export default {
   flex-grow: 1;
   margin-right: 0;
   margin-left: auto;
-  background-color: #3c3b5c;
-  // background: #001731;
+  // background-color: #3c3b5c;
 
   @media (min-width: 769px) {
     max-width: #{(980 / 1600) * 100}vw;
@@ -267,7 +259,24 @@ export default {
   }
 
   @media (max-width: 768px) {
-    padding: 48px #{(100 / 1980) * 100}vw;
+    padding: 0 #{(100 / 1980) * 100}vw 48px;
+  }
+
+  &__box {
+    background-color: #514872;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+
+    &:not(:last-child) {
+      margin-bottom: 48px;
+    }
+
+    @media (min-width: 769px) {
+      padding: 40px #{(50 / 1980) * 100}vw;
+    }
+
+    @media (max-width: 768px) {
+      padding: 32px #{(100 / 1980) * 100}vw;
+    }
   }
 }
 </style>

@@ -43,7 +43,8 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    'nuxt-webfontloader'
+    'nuxt-webfontloader',
+    '@nuxtjs/style-resources',
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
@@ -56,13 +57,19 @@ export default {
   webfontloader: {
     google: {
       families: [
-        'Poppins:400&display=swap',
-        'Noto Sans JP:400&display=swap',
+        'Poppins:400,500',
+        'Noto Sans JP:400',
       ]
     }
   },
 
   googleAnalytics: {
     id: 'G-YY7ZSN9HY4'
-  }
+  },
+
+  styleResources: {
+   scss: [
+    '~/assets/scss/mixins.scss',
+    ],
+  },
 }
