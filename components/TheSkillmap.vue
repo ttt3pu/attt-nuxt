@@ -14,7 +14,9 @@
           v-for="childItem, i2 in item.childItems"
           :key="childItem.heading"
         >
-          <v-heading-lv4>{{ childItem.heading }}</v-heading-lv4>
+          <v-heading-lv4 :icn-path="childItem.icnPath">
+            {{ childItem.heading }}
+          </v-heading-lv4>
           <div
             class="graph"
             :ref="`graph-${i}-${i2}`"
@@ -30,6 +32,22 @@
 </template>
 
 <script>
+import icnHtml from 'simple-icons/icons/html5';
+import icnPug from 'simple-icons/icons/pug';
+import icnCss from 'simple-icons/icons/css3';
+import icnSass from 'simple-icons/icons/sass';
+import icnJs from 'simple-icons/icons/javascript';
+import icnTs from 'simple-icons/icons/typescript';
+import icnPhp from 'simple-icons/icons/php';
+import icnVue from 'simple-icons/icons/vue-dot-js';
+import icnJquery from 'simple-icons/icons/jquery';
+import icnReact from 'simple-icons/icons/react';
+import icnWebpack from 'simple-icons/icons/webpack';
+import icnStorybook from 'simple-icons/icons/storybook';
+import icnGrunt from 'simple-icons/icons/grunt';
+import icnWordpress from 'simple-icons/icons/wordpress';
+import icnIe from 'simple-icons/icons/internetexplorer';
+
 export default {
   data () {
     return {
@@ -39,30 +57,37 @@ export default {
           childItems: [
             {
               heading: 'HTML',
+              icnPath: icnHtml.path,
               score: 100,
             },
             {
               heading: 'Pug',
+              icnPath: icnPug.path,
               score: 100,
             },
             {
               heading: 'CSS',
+              icnPath: icnCss.path,
               score: 100,
             },
             {
-              heading: 'SCSS',
+              heading: 'Scss',
+              icnPath: icnSass.path,
               score: 100,
             },
             {
               heading: 'JavaScript',
+              icnPath: icnJs.path,
               score: 100,
             },
             {
               heading: 'TypeScript',
+              icnPath: icnTs.path,
               score: 25,
             },
             {
               heading: 'PHP',
+              icnPath: icnPhp.path,
               score: 15,
             },
           ],
@@ -72,14 +97,17 @@ export default {
           childItems: [
             {
               heading: 'Vue',
+              icnPath: icnVue.path,
               score: 100,
             },
             {
               heading: 'jQuery',
+              icnPath: icnJquery.path,
               score: 80,
             },
             {
               heading: 'React',
+              icnPath: icnReact.path,
               score: 25,
             },
           ],
@@ -89,14 +117,17 @@ export default {
           childItems: [
             {
               heading: 'webpack',
+              icnPath: icnWebpack.path,
               score: 100,
             },
             {
               heading: 'Stoybook',
+              icnPath: icnStorybook.path,
               score: 75,
             },
             {
               heading: 'Grunt',
+              icnPath: icnGrunt.path,
               score: 50,
             },
           ],
@@ -114,10 +145,12 @@ export default {
             },
             {
               heading: 'WordPress',
+              icnPath: icnWordpress.path,
               score: 15,
             },
             {
               heading: 'IE11 support 😇',
+              icnPath: icnIe.path,
               score: 100,
             },
           ],
