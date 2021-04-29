@@ -8,10 +8,8 @@
         v-for="item in $data.items"
         :key="item.heading"
       >
-        <div class="the-works__item__txt">
-          <h3 class="the-works__item__heading">{{ item.heading }}</h3>
-          <p class="the-works__item__paragraph">{{ item.paragraph }}</p>
-        </div>
+        <h3 class="the-works__item__heading">{{ item.heading }}</h3>
+        <p class="the-works__item__paragraph">{{ item.paragraph }}</p>
       </li>
     </ul>
   </div>
@@ -60,28 +58,9 @@ export default {
 .the-works {
   &__item {
     font-family: var(--font-family--jp);
-    display: flex;
-    align-items: baseline;
 
     &:not(:last-child) {
       margin-bottom: 24px;
-    }
-
-    &::before {
-      content: "";
-      display: block;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background-color: #ffb962;
-      position: relative;
-      bottom: 1px;
-      margin-right: 12px;
-      flex-shrink: 0;
-    }
-
-    &__txt {
-      width: 100%;
     }
 
     &__heading {
@@ -89,6 +68,21 @@ export default {
       font-weight: 400;
       font-size: 1.4rem;
       margin-bottom: 8px;
+      display: flex;
+      align-items: baseline;
+
+      &::before {
+        content: "";
+        display: block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: #ffb962;
+        position: relative;
+        bottom: 1px;
+        margin-right: 12px;
+        flex-shrink: 0;
+      }
     }
 
     &__paragraph {
@@ -100,6 +94,10 @@ export default {
       padding-left: 16px;
       position: relative;
       white-space: pre-wrap;
+
+      @media (min-width: 769px) {
+        margin-left: 20px;
+      }
 
       &::before {
         content: "";
