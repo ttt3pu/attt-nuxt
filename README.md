@@ -18,3 +18,7 @@ $ npm run generate
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+
+## Palette
+
+https://mycolor.space/?hex=#2E3255&sub=1#001731&sub=1

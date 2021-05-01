@@ -1,75 +1,100 @@
-export default {
-  // Target (https://go.nuxtjs.dev/config-target)
-  target: 'static',
+import translate from './translate';
+import jaMessages from './i18n/ja';
 
-  server: {
-    host: '0.0.0.0',
-    port: 8000
-  },
+export default async() => {
+  const caMessages = await translate('ca');
 
-  // Global page headers (https://go.nuxtjs.dev/config-head)
-  head: {
-    title: 'attt - Frontend engineer',
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-    ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
-  },
+  return {
+    // Target (https://go.nuxtjs.dev/config-target)
+    target: 'static',
 
-  // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: [
-  ],
+    server: {
+      host: '0.0.0.0',
+      port: 8000
+    },
 
-  // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: [
-  ],
-
-  // Auto import components (https://go.nuxtjs.dev/config-components)
-  components: true,
-
-  // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
-  buildModules: [
-    // https://go.nuxtjs.dev/typescript
-    '@nuxt/typescript-build',
-    // https://go.nuxtjs.dev/stylelint
-    '@nuxtjs/stylelint-module',
-    '@nuxtjs/google-analytics'
-  ],
-
-  // Modules (https://go.nuxtjs.dev/config-modules)
-  modules: [
-    // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios',
-    'nuxt-webfontloader',
-    '@nuxtjs/style-resources',
-  ],
-
-  // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
-
-  // Build Configuration (https://go.nuxtjs.dev/config-build)
-  build: {
-  },
-
-  webfontloader: {
-    google: {
-      families: [
-        'Poppins:400,500',
-        'Noto Sans JP:400&display=swap',
+    // Global page headers (https://go.nuxtjs.dev/config-head)
+    head: {
+      title: 'attt - Frontend engineer',
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
       ]
-    }
-  },
+    },
 
-  googleAnalytics: {
-    id: 'G-YY7ZSN9HY4'
-  },
-
-  styleResources: {
-   scss: [
-    '~/assets/scss/mixins.scss',
+    // Global CSS (https://go.nuxtjs.dev/config-css)
+    css: [
     ],
-  },
+
+    // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
+    plugins: [
+      {
+        src: "@/plugins/vue-clickaway",
+        ssr: false,
+      },
+    ],
+
+    // Auto import components (https://go.nuxtjs.dev/config-components)
+    components: true,
+
+    // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
+    buildModules: [
+      // https://go.nuxtjs.dev/typescript
+      '@nuxt/typescript-build',
+      // https://go.nuxtjs.dev/stylelint
+      '@nuxtjs/stylelint-module',
+      '@nuxtjs/google-analytics'
+    ],
+
+    // Modules (https://go.nuxtjs.dev/config-modules)
+    modules: [
+      // https://go.nuxtjs.dev/axios
+      '@nuxtjs/axios',
+      'nuxt-webfontloader',
+      '@nuxtjs/style-resources',
+      [
+        'nuxt-i18n',
+        {
+          locales: ['ja', 'ca'],
+          defaultLocale: 'ja',
+          vueI18n: {
+            fallbackLocale: 'ja',
+            messages: {
+              ja: jaMessages,
+              ca: caMessages,
+            },
+          },
+        },
+      ],
+    ],
+
+    // Axios module configuration (https://go.nuxtjs.dev/config-axios)
+    axios: {},
+
+    // Build Configuration (https://go.nuxtjs.dev/config-build)
+    build: {
+    },
+
+    webfontloader: {
+      google: {
+        families: [
+          'Poppins:400,500',
+          'Noto Sans JP:400&display=swap',
+        ]
+      }
+    },
+
+    googleAnalytics: {
+      id: 'G-YY7ZSN9HY4'
+    },
+
+    styleResources: {
+    scss: [
+      '~/assets/scss/mixins.scss',
+      ],
+    },
+  };
 }

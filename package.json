@@ -15,7 +15,8 @@
     "@nuxt/typescript-runtime": "^2.1.0",
     "@nuxtjs/axios": "^5.13.1",
     "core-js": "^3.10.1",
-    "nuxt": "^2.15.4"
+    "nuxt": "^2.15.4",
+    "vue-clickaway": "^2.2.2"
   },
   "devDependencies": {
     "@nuxt/types": "^2.15.4",
@@ -31,6 +32,7 @@
     "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-nuxt": "^2.0.0",
     "fibers": "^5.0.0",
+    "nuxt-i18n": "^6.26.0",
     "nuxt-webfontloader": "^1.1.0",
     "sass": "^1.32.8",
     "sass-loader": "^10.1.1",

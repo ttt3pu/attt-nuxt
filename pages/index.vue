@@ -263,7 +263,7 @@ export default {
   }
 
   &__box {
-    background-color: #514872;
+    background-color: var(--bg-color--lv2);
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
 
     &:not(:last-child) {

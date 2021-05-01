@@ -1,16 +1,24 @@
 <template>
   <div class="page-wrapper">
-    <!-- <div class="background-gradation" /> -->
-
     <div class="contents-wrapper">
+      <the-language />
       <Nuxt />
-
     </div>
   </div>
 </template>
 
 <script>
+import TheLanguage from '~/components/TheLanguage.vue';
+
 export default {
+  components: { TheLanguage },
+  head: function() {
+    return {
+      htmlAttrs: {
+        lang: this.$i18n.locale,
+      },
+    };
+  },
   created: function() {
     if (process.client) {
       const setFillHeight = () => {
@@ -61,9 +69,13 @@ html {
   --font-family--jp: 'Noto Sans JP', sans-serif;
   // colors
   --txt-color-white: #e2f1ff;
+  --txt-color-white--hover: #{lighten(#e2f1ff, 5%)};
   --primary-color: #f9f871;
   --secondary-color: #ffb962;
   --tertiary-color: #b95d7b;
+  // bg colors
+  --bg-color--lv1: #2e3255;
+  --bg-color--lv2: #514872;
   // etc
   --vh: 1vh;
 
@@ -74,6 +86,7 @@ html {
     --z-title: auto,
     --z-sns: auto,
     --z-scroll: auto,
+    --z-language: auto,
   ));
 
   font-family: sans-serif;
@@ -96,20 +109,7 @@ ul {
 
 .contents-wrapper {
   position: relative;
-  background-color: #2e3255;
-}
-
-.background-gradation {
-  background: #2e3255;
-
-  /* background: linear-gradient(to bottom, #2e3255, #001731); */
-  height: 100vh;
-  height: calc(var(--vh) * 100);
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: var(--z-init);
+  background-color: var(--bg-color--lv1);
 }
 
 *,
