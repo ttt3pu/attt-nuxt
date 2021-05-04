@@ -120,6 +120,7 @@ export default {
     text-decoration: none;
     background-color: var(--txt-color-white);
     width: 100%;
+    font-size: 0.9rem;
 
     &:hover {
       background-color: var(--txt-color-white--hover);

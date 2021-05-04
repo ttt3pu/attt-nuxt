@@ -1,8 +1,9 @@
-import translate from './translate';
+import axios from 'axios';
+import translatePost from './i18n';
 import jaMessages from './i18n/ja';
 
 export default async() => {
-  const caMessages = await translate('ca');
+  const caMessages = await translatePost('ca');
 
   return {
     // Target (https://go.nuxtjs.dev/config-target)
@@ -27,10 +28,12 @@ export default async() => {
 
     // Global CSS (https://go.nuxtjs.dev/config-css)
     css: [
+      '@/assets/scss/common.scss',
     ],
 
     // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
     plugins: [
+      '~/plugins/translate.js',
       {
         src: "@/plugins/vue-clickaway",
         ssr: false,
@@ -46,7 +49,6 @@ export default async() => {
       '@nuxt/typescript-build',
       // https://go.nuxtjs.dev/stylelint
       '@nuxtjs/stylelint-module',
-      '@nuxtjs/google-analytics'
     ],
 
     // Modules (https://go.nuxtjs.dev/config-modules)
@@ -55,9 +57,19 @@ export default async() => {
       '@nuxtjs/axios',
       'nuxt-webfontloader',
       '@nuxtjs/style-resources',
+      '@nuxtjs/markdownit',
+      '@nuxtjs/feed',
+      [
+        '@nuxtjs/google-gtag',
+        {
+          id: 'G-YY7ZSN9HY4',
+          debug: true,
+        },
+      ],
       [
         'nuxt-i18n',
         {
+          vueI18nLoader: true,
           locales: ['ja', 'ca'],
           defaultLocale: 'ja',
           vueI18n: {
@@ -66,13 +78,17 @@ export default async() => {
               ja: jaMessages,
               ca: caMessages,
             },
+            // pages: {
+            //   'blog/_slug': false,
+            // },
           },
         },
       ],
     ],
 
     // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-    axios: {},
+    axios: {
+    },
 
     // Build Configuration (https://go.nuxtjs.dev/config-build)
     build: {
@@ -87,14 +103,47 @@ export default async() => {
       }
     },
 
-    googleAnalytics: {
-      id: 'G-YY7ZSN9HY4'
-    },
-
     styleResources: {
     scss: [
       '~/assets/scss/mixins.scss',
       ],
     },
+
+    markdownit: {
+      injected: true
+    },
+
+    feed: [
+      {
+        path: '/blog/feed.xml',
+        async create (feed) {
+          feed.options = {
+            title: 'attt',
+            link: `https://attt.hachiware.cat/blog/feed.xml`,
+          }
+
+          const blogPosts = await axios.get('https://attt.microcms.io/api/v1/blog', {
+            headers: {'X-API-KEY': process.env.MICROCMS_API_KEY},
+          });
+
+          blogPosts.data.contents.forEach((post) => {
+            feed.addItem({
+              title: post.title,
+              id: post.id,
+              link: `https://attt.hachiware.cat/blog/${post.slug}`,
+              content: post.content,
+              date: new Date(post.publishedAt),
+            })
+          })
+
+          feed.addContributor({
+            name: 'attt',
+            link: process.env.BASE_URL
+          })
+        },
+        cacheTime: 1000 * 60 * 15,
+        type: 'atom1'
+      }
+    ],
   };
 }
