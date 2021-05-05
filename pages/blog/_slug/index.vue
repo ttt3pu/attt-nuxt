@@ -76,7 +76,7 @@ export default {
 
 <style lang="scss" scoped>
 .main {
-  max-width: 980px;
+  max-width: calc(980px + #{(200 / 1980) * 100}vw);
   margin: 0 auto;
 
   @media (min-width: 769px) {
