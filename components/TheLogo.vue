@@ -11,7 +11,7 @@
       class="sns"
     >
       <li
-        v-for="item in $data.snsItems"
+        v-for="item in snsItems"
         :key="item.name"
         class="sns__item"
       >
@@ -35,40 +35,43 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, ref } from "@nuxtjs/composition-api"
 import icnGithub from 'simple-icons/icons/github';
 import icnTwitter from 'simple-icons/icons/twitter';
 import icnZenn from 'simple-icons/icons/zenn';
 
-export default {
+export default defineComponent({
   props: {
     isActiveLogo: {
       type: Boolean,
       default: true,
     },
   },
-  data: function() {
+  setup() {
+    const snsItems = ref([
+      {
+        title: 'GitHub',
+        path: icnGithub.path,
+        href: 'https://github.com/ttt3pu',
+      },
+      {
+        title: 'Zenn',
+        path: icnZenn.path,
+        href: 'https://zenn.dev/attt',
+      },
+      {
+        title: 'Twitter',
+        path: icnTwitter.path,
+        href: 'https://twitter.com/ttt3pu',
+      },
+    ])
+
     return {
-      snsItems: [
-        {
-          title: 'GitHub',
-          path: icnGithub.path,
-          href: 'https://github.com/ttt3pu',
-        },
-        {
-          title: 'Zenn',
-          path: icnZenn.path,
-          href: 'https://zenn.dev/attt',
-        },
-        {
-          title: 'Twitter',
-          path: icnTwitter.path,
-          href: 'https://twitter.com/ttt3pu',
-        },
-      ],
+      snsItems,
     };
   },
-}
+});
 </script>
 
 <style lang="scss" scoped>

@@ -1,10 +1,14 @@
 import axios from 'axios';
 
+import type {Translate} from './type';
+
 /**
  * @param text 翻訳する文言
  * @param target 翻訳する言語
  */
-export default (text: string, target: string) => {
+export default(params: Translate) => {
+  const {text, target} = params;
+
   return new Promise<string>((resolve) => {
     axios.get('https://script.google.com/macros/s/AKfycbzKs_lAoX052Ohijj4uFTdzk5gTOl6KI_hrjgDeGnfgD0pihi4/exec', {
       params: {

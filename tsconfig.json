@@ -25,12 +25,15 @@
     },
     "types": [
       "@types/node",
-      "@nuxt/types"
+      "@nuxt/types",
+      "nuxt-i18n",
+      "@nuxtjs/markdownit",
+      "@types/simple-icons"
     ]
   },
   "exclude": [
     "node_modules",
     ".nuxt",
     "dist"
-  ]
+  ],
 }

@@ -5,7 +5,7 @@
     <ul>
       <li
         class="the-works__item"
-        v-for="item in $data.items"
+        v-for="item in data.items"
         :key="item.heading"
       >
         <h3 class="the-works__item__heading">{{ item.heading }}</h3>
@@ -15,14 +15,22 @@
   </div>
 </template>
 
-<script>
-export default {
-  data () {
+<script lang="ts">
+import { defineComponent, reactive, useContext } from "@nuxtjs/composition-api";
+
+export default defineComponent({
+  setup() {
+    const { i18n } = useContext();
+
+    const data = reactive({
+      items: i18n.t('works'),
+    });
+
     return {
-      items: this.$t('works'),
+      data,
     };
   },
-}
+});
 </script>
 
 <style lang="scss" scoped>
