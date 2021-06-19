@@ -70,7 +70,7 @@ export default defineComponent({
   }
 
   @media (max-width: 768px) {
-    padding: 24px #{(100 / 1980) * 100}vw;
+    padding: 24px #{(100 / 1980) * 100}vw 0;
     height: 100vh;
     height: calc(var(--vh) * 100);
     display: flex;
