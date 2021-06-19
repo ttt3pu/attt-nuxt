@@ -49,6 +49,7 @@ export default async() => {
       '@nuxt/typescript-build',
       // https://go.nuxtjs.dev/stylelint
       '@nuxtjs/stylelint-module',
+      '@nuxtjs/composition-api/module',
     ],
 
     // Modules (https://go.nuxtjs.dev/config-modules)
@@ -145,5 +146,9 @@ export default async() => {
         type: 'atom1'
       }
     ],
+
+    privateRuntimeConfig: {
+      MICROCMS_API_KEY: process.env.MICROCMS_API_KEY,
+    },
   };
 }

@@ -20,14 +20,14 @@ export default async (target: string) => {
   /**
    * Profile
    */
-  result.profile = await translate(result.profile, target);
+  result.profile = await translate({text: result.profile, target});
 
   /**
    * Works
    */
   for (let i = 0; i < result.works.length; i++) {
-    result.works[i].heading = await translate(result.works[i].heading, target);
-    result.works[i].paragraph = await translate(result.works[i].paragraph, target);
+    result.works[i].heading = await translate({text: result.works[i].heading, target});
+    result.works[i].paragraph = await translate({text: result.works[i].paragraph, target});
   }
 
   return result;

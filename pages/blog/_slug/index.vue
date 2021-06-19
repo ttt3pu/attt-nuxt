@@ -13,47 +13,58 @@
     <div class="heading-container">
       <time
         class="date"
-        :datetime="$data.publishedAt"
-      >{{ _publishedAtFormatted }}</time>
+        :datetime="data.publishedAt"
+      >{{ _publishedAtFormatted() }}</time>
 
-      <h1 class="title">{{ $data.title }}</h1>
+      <h1 class="title">{{ data.title }}</h1>
     </div>
 
     <div
       class="post"
-      v-html="$data.content"
+      v-html="data.content"
     />
   </main>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, useFetch, reactive, ref, useContext } from "@nuxtjs/composition-api"
 import axios from 'axios'
 import dayjs from 'dayjs';
+//@ts-ignore
 import icnBack from 'vue-material-design-icons/ChevronLeft.vue';
 
-export default {
+export default defineComponent({
   components: {
     icnBack
   },
-  async asyncData({ route, params, i18n, $md, $translate }) {
-    const response = await axios.get(`https://attt.microcms.io/api/v1/blog/${params.slug}`, {
-      headers: {'X-API-KEY': process.env.MICROCMS_API_KEY},
-    });
+  setup() {
+    const { $config, params, i18n, $md, $translate } = useContext();
 
-    const locale = i18n.locale;
+    const data = reactive({
+      publishedAt: new Date(),
+      title: '',
+      content: '',
+    })
 
-    const {publishedAt, title, content} = response.data;
+    useFetch(async () => {
+      const response = await axios.get(`https://attt.microcms.io/api/v1/blog/${params.value.slug}`, {
+        headers: {'X-API-KEY': $config.MICROCMS_API_KEY},
+      });
 
-    const data = {
-      publishedAt,
-      title: await (async () => {
+      const locale = i18n.locale;
+
+      const {publishedAt, title, content} = response.data;
+
+      data.publishedAt = publishedAt;
+      data.title = await (async () => {
         if (locale === 'ja') {
           return title;
         }
 
         return await $translate(title, locale);
-      })(),
-      content: await (async () => {
+      })();
+
+      data.content = await (async () => {
         const renderedStr = $md.render(content);
 
         if (locale === 'ja') {
@@ -61,17 +72,17 @@ export default {
         }
 
         return await $translate(renderedStr, locale);
-      })(),
-    };
+      })();
+    });
 
-    return data;
+    const _publishedAtFormatted = ref(() => dayjs(data.publishedAt).format('YYYY.MM.DD'));
+
+    return {
+      data,
+      _publishedAtFormatted,
+    };
   },
-  computed: {
-    _publishedAtFormatted: function() {
-      return dayjs(this.$data.publishedAt).format('YYYY.MM.DD');
-    },
-  },
-};
+});
 </script>
 
 <style lang="scss" scoped>

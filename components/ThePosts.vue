@@ -33,7 +33,7 @@
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <path :d="$data.icnZenn" />
+              <path :d="icnZenn" />
             </svg>
           </span>
 
@@ -52,26 +52,34 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { computed, defineComponent, ref, useStore } from "@nuxtjs/composition-api"
 import {mapState} from 'vuex'
-import icnZenn from 'simple-icons/icons/zenn';
+import icnZennPath from 'simple-icons/icons/zenn';
+// @ts-ignore
 import icnPencil from 'vue-material-design-icons/Pencil.vue';
 import dayjs from 'dayjs';
 
-export default {
+import type {
+  ZennPost,
+  ZennPosts,
+  BlogPost,
+  BlogPosts,
+} from '../types';
+
+export default defineComponent({
   components: {
     icnPencil,
   },
-  data: function() {
-    return {
-      icnZenn: icnZenn.path,
-    };
-  },
-  computed: mapState({
-    _zennPosts: state => state.zennPosts,
-    _blogPosts: state => state.blogPosts,
-    _recentPosts: function() {
-      const filteredZennPosts = this._zennPosts.items.map((row) => ({
+  setup() {
+    const store = useStore();
+
+    const icnZenn = ref(icnZennPath.path);
+    const _zennPosts = computed<ZennPosts>(() => store.getters.zennPosts);
+    const _blogPosts = computed<BlogPosts>(() => store.getters.blogPosts);
+
+    const _recentPosts =  computed(() => {
+      const filteredZennPosts = _zennPosts.value.items.map((row: ZennPost) => ({
         type: 'zenn',
         title: row.title,
         date: row.pubDate,
@@ -79,7 +87,7 @@ export default {
         link: row.link,
       }));
 
-      const filteredBlogPosts = this._blogPosts.map((row) => ({
+      const filteredBlogPosts = _blogPosts.value.map((row: BlogPost) => ({
         type: 'blog',
         title: row.title,
         date: row.publishedAt,
@@ -93,7 +101,7 @@ export default {
       ];
 
       // 日付順に並び替え
-      mergedPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+      mergedPosts.sort((a, b) => + new Date(b.date) - + new Date(a.date));
 
       // ブログの投稿を1個だけ一番前に持ってくる
       for (let i = 0; i < mergedPosts.length; i++) {
@@ -105,9 +113,16 @@ export default {
       }
 
       return mergedPosts;
-    },
-  }),
-}
+    });
+
+    return {
+      icnZenn,
+      _zennPosts,
+      _blogPosts,
+      _recentPosts,
+    };
+  },
+});
 </script>
 
 <style lang="scss" scoped>

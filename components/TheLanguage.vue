@@ -5,45 +5,46 @@
   >
     <button
       class="the-language__current"
-      @click="$data.isOpen = !$data.isOpen"
-      :aria-expanded="$data.isOpen"
+      @click="data.isOpen = !data.isOpen"
+      :aria-expanded="data.isOpen"
     >{{ $i18n.locale }}</button>
 
     <nuxt-link
       v-for="locale in _availableLocales"
       :key="locale"
       :to="switchLocalePath(locale)"
-      :aria-hidden="!$data.isOpen"
+      :aria-hidden="!data.isOpen"
     >
       {{ locale }}
     </nuxt-link>
   </div>
 </template>
 
-<script>
-export default {
-  data: function() {
-    return {
+<script lang="ts">
+import { defineComponent, reactive, computed, useContext } from "@nuxtjs/composition-api"
+
+export default defineComponent({
+  setup() {
+    const { i18n } = useContext();
+
+    const data = reactive({
       isOpen: false,
+    })
+
+    const onClickaway = (isOpen: boolean): void => {
+      data.isOpen = isOpen;
+    };
+
+    // @ts-ignore
+    const _availableLocales = computed((): string => i18n.locales.filter((locale: string) => locale !== i18n.locale));
+
+    return {
+      data,
+      onClickaway,
+      _availableLocales,
     };
   },
-  computed: {
-    _availableLocales: function() {
-      return this.$i18n.locales.filter((locale) => locale !== this.$i18n.locale);
-    },
-  },
-  methods: {
-    onClickaway: function() {
-      this.$data.isOpen = false;
-    },
-    // returnLocale: function(locale) {
-    //   switch(locale) {
-    //     case 'ca': return 'català';
-    //     default: return '日本語';
-    //   }
-    // },
-  },
-};
+});
 </script>
 
 <style lang="scss" scoped>

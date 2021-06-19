@@ -12,19 +12,22 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, computed } from "@nuxtjs/composition-api"
 import TheLanguage from '~/components/TheLanguage.vue';
 
-export default {
+export default defineComponent({
   components: { TheLanguage },
-  head: function() {
+  head() {
     return {
       htmlAttrs: {
         lang: this.$i18n.locale,
       },
     };
   },
-  created: function() {
+  setup() {
+    const _year = computed(() => new Date().getFullYear());
+
     if (process.client) {
       const setFillHeight = () => {
         const vh = window.innerHeight * 0.01;
@@ -42,13 +45,12 @@ export default {
 
       setFillHeight();
     }
+
+    return {
+      _year,
+    };
   },
-  computed: {
-    _year: function() {
-      return new Date().getFullYear();
-    },
-  },
-}
+});
 </script>
 
 <style lang="scss" scoped>
