@@ -165,12 +165,6 @@ export default defineComponent({
             score: 15,
             isActive: false,
           },
-          {
-            heading: 'IE11 support 😇',
-            icnPath: icnIe.path,
-            score: 100,
-            isActive: false,
-          },
         ],
       },
     ]);
