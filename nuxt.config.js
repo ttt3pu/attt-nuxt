@@ -23,7 +23,13 @@ export default async() => {
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        {
+          rel: 'alternate',
+          type: 'application/atom+xml',
+          title: 'attt RSS feed',
+          href:'/blog/feed.xml',
+        },
       ]
     },
 
@@ -132,7 +138,7 @@ export default async() => {
             feed.addItem({
               title: post.title,
               id: post.id,
-              link: `https://attt.hachiware.cat/blog/${post.slug}`,
+              link: `https://attt.hachiware.cat/blog/${post.id}`,
               content: post.content,
               date: new Date(post.publishedAt),
             })
