@@ -27,7 +27,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, useFetch, reactive, ref, useContext } from "@nuxtjs/composition-api"
+import { defineComponent, useFetch, reactive, ref, useContext, useMeta } from "@nuxtjs/composition-api"
 import axios from 'axios'
 import dayjs from 'dayjs';
 //@ts-ignore
@@ -37,8 +37,10 @@ export default defineComponent({
   components: {
     icnBack
   },
+  head: {},
   setup() {
     const { $config, params, i18n, $md, $translate } = useContext();
+    const metaTitle = useMeta().title;
 
     const data = reactive({
       publishedAt: new Date(),
@@ -73,6 +75,8 @@ export default defineComponent({
 
         return await $translate(renderedStr, locale);
       })();
+
+      metaTitle.value = data.title;
     });
 
     const _publishedAtFormatted = ref(() => dayjs(data.publishedAt).format('YYYY.MM.DD'));
