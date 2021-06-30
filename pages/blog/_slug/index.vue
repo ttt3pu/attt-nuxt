@@ -16,7 +16,7 @@
         :datetime="data.publishedAt"
       >{{ _publishedAtFormatted() }}</time>
 
-      <h1 class="title">{{ data.title }}</h1>
+      <h1 class="title">{{ titleRef.value }}</h1>
     </div>
 
     <div
@@ -44,9 +44,10 @@ export default defineComponent({
 
     const data = reactive({
       publishedAt: new Date(),
-      title: '',
       content: '',
     })
+
+    const titleRef = ref('');
 
     useFetch(async () => {
       const response = await axios.get(`https://attt.microcms.io/api/v1/blog/${params.value.slug}`, {
@@ -58,7 +59,8 @@ export default defineComponent({
       const {publishedAt, title, content} = response.data;
 
       data.publishedAt = publishedAt;
-      data.title = await (async () => {
+
+      titleRef.value = await (async () => {
         if (locale === 'ja') {
           return title;
         }
@@ -76,12 +78,13 @@ export default defineComponent({
         return await $translate(renderedStr, locale);
       })();
 
-      metaTitle.value = data.title;
+      metaTitle.value = `${titleRef.value} | attt`;
     });
 
     const _publishedAtFormatted = ref(() => dayjs(data.publishedAt).format('YYYY.MM.DD'));
 
     return {
+      titleRef,
       data,
       _publishedAtFormatted,
     };

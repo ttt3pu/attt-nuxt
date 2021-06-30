@@ -40,7 +40,7 @@ import { defineComponent } from "@nuxtjs/composition-api"
 
 export default defineComponent({
   head: {
-    titleTemplate: '',
+    title: 'attt - Frontend engineer',
   },
   setup() {
     const scroll = () => {
