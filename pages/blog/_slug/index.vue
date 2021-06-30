@@ -13,10 +13,10 @@
     <div class="heading-container">
       <time
         class="date"
-        :datetime="publishedAtRef.value"
-      >{{ _publishedAtFormatted }}</time>
+        :datetime="publishedAtRef"
+      >{{ publishedAtFormatted() }}</time>
 
-      <h1 class="title">{{ titleRef.value }}</h1>
+      <h1 class="title">{{ titleRef }}</h1>
     </div>
 
     <div
@@ -27,7 +27,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, useFetch, reactive, ref, useContext, useMeta, computed } from "@nuxtjs/composition-api"
+import { defineComponent, useFetch, reactive, ref, useContext, useMeta } from "@nuxtjs/composition-api"
 import axios from 'axios'
 import dayjs from 'dayjs';
 //@ts-ignore
@@ -82,13 +82,13 @@ export default defineComponent({
     });
 
 
-    const _publishedAtFormatted = computed(() => dayjs(publishedAtRef.value).format('YYYY.MM.DD'));
+    const publishedAtFormatted = () => dayjs(publishedAtRef.value).format('YYYY.MM.DD');
 
     return {
       titleRef,
       publishedAtRef,
       data,
-      _publishedAtFormatted,
+      publishedAtFormatted,
     };
   },
 });
