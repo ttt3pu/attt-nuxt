@@ -13,8 +13,8 @@
     <div class="heading-container">
       <time
         class="date"
-        :datetime="data.publishedAt"
-      >{{ _publishedAtFormatted() }}</time>
+        :datetime="publishedAtRef.value"
+      >{{ _publishedAtFormatted }}</time>
 
       <h1 class="title">{{ titleRef.value }}</h1>
     </div>
@@ -27,7 +27,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, useFetch, reactive, ref, useContext, useMeta } from "@nuxtjs/composition-api"
+import { defineComponent, useFetch, reactive, ref, useContext, useMeta, computed } from "@nuxtjs/composition-api"
 import axios from 'axios'
 import dayjs from 'dayjs';
 //@ts-ignore
@@ -43,10 +43,10 @@ export default defineComponent({
     const metaTitle = useMeta().title;
 
     const data = reactive({
-      publishedAt: new Date(),
       content: '',
     })
 
+    const publishedAtRef = ref(new Date());
     const titleRef = ref('');
 
     useFetch(async () => {
@@ -58,7 +58,7 @@ export default defineComponent({
 
       const {publishedAt, title, content} = response.data;
 
-      data.publishedAt = publishedAt;
+      publishedAtRef.value = publishedAt;
 
       titleRef.value = await (async () => {
         if (locale === 'ja') {
@@ -81,10 +81,12 @@ export default defineComponent({
       metaTitle.value = `${titleRef.value} | attt`;
     });
 
-    const _publishedAtFormatted = ref(() => dayjs(data.publishedAt).format('YYYY.MM.DD'));
+
+    const _publishedAtFormatted = computed(() => dayjs(publishedAtRef.value).format('YYYY.MM.DD'));
 
     return {
       titleRef,
+      publishedAtRef,
       data,
       _publishedAtFormatted,
     };
