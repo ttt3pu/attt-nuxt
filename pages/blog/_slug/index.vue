@@ -4,7 +4,7 @@
 
     <nuxt-link
       class="back"
-      :to="localePath('/')"
+      to="/"
     >
       <icn-back class="back__icn" />
       <span>Main page</span>
@@ -39,7 +39,7 @@ export default defineComponent({
   },
   head: {},
   setup() {
-    const { $config, params, i18n, $md, $translate } = useContext();
+    const { $config, params, $md } = useContext();
     const metaTitle = useMeta().title;
 
     const data = reactive({
@@ -54,29 +54,13 @@ export default defineComponent({
         headers: {'X-API-KEY': $config.MICROCMS_API_KEY},
       });
 
-      const locale = i18n.locale;
-
       const {publishedAt, title, content} = response.data;
 
       publishedAtRef.value = publishedAt;
 
-      titleRef.value = await (async () => {
-        if (locale === 'ja') {
-          return title;
-        }
+      titleRef.value = title;
 
-        return await $translate(title, locale);
-      })();
-
-      data.content = await (async () => {
-        const renderedStr = $md.render(content);
-
-        if (locale === 'ja') {
-          return renderedStr;
-        }
-
-        return await $translate(renderedStr, locale);
-      })();
+      data.content = $md.render(content);
 
       metaTitle.value = `${titleRef.value} | attt`;
     });

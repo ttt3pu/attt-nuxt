@@ -1,11 +1,11 @@
 <template>
   <div class="page-wrapper">
     <div class="contents-wrapper">
-      <the-language />
       <Nuxt />
     </div>
 
     <div class="copyright">
+      <a href="https://domini.cat" target="_blank" rel="noopener">.cat is a domain intended to be used to highlight the Catalan language.(Not meow. 😼)</a><br>
       <a href="https://github.com/ttt3pu/attt" target="_blank" rel="noopener">Source code</a><br>
       <small>&copy; {{_year}}, attt All rights reserved.</small>
     </div>
@@ -14,14 +14,12 @@
 
 <script lang="ts">
 import { defineComponent, computed } from "@nuxtjs/composition-api"
-import TheLanguage from '~/components/TheLanguage.vue';
 
 export default defineComponent({
-  components: { TheLanguage },
   head() {
     return {
       htmlAttrs: {
-        lang: this.$i18n.locale,
+        lang: 'ja',
       },
     };
   },
@@ -57,7 +55,7 @@ export default defineComponent({
 
   a,
   small {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
 
   a {

@@ -1,10 +1,6 @@
 import axios from 'axios';
-import translatePost from './i18n';
-import jaMessages from './i18n/ja';
 
 export default async() => {
-  const caMessages = await translatePost('ca');
-
   return {
     // Target (https://go.nuxtjs.dev/config-target)
     target: 'static',
@@ -38,7 +34,6 @@ export default async() => {
 
     // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
     plugins: [
-      '~/plugins/translate.js',
       {
         src: "@/plugins/vue-clickaway",
         ssr: false,
@@ -70,24 +65,6 @@ export default async() => {
         {
           id: 'G-YY7ZSN9HY4',
           debug: true,
-        },
-      ],
-      [
-        'nuxt-i18n',
-        {
-          vueI18nLoader: true,
-          locales: ['ja', 'ca'],
-          defaultLocale: 'ja',
-          vueI18n: {
-            fallbackLocale: 'ja',
-            messages: {
-              ja: jaMessages,
-              ca: caMessages,
-            },
-            // pages: {
-            //   'blog/_slug': false,
-            // },
-          },
         },
       ],
     ],

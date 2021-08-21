@@ -19,7 +19,7 @@
             target: '_blank',
           }
           : {
-            to: localePath({name: 'blog-slug', params: {slug: item.link}}),
+            to: `/blog/${item.link}`,
           }
         "
       >

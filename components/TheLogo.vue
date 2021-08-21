@@ -1,8 +1,6 @@
 <template>
   <div class="the-logo">
-    <nuxt-link
-      :to="localePath('/')"
-    >
+    <nuxt-link to="/">
       <h1 class="title">attt</h1>
     </nuxt-link>
 
