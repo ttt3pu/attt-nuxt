@@ -47,15 +47,15 @@
   }
 
   @media (max-width: 1600px) {
-    #{$prop}: #{($px / 1400) * 100}vw;
+    #{$prop}: #{math.div($px, 1400) * 100}vw;
   }
 
   @media (max-width: 768px) {
-    #{$prop}: #{($px * 1.3 / 768) * 100}vh;
+    #{$prop}: #{math.div($px * 1.3, 768) * 100}vh;
   }
 
   @media (max-width: 568px) {
-    #{$prop}: #{($px * 1.1 / 768) * 100}vh;
+    #{$prop}: #{math.div($px * 1.1, 768) * 100}vh;
   }
 }
 

@@ -60,7 +60,7 @@ export default defineComponent({
   position: relative;
 
   @media (min-width: 769px) {
-    padding: 40px #{(100 / 1980) * 100}vw;
+    padding: 40px #{math.div(100, 1980) * 100}vw;
     position: fixed;
     top: 0;
     left: 0;
@@ -70,7 +70,7 @@ export default defineComponent({
   }
 
   @media (max-width: 768px) {
-    padding: 24px #{(100 / 1980) * 100}vw 0;
+    padding: 24px #{math.div(100, 1980) * 100}vw 0;
     height: 100vh;
     height: calc(var(--vh) * 100);
     display: flex;
@@ -109,7 +109,7 @@ export default defineComponent({
 
   @media (max-width: 768px) {
     position: absolute;
-    left: #{(200 / 1980) * 100}vw;
+    left: #{math.div(200, 1980) * 100}vw;
     bottom: calc(#{$size} * 2);
   }
 
@@ -180,12 +180,12 @@ export default defineComponent({
   // background-color: #3c3b5c;
 
   @media (min-width: 769px) {
-    max-width: #{(980 / 1600) * 100}vw;
-    padding: 75px #{(100 / 1980) * 100}vw 48px;
+    max-width: #{math.div(980, 1600) * 100}vw;
+    padding: 75px #{math.div(100, 1980) * 100}vw 48px;
   }
 
   @media (max-width: 768px) {
-    padding: 0 #{(100 / 1980) * 100}vw 48px;
+    padding: 0 #{math.div(100, 1980) * 100}vw 48px;
   }
 
   &__box {
@@ -197,11 +197,11 @@ export default defineComponent({
     }
 
     @media (min-width: 769px) {
-      padding: 40px #{(50 / 1980) * 100}vw;
+      padding: 40px #{math.div(50, 1980) * 100}vw;
     }
 
     @media (max-width: 768px) {
-      padding: 32px #{(100 / 1980) * 100}vw;
+      padding: 32px #{math.div(100, 1980) * 100}vw;
     }
   }
 }

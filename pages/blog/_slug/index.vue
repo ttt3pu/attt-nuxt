@@ -57,16 +57,13 @@ export default defineComponent({
       const {publishedAt, title, content} = response.data;
 
       publishedAtRef.value = publishedAt;
-
       titleRef.value = title;
-
       data.content = $md.render(content);
-
       metaTitle.value = `${titleRef.value} | attt`;
     });
 
 
-    const publishedAtFormatted = () => dayjs(publishedAtRef.value).format('YYYY.MM.DD');
+    const publishedAtFormatted = () => dayjs(<Date>publishedAtRef.value).format('YYYY.MM.DD');
 
     return {
       titleRef,
@@ -80,15 +77,15 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .main {
-  max-width: calc(980px + #{(200 / 1980) * 100}vw);
+  max-width: calc(980px + #{math.div(200, 1980) * 100}vw);
   margin: 0 auto;
 
   @media (min-width: 769px) {
-    padding: 48px #{(100 / 1980) * 100}vw;
+    padding: 48px #{math.div(100, 1980) * 100}vw;
   }
 
   @media (max-width: 768px) {
-    padding: 24px #{(100 / 1980) * 100}vw;
+    padding: 24px #{math.div(100, 1980) * 100}vw;
   }
 }
 
@@ -139,11 +136,11 @@ export default defineComponent({
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
 
   @media (min-width: 769px) {
-    padding: 40px #{(50 / 1980) * 100}vw;
+    padding: 40px #{math.div(50, 1980) * 100}vw;
   }
 
   @media (max-width: 768px) {
-    padding: 32px #{(100 / 1980) * 100}vw;
+    padding: 32px #{math.div(100, 1980) * 100}vw;
   }
 
   /* stylelint-disable-next-line */
