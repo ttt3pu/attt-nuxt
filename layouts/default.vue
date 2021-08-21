@@ -34,15 +34,6 @@ export default defineComponent({
         document.documentElement.style.setProperty('--vh', `${vh}px`);
       }
 
-      let beforeHeight = window.innerHeight;
-
-      window.addEventListener('resize', () => {
-        if (beforeHeight !== window.innerHeight) {
-          beforeHeight = window.innerHeight;
-          setFillHeight();
-        }
-      });
-
       setFillHeight();
     }
 
