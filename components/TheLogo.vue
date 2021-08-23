@@ -4,6 +4,8 @@
       <h1 class="title">attt</h1>
     </nuxt-link>
 
+    <p>Front End Developer</p>
+
     <ul
       v-if="$props.isActiveLogo"
       class="sns"
@@ -77,12 +79,19 @@ export default defineComponent({
   font-family: var(--font-family--en);
   display: block;
   font-weight: 400;
-  font-size: 9rem;
-  color: #e2f1ff;
-  margin-bottom: 8px;
+  font-size: 10rem;
+  color: var(--txt-color-white);
+  margin-bottom: 0;
   position: relative;
   left: -12px;
-  line-height: 1;
+  line-height: 0.9;
+}
+
+p {
+  font-family: var(--font-family--en);
+  color: var(--txt-color-white--lv2);
+  margin-bottom: 16px;
+  font-size: 1.2rem;
 }
 
 .sns {

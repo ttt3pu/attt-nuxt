@@ -2,17 +2,16 @@
   <div class="container">
     <div class="title-container">
       <div class="title-container__inner">
-        <the-logo />
-      </div><!-- /title-container__inner -->
+        <div class="title-container__logo">
+          <the-logo />
+        </div><!-- /title-container__logo -->
+      </div>
 
       <div class="title-container__cat">
         <the-cat />
       </div>
 
-      <button class="scroll" @click="scroll">
-        <!-- <span class="scroll__txt">Scroll</span> -->
-        <i class="scroll__arr" />
-      </button>
+      <AtScroll class="title-container__scroll" />
     </div><!-- /title-container -->
 
     <div class="main-contents">
@@ -36,152 +35,93 @@
 </template>
 
 <script lang="ts">
+import AtScroll from '@/components/atoms/AtScroll.vue';
 import { defineComponent } from "@nuxtjs/composition-api"
 
 export default defineComponent({
+  components: {
+    AtScroll,
+  },
   head: {
     title: 'attt - Frontend engineer',
-  },
-  setup() {
-    const scroll = () => {
-      window.scrollTo(0, window.innerHeight);
-    };
-
-    return {
-      scroll,
-    };
   },
 });
 </script>
 
-
 <style lang="scss" scoped>
 .title-container {
   position: relative;
+  height: calc(var(--vh) * 100);
 
   @media (min-width: 769px) {
-    padding: 40px #{math.div(100, 1980) * 100}vw;
-    position: fixed;
-    top: 0;
-    left: 0;
     display: flex;
-    align-items: baseline;
-    flex-wrap: wrap;
+    max-width: 1600px;
+    margin: 0 auto;
   }
 
   @media (max-width: 768px) {
-    padding: 24px #{math.div(100, 1980) * 100}vw 0;
-    height: 100vh;
-    height: calc(var(--vh) * 100);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     overflow: hidden;
   }
 
-  &__cat {
-    // flex-shrink: 0;
-    position: relative;
+  &__inner {
+    flex-grow: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: 769px) {
+      justify-content: center;
+    }
+
+    // @media (max-width: 768px) {
+    // }
   }
 
-  &__inner {
+  &__logo {
     display: flex;
-    align-items: center;
     justify-content: space-between;
     position: relative;
     z-index: var(--z-title);
-  }
-}
+    margin-bottom: 32px;
 
-.scroll {
-  $size: 32px;
+    @media (min-width: 769px) {
+      padding: 35px #{math.div(100, 1980) * 100}vw 40px;
+    }
 
-  background: none;
-  border: none;
-  text-align: center;
-  outline: none;
-  cursor: pointer;
-  z-index: var(--z-scroll);
-
-  @media (min-width: 769px) {
-    display: none;
+    @media (max-width: 768px) {
+      padding: 16px #{math.div(100, 1980) * 100}vw 24px;
+    }
   }
 
-  @media (max-width: 768px) {
+  &__scroll {
     position: absolute;
-    left: #{math.div(200, 1980) * 100}vw;
-    bottom: calc(#{$size} * 2);
+    z-index: var(--z-scroll);
+
+    @media (min-width: 769px) {
+      left: #{math.div(100, 1980) * 100}vw;
+      bottom: 80px;
+    }
+
+    @media (max-width: 768px) {
+      left: #{math.div(100, 1980) * 100}vw;
+      bottom: 48px;
+    }
   }
 
-  &__arr {
+  &__cat {
     position: relative;
-    display: block;
-    width: $size;
-    height: $size;
-    margin: 0 auto;
-
-    &::before,
-    &::after {
-      content: "";
-      position: absolute;
-      width: $size;
-      height: $size;
-      top: 0;
-      left: 0;
-      display: block;
-      border-left: 3px solid;
-      border-bottom: 3px solid;
-      transform: rotate(-45deg);
-      animation: sdb 1.5s infinite;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    &::before {
-      border-color: #f4fb7f;
-      margin-top: -4px;
-    }
-
-    &::after {
-      border-color: rgba(#000, 0.25);
-      filter: blur(4px);
-      margin-top: -2px;
-    }
-
-    @keyframes sdb {
-      0% {
-        transform: rotate(-45deg) translate(0, 0);
-        opacity: 0;
-      }
-
-      50% {
-        opacity: 1;
-      }
-
-      100% {
-        transform: rotate(-45deg) translate(-20px, 20px);
-        opacity: 0;
-      }
-    }
-  }
-
-  &__txt {
-    display: block;
-    color: #f4fb7f;
-    font-family: var(--font-family--en);
-    font-size: 24px;
   }
 }
 
 .main-contents {
-  flex-grow: 1;
-  margin-right: 0;
-  margin-left: auto;
-  // background-color: #3c3b5c;
+  position: relative;
+  z-index: var(--z-title);
 
   @media (min-width: 769px) {
-    max-width: #{math.div(980, 1600) * 100}vw;
-    padding: 75px #{math.div(100, 1980) * 100}vw 48px;
+    padding: 0 #{math.div(100, 1980) * 100}vw 48px;
   }
 
   @media (max-width: 768px) {

@@ -1,6 +1,6 @@
 <template>
   <div class="the-posts">
-    <v-heading-lv2>Posts</v-heading-lv2>
+    <!-- <v-heading-lv2>Posts</v-heading-lv2> -->
 
     <div
       role="list"

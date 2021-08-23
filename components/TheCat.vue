@@ -43,11 +43,15 @@
 <style lang="scss" scoped>
 @mixin catSize($prop, $px) {
   @media (min-width: 1601px) {
-    #{$prop}: #{$px * 1.15}px;
+    #{$prop}: #{$px * 1.7}px;
   }
 
+  // @media (max-width: 1600px) {
+  //   #{$prop}: #{math.div($px, 1000) * 100}vw;
+  // }
+
   @media (max-width: 1600px) {
-    #{$prop}: #{math.div($px, 1400) * 100}vw;
+    #{$prop}: #{math.div($px, 800) * 100}vw;
   }
 
   @media (max-width: 768px) {
@@ -70,9 +74,11 @@ img {
   @include catSize(width, 500);
   @include catSize(height, 500);
 
+  overflow-x: hidden;
+
   @media (min-width: 769px) {
-    position: fixed;
-    left: 0;
+    position: absolute;
+    right: 0;
     bottom: 0;
     z-index: var(--z-cat-layer);
   }

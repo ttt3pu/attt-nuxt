@@ -27,14 +27,15 @@ html {
   // colors
   --txt-color-white: #e2f1ff;
   --txt-color-white--hover: #{lighten(#e2f1ff, 5%)};
+  --txt-color-white--lv2: #939ca5;
   --txt-color-link: #fff7d6;
   --txt-color-link-hover: #{lighten(#fff7d6, 10%)};
   --primary-color: #f9f871;
   --secondary-color: #ffb962;
   --tertiary-color: #b95d7b;
   // bg colors
-  --bg-color--lv1: #2e3255;
-  --bg-color--lv2: #514872;
+  --bg-color--lv1: linear-gradient(to top, #2e3255, #081025);
+  --bg-color--lv2: #3b3452;
   // etc
   --gray-color: #aaaabc;
   --vh: 1vh;
@@ -62,7 +63,7 @@ html {
 }
 
 body {
-  background-color: var(--bg-color--lv1);
+  background: var(--bg-color--lv1);
   min-height: calc(100 * var(--vh));
 }
 
