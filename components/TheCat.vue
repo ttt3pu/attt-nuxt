@@ -336,10 +336,10 @@ img {
 
 .neck {
   @include catSize(left, 156);
-  @include catSize(top, 330);
   @include catSize(width, 200);
   @include catSize(height, 168);
 
+  bottom: 0;
   position: absolute;
   border-radius: 50% 50% 50% 50% / 100% 100% 0% 0%;
   background-color: #fff;

@@ -95,7 +95,6 @@ export default defineComponent({
       background-color: var(--tertiary-color);
       color: var(--txt-color-white);
       padding: 5px 10px;
-      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
       border-radius: 4px;
       padding-left: 16px;
       position: relative;

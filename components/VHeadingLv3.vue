@@ -10,6 +10,6 @@
   color: #ffb962;
   font-weight: 500;
   font-size: 2rem;
-  margin-bottom: 4px;
+  margin-bottom: 0;
 }
 </style>

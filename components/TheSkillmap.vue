@@ -221,7 +221,7 @@ export default defineComponent({
 
   .item {
     &:not(:last-child) {
-      margin-bottom: 40px;
+      margin-bottom: 36px;
     }
   }
 
@@ -240,10 +240,6 @@ export default defineComponent({
   height: 30px;
   border-radius: 4px;
   background: var(--txt-color-white);
-  box-shadow:
-    inset 5px 5px 14px #d2e0ed,
-    inset -5px -5px 14px #f2ffff,
-    0 3px 6px rgba(0, 0, 0, 0.16);
 
   &[aria-hidden="true"] {
     #{$thisGraph}__inner {

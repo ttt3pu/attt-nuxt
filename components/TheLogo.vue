@@ -4,7 +4,7 @@
       <h1 class="title">attt</h1>
     </nuxt-link>
 
-    <p>Front End Developer</p>
+    <p v-if="$props.isActiveLogo">Front End Developer</p>
 
     <ul
       v-if="$props.isActiveLogo"

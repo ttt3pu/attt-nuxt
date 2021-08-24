@@ -8,7 +8,7 @@
 
 <style lang="scss" scoped>
 .v-heading-lv2 {
-  margin-bottom: 32px;
+  margin-bottom: 16px;
 
   &__txt {
     @include line-height-crop;
@@ -18,15 +18,15 @@
     color: var(--primary-color);
     font-weight: 500;
     font-size: 3rem;
-    margin-bottom: 16px;
+    // margin-bottom: 16px;
   }
 
-  &::after {
-    content: "";
-    display: block;
-    background-color: var(--primary-color);
-    width: 100px;
-    height: 2px;
-  }
+  // &::after {
+  //   content: "";
+  //   display: block;
+  //   background-color: var(--primary-color);
+  //   width: 100px;
+  //   height: 2px;
+  // }
 }
 </style>

@@ -2,25 +2,67 @@
   <div class="container">
     <div class="title-container">
       <div class="title-container__inner">
-        <div class="title-container__logo">
-          <the-logo />
-        </div><!-- /title-container__logo -->
-      </div>
+        <div class="title-container__inner-inner">
+          <div class="title-container__logo">
+            <the-logo />
+          </div><!-- /title-container__logo -->
 
-      <div class="title-container__cat">
-        <the-cat />
-      </div>
+          <!-- <component
+            :is="_latestPost.type === 'zenn' ? 'a' : 'nuxt-link'"
+            class="latest-post"
+            v-bind="_latestPost.type === 'zenn'
+              ? {
+                href: _latestPost.link,
+                rel: 'noopener',
+                target: '_blank',
+              }
+              : {
+                to: `/blog/${_latestPost.link}`,
+              }
+            "
+          >
+            <span class="latest-post__meta">
+              <span
+                v-if="_latestPost.type === 'zenn'"
+                class="latest-post__icn"
+              >
+                <svg
+                  role="img"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path :d="icnZenn" />
+                </svg>
+              </span>
 
-      <AtScroll class="title-container__scroll" />
+              <icn-pencil
+                class="latest-post__icn pencil"
+                v-else
+                decorative
+              />
+
+              <time class="latest-post__date" :datetime="_latestPost.date">{{ _latestPost.dateFormated }}</time>
+            </span>
+
+            <span class="latest-post__heading">{{ _latestPost.title }}</span>
+          </component> -->
+        </div>
+
+        <div class="title-container__cat">
+          <the-cat />
+        </div>
+
+        <AtScroll class="title-container__scroll" />
+      </div>
     </div><!-- /title-container -->
 
     <div class="main-contents">
       <div class="main-contents__box">
-        <the-profile />
+        <the-posts />
       </div>
 
       <div class="main-contents__box">
-        <the-posts />
+        <the-profile />
       </div>
 
       <div class="main-contents__box">
@@ -36,37 +78,64 @@
 
 <script lang="ts">
 import AtScroll from '@/components/atoms/AtScroll.vue';
-import { defineComponent } from "@nuxtjs/composition-api"
+import icnZennPath from 'simple-icons/icons/zenn';
+// @ts-ignore
+import icnPencil from 'vue-material-design-icons/Pencil.vue';
+import { defineComponent, useStore, computed, ref } from "@nuxtjs/composition-api"
+
+import type {
+  BlogPost,
+  BlogPosts,
+} from '../types';
 
 export default defineComponent({
   components: {
     AtScroll,
+    icnPencil,
   },
   head: {
     title: 'attt - Frontend engineer',
+  },
+  setup() {
+    const store = useStore();
+    const icnZenn = ref(icnZennPath.path);
+    const _mergedPosts = computed<BlogPosts>(() => store.getters.mergedPosts);
+    const _latestPost = computed<BlogPost>(() => _mergedPosts.value && _mergedPosts.value[0]);
+
+    return {
+      icnZenn,
+      _mergedPosts,
+      _latestPost,
+    };
   },
 });
 </script>
 
 <style lang="scss" scoped>
 .title-container {
-  position: relative;
+  background: var(--bg-color--grad);
+  border-bottom: 1px solid var(--gray-color);
   height: calc(var(--vh) * 100);
 
-  @media (min-width: 769px) {
-    display: flex;
-    max-width: 1600px;
-    margin: 0 auto;
-  }
-
-  @media (max-width: 768px) {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    overflow: hidden;
-  }
-
   &__inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    position: relative;
+    height: 100%;
+
+    @media (min-width: 769px) {
+      display: flex;
+    }
+
+    @media (max-width: 768px) {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+  }
+
+  &__inner-inner {
     flex-grow: 1;
     height: 100%;
     display: flex;
@@ -88,11 +157,11 @@ export default defineComponent({
     margin-bottom: 32px;
 
     @media (min-width: 769px) {
-      padding: 35px #{math.div(100, 1980) * 100}vw 40px;
+      padding: 35px var(--padding-lr-pc) 40px;
     }
 
     @media (max-width: 768px) {
-      padding: 16px #{math.div(100, 1980) * 100}vw 24px;
+      padding: 16px var(--padding-lr-sp) 24px;
     }
   }
 
@@ -101,12 +170,12 @@ export default defineComponent({
     z-index: var(--z-scroll);
 
     @media (min-width: 769px) {
-      left: #{math.div(100, 1980) * 100}vw;
+      left: calc(var(--padding-lr-pc) - 4px);
       bottom: 80px;
     }
 
     @media (max-width: 768px) {
-      left: #{math.div(100, 1980) * 100}vw;
+      left: calc(var(--padding-lr-sp) - 4px);
       bottom: 48px;
     }
   }
@@ -116,32 +185,85 @@ export default defineComponent({
   }
 }
 
-.main-contents {
-  position: relative;
-  z-index: var(--z-title);
+.latest-post {
+  $thisItem: &;
+
+  display: block;
 
   @media (min-width: 769px) {
-    padding: 0 #{math.div(100, 1980) * 100}vw 48px;
+    padding: 0 var(--padding-lr-pc);
   }
 
   @media (max-width: 768px) {
-    padding: 0 #{math.div(100, 1980) * 100}vw 48px;
+    padding: 0 var(--padding-lr-sp);
+  }
+
+  &:hover {
+    #{$thisItem}__heading {
+      text-decoration: underline;
+      text-decoration-color: var(--txt-color-link-hover);
+      text-underline-offset: 4px;
+    }
+  }
+
+  &__meta {
+    display: flex;
+    align-items: baseline;
+    color: var(--txt-color-white);
+  }
+
+  &__date {
+    font-family: var(--font-family--en);
+    font-size: 0.9rem;
+  }
+
+  &__icn {
+    flex-shrink: 0;
+    fill: currentColor;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin-right: 8px;
+    position: relative;
+    top: 2px;
+
+    /* stylelint-disable-next-line */
+    ::v-deep svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__heading {
+    font-family: var(--font-family--jp);
+    width: 100%;
+    color: var(--txt-color-link);
+  }
+}
+
+.main-contents {
+  max-width: var(--max-width);
+  margin: 0 auto;
+
+  @media (min-width: 769px) {
+    padding: 0 var(--padding-lr-pc) 48px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0 var(--padding-lr-sp) 48px;
   }
 
   &__box {
-    background-color: var(--bg-color--lv2);
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
-
-    &:not(:last-child) {
-      margin-bottom: 48px;
-    }
+    margin-top: 48px;
+    border: 1px solid var(--gray-color);
+    background: var(--bg-color--lv2);
 
     @media (min-width: 769px) {
-      padding: 40px #{math.div(50, 1980) * 100}vw;
+      padding: 40px calc(var(--padding-lr-pc) / 2);
     }
 
     @media (max-width: 768px) {
-      padding: 32px #{math.div(100, 1980) * 100}vw;
+      padding: 40px calc(var(--padding-lr-sp) / 2);
     }
   }
 }
