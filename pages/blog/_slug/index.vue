@@ -77,21 +77,20 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .main {
-  max-width: calc(980px + #{math.div(200, 1980) * 100}vw);
+  max-width: var(--max-width);
   margin: 0 auto;
 
   @media (min-width: 769px) {
-    padding: 48px #{math.div(100, 1980) * 100}vw;
+    padding: 48px var(--padding-lr-pc);
   }
 
   @media (max-width: 768px) {
-    padding: 24px #{math.div(100, 1980) * 100}vw;
+    padding: 24px var(--padding-lr-sp);
   }
 }
 
 .back {
   position: relative;
-  bottom: 16px;
   left: -8px;
   text-align: right;
   font-family: var(--font-family--en);
@@ -133,7 +132,7 @@ export default defineComponent({
   font-family: var(--font-family--jp);
   color: var(--txt-color-white);
   background-color: var(--bg-color--lv2);
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+  border: 1px solid var(--gray-color);
 
   @media (min-width: 769px) {
     padding: 40px #{math.div(50, 1980) * 100}vw;

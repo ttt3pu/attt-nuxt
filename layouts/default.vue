@@ -33,6 +33,17 @@ export default defineComponent({
       }
 
       setFillHeight();
+
+      if(!navigator.userAgent.match(/(iPhone|iPad|iPod|Android)/i)){
+        let beforeHeight = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+          if (beforeHeight !== window.innerHeight) {
+            beforeHeight = window.innerHeight;
+            setFillHeight();
+          }
+        });
+      }
     }
 
     return {

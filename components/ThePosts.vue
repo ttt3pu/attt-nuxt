@@ -54,16 +54,11 @@
 
 <script lang="ts">
 import { computed, defineComponent, ref, useStore } from "@nuxtjs/composition-api"
-import {mapState} from 'vuex'
 import icnZennPath from 'simple-icons/icons/zenn';
 // @ts-ignore
 import icnPencil from 'vue-material-design-icons/Pencil.vue';
-import dayjs from 'dayjs';
 
 import type {
-  ZennPost,
-  ZennPosts,
-  BlogPost,
   BlogPosts,
 } from '../types';
 
@@ -75,50 +70,26 @@ export default defineComponent({
     const store = useStore();
 
     const icnZenn = ref(icnZennPath.path);
-    const _zennPosts = computed<ZennPosts>(() => store.getters.zennPosts);
-    const _blogPosts = computed<BlogPosts>(() => store.getters.blogPosts);
+    const _mergedPosts = computed<BlogPosts>(() => store.getters.mergedPosts);
 
-    const _recentPosts =  computed(() => {
-      const filteredZennPosts = _zennPosts.value.items.map((row: ZennPost) => ({
-        type: 'zenn',
-        title: row.title,
-        date: row.pubDate,
-        dateFormated: dayjs(row.pubDate).format('YYYY.MM.DD'),
-        link: row.link,
-      }));
-
-      const filteredBlogPosts = _blogPosts.value.map((row: BlogPost) => ({
-        type: 'blog',
-        title: row.title,
-        date: row.publishedAt,
-        dateFormated: dayjs(row.publishedAt).format('YYYY.MM.DD'),
-        link: row.id,
-      }));
-
-      const mergedPosts = [
-        ...filteredZennPosts,
-        ...filteredBlogPosts,
-      ];
-
-      // 日付順に並び替え
-      mergedPosts.sort((a, b) => + new Date(b.date) - + new Date(a.date));
+    const _recentPosts = computed<BlogPosts>(() => {
+      const recentPosts = JSON.parse(JSON.stringify(_mergedPosts.value));
 
       // ブログの投稿を1個だけ一番前に持ってくる
-      for (let i = 0; i < mergedPosts.length; i++) {
-        if (mergedPosts[i].type === 'blog') {
-          mergedPosts.unshift(mergedPosts[i]);
-          mergedPosts.splice(i + 1, 1);
+      for (let i = 0; i < recentPosts.length; i++) {
+        if (recentPosts[i].type === 'blog') {
+          recentPosts.unshift(recentPosts[i]);
+          recentPosts.splice(i + 1, 1);
           break;
         }
       }
 
-      return mergedPosts;
+      return recentPosts;
     });
 
     return {
       icnZenn,
-      _zennPosts,
-      _blogPosts,
+      _mergedPosts,
       _recentPosts,
     };
   },

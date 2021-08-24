@@ -2,26 +2,67 @@
   <div class="container">
     <div class="title-container">
       <div class="title-container__inner">
-        <the-logo />
-      </div><!-- /title-container__inner -->
+        <div class="title-container__inner-inner">
+          <div class="title-container__logo">
+            <the-logo />
+          </div><!-- /title-container__logo -->
 
-      <div class="title-container__cat">
-        <the-cat />
+          <!-- <component
+            :is="_latestPost.type === 'zenn' ? 'a' : 'nuxt-link'"
+            class="latest-post"
+            v-bind="_latestPost.type === 'zenn'
+              ? {
+                href: _latestPost.link,
+                rel: 'noopener',
+                target: '_blank',
+              }
+              : {
+                to: `/blog/${_latestPost.link}`,
+              }
+            "
+          >
+            <span class="latest-post__meta">
+              <span
+                v-if="_latestPost.type === 'zenn'"
+                class="latest-post__icn"
+              >
+                <svg
+                  role="img"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path :d="icnZenn" />
+                </svg>
+              </span>
+
+              <icn-pencil
+                class="latest-post__icn pencil"
+                v-else
+                decorative
+              />
+
+              <time class="latest-post__date" :datetime="_latestPost.date">{{ _latestPost.dateFormated }}</time>
+            </span>
+
+            <span class="latest-post__heading">{{ _latestPost.title }}</span>
+          </component> -->
+        </div>
+
+        <div class="title-container__cat">
+          <the-cat />
+        </div>
+
+        <AtScroll class="title-container__scroll" />
       </div>
-
-      <button class="scroll" @click="scroll">
-        <!-- <span class="scroll__txt">Scroll</span> -->
-        <i class="scroll__arr" />
-      </button>
     </div><!-- /title-container -->
 
     <div class="main-contents">
       <div class="main-contents__box">
-        <the-profile />
+        <the-posts />
       </div>
 
       <div class="main-contents__box">
-        <the-posts />
+        <the-profile />
       </div>
 
       <div class="main-contents__box">
@@ -36,172 +77,193 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "@nuxtjs/composition-api"
+import AtScroll from '@/components/atoms/AtScroll.vue';
+import icnZennPath from 'simple-icons/icons/zenn';
+// @ts-ignore
+import icnPencil from 'vue-material-design-icons/Pencil.vue';
+import { defineComponent, useStore, computed, ref } from "@nuxtjs/composition-api"
+
+import type {
+  BlogPost,
+  BlogPosts,
+} from '../types';
 
 export default defineComponent({
+  components: {
+    AtScroll,
+    icnPencil,
+  },
   head: {
     title: 'attt - Frontend engineer',
   },
   setup() {
-    const scroll = () => {
-      window.scrollTo(0, window.innerHeight);
-    };
+    const store = useStore();
+    const icnZenn = ref(icnZennPath.path);
+    const _mergedPosts = computed<BlogPosts>(() => store.getters.mergedPosts);
+    const _latestPost = computed<BlogPost>(() => _mergedPosts.value && _mergedPosts.value[0]);
 
     return {
-      scroll,
+      icnZenn,
+      _mergedPosts,
+      _latestPost,
     };
   },
 });
 </script>
 
-
 <style lang="scss" scoped>
 .title-container {
-  position: relative;
-
-  @media (min-width: 769px) {
-    padding: 40px #{math.div(100, 1980) * 100}vw;
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: flex;
-    align-items: baseline;
-    flex-wrap: wrap;
-  }
-
-  @media (max-width: 768px) {
-    padding: 24px #{math.div(100, 1980) * 100}vw 0;
-    height: 100vh;
-    height: calc(var(--vh) * 100);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    overflow: hidden;
-  }
-
-  &__cat {
-    // flex-shrink: 0;
-    position: relative;
-  }
+  background: var(--bg-color--grad);
+  border-bottom: 1px solid var(--gray-color);
+  height: calc(var(--vh) * 100);
 
   &__inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    position: relative;
+    height: 100%;
+
+    @media (min-width: 769px) {
+      display: flex;
+    }
+
+    @media (max-width: 768px) {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+  }
+
+  &__inner-inner {
+    flex-grow: 1;
+    height: 100%;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+
+    @media (min-width: 769px) {
+      justify-content: center;
+    }
+
+    // @media (max-width: 768px) {
+    // }
+  }
+
+  &__logo {
+    display: flex;
     justify-content: space-between;
     position: relative;
     z-index: var(--z-title);
+    margin-bottom: 32px;
+
+    @media (min-width: 769px) {
+      padding: 35px var(--padding-lr-pc) 40px;
+    }
+
+    @media (max-width: 768px) {
+      padding: 16px var(--padding-lr-sp) 24px;
+    }
+  }
+
+  &__scroll {
+    position: absolute;
+    z-index: var(--z-scroll);
+
+    @media (min-width: 769px) {
+      left: calc(var(--padding-lr-pc) - 4px);
+      bottom: 80px;
+    }
+
+    @media (max-width: 768px) {
+      left: calc(var(--padding-lr-sp) - 4px);
+      bottom: 48px;
+    }
+  }
+
+  &__cat {
+    position: relative;
   }
 }
 
-.scroll {
-  $size: 32px;
+.latest-post {
+  $thisItem: &;
 
-  background: none;
-  border: none;
-  text-align: center;
-  outline: none;
-  cursor: pointer;
-  z-index: var(--z-scroll);
+  display: block;
 
   @media (min-width: 769px) {
-    display: none;
+    padding: 0 var(--padding-lr-pc);
   }
 
   @media (max-width: 768px) {
-    position: absolute;
-    left: #{math.div(200, 1980) * 100}vw;
-    bottom: calc(#{$size} * 2);
+    padding: 0 var(--padding-lr-sp);
   }
 
-  &__arr {
-    position: relative;
-    display: block;
-    width: $size;
-    height: $size;
-    margin: 0 auto;
-
-    &::before,
-    &::after {
-      content: "";
-      position: absolute;
-      width: $size;
-      height: $size;
-      top: 0;
-      left: 0;
-      display: block;
-      border-left: 3px solid;
-      border-bottom: 3px solid;
-      transform: rotate(-45deg);
-      animation: sdb 1.5s infinite;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    &::before {
-      border-color: #f4fb7f;
-      margin-top: -4px;
-    }
-
-    &::after {
-      border-color: rgba(#000, 0.25);
-      filter: blur(4px);
-      margin-top: -2px;
-    }
-
-    @keyframes sdb {
-      0% {
-        transform: rotate(-45deg) translate(0, 0);
-        opacity: 0;
-      }
-
-      50% {
-        opacity: 1;
-      }
-
-      100% {
-        transform: rotate(-45deg) translate(-20px, 20px);
-        opacity: 0;
-      }
+  &:hover {
+    #{$thisItem}__heading {
+      text-decoration: underline;
+      text-decoration-color: var(--txt-color-link-hover);
+      text-underline-offset: 4px;
     }
   }
 
-  &__txt {
-    display: block;
-    color: #f4fb7f;
+  &__meta {
+    display: flex;
+    align-items: baseline;
+    color: var(--txt-color-white);
+  }
+
+  &__date {
     font-family: var(--font-family--en);
-    font-size: 24px;
+    font-size: 0.9rem;
+  }
+
+  &__icn {
+    flex-shrink: 0;
+    fill: currentColor;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin-right: 8px;
+    position: relative;
+    top: 2px;
+
+    /* stylelint-disable-next-line */
+    ::v-deep svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__heading {
+    font-family: var(--font-family--jp);
+    width: 100%;
+    color: var(--txt-color-link);
   }
 }
 
 .main-contents {
-  flex-grow: 1;
-  margin-right: 0;
-  margin-left: auto;
-  // background-color: #3c3b5c;
+  max-width: var(--max-width);
+  margin: 0 auto;
 
   @media (min-width: 769px) {
-    max-width: #{math.div(980, 1600) * 100}vw;
-    padding: 75px #{math.div(100, 1980) * 100}vw 48px;
+    padding: 0 var(--padding-lr-pc) 48px;
   }
 
   @media (max-width: 768px) {
-    padding: 0 #{math.div(100, 1980) * 100}vw 48px;
+    padding: 0 var(--padding-lr-sp) 48px;
   }
 
   &__box {
-    background-color: var(--bg-color--lv2);
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
-
-    &:not(:last-child) {
-      margin-bottom: 48px;
-    }
+    margin-top: 48px;
+    border: 1px solid var(--gray-color);
+    background: var(--bg-color--lv2);
 
     @media (min-width: 769px) {
-      padding: 40px #{math.div(50, 1980) * 100}vw;
+      padding: 40px calc(var(--padding-lr-pc) / 2);
     }
 
     @media (max-width: 768px) {
-      padding: 32px #{math.div(100, 1980) * 100}vw;
+      padding: 40px calc(var(--padding-lr-sp) / 2);
     }
   }
 }
