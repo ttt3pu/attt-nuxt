@@ -34,7 +34,7 @@
     "babel-eslint": "^10.1.0",
     "dayjs": "^1.10.4",
     "eslint": "^7.23.0",
-    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-nuxt": "^2.0.0",
     "fibers": "^5.0.0",
     "nuxt-webfontloader": "^1.1.0",
