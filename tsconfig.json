@@ -12,6 +12,7 @@
     "allowJs": true,
     "sourceMap": true,
     "strict": true,
+    "noImplicitAny": false,
     "noEmit": true,
     "experimentalDecorators": true,
     "baseUrl": ".",
@@ -27,7 +28,6 @@
       "@types/node",
       "@nuxt/types",
       "@nuxtjs/markdownit",
-      "@types/simple-icons"
     ]
   },
   "exclude": [

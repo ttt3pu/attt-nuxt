@@ -41,7 +41,7 @@
 </template>
 
 <style lang="scss" scoped>
-@mixin catSize($prop, $px) {
+@mixin cat-size($prop, $px) {
   @media (min-width: 1601px) {
     #{$prop}: #{$px * 1.7}px;
   }
@@ -71,8 +71,8 @@ img {
 }
 
 .the-cat {
-  @include catSize(width, 500);
-  @include catSize(height, 500);
+  @include cat-size(width, 500);
+  @include cat-size(height, 500);
 
   overflow-x: hidden;
 
@@ -110,10 +110,10 @@ img {
 }
 
 .face {
-  @include catSize(top, 135);
-  @include catSize(left, 65);
-  @include catSize(width, 380);
-  @include catSize(height, 270);
+  @include cat-size(top, 135);
+  @include cat-size(left, 65);
+  @include cat-size(width, 380);
+  @include cat-size(height, 270);
 
   position: absolute;
   border-radius: 70% 70% 68% 68% / 85% 85% 57% 57%;
@@ -149,8 +149,8 @@ img {
 }
 
 .face-inner {
-  @include catSize(width, 380);
-  @include catSize(height, 200);
+  @include cat-size(width, 380);
+  @include cat-size(height, 200);
 
   position: absolute;
   z-index: var(--z-cat);
@@ -158,13 +158,13 @@ img {
   border-radius: 50%;
 
   &--l {
-    @include catSize(top, -15);
+    @include cat-size(top, -15);
 
     left: -50%;
   }
 
   &--r {
-    @include catSize(top, -15);
+    @include cat-size(top, -15);
 
     transform: scale(-1, 1);
     left: 50%;
@@ -176,10 +176,10 @@ img {
 }
 
 .ear {
-  @include catSize(border-width, 20);
-  @include catSize(width, 180);
-  @include catSize(height, 165);
-  @include catSize(top, 90);
+  @include cat-size(border-width, 20);
+  @include cat-size(width, 180);
+  @include cat-size(height, 165);
+  @include cat-size(top, 90);
 
   position: absolute;
   border-radius: 0% 100% 61% 39% / 0% 100% 0% 100%;
@@ -188,22 +188,22 @@ img {
   box-shadow: 0 3px 6px rgba(#000, 0.16);
 
   &--l {
-    @include catSize(left, 60);
+    @include cat-size(left, 60);
 
     transform: rotate(14deg);
   }
 
   &--r {
-    @include catSize(left, 270);
+    @include cat-size(left, 270);
 
     transform: rotate(-14deg) scale(-1, 1);
   }
 }
 
 .eye {
-  @include catSize(width, 80);
-  @include catSize(height, 80);
-  @include catSize(top, 230);
+  @include cat-size(width, 80);
+  @include cat-size(height, 80);
+  @include cat-size(top, 230);
 
   position: absolute;
   z-index: var(--z-cat-layer);
@@ -211,11 +211,11 @@ img {
   border-radius: 50%;
 
   &--l {
-    @include catSize(left, 140);
+    @include cat-size(left, 140);
   }
 
   &--r {
-    @include catSize(left, 290);
+    @include cat-size(left, 290);
   }
 
   &::before {
@@ -233,10 +233,10 @@ img {
 }
 
 .nose {
-  @include catSize(width, 30);
-  @include catSize(height, 15);
-  @include catSize(top, 320);
-  @include catSize(left, 240);
+  @include cat-size(width, 30);
+  @include cat-size(height, 15);
+  @include cat-size(top, 320);
+  @include cat-size(left, 240);
 
   position: absolute;
   z-index: var(--z-cat);
@@ -245,27 +245,27 @@ img {
 }
 
 .marble {
-  @include catSize(width, 46);
-  @include catSize(height, 25);
-  @include catSize(top, 333);
-  @include catSize(left, 210);
+  @include cat-size(width, 46);
+  @include cat-size(height, 25);
+  @include cat-size(top, 333);
+  @include cat-size(left, 210);
 
   position: absolute;
   background-color: #121212;
-  border-radius: 50% 50% 56% 44%/65% 48% 52% 35%;
+  border-radius: 50% 50% 56% 44% / 65% 48% 52% 35%;
   transform: rotate(-14deg);
 }
 
 .mouth {
-  @include catSize(left, 256);
-  @include catSize(top, 360);
+  @include cat-size(left, 256);
+  @include cat-size(top, 360);
 
   position: absolute;
 
   &::before,
   &::after {
-    @include catSize(width, 30);
-    @include catSize(height, 5);
+    @include cat-size(width, 30);
+    @include cat-size(height, 5);
 
     position: absolute;
     display: block;
@@ -285,59 +285,59 @@ img {
 }
 
 .mouth-line {
-  @include catSize(width, 5);
-  @include catSize(height, 30);
-  @include catSize(top, -30);
-  @include catSize(left, -2.5);
+  @include cat-size(width, 5);
+  @include cat-size(height, 30);
+  @include cat-size(top, -30);
+  @include cat-size(left, -2.5);
 
   position: absolute;
   background-color: #121212;
 }
 
 .whisker {
-  @include catSize(top, 340);
+  @include cat-size(top, 340);
 
   position: absolute;
   z-index: var(--z-cat);
 
   span {
-    @include catSize(width, 80);
-    @include catSize(height, 3);
+    @include cat-size(width, 80);
+    @include cat-size(height, 3);
 
     position: absolute;
     background: #ddd;
     border-radius: 30%;
 
     &:first-child {
-      @include catSize(top, -20);
+      @include cat-size(top, -20);
 
       transform: rotate(15deg);
     }
 
     &:last-child {
-      @include catSize(bottom, -25);
+      @include cat-size(bottom, -25);
 
       transform: rotate(-15deg);
     }
   }
 
   &--l {
-    @include catSize(left, 80);
+    @include cat-size(left, 80);
 
     transform: rotate(-7deg);
   }
 
   &--r {
-    @include catSize(left, 425);
+    @include cat-size(left, 425);
 
     transform: scale(-1, 1) rotate(-7deg);
   }
 }
 
 .neck {
-  @include catSize(left, 156);
-  @include catSize(width, 200);
-  @include catSize(height, 168);
+  @include cat-size(left, 156);
+  @include cat-size(width, 200);
+  @include cat-size(height, 168);
 
   bottom: 0;
   position: absolute;

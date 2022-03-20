@@ -1,15 +1,19 @@
 module.exports = {
   root: true,
-  env: {
-    browser: true,
-    node: true
-  },
   extends: [
-    'plugin:nuxt/recommended',
-    'airbnb'
+    '@nuxtjs/eslint-config-typescript',
   ],
-  plugins: [
-  ],
-  // add your custom rules here
-  rules: {}
-}
+  rules: {
+    indent: ['error', 2],
+    quotes: ['error', 'single'],
+    semi: ['error', 'always'],
+    'no-console': [
+      'warn',
+      {
+        allow: ['warn', 'error'],
+      },
+    ],
+    'comma-dangle': ['error', 'always-multiline'],
+    'vue/no-v-html': 0,
+  },
+};

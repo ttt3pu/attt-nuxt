@@ -1,11 +1,13 @@
 <template>
   <div class="the-skillmap">
-    <v-heading-lv2>Skills</v-heading-lv2>
+    <v-heading-lv2 class="h2">
+      Skills
+    </v-heading-lv2>
 
     <div
-      class="item"
       v-for="item, i in items"
       :key="item.heading"
+      class="item"
     >
       <v-heading-lv3>{{ item.heading }}</v-heading-lv3>
 
@@ -18,8 +20,8 @@
             {{ childItem.heading }}
           </v-heading-lv4>
           <div
-            class="graph"
             :ref="`graph-${i}-${i2}`"
+            class="graph"
             :aria-hidden="!childItem.isActive"
           >
             <div class="graph__inner" :style="{'width': childItem.score + '%'}" />
@@ -32,26 +34,24 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, unref, onMounted, reactive } from "@nuxtjs/composition-api";
-
-import icnHtml from 'simple-icons/icons/html5';
-import icnPug from 'simple-icons/icons/pug';
+import { defineComponent, onMounted, reactive, ref, unref } from '@nuxtjs/composition-api';
 import icnCss from 'simple-icons/icons/css3';
-import icnSass from 'simple-icons/icons/sass';
-import icnJs from 'simple-icons/icons/javascript';
-import icnTs from 'simple-icons/icons/typescript';
-import icnPhp from 'simple-icons/icons/php';
-import icnVue from 'simple-icons/icons/vue-dot-js';
-import icnJquery from 'simple-icons/icons/jquery';
-import icnReact from 'simple-icons/icons/react';
-import icnWebpack from 'simple-icons/icons/webpack';
-import icnStorybook from 'simple-icons/icons/storybook';
 import icnGrunt from 'simple-icons/icons/grunt';
+import icnHtml from 'simple-icons/icons/html5';
+import icnJs from 'simple-icons/icons/javascript';
+import icnJquery from 'simple-icons/icons/jquery';
+import icnPhp from 'simple-icons/icons/php';
+import icnPug from 'simple-icons/icons/pug';
+import icnReact from 'simple-icons/icons/react';
+import icnSass from 'simple-icons/icons/sass';
+import icnStorybook from 'simple-icons/icons/storybook';
+import icnTs from 'simple-icons/icons/typescript';
+import icnVue from 'simple-icons/icons/vuedotjs';
+import icnWebpack from 'simple-icons/icons/webpack';
 import icnWordpress from 'simple-icons/icons/wordpress';
-import icnIe from 'simple-icons/icons/internetexplorer';
 
 export default defineComponent({
-  setup() {
+  setup () {
     const items = reactive([
       {
         heading: 'Languages',
@@ -173,7 +173,8 @@ export default defineComponent({
       const result: {[key: string] : any} = {};
 
       items.forEach((item, i) => {
-        item.childItems.forEach((childItem, i2) => {
+        item.childItems.forEach((_, i2) => {
+          // eslint-disable-next-line
           return result[`graph-${i}-${i2}`] = ref<HTMLElement>();
         });
       });
@@ -183,14 +184,14 @@ export default defineComponent({
 
     const aos = (i: number, i2: number) => {
       const observer = new IntersectionObserver((entries) => {
-        for(const entry of entries){
-          if (entry.isIntersecting){
-            items[i]['childItems'][i2]['isActive'] = true;
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            items[i].childItems[i2].isActive = true;
             observer.disconnect();
           }
         }
       }, {
-        threshold: [0.25, 0.5]
+        threshold: [0.25, 0.5],
       });
 
       observer.observe(itemsRefs[`graph-${i}-${i2}`].value[0]);
@@ -198,7 +199,7 @@ export default defineComponent({
 
     onMounted(() => {
       unref(items).forEach((item, i) => {
-        item.childItems.forEach((item2, i2) => {
+        item.childItems.forEach((_, i2) => {
           aos(i, i2);
         });
       });
@@ -216,8 +217,12 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+.h2 {
+  margin-bottom: 16px;
+}
+
 .the-skillmap {
-  font-family: var(--font-family--en);
+  font-family: var(--font-family-en);
 
   .item {
     &:not(:last-child) {
@@ -233,7 +238,7 @@ export default defineComponent({
 }
 
 .graph {
-  $thisGraph: &;
+  $this-graph: &;
 
   overflow: hidden;
   position: relative;
@@ -242,7 +247,7 @@ export default defineComponent({
   background: var(--txt-color-white);
 
   &[aria-hidden="true"] {
-    #{$thisGraph}__inner {
+    #{$this-graph}__inner {
       transform: scale(0, 1);
     }
   }

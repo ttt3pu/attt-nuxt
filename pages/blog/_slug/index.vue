@@ -16,7 +16,9 @@
         :datetime="publishedAtRef"
       >{{ publishedAtFormatted() }}</time>
 
-      <h1 class="title">{{ titleRef }}</h1>
+      <h1 class="title">
+        {{ titleRef }}
+      </h1>
     </div>
 
     <div
@@ -27,34 +29,33 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, useFetch, reactive, ref, useContext, useMeta } from "@nuxtjs/composition-api"
-import axios from 'axios'
+import { defineComponent, reactive, ref, useContext, useFetch, useMeta } from '@nuxtjs/composition-api';
+import axios from 'axios';
 import dayjs from 'dayjs';
-//@ts-ignore
+// eslint-disable-next-line
 import icnBack from 'vue-material-design-icons/ChevronLeft.vue';
 
 export default defineComponent({
   components: {
-    icnBack
+    icnBack,
   },
-  head: {},
-  setup() {
+  setup () {
     const { $config, params, $md } = useContext();
     const metaTitle = useMeta().title;
 
     const data = reactive({
       content: '',
-    })
+    });
 
     const publishedAtRef = ref(new Date());
     const titleRef = ref('');
 
     useFetch(async () => {
       const response = await axios.get(`https://attt.microcms.io/api/v1/blog/${params.value.slug}`, {
-        headers: {'X-API-KEY': $config.MICROCMS_API_KEY},
+        headers: { 'X-API-KEY': $config.MICROCMS_API_KEY },
       });
 
-      const {publishedAt, title, content} = response.data;
+      const { publishedAt, title, content } = response.data;
 
       publishedAtRef.value = publishedAt;
       titleRef.value = title;
@@ -62,8 +63,7 @@ export default defineComponent({
       metaTitle.value = `${titleRef.value} | attt`;
     });
 
-
-    const publishedAtFormatted = () => dayjs(<Date>publishedAtRef.value).format('YYYY.MM.DD');
+    const publishedAtFormatted = () => dayjs((publishedAtRef.value) as Date).format('YYYY.MM.DD');
 
     return {
       titleRef,
@@ -72,6 +72,7 @@ export default defineComponent({
       publishedAtFormatted,
     };
   },
+  head: {},
 });
 </script>
 
@@ -93,7 +94,7 @@ export default defineComponent({
   position: relative;
   left: -8px;
   text-align: right;
-  font-family: var(--font-family--en);
+  font-family: var(--font-family-en);
   color: var(--txt-color-white);
   display: flex;
   align-items: center;
@@ -114,25 +115,25 @@ export default defineComponent({
 
 .heading-container {
   margin: 48px auto 32px;
-  line-height: var(--line-height--heading);
+  line-height: var(--line-height-heading);
 }
 
 .date {
-  font-family: var(--font-family--en);
+  font-family: var(--font-family-en);
   color: var(--txt-color-white);
 }
 
 .title {
-  font-family: var(--font-family--jp);
+  font-family: var(--font-family-jp);
   font-size: 3rem;
   color: var(--primary-color);
 }
 
 .post {
-  font-family: var(--font-family--jp);
+  font-family: var(--font-family-jp);
   color: var(--txt-color-white);
-  background-color: var(--bg-color--lv2);
-  border: 1px solid var(--gray-color);
+  background-color: var(--bg-color-lv2);
+  box-shadow: var(--box-shadow);
 
   @media (min-width: 769px) {
     padding: 40px #{math.div(50, 1980) * 100}vw;

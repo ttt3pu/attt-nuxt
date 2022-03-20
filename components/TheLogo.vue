@@ -1,10 +1,14 @@
 <template>
   <div class="the-logo">
     <nuxt-link to="/">
-      <h1 class="title">attt</h1>
+      <h1 class="title">
+        attt
+      </h1>
     </nuxt-link>
 
-    <p v-if="$props.isActiveLogo">Front End Developer</p>
+    <p v-if="$props.isActiveLogo">
+      Front End Developer
+    </p>
 
     <ul
       v-if="$props.isActiveLogo"
@@ -36,7 +40,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "@nuxtjs/composition-api"
+import { defineComponent, ref } from '@nuxtjs/composition-api';
 import icnGithub from 'simple-icons/icons/github';
 import icnTwitter from 'simple-icons/icons/twitter';
 import icnZenn from 'simple-icons/icons/zenn';
@@ -48,7 +52,7 @@ export default defineComponent({
       default: true,
     },
   },
-  setup() {
+  setup () {
     const snsItems = ref([
       {
         title: 'GitHub',
@@ -65,7 +69,7 @@ export default defineComponent({
         path: icnTwitter.path,
         href: 'https://twitter.com/ttt3pu',
       },
-    ])
+    ]);
 
     return {
       snsItems,
@@ -76,7 +80,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .title {
-  font-family: var(--font-family--en);
+  font-family: var(--font-family-en);
   display: block;
   font-weight: 400;
   font-size: 10rem;
@@ -88,8 +92,8 @@ export default defineComponent({
 }
 
 p {
-  font-family: var(--font-family--en);
-  color: var(--txt-color-white--lv2);
+  font-family: var(--font-family-en);
+  color: var(--txt-color-white-lv2);
   margin-bottom: 16px;
   font-size: 1.2rem;
 }
@@ -111,10 +115,10 @@ p {
     width: 100%;
     fill: #f4fb7f;
     transition: fill 0.2s;
-    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.16));
+    filter: drop-shadow(0 3px 6px rgb(0 0 0 / 16%));
 
     &:hover {
-      fill: lighten(#f4fb7f, 20%);
+      fill: color.adjust(#f4fb7f, $lightness: 20%);
     }
   }
 }

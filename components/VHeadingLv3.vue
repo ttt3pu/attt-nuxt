@@ -6,7 +6,7 @@
 
 <style lang="scss" scoped>
 .v-heading-lv3 {
-  font-family: var(--font-family--en);
+  font-family: var(--font-family-en);
   color: #ffb962;
   font-weight: 500;
   font-size: 2rem;

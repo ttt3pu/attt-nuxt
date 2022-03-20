@@ -4,24 +4,28 @@
 
     <ul>
       <li
-        class="the-works__item"
         v-for="item in data.items"
         :key="item.heading"
+        class="the-works__item"
       >
-        <h3 class="the-works__item__heading">{{ item.heading }}</h3>
-        <p class="the-works__item__paragraph">{{ item.paragraph }}</p>
+        <h3 class="the-works__item__heading">
+          {{ item.heading }}
+        </h3>
+        <p class="the-works__item__paragraph">
+          <span class="the-works__item__paragraph__inner">{{ item.paragraph }}</span>
+        </p>
       </li>
     </ul>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, useContext } from "@nuxtjs/composition-api";
+import { defineComponent, reactive } from '@nuxtjs/composition-api';
 
 export default defineComponent({
-  setup() {
+  setup () {
     const data = reactive({
-      items:  [
+      items: [
         {
           heading: '複数案件での大規模サイトの構築、改修',
           paragraph: '数々の数百～数千ページ単位の大規模サイト制作に、フロントエンド担当として携わりました。',
@@ -63,7 +67,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .the-works {
   &__item {
-    font-family: var(--font-family--jp);
+    font-family: var(--font-family-jp);
 
     &:not(:last-child) {
       margin-bottom: 24px;
@@ -98,7 +102,10 @@ export default defineComponent({
       border-radius: 4px;
       padding-left: 16px;
       position: relative;
-      white-space: pre-wrap;
+
+      &__inner {
+        white-space: pre-wrap;
+      }
 
       @media (min-width: 769px) {
         margin-left: 20px;

@@ -77,26 +77,17 @@
 </template>
 
 <script lang="ts">
-import AtScroll from '@/components/atoms/AtScroll.vue';
+import { computed, defineComponent, ref, useStore } from '@nuxtjs/composition-api';
 import icnZennPath from 'simple-icons/icons/zenn';
 // @ts-ignore
-import icnPencil from 'vue-material-design-icons/Pencil.vue';
-import { defineComponent, useStore, computed, ref } from "@nuxtjs/composition-api"
-
-import type {
-  BlogPost,
-  BlogPosts,
-} from '../types';
+import { BlogPost, BlogPosts } from '../types';
+import AtScroll from '@/components/atoms/AtScroll.vue';
 
 export default defineComponent({
   components: {
     AtScroll,
-    icnPencil,
   },
-  head: {
-    title: 'attt - Frontend engineer',
-  },
-  setup() {
+  setup () {
     const store = useStore();
     const icnZenn = ref(icnZennPath.path);
     const _mergedPosts = computed<BlogPosts>(() => store.getters.mergedPosts);
@@ -108,13 +99,17 @@ export default defineComponent({
       _latestPost,
     };
   },
+  head: {
+    title: 'attt - Frontend engineer',
+  },
 });
 </script>
 
 <style lang="scss" scoped>
 .title-container {
-  background: var(--bg-color--grad);
-  border-bottom: 1px solid var(--gray-color);
+  background: var(--bg-color-grad);
+  border-bottom: 1px solid var(--color-gray);
+  box-shadow: var(--box-shadow);
   height: calc(var(--vh) * 100);
 
   &__inner {
@@ -186,7 +181,7 @@ export default defineComponent({
 }
 
 .latest-post {
-  $thisItem: &;
+  $this-item: &;
 
   display: block;
 
@@ -199,7 +194,7 @@ export default defineComponent({
   }
 
   &:hover {
-    #{$thisItem}__heading {
+    #{$this-item}__heading {
       text-decoration: underline;
       text-decoration-color: var(--txt-color-link-hover);
       text-underline-offset: 4px;
@@ -213,13 +208,13 @@ export default defineComponent({
   }
 
   &__date {
-    font-family: var(--font-family--en);
+    font-family: var(--font-family-en);
     font-size: 0.9rem;
   }
 
   &__icn {
     flex-shrink: 0;
-    fill: currentColor;
+    fill: currentcolor;
     width: 20px;
     height: 20px;
     display: inline-block;
@@ -235,7 +230,7 @@ export default defineComponent({
   }
 
   &__heading {
-    font-family: var(--font-family--jp);
+    font-family: var(--font-family-jp);
     width: 100%;
     color: var(--txt-color-link);
   }
@@ -254,12 +249,12 @@ export default defineComponent({
   }
 
   &__box {
-    margin-top: 48px;
-    border: 1px solid var(--gray-color);
-    background: var(--bg-color--lv2);
+    margin-top: 60px;
+    box-shadow: var(--box-shadow);
+    background: var(--bg-color-lv2);
 
     @media (min-width: 769px) {
-      padding: 40px calc(var(--padding-lr-pc) / 2);
+      padding: 60px calc(var(--padding-lr-pc) / 2);
     }
 
     @media (max-width: 768px) {
