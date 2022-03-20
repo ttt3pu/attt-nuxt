@@ -40,7 +40,7 @@ specifiers:
   typescript: ^4.6.2
   vue: 2.6.14
   vue-clickaway: ^2.2.2
-  vue-material-design-icons: ^4.11.0
+  vue-material-design-icons: ^5.0.0
   webpack: 4.46.0
 
 dependencies:
@@ -86,7 +86,7 @@ devDependencies:
   stylelint-config-standard: 25.0.0_stylelint@14.6.0
   stylelint-config-standard-scss: 3.0.0_postcss@8.4.12+stylelint@14.6.0
   stylelint-scss: 4.2.0_stylelint@14.6.0
-  vue-material-design-icons: 4.12.1
+  vue-material-design-icons: 5.0.0
 
 packages:
 
@@ -10165,8 +10165,8 @@ packages:
       webpack: 4.46.0
     dev: false
 
-  /vue-material-design-icons/4.12.1:
-    resolution: {integrity: sha512-IDGGV5fC2VPN3zPRNEpm47MjJL1CIPfK34wx3+SRTkUL8dt5/hONmQ2WguBivE1uZVExMVFHekNDnEJamkJ8hA==}
+  /vue-material-design-icons/5.0.0:
+    resolution: {integrity: sha512-lYSJFW/TyQqmg7MvUbEB8ua1mwWy/v8qve7QJuA/UWUAXC4/yVUdAm4pg/sM9+k5n7VLckBv6ucOROuGBsGPDQ==}
     dev: true
 
   /vue-meta/2.4.0:
