@@ -69,7 +69,8 @@ const makeActions = <T extends ActionTree<State, unknown>>(actions: T): T => act
 
 export const actions = makeActions({
   async nuxtServerInit ({ commit }) {
-    const zennPosts = await new RssParser().parseURL('https://zenn.dev/attt/feed');
+    const today = dayjs(new Date()).format('YYYYMMDDhhmm');
+    const zennPosts = await new RssParser().parseURL(`https://zenn.dev/attt/feed?${today}`);
     commit('zennPosts', zennPosts);
 
     const blogPosts = await axios.get('https://attt.microcms.io/api/v1/blog', {
