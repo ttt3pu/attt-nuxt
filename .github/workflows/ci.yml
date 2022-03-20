@@ -1,6 +1,9 @@
 name: cd
 
 on:
+  push:
+    branches:
+      - master
   pull_request:
     types: [opened, synchronize]
 
@@ -40,6 +43,6 @@ jobs:
 
       - name: Netlify Production Deploy
         if: github.ref == 'refs/heads/master'
-        run: npx netlify-cli deploy --prd --dir=./dist
+        run: npx netlify-cli deploy --prod --dir=./dist
 
 
