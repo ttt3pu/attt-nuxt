@@ -15,7 +15,7 @@
 .the-profile {
   &__paragraph {
     color: var(--txt-color-white);
-    font-family: var(--font-family--jp);
+    font-family: var(--font-family-jp);
   }
 }
 </style>

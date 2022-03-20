@@ -7,34 +7,27 @@
     <div class="copyright">
       <a href="https://domini.cat" target="_blank" rel="noopener">.cat is a domain intended to be used to highlight the Catalan language.(Not meow. 😼)</a><br>
       <a href="https://github.com/ttt3pu/attt" target="_blank" rel="noopener">Source code</a><br>
-      <small>&copy; {{_year}}, attt All rights reserved.</small>
+      <small>&copy; {{ _year }}, attt All rights reserved.</small>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from "@nuxtjs/composition-api"
+import { defineComponent, computed } from '@nuxtjs/composition-api';
 
 export default defineComponent({
-  head() {
-    return {
-      htmlAttrs: {
-        lang: 'ja',
-      },
-    };
-  },
-  setup() {
+  setup () {
     const _year = computed(() => new Date().getFullYear());
 
     if (process.client) {
       const setFillHeight = () => {
         const vh = window.innerHeight * 0.01;
         document.documentElement.style.setProperty('--vh', `${vh}px`);
-      }
+      };
 
       setFillHeight();
 
-      if(!navigator.userAgent.match(/(iPhone|iPad|iPod|Android)/i)){
+      if (!navigator.userAgent.match(/(iPhone|iPad|iPod|Android)/i)) {
         let beforeHeight = window.innerHeight;
 
         window.addEventListener('resize', () => {
@@ -50,6 +43,13 @@ export default defineComponent({
       _year,
     };
   },
+  head () {
+    return {
+      htmlAttrs: {
+        lang: 'ja',
+      },
+    };
+  },
 });
 </script>
 
@@ -59,7 +59,7 @@ export default defineComponent({
 }
 
 .copyright {
-  font-family: var(--font-family--en);
+  font-family: var(--font-family-en);
   text-align: center;
   color: var(--txt-color-white);
   padding-bottom: 16px;

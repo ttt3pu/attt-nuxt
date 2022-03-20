@@ -21,13 +21,13 @@ export default {
       type: String,
       default: null,
     },
-  }
-}
+  },
+};
 </script>
 
 <style lang="scss" scoped>
 .v-heading-lv4 {
-  font-family: var(--font-family--en);
+  font-family: var(--font-family-en);
   color: var(--txt-color-white);
   font-weight: 400;
   font-size: 1.4rem;
@@ -36,7 +36,7 @@ export default {
   align-items: baseline;
 
   &__icn {
-    fill: currentColor;
+    fill: currentcolor;
     width: 24px;
     height: 24px;
     margin-right: 8px;

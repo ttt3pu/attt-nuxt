@@ -38,8 +38,8 @@
           </span>
 
           <icn-pencil
-            class="item__icn pencil"
             v-else
+            class="item__icn pencil"
             decorative
           />
 
@@ -53,20 +53,17 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref, useStore } from "@nuxtjs/composition-api"
+import { computed, defineComponent, ref, useStore } from '@nuxtjs/composition-api';
 import icnZennPath from 'simple-icons/icons/zenn';
 // @ts-ignore
 import icnPencil from 'vue-material-design-icons/Pencil.vue';
-
-import type {
-  BlogPosts,
-} from '../types';
+import { BlogPosts } from '../types';
 
 export default defineComponent({
   components: {
     icnPencil,
   },
-  setup() {
+  setup () {
     const store = useStore();
 
     const icnZenn = ref(icnZennPath.path);
@@ -98,12 +95,12 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .item {
-  $thisItem: &;
+  $this-item: &;
 
   display: block;
 
   &:hover {
-    #{$thisItem}__heading {
+    #{$this-item}__heading {
       text-decoration: underline;
       text-decoration-color: var(--txt-color-link-hover);
       text-underline-offset: 4px;
@@ -123,13 +120,13 @@ export default defineComponent({
   }
 
   &__date {
-    font-family: var(--font-family--en);
+    font-family: var(--font-family-en);
     font-size: 0.9rem;
   }
 
   &__icn {
     flex-shrink: 0;
-    fill: currentColor;
+    fill: currentcolor;
     width: 20px;
     height: 20px;
     display: inline-block;
@@ -145,7 +142,7 @@ export default defineComponent({
   }
 
   &__heading {
-    font-family: var(--font-family--jp);
+    font-family: var(--font-family-jp);
     width: 100%;
     color: var(--txt-color-link);
   }

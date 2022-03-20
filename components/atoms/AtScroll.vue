@@ -6,10 +6,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "@nuxtjs/composition-api"
+import { defineComponent } from '@nuxtjs/composition-api';
 
 export default defineComponent({
-  setup() {
+  setup () {
     const scroll = () => {
       window.scrollTo(0, window.innerHeight);
     };

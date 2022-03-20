@@ -1,13 +1,10 @@
-import RssParser from 'rss-parser';
 import axios from 'axios';
 import dayjs from 'dayjs';
-
-import type {
-  ZennPosts,
-  BlogPosts,
+import RssParser from 'rss-parser';
+import { ActionTree } from 'vuex';
+import {
+  BlogPosts, ZennPosts,
 } from '../types';
-
-import {ActionTree} from 'vuex'
 
 interface State {
   zennPosts: ZennPosts;
@@ -17,21 +14,21 @@ interface State {
 
 export const state = (): State => {
   return {
-    zennPosts: {items: []},
+    zennPosts: { items: [] },
     blogPosts: [],
     mergedPosts: [],
   };
 };
 
 export const getters = {
-  zennPosts(state: State) {
+  zennPosts (state: State) {
     return state.zennPosts;
   },
-  blogPosts(state: State) {
+  blogPosts (state: State) {
     return state.blogPosts;
   },
-  mergedPosts(state: State) {
-    const filteredZennPosts = state.zennPosts.items.map((row) => ({
+  mergedPosts (state: State) {
+    const filteredZennPosts = state.zennPosts.items.map(row => ({
       type: 'zenn',
       title: row.title,
       date: row.pubDate,
@@ -39,7 +36,7 @@ export const getters = {
       link: row.link,
     }));
 
-    const filteredBlogPosts = state.blogPosts.map((row) => ({
+    const filteredBlogPosts = state.blogPosts.map(row => ({
       type: 'blog',
       title: row.title,
       date: row.publishedAt,
@@ -53,7 +50,7 @@ export const getters = {
     ];
 
     // 日付順に並び替え
-    mergedPosts.sort((a, b) => + new Date(b.date) - + new Date(a.date));
+    mergedPosts.sort((a, b) => +new Date(b.date) - +new Date(a.date));
 
     return mergedPosts;
   },
@@ -71,14 +68,14 @@ export const mutations = {
 const makeActions = <T extends ActionTree<State, unknown>>(actions: T): T => actions;
 
 export const actions = makeActions({
-  async nuxtServerInit({commit}) {
+  async nuxtServerInit ({ commit }) {
     const zennPosts = await new RssParser().parseURL('https://zenn.dev/attt/feed');
     commit('zennPosts', zennPosts);
 
     const blogPosts = await axios.get('https://attt.microcms.io/api/v1/blog', {
-      headers: {'X-API-KEY': process.env.MICROCMS_API_KEY},
+      headers: { 'X-API-KEY': process.env.MICROCMS_API_KEY as string },
     });
 
     commit('blogPosts', blogPosts.data.contents);
-  }
+  },
 });

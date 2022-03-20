@@ -33,11 +33,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      # - name: Lint JS
-      #   run: pnpm lint:js
+      - name: Lint JS
+        run: pnpm lint:js
 
-      # - name: Lint Style
-      #   run: pnpm lint:style
+      - name: Lint Style
+        run: pnpm lint:style
 
       - name: Generate
         run: pnpm generate

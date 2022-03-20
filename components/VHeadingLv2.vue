@@ -8,16 +8,17 @@
 
 <style lang="scss" scoped>
 .v-heading-lv2 {
-  margin-bottom: 16px;
+  margin-bottom: 32px;
 
   &__txt {
     @include line-height-crop;
 
     display: block;
-    font-family: var(--font-family--en);
+    font-family: var(--font-family-en);
     color: var(--primary-color);
     font-weight: 500;
     font-size: 3rem;
+
     // margin-bottom: 16px;
   }
 
