@@ -16,12 +16,21 @@
   },
   "dependencies": {
     "@nuxt/typescript-runtime": "^2.1.0",
+    "@nuxt/vue-app": "^2.15",
     "@nuxtjs/axios": "^5.13.1",
     "@nuxtjs/feed": "^2.0.0",
     "@nuxtjs/google-gtag": "^1.0.4",
+    "consola": "^2.15.3",
     "core-js": "^3.21.1",
+    "eslint-plugin-import": "2.25.4",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
     "nuxt": "^2.15.8",
-    "vue-clickaway": "^2.2.2"
+    "typescript": "^4.6.2",
+    "vue": "2.6.14",
+    "vue-clickaway": "^2.2.2",
+    "webpack": "4.46.0"
   },
   "devDependencies": {
     "@nuxt/types": "^2.15.4",
