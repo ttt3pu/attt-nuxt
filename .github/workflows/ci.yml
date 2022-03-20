@@ -3,7 +3,7 @@ name: cd
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
     types: [opened, synchronize]
 
@@ -38,11 +38,11 @@ jobs:
         run: yarn generate
 
       - name: Netlify Draft Deploy
-        if: github.ref != 'refs/heads/master'
+        if: github.ref != 'refs/heads/main'
         run: npx netlify-cli deploy --dir=./dist
 
       - name: Netlify Production Deploy
-        if: github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/main'
         run: npx netlify-cli deploy --prod --dir=./dist
 
 
