@@ -35,7 +35,7 @@
     "@nuxtjs/stylelint-module": "^4.0.0",
     "@types/simple-icons": "^4.17.0",
     "babel-eslint": "^10.1.0",
-    "dayjs": "^1.10.4",
+    "dayjs": "^1.11.0",
     "eslint": "^7.23.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-nuxt": "^2.0.0",
