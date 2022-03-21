@@ -78,7 +78,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, ref, useStore } from '@nuxtjs/composition-api';
-import icnZennPath from 'simple-icons/icons/zenn';
+import { siZenn } from 'simple-icons/icons';
 // @ts-ignore
 import { BlogPost, BlogPosts } from '../types';
 import AtScroll from '@/components/atoms/AtScroll.vue';
@@ -89,7 +89,7 @@ export default defineComponent({
   },
   setup () {
     const store = useStore();
-    const icnZenn = ref(icnZennPath.path);
+    const icnZenn = ref(siZenn.path);
     const _mergedPosts = computed<BlogPosts>(() => store.getters.mergedPosts);
     const _latestPost = computed<BlogPost>(() => _mergedPosts.value && _mergedPosts.value[0]);
 

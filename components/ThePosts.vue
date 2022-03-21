@@ -54,7 +54,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, ref, useStore } from '@nuxtjs/composition-api';
-import icnZennPath from 'simple-icons/icons/zenn';
+import { siZenn } from 'simple-icons/icons';
 // @ts-ignore
 import icnPencil from 'vue-material-design-icons/Pencil.vue';
 import { BlogPosts } from '../types';
@@ -66,7 +66,7 @@ export default defineComponent({
   setup () {
     const store = useStore();
 
-    const icnZenn = ref(icnZennPath.path);
+    const icnZenn = ref(siZenn.path);
     const _mergedPosts = computed<BlogPosts>(() => store.getters.mergedPosts);
 
     const _recentPosts = computed<BlogPosts>(() => {
