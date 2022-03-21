@@ -35,20 +35,22 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, reactive, ref, unref } from '@nuxtjs/composition-api';
-import icnCss from 'simple-icons/icons/css3';
-import icnGrunt from 'simple-icons/icons/grunt';
-import icnHtml from 'simple-icons/icons/html5';
-import icnJs from 'simple-icons/icons/javascript';
-import icnJquery from 'simple-icons/icons/jquery';
-import icnPhp from 'simple-icons/icons/php';
-import icnPug from 'simple-icons/icons/pug';
-import icnReact from 'simple-icons/icons/react';
-import icnSass from 'simple-icons/icons/sass';
-import icnStorybook from 'simple-icons/icons/storybook';
-import icnTs from 'simple-icons/icons/typescript';
-import icnVue from 'simple-icons/icons/vuedotjs';
-import icnWebpack from 'simple-icons/icons/webpack';
-import icnWordpress from 'simple-icons/icons/wordpress';
+import {
+  siCss3,
+  siGrunt,
+  siHtml5,
+  siJavascript,
+  siJquery,
+  siPhp,
+  siPug,
+  siReact,
+  siSass,
+  siStorybook,
+  siTypescript,
+  siVuedotjs,
+  siWebpack,
+  siWordpress,
+} from 'simple-icons/icons';
 
 export default defineComponent({
   setup () {
@@ -58,43 +60,43 @@ export default defineComponent({
         childItems: [
           {
             heading: 'HTML',
-            icnPath: icnHtml.path,
+            icnPath: siHtml5.path,
             score: 100,
             isActive: false,
           },
           {
             heading: 'Pug',
-            icnPath: icnPug.path,
+            icnPath: siPug.path,
             score: 100,
             isActive: false,
           },
           {
             heading: 'CSS',
-            icnPath: icnCss.path,
+            icnPath: siCss3.path,
             score: 100,
             isActive: false,
           },
           {
             heading: 'Scss',
-            icnPath: icnSass.path,
+            icnPath: siSass.path,
             score: 100,
             isActive: false,
           },
           {
             heading: 'JavaScript',
-            icnPath: icnJs.path,
+            icnPath: siJavascript.path,
             score: 100,
             isActive: false,
           },
           {
             heading: 'TypeScript',
-            icnPath: icnTs.path,
+            icnPath: siTypescript.path,
             score: 25,
             isActive: false,
           },
           {
             heading: 'PHP',
-            icnPath: icnPhp.path,
+            icnPath: siPhp.path,
             score: 15,
             isActive: false,
           },
@@ -105,19 +107,19 @@ export default defineComponent({
         childItems: [
           {
             heading: 'Vue',
-            icnPath: icnVue.path,
+            icnPath: siVuedotjs.path,
             score: 100,
             isActive: false,
           },
           {
             heading: 'jQuery',
-            icnPath: icnJquery.path,
+            icnPath: siJquery.path,
             score: 80,
             isActive: false,
           },
           {
             heading: 'React',
-            icnPath: icnReact.path,
+            icnPath: siReact.path,
             score: 25,
             isActive: false,
           },
@@ -128,19 +130,19 @@ export default defineComponent({
         childItems: [
           {
             heading: 'webpack',
-            icnPath: icnWebpack.path,
+            icnPath: siWebpack.path,
             score: 100,
             isActive: false,
           },
           {
             heading: 'Stoybook',
-            icnPath: icnStorybook.path,
+            icnPath: siStorybook.path,
             score: 75,
             isActive: false,
           },
           {
             heading: 'Grunt',
-            icnPath: icnGrunt.path,
+            icnPath: siGrunt.path,
             score: 50,
             isActive: false,
           },
@@ -161,7 +163,7 @@ export default defineComponent({
           },
           {
             heading: 'WordPress',
-            icnPath: icnWordpress.path,
+            icnPath: siWordpress.path,
             score: 15,
             isActive: false,
           },

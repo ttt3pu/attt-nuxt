@@ -41,9 +41,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from '@nuxtjs/composition-api';
-import icnGithub from 'simple-icons/icons/github';
-import icnTwitter from 'simple-icons/icons/twitter';
-import icnZenn from 'simple-icons/icons/zenn';
+import { siGithub, siTwitter, siZenn } from 'simple-icons/icons';
 
 export default defineComponent({
   props: {
@@ -56,17 +54,17 @@ export default defineComponent({
     const snsItems = ref([
       {
         title: 'GitHub',
-        path: icnGithub.path,
+        path: siGithub.path,
         href: 'https://github.com/ttt3pu',
       },
       {
         title: 'Zenn',
-        path: icnZenn.path,
+        path: siZenn.path,
         href: 'https://zenn.dev/attt',
       },
       {
         title: 'Twitter',
-        path: icnTwitter.path,
+        path: siTwitter.path,
         href: 'https://twitter.com/ttt3pu',
       },
     ]);
