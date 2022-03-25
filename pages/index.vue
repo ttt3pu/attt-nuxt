@@ -100,7 +100,7 @@ export default defineComponent({
     };
   },
   head: {
-    title: 'attt - Frontend engineer',
+    title: 'attt - Front End Developer',
   },
 });
 </script>
