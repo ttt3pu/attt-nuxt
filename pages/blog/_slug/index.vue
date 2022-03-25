@@ -1,31 +1,37 @@
 <template>
-  <main class="main">
-    <the-logo :is-active-logo="false" />
+  <div>
+    <div class="logo-area">
+      <the-logo :mini="true" :is-active-logo="false" />
 
-    <nuxt-link
-      class="back"
-      to="/"
-    >
-      <icn-back class="back__icn" />
-      <span>Main page</span>
-    </nuxt-link>
-
-    <div class="heading-container">
-      <time
-        class="date"
-        :datetime="publishedAtRef"
-      >{{ publishedAtFormatted() }}</time>
-
-      <h1 class="title">
-        {{ titleRef }}
-      </h1>
+      <nuxt-link
+        class="back"
+        to="/"
+      >
+        <icn-back class="back__icn" />
+        <span>Main page</span>
+      </nuxt-link>
     </div>
 
-    <div
-      class="post"
-      v-html="data.content"
-    />
-  </main>
+    <main class="main">
+      <div class="main__inner">
+        <div class="heading-container">
+          <time
+            class="date"
+            :datetime="publishedAtRef"
+          >{{ publishedAtFormatted() }}</time>
+
+          <h1 class="title">
+            {{ titleRef }}
+          </h1>
+        </div>
+
+        <div
+          class="post"
+          v-html="data.content"
+        />
+      </div>
+    </main>
+  </div>
 </template>
 
 <script lang="ts">
@@ -77,16 +83,16 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.main {
+.logo-area {
   max-width: var(--max-width);
   margin: 0 auto;
 
   @media (min-width: 769px) {
-    padding: 48px var(--padding-lr-pc);
+    padding: 48px var(--padding-lr-pc) 56px;
   }
 
   @media (max-width: 768px) {
-    padding: 24px var(--padding-lr-sp);
+    padding: 32px var(--padding-lr-sp) 44px;
   }
 }
 
@@ -113,8 +119,25 @@ export default defineComponent({
   }
 }
 
+.main {
+  background-color: var(--bg-color-lv2);
+
+  &__inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+
+    @media (min-width: 769px) {
+      padding: 80px var(--padding-lr-pc);
+    }
+
+    @media (max-width: 768px) {
+      padding: 48px var(--padding-lr-sp);
+    }
+  }
+}
+
 .heading-container {
-  margin: 48px auto 32px;
+  margin-bottom: 32px;
   line-height: var(--line-height-heading);
 }
 
@@ -132,16 +155,6 @@ export default defineComponent({
 .post {
   font-family: var(--font-family-jp);
   color: var(--txt-color-white);
-  background-color: var(--bg-color-lv2);
-  box-shadow: var(--box-shadow);
-
-  @media (min-width: 769px) {
-    padding: 40px #{math.div(50, 1980) * 100}vw;
-  }
-
-  @media (max-width: 768px) {
-    padding: 32px #{math.div(100, 1980) * 100}vw;
-  }
 
   /* stylelint-disable-next-line */
   ::v-deep {
