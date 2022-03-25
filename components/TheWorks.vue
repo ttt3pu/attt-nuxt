@@ -36,23 +36,23 @@ export default defineComponent({
         },
         {
           heading: 'Storybook環境の構築＆活用',
-          paragraph: 'Storybookを活用し、多量のコンポーネントを管理しやすく運用しました。\nまた、Story内でVue + Pugを活用できるようにするなど、諸々のカスタマイズを実装しました。',
+          paragraph: 'Storybookを活用し、多量のコンポーネントを管理しやすく運用しました。\nバニラでの使用だけでなく、案件の条件に応じて数々のカスタマイズも実装しました。',
         },
         {
           heading: 'Vuex + Cookie / Web Storage + REST APIを活用した機能実装',
-          paragraph: 'ユーザーごとのお気に入り機能など、サイトの状態を管理するような機能を複数案件で実装しました。',
+          paragraph: '複雑な状態管理が必要となる実装を複数案件で対応しました。',
         },
         {
           heading: 'ReactをベースとしたSPAサイト構築',
-          paragraph: 'REST APIでデータをやり取りするような実装の、簡易版GAのようなサイトを構築しました。',
+          paragraph: 'REST APIでデータをやり取りする、簡易版GAのようなサイトを構築しました。',
         },
         {
           heading: 'レガシーなビルド環境からモダンなビルド環境への移行',
-          paragraph: '古めの技術で運用されていた案件を、運用しやすくするために、モダンなビルド環境へ移行を行いました。\n例）「Grunt.js + ES5 + etc...」 to 「webpack + Babel + ES6~ + etc...」',
+          paragraph: 'いくつかの案件で技術移行を対応しました。結果として、表示速度の改善、業務効率化や、不具合発生率の軽減、その他多くのメリットを生み出すことができました。\n例）「Grunt.js + ES5 + etc...」 to 「webpack + Babel + ES6~ + etc...」',
         },
         {
           heading: 'Git-flowに準じたバージョン管理',
-          paragraph: '複雑にリリース日が分かれるようなプロジェクトに携わり、細かくブランチを分けて管理、対応しました。',
+          paragraph: '複雑にリリース日が分かれるような、適切なGitフローの知識が必要とされるプロジェクトに複数携わりました。',
         },
       ],
     });
@@ -70,14 +70,14 @@ export default defineComponent({
     font-family: var(--font-family-jp);
 
     &:not(:last-child) {
-      margin-bottom: 24px;
+      margin-bottom: 28px;
     }
 
     &__heading {
       color: var(--secondary-color);
       font-weight: 400;
       font-size: 1.4rem;
-      margin-bottom: 8px;
+      margin-bottom: 16px;
       display: flex;
       align-items: baseline;
 
@@ -98,9 +98,7 @@ export default defineComponent({
     &__paragraph {
       background-color: var(--tertiary-color);
       color: var(--txt-color-white);
-      padding: 5px 10px;
       border-radius: 4px;
-      padding-left: 16px;
       position: relative;
 
       &__inner {
@@ -108,7 +106,12 @@ export default defineComponent({
       }
 
       @media (min-width: 769px) {
+        padding: 8px 32px;
         margin-left: 20px;
+      }
+
+      @media (max-width: 769px) {
+        padding: 8px 16px;
       }
 
       &::before {

@@ -6,46 +6,6 @@
           <div class="title-container__logo">
             <the-logo />
           </div><!-- /title-container__logo -->
-
-          <!-- <component
-            :is="_latestPost.type === 'zenn' ? 'a' : 'nuxt-link'"
-            class="latest-post"
-            v-bind="_latestPost.type === 'zenn'
-              ? {
-                href: _latestPost.link,
-                rel: 'noopener',
-                target: '_blank',
-              }
-              : {
-                to: `/blog/${_latestPost.link}`,
-              }
-            "
-          >
-            <span class="latest-post__meta">
-              <span
-                v-if="_latestPost.type === 'zenn'"
-                class="latest-post__icn"
-              >
-                <svg
-                  role="img"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path :d="icnZenn" />
-                </svg>
-              </span>
-
-              <icn-pencil
-                class="latest-post__icn pencil"
-                v-else
-                decorative
-              />
-
-              <time class="latest-post__date" :datetime="_latestPost.date">{{ _latestPost.dateFormated }}</time>
-            </span>
-
-            <span class="latest-post__heading">{{ _latestPost.title }}</span>
-          </component> -->
         </div>
 
         <div class="title-container__cat">
@@ -58,19 +18,27 @@
 
     <div class="main-contents">
       <div class="main-contents__box">
-        <the-posts />
+        <div class="main-contents__box__inner">
+          <the-posts />
+        </div>
       </div>
 
       <div class="main-contents__box">
-        <the-profile />
+        <div class="main-contents__box__inner">
+          <the-profile />
+        </div>
       </div>
 
       <div class="main-contents__box">
-        <the-works />
+        <div class="main-contents__box__inner">
+          <the-skillmap />
+        </div>
       </div>
 
       <div class="main-contents__box">
-        <the-skillmap />
+        <div class="main-contents__box__inner">
+          <the-works />
+        </div>
       </div>
     </div><!-- /main-contents -->
   </div>
@@ -180,85 +148,26 @@ export default defineComponent({
   }
 }
 
-.latest-post {
-  $this-item: &;
-
-  display: block;
-
-  @media (min-width: 769px) {
-    padding: 0 var(--padding-lr-pc);
-  }
-
-  @media (max-width: 768px) {
-    padding: 0 var(--padding-lr-sp);
-  }
-
-  &:hover {
-    #{$this-item}__heading {
-      text-decoration: underline;
-      text-decoration-color: var(--txt-color-link-hover);
-      text-underline-offset: 4px;
-    }
-  }
-
-  &__meta {
-    display: flex;
-    align-items: baseline;
-    color: var(--txt-color-white);
-  }
-
-  &__date {
-    font-family: var(--font-family-en);
-    font-size: 0.9rem;
-  }
-
-  &__icn {
-    flex-shrink: 0;
-    fill: currentcolor;
-    width: 20px;
-    height: 20px;
-    display: inline-block;
-    margin-right: 8px;
-    position: relative;
-    top: 2px;
-
-    /* stylelint-disable-next-line */
-    ::v-deep svg {
-      width: 100%;
-      height: 100%;
-    }
-  }
-
-  &__heading {
-    font-family: var(--font-family-jp);
-    width: 100%;
-    color: var(--txt-color-link);
-  }
-}
-
 .main-contents {
-  max-width: var(--max-width);
-  margin: 0 auto;
-
-  @media (min-width: 769px) {
-    padding: 0 var(--padding-lr-pc) 48px;
-  }
-
-  @media (max-width: 768px) {
-    padding: 0 var(--padding-lr-sp) 48px;
-  }
-
   &__box {
-    margin-top: 60px;
-    box-shadow: var(--box-shadow);
-    background: var(--bg-color-lv2);
+    background: var(--bg-color-lv1);
+    border-bottom: 1px solid var(--color-gray);
 
-    @media (min-width: 769px) {
-      padding: 60px calc(var(--padding-lr-pc) / 2);
+    &:nth-child(even) {
+      background: var(--bg-color-lv2);
     }
 
-    @media (max-width: 768px) {
-      padding: 40px calc(var(--padding-lr-sp) / 2);
+    &__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+
+      @media (min-width: 769px) {
+        padding: 80px var(--padding-lr-pc);
+      }
+
+      @media (max-width: 768px) {
+        padding: 40px var(--padding-lr-sp);
+      }
     }
   }
 }

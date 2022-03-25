@@ -20,7 +20,7 @@
 
 html {
   // font settings
-  --line-height: 1.875;
+  --line-height: 2;
   --line-height-heading: 1.5;
   --font-family-en: 'Poppins', sans-serif;
   --font-family-jp: 'Noto Sans JP', sans-serif;
@@ -36,8 +36,8 @@ html {
   --tertiary-color: #b95d7b;
   // bg colors
   --bg-color-grad: linear-gradient(to top, #2e3255, #081025);
-  --bg-color-lv1: #081025;
-  --bg-color-lv2: #433b5e;
+  --bg-color-lv1: #2B1F45;
+  --bg-color-lv2: #2e2d50;
   // padding
   --padding-lr-pc: #{math.div(100, 1980) * 100}vw;
   --padding-lr-sp: #{math.div(100, 1980) * 100}vw;

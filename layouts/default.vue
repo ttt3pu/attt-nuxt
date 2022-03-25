@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from '@nuxtjs/composition-api';
+import { computed, defineComponent } from '@nuxtjs/composition-api';
 
 export default defineComponent({
   setup () {
@@ -62,7 +62,14 @@ export default defineComponent({
   font-family: var(--font-family-en);
   text-align: center;
   color: var(--txt-color-white);
-  padding-bottom: 16px;
+
+  @media (min-width: 769px) {
+    padding: 36px var(--padding-lr-pc);
+  }
+
+  @media (max-width: 768px) {
+    padding: 24px var(--padding-lr-sp);
+  }
 
   a,
   small {

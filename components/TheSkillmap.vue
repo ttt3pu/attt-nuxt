@@ -4,215 +4,137 @@
       Skills
     </v-heading-lv2>
 
-    <div
-      v-for="item, i in items"
-      :key="item.heading"
-      class="item"
-    >
-      <v-heading-lv3>{{ item.heading }}</v-heading-lv3>
-
-      <ul>
-        <li
-          v-for="childItem, i2 in item.childItems"
-          :key="childItem.heading"
+    <v-heading-lv3>Main</v-heading-lv3>
+    <ul>
+      <li
+        v-for="(item, i) in mainItems"
+        :key="i"
+      >
+        <svg
+          role="img"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <v-heading-lv4 :icn-path="childItem.icnPath">
-            {{ childItem.heading }}
-          </v-heading-lv4>
-          <div
-            :ref="`graph-${i}-${i2}`"
-            class="graph"
-            :aria-hidden="!childItem.isActive"
-          >
-            <div class="graph__inner" :style="{'width': childItem.score + '%'}" />
-            <span class="graph__text">{{ childItem.score === 0 ? 'Learning' : childItem.score + '%' }}</span>
-          </div>
-        </li>
-      </ul>
-    </div>
+          <path :d="item.icnPath" />
+        </svg>
+
+        <span>{{ item.heading }}</span>
+        <span v-if="i !== mainItems.length - 1" class="slash">/</span>
+      </li>
+    </ul>
+
+    <v-heading-lv3>Sub</v-heading-lv3>
+    <ul>
+      <li
+        v-for="(item, i) in subItems"
+        :key="i"
+      >
+        <svg
+          role="img"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path :d="item.icnPath" />
+        </svg>
+
+        <span>{{ item.heading }}</span>
+        <span v-if="i !== subItems.length - 1" class="slash">/</span>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, ref, unref } from '@nuxtjs/composition-api';
+import { defineComponent, ref } from '@nuxtjs/composition-api';
 import {
   siCss3,
   siGrunt,
   siHtml5,
   siJavascript,
+  siJest,
   siJquery,
-  siPhp,
+  siNuxtdotjs,
   siPug,
   siReact,
   siSass,
   siStorybook,
+  siTailwindcss,
   siTypescript,
   siVuedotjs,
   siWebpack,
-  siWordpress,
 } from 'simple-icons/icons';
 
 export default defineComponent({
   setup () {
-    const items = reactive([
+    const mainItems = ref([
       {
-        heading: 'Languages',
-        childItems: [
-          {
-            heading: 'HTML',
-            icnPath: siHtml5.path,
-            score: 100,
-            isActive: false,
-          },
-          {
-            heading: 'Pug',
-            icnPath: siPug.path,
-            score: 100,
-            isActive: false,
-          },
-          {
-            heading: 'CSS',
-            icnPath: siCss3.path,
-            score: 100,
-            isActive: false,
-          },
-          {
-            heading: 'Scss',
-            icnPath: siSass.path,
-            score: 100,
-            isActive: false,
-          },
-          {
-            heading: 'JavaScript',
-            icnPath: siJavascript.path,
-            score: 100,
-            isActive: false,
-          },
-          {
-            heading: 'TypeScript',
-            icnPath: siTypescript.path,
-            score: 25,
-            isActive: false,
-          },
-          {
-            heading: 'PHP',
-            icnPath: siPhp.path,
-            score: 15,
-            isActive: false,
-          },
-        ],
+        heading: 'Vue',
+        icnPath: siVuedotjs.path,
       },
       {
-        heading: 'JavaScript frameworks',
-        childItems: [
-          {
-            heading: 'Vue',
-            icnPath: siVuedotjs.path,
-            score: 100,
-            isActive: false,
-          },
-          {
-            heading: 'jQuery',
-            icnPath: siJquery.path,
-            score: 80,
-            isActive: false,
-          },
-          {
-            heading: 'React',
-            icnPath: siReact.path,
-            score: 25,
-            isActive: false,
-          },
-        ],
+        heading: 'Nuxt',
+        icnPath: siNuxtdotjs.path,
       },
       {
-        heading: 'Frontend ops',
-        childItems: [
-          {
-            heading: 'webpack',
-            icnPath: siWebpack.path,
-            score: 100,
-            isActive: false,
-          },
-          {
-            heading: 'Stoybook',
-            icnPath: siStorybook.path,
-            score: 75,
-            isActive: false,
-          },
-          {
-            heading: 'Grunt',
-            icnPath: siGrunt.path,
-            score: 50,
-            isActive: false,
-          },
-        ],
+        heading: 'TypeScript',
+        icnPath: siTypescript.path,
       },
       {
-        heading: 'Other skills',
-        childItems: [
-          {
-            heading: 'BEM',
-            score: 100,
-            isActive: false,
-          },
-          {
-            heading: 'Accessibility / WAI-ARIA',
-            score: 75,
-            isActive: false,
-          },
-          {
-            heading: 'WordPress',
-            icnPath: siWordpress.path,
-            score: 15,
-            isActive: false,
-          },
-        ],
+        heading: 'JavaScript',
+        icnPath: siJavascript.path,
+      },
+      {
+        heading: 'Jest',
+        icnPath: siJest.path,
+      },
+      {
+        heading: 'HTML',
+        icnPath: siHtml5.path,
+      },
+      {
+        heading: 'CSS',
+        icnPath: siCss3.path,
+      },
+      {
+        heading: 'Scss',
+        icnPath: siSass.path,
       },
     ]);
 
-    const itemsRefs = (() => {
-      const result: {[key: string] : any} = {};
-
-      items.forEach((item, i) => {
-        item.childItems.forEach((_, i2) => {
-          // eslint-disable-next-line
-          return result[`graph-${i}-${i2}`] = ref<HTMLElement>();
-        });
-      });
-
-      return result;
-    })();
-
-    const aos = (i: number, i2: number) => {
-      const observer = new IntersectionObserver((entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            items[i].childItems[i2].isActive = true;
-            observer.disconnect();
-          }
-        }
-      }, {
-        threshold: [0.25, 0.5],
-      });
-
-      observer.observe(itemsRefs[`graph-${i}-${i2}`].value[0]);
-    };
-
-    onMounted(() => {
-      unref(items).forEach((item, i) => {
-        item.childItems.forEach((_, i2) => {
-          aos(i, i2);
-        });
-      });
-    });
+    const subItems = ref([
+      {
+        heading: 'React',
+        icnPath: siReact.path,
+      },
+      {
+        heading: 'Tailwind',
+        icnPath: siTailwindcss.path,
+      },
+      {
+        heading: 'webpack',
+        icnPath: siWebpack.path,
+      },
+      {
+        heading: 'Stoybook',
+        icnPath: siStorybook.path,
+      },
+      {
+        heading: 'jQuery',
+        icnPath: siJquery.path,
+      },
+      {
+        heading: 'Grunt',
+        icnPath: siGrunt.path,
+      },
+      {
+        heading: 'Pug',
+        icnPath: siPug.path,
+      },
+    ]);
 
     return {
-      ...{
-        items,
-        aos,
-      },
-      ...itemsRefs,
+      mainItems,
+      subItems,
     };
   },
 });
@@ -228,49 +150,46 @@ export default defineComponent({
 
   .item {
     &:not(:last-child) {
-      margin-bottom: 36px;
+      margin-bottom: 16px;
     }
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 8px;
   }
 
   li {
     &:not(:last-child) {
-      margin-bottom: 16px;
+      margin-right: 16px;
     }
-  }
-}
 
-.graph {
-  $this-graph: &;
-
-  overflow: hidden;
-  position: relative;
-  height: 30px;
-  border-radius: 4px;
-  background: var(--txt-color-white);
-
-  &[aria-hidden="true"] {
-    #{$this-graph}__inner {
-      transform: scale(0, 1);
-    }
-  }
-
-  &__inner {
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    background: #ee8270;
-    transform-origin: 0 50%;
-    transition: transform 1s ease-in-out;
-  }
-
-  &__text {
+    font-family: var(--font-family-en);
     color: var(--txt-color-white);
-    position: absolute;
-    line-height: 30px;
-    left: 16px;
-    top: 0;
-    text-shadow: 0 1px 3px rgba(#000, 0.3);
+    font-weight: 400;
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: baseline;
+
+    span {
+      position: relative;
+      bottom: 5.5px;
+    }
+
+    svg {
+      fill: currentcolor;
+      width: 32px;
+      height: 32px;
+      margin-right: 8px;
+      position: relative;
+      top: 3px;
+    }
+  }
+
+  .slash {
+    margin: 0 8px 0 16px;
   }
 }
 </style>
