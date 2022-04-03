@@ -14,8 +14,9 @@
           role="img"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
+          :style="`fill: #${item.icnData.hex};`"
         >
-          <path :d="item.icnPath" />
+          <path :d="item.icnData.path" />
         </svg>
 
         <span>{{ item.heading }}</span>
@@ -33,8 +34,9 @@
           role="img"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
+          :style="`fill: #${item.icnData.hex};`"
         >
-          <path :d="item.icnPath" />
+          <path :d="item.icnData.path" />
         </svg>
 
         <span>{{ item.heading }}</span>
@@ -69,66 +71,66 @@ export default defineComponent({
     const mainItems = ref([
       {
         heading: 'Vue',
-        icnPath: siVuedotjs.path,
+        icnData: siVuedotjs,
       },
       {
         heading: 'Nuxt',
-        icnPath: siNuxtdotjs.path,
+        icnData: siNuxtdotjs,
       },
       {
         heading: 'TypeScript',
-        icnPath: siTypescript.path,
+        icnData: siTypescript,
       },
       {
         heading: 'JavaScript',
-        icnPath: siJavascript.path,
+        icnData: siJavascript,
       },
       {
         heading: 'Jest',
-        icnPath: siJest.path,
+        icnData: siJest,
       },
       {
         heading: 'HTML',
-        icnPath: siHtml5.path,
+        icnData: siHtml5,
       },
       {
         heading: 'CSS',
-        icnPath: siCss3.path,
+        icnData: siCss3,
       },
       {
         heading: 'Scss',
-        icnPath: siSass.path,
+        icnData: siSass,
       },
     ]);
 
     const subItems = ref([
       {
         heading: 'React',
-        icnPath: siReact.path,
+        icnData: siReact,
       },
       {
         heading: 'Tailwind',
-        icnPath: siTailwindcss.path,
+        icnData: siTailwindcss,
       },
       {
         heading: 'webpack',
-        icnPath: siWebpack.path,
+        icnData: siWebpack,
       },
       {
         heading: 'Stoybook',
-        icnPath: siStorybook.path,
+        icnData: siStorybook,
       },
       {
         heading: 'jQuery',
-        icnPath: siJquery.path,
+        icnData: siJquery,
       },
       {
         heading: 'Grunt',
-        icnPath: siGrunt.path,
+        icnData: siGrunt,
       },
       {
         heading: 'Pug',
-        icnPath: siPug.path,
+        icnData: siPug,
       },
     ]);
 
@@ -179,7 +181,6 @@ export default defineComponent({
     }
 
     svg {
-      fill: currentcolor;
       width: 32px;
       height: 32px;
       margin-right: 8px;
