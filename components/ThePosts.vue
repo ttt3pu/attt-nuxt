@@ -8,7 +8,7 @@
     >
       <component
         :is="item.type === 'zenn' ? 'a' : 'nuxt-link'"
-        v-for="(item, i) in _recentPosts"
+        v-for="(item, i) in recentPosts"
         :key="i"
         role="listitem"
         class="item"
@@ -43,7 +43,7 @@
             decorative
           />
 
-          <time class="item__date" :datetime="item.date">{{ item.dateFormated }}</time>
+          <time class="item__date" :datetime="item.date">{{ item.dateFormatted }}</time>
         </span>
 
         <span class="item__heading">{{ item.title }}</span>
@@ -53,24 +53,24 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref, useStore } from '@nuxtjs/composition-api';
+import { computed, defineComponent, ref, useContext } from '@nuxtjs/composition-api';
 import { siZenn } from 'simple-icons/icons';
-// @ts-ignore
 import icnPencil from 'vue-material-design-icons/Pencil.vue';
-import { BlogPosts } from '../types';
+import { usePostsStore } from '~/store';
 
 export default defineComponent({
   components: {
     icnPencil,
   },
   setup () {
-    const store = useStore();
+    const { $pinia } = useContext();
+    const postsStore = usePostsStore($pinia);
 
     const icnZenn = ref(siZenn.path);
-    const _mergedPosts = computed<BlogPosts>(() => store.getters.mergedPosts);
+    const mergedPosts = computed(() => postsStore.mergedPosts);
 
-    const _recentPosts = computed<BlogPosts>(() => {
-      const recentPosts = JSON.parse(JSON.stringify(_mergedPosts.value));
+    const recentPosts = computed(() => {
+      const recentPosts = JSON.parse(JSON.stringify(mergedPosts.value));
 
       // ブログの投稿を1個だけ一番前に持ってくる
       for (let i = 0; i < recentPosts.length; i++) {
@@ -86,8 +86,8 @@ export default defineComponent({
 
     return {
       icnZenn,
-      _mergedPosts,
-      _recentPosts,
+      mergedPosts,
+      recentPosts,
     };
   },
 });

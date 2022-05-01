@@ -28,6 +28,7 @@
       "@types/node",
       "@nuxt/types",
       "@nuxtjs/markdownit",
+      "@pinia/nuxt",
     ]
   },
   "exclude": [

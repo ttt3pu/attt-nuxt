@@ -45,26 +45,26 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref, useStore } from '@nuxtjs/composition-api';
+import { computed, defineComponent, ref, useContext } from '@nuxtjs/composition-api';
 import { siZenn } from 'simple-icons/icons';
-// @ts-ignore
-import { BlogPost, BlogPosts } from '../types';
 import AtScroll from '@/components/atoms/AtScroll.vue';
+import { usePostsStore } from '~/store';
 
 export default defineComponent({
   components: {
     AtScroll,
   },
   setup () {
-    const store = useStore();
+    const { $pinia } = useContext();
+    const postsStore = usePostsStore($pinia);
     const icnZenn = ref(siZenn.path);
-    const _mergedPosts = computed<BlogPosts>(() => store.getters.mergedPosts);
-    const _latestPost = computed<BlogPost>(() => _mergedPosts.value && _mergedPosts.value[0]);
+    const mergedPosts = computed(() => postsStore.mergedPosts);
+    const latestPost = computed(() => mergedPosts.value && mergedPosts.value[0]);
 
     return {
       icnZenn,
-      _mergedPosts,
-      _latestPost,
+      mergedPosts,
+      latestPost,
     };
   },
   head: {
