@@ -49,6 +49,7 @@ export default () => ({
     '@nuxtjs/composition-api/module',
     '@nuxtjs/eslint-module',
     '@nuxt/postcss8',
+    '@pinia/nuxt',
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
@@ -130,5 +131,9 @@ export default () => ({
 
   privateRuntimeConfig: {
     MICROCMS_API_KEY: process.env.MICROCMS_API_KEY,
+  },
+
+  router: {
+    middleware: ['server-init'],
   },
 });
