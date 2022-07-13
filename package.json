@@ -45,7 +45,7 @@
     "@nuxtjs/markdownit": "^2.0.0",
     "@nuxtjs/style-resources": "^1.0.0",
     "@nuxtjs/stylelint-module": "^4.1.0",
-    "@pinia/nuxt": "^0.1.8",
+    "@pinia/nuxt": "^0.3.0",
     "dayjs": "^1.10.4",
     "eslint": "^8.11.0",
     "eslint-plugin-nuxt": "^3.2.0",
