@@ -36,7 +36,7 @@ specifiers:
   sass-loader: ^10.1.1
   simple-icons: ^6.14.0
   stylelint: ^14.4.0
-  stylelint-config-standard: ^25.0.0
+  stylelint-config-standard: ^28.0.0
   stylelint-config-standard-scss: ^4.0.0
   stylelint-scss: ^4.2.0
   typescript: ^4.6.2
@@ -87,7 +87,7 @@ devDependencies:
   sass-loader: 10.2.1_sass@1.51.0+webpack@4.46.0
   simple-icons: 6.20.0
   stylelint: 14.8.1
-  stylelint-config-standard: 25.0.0_stylelint@14.8.1
+  stylelint-config-standard: 28.0.0_stylelint@14.8.1
   stylelint-config-standard-scss: 4.0.0_postcss@8.4.13+stylelint@14.8.1
   stylelint-scss: 4.2.0_stylelint@14.8.1
   vue-material-design-icons: 5.0.0
@@ -9122,6 +9122,14 @@ packages:
       stylelint: 14.8.1
     dev: true
 
+  /stylelint-config-recommended/9.0.0_stylelint@14.8.1:
+    resolution: {integrity: sha512-9YQSrJq4NvvRuTbzDsWX3rrFOzOlYBmZP+o513BJN/yfEmGSr0AxdvrWs0P/ilSpVV/wisamAHu5XSk8Rcf4CQ==}
+    peerDependencies:
+      stylelint: ^14.10.0
+    dependencies:
+      stylelint: 14.8.1
+    dev: true
+
   /stylelint-config-standard-scss/4.0.0_postcss@8.4.13+stylelint@14.8.1:
     resolution: {integrity: sha512-xizu8PTEyB6zYXBiVg6VtvUYn9m57x+6ZtaOdaxsfpbe5eagLPGNlbYnKfm/CfN69ArUpnwR6LjgsTHzlGbtXQ==}
     peerDependencies:
@@ -9141,6 +9149,15 @@ packages:
     dependencies:
       stylelint: 14.8.1
       stylelint-config-recommended: 7.0.0_stylelint@14.8.1
+    dev: true
+
+  /stylelint-config-standard/28.0.0_stylelint@14.8.1:
+    resolution: {integrity: sha512-q/StuowDdDmFCravzGHAwgS9pjX0bdOQUEBBDIkIWsQuYGgYz/xsO8CM6eepmIQ1fc5bKdDVimlJZ6MoOUcJ5Q==}
+    peerDependencies:
+      stylelint: ^14.11.0
+    dependencies:
+      stylelint: 14.8.1
+      stylelint-config-recommended: 9.0.0_stylelint@14.8.1
     dev: true
 
   /stylelint-scss/4.2.0_stylelint@14.8.1:
