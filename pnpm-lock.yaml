@@ -37,7 +37,7 @@ specifiers:
   simple-icons: ^6.14.0
   stylelint: ^14.4.0
   stylelint-config-standard: ^28.0.0
-  stylelint-config-standard-scss: ^4.0.0
+  stylelint-config-standard-scss: ^5.0.0
   stylelint-scss: ^4.2.0
   typescript: ^4.6.2
   vue: 2.6.14
@@ -88,7 +88,7 @@ devDependencies:
   simple-icons: 6.20.0
   stylelint: 14.8.1
   stylelint-config-standard: 28.0.0_stylelint@14.8.1
-  stylelint-config-standard-scss: 4.0.0_postcss@8.4.13+stylelint@14.8.1
+  stylelint-config-standard-scss: 5.0.0_postcss@8.4.13+stylelint@14.8.1
   stylelint-scss: 4.2.0_stylelint@14.8.1
   vue-material-design-icons: 5.0.0
 
@@ -9101,23 +9101,23 @@ packages:
       postcss: 7.0.39
       postcss-selector-parser: 3.1.2
 
-  /stylelint-config-recommended-scss/6.0.0_postcss@8.4.13+stylelint@14.8.1:
-    resolution: {integrity: sha512-6QOe2/OzXV2AP5FE12A7+qtKdZik7Saf42SMMl84ksVBBPpTdrV+9HaCbPYiRMiwELY9hXCVdH4wlJ+YJb5eig==}
+  /stylelint-config-recommended-scss/7.0.0_postcss@8.4.13+stylelint@14.8.1:
+    resolution: {integrity: sha512-rGz1J4rMAyJkvoJW4hZasuQBB7y9KIrShb20l9DVEKKZSEi1HAy0vuNlR8HyCKy/jveb/BdaQFcoiYnmx4HoiA==}
     peerDependencies:
       stylelint: ^14.4.0
     dependencies:
       postcss-scss: 4.0.4_postcss@8.4.13
       stylelint: 14.8.1
-      stylelint-config-recommended: 7.0.0_stylelint@14.8.1
+      stylelint-config-recommended: 8.0.0_stylelint@14.8.1
       stylelint-scss: 4.2.0_stylelint@14.8.1
     transitivePeerDependencies:
       - postcss
     dev: true
 
-  /stylelint-config-recommended/7.0.0_stylelint@14.8.1:
-    resolution: {integrity: sha512-yGn84Bf/q41J4luis1AZ95gj0EQwRX8lWmGmBwkwBNSkpGSpl66XcPTulxGa/Z91aPoNGuIGBmFkcM1MejMo9Q==}
+  /stylelint-config-recommended/8.0.0_stylelint@14.8.1:
+    resolution: {integrity: sha512-IK6dWvE000+xBv9jbnHOnBq01gt6HGVB2ZTsot+QsMpe82doDQ9hvplxfv4YnpEuUwVGGd9y6nbaAnhrjcxhZQ==}
     peerDependencies:
-      stylelint: ^14.4.0
+      stylelint: ^14.8.0
     dependencies:
       stylelint: 14.8.1
     dev: true
@@ -9130,25 +9130,25 @@ packages:
       stylelint: 14.8.1
     dev: true
 
-  /stylelint-config-standard-scss/4.0.0_postcss@8.4.13+stylelint@14.8.1:
-    resolution: {integrity: sha512-xizu8PTEyB6zYXBiVg6VtvUYn9m57x+6ZtaOdaxsfpbe5eagLPGNlbYnKfm/CfN69ArUpnwR6LjgsTHzlGbtXQ==}
+  /stylelint-config-standard-scss/5.0.0_postcss@8.4.13+stylelint@14.8.1:
+    resolution: {integrity: sha512-zoXLibojHZYPFjtkc4STZtAJ2yGTq3Bb4MYO0oiyO6f/vNxDKRcSDZYoqN260Gv2eD5niQIr1/kr5SXlFj9kcQ==}
     peerDependencies:
-      stylelint: ^14.4.0
+      stylelint: ^14.9.0
     dependencies:
       stylelint: 14.8.1
-      stylelint-config-recommended-scss: 6.0.0_postcss@8.4.13+stylelint@14.8.1
-      stylelint-config-standard: 25.0.0_stylelint@14.8.1
+      stylelint-config-recommended-scss: 7.0.0_postcss@8.4.13+stylelint@14.8.1
+      stylelint-config-standard: 26.0.0_stylelint@14.8.1
     transitivePeerDependencies:
       - postcss
     dev: true
 
-  /stylelint-config-standard/25.0.0_stylelint@14.8.1:
-    resolution: {integrity: sha512-21HnP3VSpaT1wFjFvv9VjvOGDtAviv47uTp3uFmzcN+3Lt+RYRv6oAplLaV51Kf792JSxJ6svCJh/G18E9VnCA==}
+  /stylelint-config-standard/26.0.0_stylelint@14.8.1:
+    resolution: {integrity: sha512-hUuB7LaaqM8abvkOO84wh5oYSkpXgTzHu2Zza6e7mY+aOmpNTjoFBRxSLlzY0uAOMWEFx0OMKzr+reG1BUtcqQ==}
     peerDependencies:
-      stylelint: ^14.4.0
+      stylelint: ^14.9.0
     dependencies:
       stylelint: 14.8.1
-      stylelint-config-recommended: 7.0.0_stylelint@14.8.1
+      stylelint-config-recommended: 8.0.0_stylelint@14.8.1
     dev: true
 
   /stylelint-config-standard/28.0.0_stylelint@14.8.1:
