@@ -40,7 +40,6 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from '@nuxtjs/composition-api';
 import { siGithub, siTwitter, siZenn } from 'simple-icons/icons';
 
 export default defineComponent({

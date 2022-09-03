@@ -45,7 +45,6 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref, useContext } from '@nuxtjs/composition-api';
 import { siZenn } from 'simple-icons/icons';
 import AtScroll from '@/components/atoms/AtScroll.vue';
 import { usePostsStore } from '~/store';
@@ -55,7 +54,7 @@ export default defineComponent({
     AtScroll,
   },
   setup () {
-    const { $pinia } = useContext();
+    const { $pinia } = useNuxtApp();
     const postsStore = usePostsStore($pinia);
     const icnZenn = ref(siZenn.path);
     const mergedPosts = computed(() => postsStore.mergedPosts);

@@ -53,7 +53,6 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref, useContext } from '@nuxtjs/composition-api';
 import { siZenn } from 'simple-icons/icons';
 import icnPencil from 'vue-material-design-icons/Pencil.vue';
 import { usePostsStore } from '~/store';
@@ -63,7 +62,7 @@ export default defineComponent({
     icnPencil,
   },
   setup () {
-    const { $pinia } = useContext();
+    const { $pinia } = useNuxtApp();
     const postsStore = usePostsStore($pinia);
 
     const icnZenn = ref(siZenn.path);

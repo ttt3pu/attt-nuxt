@@ -35,7 +35,6 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref, useContext, useFetch, useMeta } from '@nuxtjs/composition-api';
 import axios from 'axios';
 import dayjs from 'dayjs';
 // eslint-disable-next-line
@@ -46,8 +45,8 @@ export default defineComponent({
     icnBack,
   },
   setup () {
-    const { $config, params, $md } = useContext();
-    const metaTitle = useMeta().title;
+    const { $config, params, $md } = useNuxtApp();
+    const metaTitle = useHead().title;
 
     const data = reactive({
       content: '',
@@ -56,7 +55,7 @@ export default defineComponent({
     const publishedAtRef = ref(new Date());
     const titleRef = ref('');
 
-    useFetch(async () => {
+    useLazyFetch(async () => {
       const response = await axios.get(`https://attt.microcms.io/api/v1/blog/${params.value.slug}`, {
         headers: { 'X-API-KEY': $config.MICROCMS_API_KEY },
       });

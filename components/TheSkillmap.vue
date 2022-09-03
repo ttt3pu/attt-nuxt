@@ -47,7 +47,6 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from '@nuxtjs/composition-api';
 import {
   siCss3,
   siGrunt,

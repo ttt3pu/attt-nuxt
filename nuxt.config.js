@@ -46,7 +46,6 @@ export default () => ({
   buildModules: [
     '@nuxt/typescript-build',
     '@nuxtjs/stylelint-module',
-    '@nuxtjs/composition-api/module',
     '@nuxtjs/eslint-module',
     '@nuxt/postcss8',
     '@pinia/nuxt',
@@ -135,5 +134,9 @@ export default () => ({
 
   router: {
     middleware: ['server-init'],
+  },
+
+  bridge: {
+    meta: true,
   },
 });
