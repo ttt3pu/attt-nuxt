@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { defineNuxtConfig } from 'nuxt';
 
-export default () => ({
+export default defineNuxtConfig({
   // Target (https://go.nuxtjs.dev/config-target)
   target: 'static',
 
