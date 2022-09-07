@@ -55,7 +55,6 @@ export default defineNuxtConfig({
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     'nuxt-webfontloader',
-    '@nuxtjs/style-resources',
     '@nuxtjs/markdownit',
     '@nuxtjs/feed',
     [
@@ -84,10 +83,14 @@ export default defineNuxtConfig({
     },
   },
 
-  styleResources: {
-    scss: [
-      '~/assets/scss/mixins.scss',
-    ],
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@import ~/assets/scss/mixins.scss',
+        },
+      },
+    },
   },
 
   markdownit: {
@@ -136,6 +139,7 @@ export default defineNuxtConfig({
   },
 
   bridge: {
+    vite: true,
     meta: true,
   },
 });

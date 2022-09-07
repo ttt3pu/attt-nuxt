@@ -40,7 +40,6 @@
   "devDependencies": {
     "@nuxt/types": "^2.15.4",
     "@nuxtjs/markdownit": "^2.0.0",
-    "@nuxtjs/style-resources": "^1.0.0",
     "@nuxtjs/stylelint-module": "^4.1.0",
     "@pinia/nuxt": "^0.1.8",
     "dayjs": "^1.10.4",
