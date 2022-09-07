@@ -45,10 +45,8 @@ export default defineNuxtConfig({
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
-    '@nuxt/typescript-build',
     '@nuxtjs/stylelint-module',
     '@nuxtjs/eslint-module',
-    '@nuxt/postcss8',
     '@pinia/nuxt',
   ],
 
