@@ -54,7 +54,7 @@ export default defineNuxtConfig({
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    'nuxt-webfontloader',
+    '@nuxtjs/google-fonts',
     '@nuxtjs/feed',
     [
       '@nuxtjs/google-gtag',
@@ -73,12 +73,10 @@ export default defineNuxtConfig({
   build: {
   },
 
-  webfontloader: {
-    google: {
-      families: [
-        'Poppins:400,500',
-        'Noto Sans JP:400&display=swap',
-      ],
+  googleFonts: {
+    families: {
+      Poppins: [400, 500],
+      'Noto Sans JP': [400],
     },
   },
 
