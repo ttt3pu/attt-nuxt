@@ -39,13 +39,15 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 // eslint-disable-next-line
 import icnBack from 'vue-material-design-icons/ChevronLeft.vue';
+import md from 'markdown-it';
 
 export default defineComponent({
   components: {
     icnBack,
   },
   setup () {
-    const { $config, params, $md } = useNuxtApp();
+    const renderer = md();
+    const { $config, params } = useNuxtApp();
     const metaTitle = useHead().title;
 
     const data = reactive({
@@ -64,7 +66,7 @@ export default defineComponent({
 
       publishedAtRef.value = publishedAt;
       titleRef.value = title;
-      data.content = $md.render(content);
+      data.content = renderer.render(content);
       metaTitle.value = `${titleRef.value} | attt`;
     });
 

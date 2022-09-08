@@ -55,7 +55,6 @@ export default defineNuxtConfig({
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     'nuxt-webfontloader',
-    '@nuxtjs/markdownit',
     '@nuxtjs/feed',
     [
       '@nuxtjs/google-gtag',
