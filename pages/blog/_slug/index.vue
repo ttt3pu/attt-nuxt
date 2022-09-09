@@ -34,52 +34,35 @@
   </div>
 </template>
 
-<script lang="ts">
-import axios from 'axios';
+<script setup lang="ts">
 import dayjs from 'dayjs';
-// eslint-disable-next-line
 import icnBack from 'vue-material-design-icons/ChevronLeft.vue';
 import md from 'markdown-it';
 
-export default defineComponent({
-  components: {
-    icnBack,
-  },
-  setup () {
-    const renderer = md();
-    const { $config, params } = useNuxtApp();
-    const metaTitle = useHead().title;
+const renderer = md();
+const { $config, params } = useNuxtApp();
 
-    const data = reactive({
-      content: '',
-    });
+const data = reactive({
+  content: '',
+});
 
-    const publishedAtRef = ref(new Date());
-    const titleRef = ref('');
+const publishedAtRef = ref(new Date());
+const titleRef = ref('');
 
-    useLazyFetch(async () => {
-      const response = await axios.get(`https://attt.microcms.io/api/v1/blog/${params.value.slug}`, {
-        headers: { 'X-API-KEY': $config.MICROCMS_API_KEY },
-      });
+const response = await useLazyFetch(`https://attt.microcms.io/api/v1/blog/${params.value.slug}`, {
+  headers: { 'X-API-KEY': $config.MICROCMS_API_KEY },
+});
 
-      const { publishedAt, title, content } = response.data;
+const { publishedAt, title, content } = response.data as any; // @TODO type
 
-      publishedAtRef.value = publishedAt;
-      titleRef.value = title;
-      data.content = renderer.render(content);
-      metaTitle.value = `${titleRef.value} | attt`;
-    });
+publishedAtRef.value = publishedAt;
+titleRef.value = title;
+data.content = renderer.render(content);
 
-    const publishedAtFormatted = () => dayjs((publishedAtRef.value) as Date).format('YYYY.MM.DD');
+const publishedAtFormatted = () => dayjs((publishedAtRef.value) as Date).format('YYYY.MM.DD');
 
-    return {
-      titleRef,
-      publishedAtRef,
-      data,
-      publishedAtFormatted,
-    };
-  },
-  head: {},
+useHead({
+  title: `${titleRef.value} | attt`,
 });
 </script>
 

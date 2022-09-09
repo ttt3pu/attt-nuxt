@@ -1,4 +1,3 @@
-import axios from 'axios';
 import dayjs from 'dayjs';
 import { defineStore } from 'pinia';
 import RssParser from 'rss-parser';
@@ -51,9 +50,9 @@ export const usePostsStore = defineStore('posts', {
       const zennPosts = await new RssParser<ZennPosts>().parseURL(`https://zenn.dev/attt/feed?${today}`);
       this.zennPosts = zennPosts;
 
-      const blogPosts = await axios.get('https://attt.microcms.io/api/v1/blog', {
+      const blogPosts = await fetch('https://attt.microcms.io/api/v1/blog', {
         headers: { 'X-API-KEY': process.env.MICROCMS_API_KEY as string },
-      });
+      }).then(response => response.json());
 
       this.blogPosts = blogPosts.data.contents;
     },

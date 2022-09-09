@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { defineNuxtConfig } from 'nuxt';
 
 export default defineNuxtConfig({
@@ -52,10 +51,8 @@ export default defineNuxtConfig({
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
-    // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios',
     '@nuxtjs/google-fonts',
-    '@nuxtjs/feed',
+    // '@nuxtjs/feed',
     [
       '@nuxtjs/google-gtag',
       {
@@ -64,10 +61,6 @@ export default defineNuxtConfig({
       },
     ],
   ],
-
-  // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {
-  },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
@@ -94,38 +87,38 @@ export default defineNuxtConfig({
     injected: true,
   },
 
-  feed: [
-    {
-      path: '/blog/feed.xml',
-      async create (feed) {
-        feed.options = {
-          title: 'attt',
-          link: 'https://attt.hachiware.cat/blog/feed.xml',
-        };
+  // feed: [
+  //   {
+  //     path: '/blog/feed.xml',
+  //     async create (feed) {
+  //       feed.options = {
+  //         title: 'attt',
+  //         link: 'https://attt.hachiware.cat/blog/feed.xml',
+  //       };
 
-        const blogPosts = await axios.get('https://attt.microcms.io/api/v1/blog', {
-          headers: { 'X-API-KEY': process.env.MICROCMS_API_KEY },
-        });
+  //       const blogPosts = await axios.get('https://attt.microcms.io/api/v1/blog', {
+  //         headers: { 'X-API-KEY': process.env.MICROCMS_API_KEY },
+  //       });
 
-        blogPosts.data.contents.forEach((post) => {
-          feed.addItem({
-            title: post.title,
-            id: post.id,
-            link: `https://attt.hachiware.cat/blog/${post.id}`,
-            content: post.content,
-            date: new Date(post.publishedAt),
-          });
-        });
+  //       blogPosts.data.contents.forEach((post) => {
+  //         feed.addItem({
+  //           title: post.title,
+  //           id: post.id,
+  //           link: `https://attt.hachiware.cat/blog/${post.id}`,
+  //           content: post.content,
+  //           date: new Date(post.publishedAt),
+  //         });
+  //       });
 
-        feed.addContributor({
-          name: 'attt',
-          link: process.env.BASE_URL,
-        });
-      },
-      cacheTime: 1000 * 60 * 15,
-      type: 'atom1',
-    },
-  ],
+  //       feed.addContributor({
+  //         name: 'attt',
+  //         link: process.env.BASE_URL,
+  //       });
+  //     },
+  //     cacheTime: 1000 * 60 * 15,
+  //     type: 'atom1',
+  //   },
+  // ],
 
   privateRuntimeConfig: {
     MICROCMS_API_KEY: process.env.MICROCMS_API_KEY,
