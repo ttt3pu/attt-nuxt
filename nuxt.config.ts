@@ -77,14 +77,10 @@ export default defineNuxtConfig({
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: '@import ~/assets/scss/mixins.scss',
+          additionalData: '@import "~/assets/scss/mixins.scss";',
         },
       },
     },
-  },
-
-  markdownit: {
-    injected: true,
   },
 
   // feed: [
