@@ -30,7 +30,6 @@ specifiers:
   stylelint-scss: ^4.2.0
   typescript: ^4.6.2
   vue: ^3.2.39
-  vue-clickaway: ^2.2.2
   vue-material-design-icons: ^5.0.0
 
 dependencies:
@@ -49,7 +48,6 @@ dependencies:
   postcss-html: 1.4.1
   typescript: 4.6.4
   vue: 3.2.39
-  vue-clickaway: 2.2.2_vue@3.2.39
 
 devDependencies:
   '@nuxtjs/stylelint-module': 4.1.0_stylelint@14.8.1
@@ -4282,13 +4280,6 @@ packages:
       is-unicode-supported: 1.2.0
     dev: false
 
-  /loose-envify/1.4.0:
-    resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
-    hasBin: true
-    dependencies:
-      js-tokens: 4.0.0
-    dev: false
-
   /lru-cache/4.1.5:
     resolution: {integrity: sha512-sWZlbEP2OsHNkXrMl5GYk/jKk70MBng6UU4YI/qGDYbgf6YbP4EvmqISbXCoJiRKs+1bSpFHVgQxvJ17F2li5g==}
     dependencies:
@@ -6818,15 +6809,6 @@ packages:
     resolution: {integrity: sha512-HwWd/qw3QBQvZXlK7xQbOViCoDzSaodSueao0Yt3VUxReLDt90FAaufXjv2hfpHQKvYCo5Rez8z1zHOEo3fhAg==}
     dependencies:
       ufo: 0.8.5
-    dev: false
-
-  /vue-clickaway/2.2.2_vue@3.2.39:
-    resolution: {integrity: sha512-25SpjXKetL06GLYoLoC8pqAV6Cur9cQ//2g35GRFBV4FgoljbZZjTINR8g2NuVXXDMLSUXaKx5dutgO4PaDE7A==}
-    peerDependencies:
-      vue: ^2.0.0
-    dependencies:
-      loose-envify: 1.4.0
-      vue: 3.2.39
     dev: false
 
   /vue-demi/0.12.5_vue@3.2.39:
