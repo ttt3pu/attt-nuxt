@@ -46,7 +46,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import {
   siCss3,
   siGrunt,
@@ -65,80 +65,71 @@ import {
   siWebpack,
 } from 'simple-icons/icons';
 
-export default defineComponent({
-  setup () {
-    const mainItems = ref([
-      {
-        heading: 'Vue',
-        icnData: siVuedotjs,
-      },
-      {
-        heading: 'Nuxt',
-        icnData: siNuxtdotjs,
-      },
-      {
-        heading: 'TypeScript',
-        icnData: siTypescript,
-      },
-      {
-        heading: 'JavaScript',
-        icnData: siJavascript,
-      },
-      {
-        heading: 'Jest',
-        icnData: siJest,
-      },
-      {
-        heading: 'HTML',
-        icnData: siHtml5,
-      },
-      {
-        heading: 'CSS',
-        icnData: siCss3,
-      },
-      {
-        heading: 'Scss',
-        icnData: siSass,
-      },
-    ]);
-
-    const subItems = ref([
-      {
-        heading: 'React',
-        icnData: siReact,
-      },
-      {
-        heading: 'Tailwind',
-        icnData: siTailwindcss,
-      },
-      {
-        heading: 'webpack',
-        icnData: siWebpack,
-      },
-      {
-        heading: 'Stoybook',
-        icnData: siStorybook,
-      },
-      {
-        heading: 'jQuery',
-        icnData: siJquery,
-      },
-      {
-        heading: 'Grunt',
-        icnData: siGrunt,
-      },
-      {
-        heading: 'Pug',
-        icnData: siPug,
-      },
-    ]);
-
-    return {
-      mainItems,
-      subItems,
-    };
+const mainItems = ref([
+  {
+    heading: 'Vue',
+    icnData: siVuedotjs,
   },
-});
+  {
+    heading: 'Nuxt',
+    icnData: siNuxtdotjs,
+  },
+  {
+    heading: 'TypeScript',
+    icnData: siTypescript,
+  },
+  {
+    heading: 'JavaScript',
+    icnData: siJavascript,
+  },
+  {
+    heading: 'Jest',
+    icnData: siJest,
+  },
+  {
+    heading: 'HTML',
+    icnData: siHtml5,
+  },
+  {
+    heading: 'CSS',
+    icnData: siCss3,
+  },
+  {
+    heading: 'Scss',
+    icnData: siSass,
+  },
+]);
+
+const subItems = ref([
+  {
+    heading: 'React',
+    icnData: siReact,
+  },
+  {
+    heading: 'Tailwind',
+    icnData: siTailwindcss,
+  },
+  {
+    heading: 'webpack',
+    icnData: siWebpack,
+  },
+  {
+    heading: 'Stoybook',
+    icnData: siStorybook,
+  },
+  {
+    heading: 'jQuery',
+    icnData: siJquery,
+  },
+  {
+    heading: 'Grunt',
+    icnData: siGrunt,
+  },
+  {
+    heading: 'Pug',
+    icnData: siPug,
+  },
+]);
 </script>
 
 <style lang="scss" scoped>

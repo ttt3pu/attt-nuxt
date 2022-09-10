@@ -5,19 +5,10 @@
   </button>
 </template>
 
-<script lang="ts">
-
-export default defineComponent({
-  setup () {
-    const scroll = () => {
-      window.scrollTo(0, window.innerHeight);
-    };
-
-    return {
-      scroll,
-    };
-  },
-});
+<script setup lang="ts">
+const scroll = () => {
+  window.scrollTo(0, window.innerHeight);
+};
 </script>
 
 <style lang="scss" scoped>

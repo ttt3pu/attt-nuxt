@@ -12,42 +12,32 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
+const _year = computed(() => new Date().getFullYear());
 
-export default defineComponent({
-  setup () {
-    const _year = computed(() => new Date().getFullYear());
+if (process.client) {
+  const setFillHeight = () => {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  };
 
-    if (process.client) {
-      const setFillHeight = () => {
-        const vh = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty('--vh', `${vh}px`);
-      };
+  setFillHeight();
 
-      setFillHeight();
+  if (!navigator.userAgent.match(/(iPhone|iPad|iPod|Android)/i)) {
+    let beforeHeight = window.innerHeight;
 
-      if (!navigator.userAgent.match(/(iPhone|iPad|iPod|Android)/i)) {
-        let beforeHeight = window.innerHeight;
-
-        window.addEventListener('resize', () => {
-          if (beforeHeight !== window.innerHeight) {
-            beforeHeight = window.innerHeight;
-            setFillHeight();
-          }
-        });
+    window.addEventListener('resize', () => {
+      if (beforeHeight !== window.innerHeight) {
+        beforeHeight = window.innerHeight;
+        setFillHeight();
       }
-    }
+    });
+  }
+}
 
-    return {
-      _year,
-    };
-  },
-  head () {
-    return {
-      htmlAttrs: {
-        lang: 'ja',
-      },
-    };
+useHead({
+  htmlAttrs: {
+    lang: 'ja',
   },
 });
 </script>

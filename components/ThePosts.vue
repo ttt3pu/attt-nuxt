@@ -52,43 +52,30 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { siZenn } from 'simple-icons/icons';
 import icnPencil from 'vue-material-design-icons/Pencil.vue';
 import { usePostsStore } from '~/store';
 
-export default defineComponent({
-  components: {
-    icnPencil,
-  },
-  setup () {
-    const { $pinia } = useNuxtApp();
-    const postsStore = usePostsStore($pinia);
+const { $pinia } = useNuxtApp();
+const postsStore = usePostsStore($pinia);
 
-    const icnZenn = ref(siZenn.path);
-    const mergedPosts = computed(() => postsStore.mergedPosts);
+const icnZenn = ref(siZenn.path);
+const mergedPosts = computed(() => postsStore.mergedPosts);
 
-    const recentPosts = computed(() => {
-      const recentPosts = JSON.parse(JSON.stringify(mergedPosts.value));
+const recentPosts = computed(() => {
+  const recentPosts = JSON.parse(JSON.stringify(mergedPosts.value));
 
-      // ブログの投稿を1個だけ一番前に持ってくる
-      for (let i = 0; i < recentPosts.length; i++) {
-        if (recentPosts[i].type === 'blog') {
-          recentPosts.unshift(recentPosts[i]);
-          recentPosts.splice(i + 1, 1);
-          break;
-        }
-      }
+  // ブログの投稿を1個だけ一番前に持ってくる
+  for (let i = 0; i < recentPosts.length; i++) {
+    if (recentPosts[i].type === 'blog') {
+      recentPosts.unshift(recentPosts[i]);
+      recentPosts.splice(i + 1, 1);
+      break;
+    }
+  }
 
-      return recentPosts;
-    });
-
-    return {
-      icnZenn,
-      mergedPosts,
-      recentPosts,
-    };
-  },
+  return recentPosts;
 });
 </script>
 
