@@ -33,11 +33,11 @@
   },
   "devDependencies": {
     "@nuxtjs/stylelint-module": "^4.1.0",
-    "@pinia/nuxt": "^0.1.8",
+    "@pinia/nuxt": "^0.4.2",
     "dayjs": "^1.10.4",
     "eslint": "^8.11.0",
     "eslint-plugin-nuxt": "^4.0.0",
-    "pinia": "^2.0.13",
+    "pinia": "^2.0.22",
     "rss-parser": "^3.12.0",
     "sass": "^1.49.9",
     "sass-loader": "^10.1.1",

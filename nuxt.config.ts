@@ -17,12 +17,12 @@ export default defineNuxtConfig({
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      {
-        rel: 'alternate',
-        type: 'application/atom+xml',
-        title: 'attt RSS feed',
-        href: '/blog/feed.xml',
-      },
+      // {
+      //   rel: 'alternate',
+      //   type: 'application/atom+xml',
+      //   title: 'attt RSS feed',
+      //   href: '/blog/feed.xml',
+      // },
     ],
   },
 
@@ -40,22 +40,22 @@ export default defineNuxtConfig({
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
-    '@nuxtjs/stylelint-module',
-    '@nuxtjs/eslint-module',
-    '@pinia/nuxt',
+    // '@nuxtjs/stylelint-module',
+    // '@nuxtjs/eslint-module',
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     '@nuxtjs/google-fonts',
+    '@pinia/nuxt',
     // '@nuxtjs/feed',
-    [
-      '@nuxtjs/google-gtag',
-      {
-        id: 'G-YY7ZSN9HY4',
-        debug: true,
-      },
-    ],
+    // [
+    //   '@nuxtjs/google-gtag',
+    //   {
+    //     id: 'G-YY7ZSN9HY4',
+    //     debug: true,
+    //   },
+    // ],
   ],
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
