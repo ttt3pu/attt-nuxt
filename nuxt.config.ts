@@ -1,6 +1,8 @@
 import { defineNuxtConfig } from 'nuxt';
 
 export default defineNuxtConfig({
+  ssr: false,
+
   // Target (https://go.nuxtjs.dev/config-target)
   target: 'static',
 
@@ -40,8 +42,8 @@ export default defineNuxtConfig({
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
-    // '@nuxtjs/stylelint-module',
-    // '@nuxtjs/eslint-module',
+    '@nuxtjs/stylelint-module',
+    '@nuxtjs/eslint-module',
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
