@@ -1,7 +1,7 @@
 <template>
   <div class="page-wrapper">
     <div class="contents-wrapper">
-      <Nuxt />
+      <slot />
     </div>
 
     <div class="copyright">
