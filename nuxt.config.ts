@@ -118,7 +118,7 @@ export default defineNuxtConfig({
   //   },
   // ],
 
-  privateRuntimeConfig: {
+  runtimeConfig: {
     MICROCMS_API_KEY: process.env.MICROCMS_API_KEY,
   },
 

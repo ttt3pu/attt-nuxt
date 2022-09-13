@@ -4,6 +4,7 @@ import RssParser from 'rss-parser';
 import {
   BlogPosts, ZennPosts,
 } from '../types';
+const runtimeConfig = useRuntimeConfig();
 
 interface State {
   zennPosts: ZennPosts;
@@ -51,7 +52,7 @@ export const usePostsStore = defineStore('posts', {
       this.zennPosts = zennPosts;
 
       const blogPosts = await fetch('https://attt.microcms.io/api/v1/blog', {
-        headers: { 'X-API-KEY': process.env.MICROCMS_API_KEY as string },
+        headers: { 'X-API-KEY': runtimeConfig.MICROCMS_API_KEY as string },
       }).then(response => response.json());
 
       this.blogPosts = blogPosts.data.contents;
