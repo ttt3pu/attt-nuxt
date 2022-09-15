@@ -1,8 +1,6 @@
 import { defineNuxtConfig } from 'nuxt';
 
 export default defineNuxtConfig({
-  ssr: false,
-
   // Target (https://go.nuxtjs.dev/config-target)
   target: 'static',
 
