@@ -11,12 +11,8 @@
       ]
     },
     "types": [
-      "nuxt-windicss",
-      "@vueuse/nuxt",
-      "@intlify/nuxt3",
       "@pinia/nuxt",
-      "@types/node",
-      "@nuxtjs/markdownit",
+      "@types/node"
     ]
   },
 }
