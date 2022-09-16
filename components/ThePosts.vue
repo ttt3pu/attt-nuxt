@@ -55,16 +55,16 @@
 <script lang="ts" setup>
 import { siZenn } from 'simple-icons/icons';
 import icnPencil from 'vue-material-design-icons/Pencil.vue';
-import { usePostsStore } from '~/store';
+import { MergedPost } from '~/types';
 
-const { $pinia } = useNuxtApp();
-const postsStore = usePostsStore($pinia);
+const props = defineProps<{
+  mergedPosts: MergedPost[];
+}>();
 
 const icnZenn = ref(siZenn.path);
-const mergedPosts = computed(() => postsStore.mergedPosts);
 
 const recentPosts = computed(() => {
-  const recentPosts = JSON.parse(JSON.stringify(mergedPosts.value));
+  const recentPosts = JSON.parse(JSON.stringify(props.mergedPosts));
 
   // ブログの投稿を1個だけ一番前に持ってくる
   for (let i = 0; i < recentPosts.length; i++) {

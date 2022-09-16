@@ -8,8 +8,6 @@ export interface BlogPost {
   content: string
 }
 
-export type BlogPosts = Array<BlogPost>;
-
 export interface ZennPost {
   creator: string
   title: string
@@ -27,6 +25,10 @@ export interface ZennPost {
   isoDate: string
 }
 
-export interface ZennPosts {
-  items: Array<ZennPost>
-};
+export interface MergedPost {
+  type: 'blog' | 'zenn';
+  title: string;
+  date: string;
+  dateFormatted: string;
+  link: string;
+}

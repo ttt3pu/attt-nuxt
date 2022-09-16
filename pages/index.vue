@@ -19,7 +19,7 @@
     <div class="main-contents">
       <div class="main-contents__box">
         <div class="main-contents__box__inner">
-          <the-posts />
+          <the-posts :merged-posts="mergedPosts" />
         </div>
       </div>
 
@@ -46,6 +46,10 @@
 
 <script lang="ts" setup>
 import AtScroll from '@/components/atoms/AtScroll.vue';
+import { usePostsStore } from '~/store';
+const { $pinia } = useNuxtApp();
+const postsStore = usePostsStore($pinia);
+const mergedPosts = computed(() => postsStore.mergedPosts);
 
 useHead({
   title: 'attt - Front End Developer',

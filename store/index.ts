@@ -2,13 +2,12 @@ import dayjs from 'dayjs';
 import { defineStore } from 'pinia';
 import RssParser from 'rss-parser';
 import {
-  BlogPosts, ZennPosts,
+  BlogPost, MergedPost, ZennPost,
 } from '../types';
-const runtimeConfig = useRuntimeConfig();
 
 interface State {
-  zennPosts: ZennPosts;
-  blogPosts: BlogPosts;
+  zennPosts: {items: ZennPost[]};
+  blogPosts: BlogPost[];
 }
 
 export const usePostsStore = defineStore('posts', {
@@ -18,7 +17,7 @@ export const usePostsStore = defineStore('posts', {
   }),
   getters: {
     mergedPosts (state) {
-      const filteredZennPosts = state.zennPosts.items.map(row => ({
+      const filteredZennPosts: MergedPost[] = state.zennPosts.items.map(row => ({
         type: 'zenn',
         title: row.title,
         date: row.pubDate,
@@ -26,7 +25,7 @@ export const usePostsStore = defineStore('posts', {
         link: row.link,
       }));
 
-      const filteredBlogPosts = state.blogPosts.map(row => ({
+      const filteredBlogPosts: MergedPost[] = state.blogPosts.map(row => ({
         type: 'blog',
         title: row.title,
         date: row.publishedAt,
@@ -46,25 +45,16 @@ export const usePostsStore = defineStore('posts', {
     },
   },
   actions: {
-    async getPosts () {
+    async getPosts (microcmsApiKey: string) {
       const today = dayjs(new Date()).format('YYYYMMDDhhmm');
-      const zennPosts = await new RssParser<ZennPosts>().parseURL(`https://zenn.dev/attt/feed?${today}`);
+      const zennPosts = await new RssParser<{ items: ZennPost[] }>().parseURL(`https://zenn.dev/attt/feed?${today}`);
       this.zennPosts = zennPosts;
 
       const blogPosts = await fetch('https://attt.microcms.io/api/v1/blog', {
-        headers: { 'X-API-KEY': runtimeConfig.MICROCMS_API_KEY as string },
+        headers: { 'X-API-KEY': microcmsApiKey },
       }).then(response => response.json());
 
-      this.blogPosts = blogPosts.data.contents;
-    },
-  },
-});
-
-export const useStore = defineStore('store', {
-  actions: {
-    async nuxtServerInit () {
-      const postsStore = usePostsStore();
-      await postsStore.getPosts();
+      this.blogPosts = blogPosts.contents;
     },
   },
 });
