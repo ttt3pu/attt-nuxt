@@ -12,6 +12,7 @@ specifiers:
   eslint: ^8.11.0
   eslint-plugin-import: ^2.25.4
   eslint-plugin-nuxt: ^4.0.0
+  events: ^3.3.0
   markdown-it: ^13.0.1
   nuxt: ^3.0.0-rc.9
   pinia: ^2.0.22
@@ -25,9 +26,9 @@ specifiers:
   stylelint-config-standard: ^28.0.0
   stylelint-config-standard-scss: ^4.0.0
   stylelint-scss: ^4.2.0
+  timers: ^0.1.1
   typescript: ^4.6.2
   vue: ^3.2.39
-  vue-gtag: 2.0.1
   vue-gtag-next: ^1.14.0
   vue-material-design-icons: ^5.0.0
 
@@ -38,13 +39,14 @@ dependencies:
   '@nuxtjs/feed': 2.0.0
   '@nuxtjs/google-fonts': 3.0.0-0
   eslint-plugin-import: 2.26.0_eslint@8.14.0
+  events: 3.3.0
   markdown-it: 13.0.1
   nuxt: 3.0.0-rc.9_u7y6ksc6pwf4gwwwaydpq6msgy
   postcss: 8.4.13
   postcss-html: 1.4.1
+  timers: 0.1.1
   typescript: 4.6.4
   vue: 3.2.39
-  vue-gtag: 2.0.1_vue@3.2.39
   vue-gtag-next: 1.14.0_vue@3.2.39
 
 devDependencies:
@@ -3116,6 +3118,11 @@ packages:
     resolution: {integrity: sha512-8guHBZCwKnFhYdHr2ysuRWErTwhoN2X8XELRlrRwpmfeY2jjuUN4taQMsULKUVo1K4DvZl+0pgfyoysHxvmvEw==}
     dev: false
 
+  /events/3.3.0:
+    resolution: {integrity: sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==}
+    engines: {node: '>=0.8.x'}
+    dev: false
+
   /execa/5.1.1:
     resolution: {integrity: sha512-8uSpZZocAZRBAPIEINJj3Lo9HyGitllczc27Eh5YYojjMFMn8yHMDMaUHE2Jqfq05D/wucwI4JGURyXt1vchyg==}
     engines: {node: '>=10'}
@@ -6171,6 +6178,10 @@ packages:
     resolution: {integrity: sha512-w89qg7PI8wAdvX60bMDP+bFoD5Dvhm9oLheFp5O4a2QF0cSBGsBX4qZmadPMvVqlLJBBci+WqGGOAPvcDeNSVg==}
     dev: false
 
+  /timers/0.1.1:
+    resolution: {integrity: sha512-pkJC8uIP/gxDHxNQUBUbjHyl6oZfT+ofn7tbaHW+CFIUjI+Q2MBbHcx1JSBQfhDaTcO9bNg328q0i7Vk5PismQ==}
+    dev: false
+
   /tiny-glob/0.2.9:
     resolution: {integrity: sha512-g/55ssRPUjShh+xkfx9UPDXqhckHEsHr4Vd9zX55oSdGZc/MD0m3sferOkwWtp98bv+kcVfEHtRJgBVJzelrzg==}
     dependencies:
@@ -6709,14 +6720,6 @@ packages:
     resolution: {integrity: sha512-iJl+cOG2GU5NuxqzSSIpt03WVOvZqyKB9TOy7d55KiuvRklcnb2nlqxW5B/a3/sbIt7fla+XEkRyMCcoz0zAHw==}
     peerDependencies:
       vue: ^3.0.0-rc.11
-    dependencies:
-      vue: 3.2.39
-    dev: false
-
-  /vue-gtag/2.0.1_vue@3.2.39:
-    resolution: {integrity: sha512-aM4A58FVL0wV2ptYi+xzAjeg+pQVRyUcfBc5UkXAwQrR4t3WBhor50Izp2I+3Oo7+l+vWJ7u78DGcNzReb8S/A==}
-    peerDependencies:
-      vue: ^3.0.0
     dependencies:
       vue: 3.2.39
     dev: false
