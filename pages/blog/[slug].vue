@@ -45,7 +45,7 @@ const runtimeConfig = useRuntimeConfig();
 const renderer = md();
 
 const renderedContent = ref('');
-const publishedAtRef = ref<string | null>(null);
+const publishedAtRef = ref<string | undefined>(undefined);
 const titleRef = ref('');
 
 const response = await useFetch<BlogPost>(`https://attt.microcms.io/api/v1/blog/${route.params.slug}`, {

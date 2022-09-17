@@ -11,6 +11,7 @@
     "start": "nuxi start",
     "generate": "nuxi generate",
     "prepare": "nuxi prepare",
+    "typeCheck": "nuxi typecheck",
     "preview": "http-server ./.output/public",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore",

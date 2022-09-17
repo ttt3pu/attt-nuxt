@@ -16,7 +16,7 @@
     >
       <li
         v-for="item in snsItems"
-        :key="item.name"
+        :key="item.title"
         class="sns__item"
       >
         <a
