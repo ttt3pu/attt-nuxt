@@ -4,11 +4,6 @@ export default defineNuxtConfig({
   // Target (https://go.nuxtjs.dev/config-target)
   target: 'static',
 
-  server: {
-    host: '0.0.0.0',
-    port: 8000,
-  },
-
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     meta: [
@@ -17,6 +12,7 @@ export default defineNuxtConfig({
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      // @FIXME
       // {
       //   rel: 'alternate',
       //   type: 'application/atom+xml',
@@ -77,6 +73,7 @@ export default defineNuxtConfig({
     },
   },
 
+  // @FIXME
   // feed: [
   //   {
   //     path: '/blog/feed.xml',
