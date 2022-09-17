@@ -1,10 +1,10 @@
 <template>
   <div class="the-logo">
-    <nuxt-link to="/">
+    <NuxtLink to="/">
       <h1 class="title">
         attt
       </h1>
-    </nuxt-link>
+    </NuxtLink>
 
     <p v-if="props.isActiveLogo">
       Front End Developer

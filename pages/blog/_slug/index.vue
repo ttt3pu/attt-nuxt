@@ -3,13 +3,13 @@
     <div class="logo-area">
       <the-logo :mini="true" :is-active-logo="false" />
 
-      <nuxt-link
+      <NuxtLink
         class="back"
         to="/"
       >
         <icn-back class="back__icn" />
         <span>Main page</span>
-      </nuxt-link>
+      </NuxtLink>
     </div>
 
     <main class="main">

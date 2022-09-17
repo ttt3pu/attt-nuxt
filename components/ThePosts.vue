@@ -7,7 +7,7 @@
       class="the-posts__items"
     >
       <component
-        :is="item.type === 'zenn' ? 'a' : 'nuxt-link'"
+        :is="item.type === 'zenn' ? 'a' : NuxtLink"
         v-for="(item, i) in recentPosts"
         :key="i"
         role="listitem"
@@ -56,6 +56,7 @@
 import { siZenn } from 'simple-icons/icons';
 import icnPencil from 'vue-material-design-icons/Pencil.vue';
 import { MergedPost } from '~/types';
+import { NuxtLink } from '#components';
 
 const props = defineProps<{
   mergedPosts: MergedPost[];
