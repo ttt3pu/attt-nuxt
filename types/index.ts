@@ -9,20 +9,9 @@ export interface BlogPost {
 }
 
 export interface ZennPost {
-  creator: string
   title: string
   link: string
   pubDate: string
-  enclosure: {
-    url: string
-    length: string
-    type: string
-  }
-  'dc:creator':string
-  content: string
-  contentSnippet: string
-  guid: string
-  isoDate: string
 }
 
 export interface MergedPost {

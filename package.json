@@ -32,7 +32,8 @@
     "timers": "^0.1.1",
     "typescript": "^4.6.2",
     "vue": "^3.2.39",
-    "vue-gtag-next": "^1.14.0"
+    "vue-gtag-next": "^1.14.0",
+    "xmldom": "^0.6.0"
   },
   "devDependencies": {
     "@nuxtjs/stylelint-module": "^4.1.0",

@@ -1,23 +1,23 @@
 import dayjs from 'dayjs';
 import { defineStore } from 'pinia';
-import RssParser from 'rss-parser';
+import { DOMParser } from 'xmldom';
 import {
   BlogPost, MergedPost, ZennPost,
 } from '../types';
 
 interface State {
-  zennPosts: {items: ZennPost[]};
+  zennPosts: ZennPost[];
   blogPosts: BlogPost[];
 }
 
 export const usePostsStore = defineStore('posts', {
   state: (): State => ({
-    zennPosts: { items: [] },
+    zennPosts: [],
     blogPosts: [],
   }),
   getters: {
     mergedPosts (state) {
-      const filteredZennPosts: MergedPost[] = state.zennPosts.items.map(row => ({
+      const filteredZennPosts: MergedPost[] = state.zennPosts.map(row => ({
         type: 'zenn',
         title: row.title,
         date: row.pubDate,
@@ -47,8 +47,16 @@ export const usePostsStore = defineStore('posts', {
   actions: {
     async getPosts (microcmsApiKey: string) {
       const today = dayjs(new Date()).format('YYYYMMDDhhmm');
-      const zennPosts = await new RssParser<{ items: ZennPost[] }>().parseURL(`https://zenn.dev/attt/feed?${today}`);
-      this.zennPosts = zennPosts;
+      const zennPostsResponse = await fetch(`https://zenn.dev/attt/feed?${today}`).then(response => response.text());
+      const domParsedZennPosts = new DOMParser().parseFromString(zennPostsResponse, 'text/html');
+      const zennPosts = domParsedZennPosts.documentElement.getElementsByTagName('item');
+      this.zennPosts = Array.prototype.slice.call(zennPosts).map((post) => {
+        return {
+          title: post.getElementsByTagName('title')[0].textContent,
+          pubDate: post.getElementsByTagName('pubDate')[0].textContent,
+          link: post.getElementsByTagName('link')[0].textContent,
+        };
+      });
 
       const blogPosts = await fetch('https://attt.microcms.io/api/v1/blog', {
         headers: { 'X-API-KEY': microcmsApiKey },
