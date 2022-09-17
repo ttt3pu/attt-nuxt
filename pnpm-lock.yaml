@@ -6,7 +6,6 @@ specifiers:
   '@nuxtjs/eslint-module': ^3.0.2
   '@nuxtjs/feed': ^2.0.0
   '@nuxtjs/google-fonts': 3.0.0-0
-  '@nuxtjs/google-gtag': ^1.0.4
   '@nuxtjs/stylelint-module': ^4.1.0
   '@pinia/nuxt': ^0.4.2
   dayjs: ^1.10.4
@@ -28,6 +27,8 @@ specifiers:
   stylelint-scss: ^4.2.0
   typescript: ^4.6.2
   vue: ^3.2.39
+  vue-gtag: 2.0.1
+  vue-gtag-next: ^1.14.0
   vue-material-design-icons: ^5.0.0
 
 dependencies:
@@ -36,7 +37,6 @@ dependencies:
   '@nuxtjs/eslint-module': 3.1.0_eslint@8.14.0
   '@nuxtjs/feed': 2.0.0
   '@nuxtjs/google-fonts': 3.0.0-0
-  '@nuxtjs/google-gtag': 1.0.4
   eslint-plugin-import: 2.26.0_eslint@8.14.0
   markdown-it: 13.0.1
   nuxt: 3.0.0-rc.9_u7y6ksc6pwf4gwwwaydpq6msgy
@@ -44,6 +44,8 @@ dependencies:
   postcss-html: 1.4.1
   typescript: 4.6.4
   vue: 3.2.39
+  vue-gtag: 2.0.1_vue@3.2.39
+  vue-gtag-next: 1.14.0_vue@3.2.39
 
 devDependencies:
   '@nuxtjs/stylelint-module': 4.1.0_stylelint@14.8.1
@@ -767,10 +769,6 @@ packages:
       - supports-color
       - vite
       - webpack
-    dev: false
-
-  /@nuxtjs/google-gtag/1.0.4:
-    resolution: {integrity: sha512-0Xgbx1uQ9pKeV2QdU9xoxJVdgH66qyGQJ0l8pzVxz5X476qvJunj6fbcjWk0gT+MEX/VOAhfT/zw0Z1z9q9oNg==}
     dev: false
 
   /@nuxtjs/stylelint-module/4.1.0_stylelint@14.8.1:
@@ -6706,6 +6704,22 @@ packages:
       semver: 7.3.7
     transitivePeerDependencies:
       - supports-color
+
+  /vue-gtag-next/1.14.0_vue@3.2.39:
+    resolution: {integrity: sha512-iJl+cOG2GU5NuxqzSSIpt03WVOvZqyKB9TOy7d55KiuvRklcnb2nlqxW5B/a3/sbIt7fla+XEkRyMCcoz0zAHw==}
+    peerDependencies:
+      vue: ^3.0.0-rc.11
+    dependencies:
+      vue: 3.2.39
+    dev: false
+
+  /vue-gtag/2.0.1_vue@3.2.39:
+    resolution: {integrity: sha512-aM4A58FVL0wV2ptYi+xzAjeg+pQVRyUcfBc5UkXAwQrR4t3WBhor50Izp2I+3Oo7+l+vWJ7u78DGcNzReb8S/A==}
+    peerDependencies:
+      vue: ^3.0.0
+    dependencies:
+      vue: 3.2.39
+    dev: false
 
   /vue-material-design-icons/5.0.0:
     resolution: {integrity: sha512-lYSJFW/TyQqmg7MvUbEB8ua1mwWy/v8qve7QJuA/UWUAXC4/yVUdAm4pg/sM9+k5n7VLckBv6ucOROuGBsGPDQ==}

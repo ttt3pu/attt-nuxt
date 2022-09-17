@@ -33,6 +33,7 @@ export default defineNuxtConfig({
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
+    './plugins/vue-gtag.ts',
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -49,13 +50,6 @@ export default defineNuxtConfig({
     '@nuxtjs/google-fonts',
     '@pinia/nuxt',
     // '@nuxtjs/feed',
-    // [
-    //   '@nuxtjs/google-gtag',
-    //   {
-    //     id: 'G-YY7ZSN9HY4',
-    //     debug: true,
-    //   },
-    // ],
   ],
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
