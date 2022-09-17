@@ -18,7 +18,7 @@
           <time
             class="date"
             :datetime="publishedAtRef"
-          >{{ publishedAtFormatted() }}</time>
+          >{{ publishedAtFormatted }}</time>
 
           <h1 class="title">
             {{ titleRef }}
@@ -27,7 +27,7 @@
 
         <div
           class="post"
-          v-html="data.content"
+          v-html="renderedContent"
         />
       </div>
     </main>
@@ -38,28 +38,27 @@
 import dayjs from 'dayjs';
 import icnBack from 'vue-material-design-icons/ChevronLeft.vue';
 import md from 'markdown-it';
+import { BlogPost } from '@/types';
+const route = useRoute();
+const runtimeConfig = useRuntimeConfig();
 
 const renderer = md();
-const { $config, params } = useNuxtApp();
 
-const data = reactive({
-  content: '',
-});
-
-const publishedAtRef = ref(new Date());
+const renderedContent = ref('');
+const publishedAtRef = ref<string | null>(null);
 const titleRef = ref('');
 
-const response = await useLazyFetch(`https://attt.microcms.io/api/v1/blog/${params.value.slug}`, {
-  headers: { 'X-API-KEY': $config.MICROCMS_API_KEY },
+const response = await useFetch<BlogPost>(`https://attt.microcms.io/api/v1/blog/${route.params.slug}`, {
+  headers: { 'X-API-KEY': runtimeConfig.MICROCMS_API_KEY },
 });
 
-const { publishedAt, title, content } = response.data as any; // @TODO type
+const { publishedAt, title, content } = response.data.value!;
 
 publishedAtRef.value = publishedAt;
 titleRef.value = title;
-data.content = renderer.render(content);
+renderedContent.value = renderer.render(content);
 
-const publishedAtFormatted = () => dayjs((publishedAtRef.value) as Date).format('YYYY.MM.DD');
+const publishedAtFormatted = computed(() => dayjs(publishedAtRef.value).format('YYYY.MM.DD'));
 
 useHead({
   title: `${titleRef.value} | attt`,
