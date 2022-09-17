@@ -63,6 +63,10 @@ import {
   siTypescript,
   siVuedotjs,
   siWebpack,
+  siRubyonrails,
+  siSwagger,
+  siGithubactions,
+  siCircleci,
 } from 'simple-icons/icons';
 
 const mainItems = ref([
@@ -91,6 +95,10 @@ const mainItems = ref([
     icnData: siHtml5,
   },
   {
+    heading: 'Tailwind',
+    icnData: siTailwindcss,
+  },
+  {
     heading: 'CSS',
     icnData: siCss3,
   },
@@ -102,12 +110,12 @@ const mainItems = ref([
 
 const subItems = ref([
   {
-    heading: 'React',
-    icnData: siReact,
+    heading: 'Rails',
+    icnData: siRubyonrails,
   },
   {
-    heading: 'Tailwind',
-    icnData: siTailwindcss,
+    heading: 'React',
+    icnData: siReact,
   },
   {
     heading: 'webpack',
@@ -116,6 +124,18 @@ const subItems = ref([
   {
     heading: 'Stoybook',
     icnData: siStorybook,
+  },
+  {
+    heading: 'Swagger',
+    icnData: siSwagger,
+  },
+  {
+    heading: 'GH Actions',
+    icnData: siGithubactions,
+  },
+  {
+    heading: 'Circle CI',
+    icnData: siCircleci,
   },
   {
     heading: 'jQuery',
