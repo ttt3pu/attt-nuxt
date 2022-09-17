@@ -58,7 +58,7 @@ export default defineComponent({
 
     useFetch(async () => {
       const response = await axios.get(`https://attt.microcms.io/api/v1/blog/${params.value.slug}`, {
-        headers: { 'X-API-KEY': $config.MICROCMS_API_KEY },
+        headers: { 'X-MICROCMS-API-KEY': $config.MICROCMS_API_KEY },
       });
 
       const { publishedAt, title, content } = response.data;

@@ -52,7 +52,7 @@ export const usePostsStore = defineStore('posts', {
       this.zennPosts = zennPosts;
 
       const blogPosts = await axios.get('https://attt.microcms.io/api/v1/blog', {
-        headers: { 'X-API-KEY': process.env.MICROCMS_API_KEY as string },
+        headers: { 'X-MICROCMS-API-KEY': process.env.MICROCMS_API_KEY as string },
       });
 
       this.blogPosts = blogPosts.data.contents;
