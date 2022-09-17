@@ -49,7 +49,7 @@ const publishedAtRef = ref<string | undefined>(undefined);
 const titleRef = ref('');
 
 const response = await useFetch<BlogPost>(`https://attt.microcms.io/api/v1/blog/${route.params.slug}`, {
-  headers: { 'X-API-KEY': runtimeConfig.MICROCMS_API_KEY },
+  headers: { 'X-MICROCMS-API-KEY': runtimeConfig.MICROCMS_API_KEY },
 });
 
 const { publishedAt, title, content } = response.data.value!;

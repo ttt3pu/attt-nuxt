@@ -59,7 +59,7 @@ export const usePostsStore = defineStore('posts', {
       });
 
       const blogPosts = await fetch('https://attt.microcms.io/api/v1/blog', {
-        headers: { 'X-API-KEY': microcmsApiKey },
+        headers: { 'X-MICROCMS-API-KEY': microcmsApiKey },
       }).then(response => response.json());
 
       this.blogPosts = blogPosts.contents;
