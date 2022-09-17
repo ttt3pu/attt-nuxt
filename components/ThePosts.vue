@@ -122,7 +122,7 @@ const recentPosts = computed(() => {
     top: 2px;
 
     /* stylelint-disable-next-line */
-    ::v-deep svg {
+    ::v-deep(svg) {
       width: 100%;
       height: 100%;
     }

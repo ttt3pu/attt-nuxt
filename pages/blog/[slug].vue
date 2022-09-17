@@ -95,7 +95,7 @@ useHead({
     position: relative;
 
     /* stylelint-disable-next-line */
-    ::v-deep svg {
+    ::v-deep(svg) {
       width: 100%;
       height: 100%;
     }
@@ -140,22 +140,21 @@ useHead({
   color: var(--txt-color-white);
 
   /* stylelint-disable-next-line */
-  ::v-deep {
-    a {
-      color: var(--txt-color-link);
-      text-decoration: none;
+  ::v-deep(a) {
+    color: var(--txt-color-link);
+    text-decoration: none;
 
-      &:hover {
-        text-decoration: underline;
-        text-decoration-color: var(--txt-color-link-hover);
-        text-underline-offset: 4px;
-      }
+    &:hover {
+      text-decoration: underline;
+      text-decoration-color: var(--txt-color-link-hover);
+      text-underline-offset: 4px;
     }
+  }
 
-    p {
-      & + p {
-        margin-top: 24px;
-      }
+  /* stylelint-disable-next-line */
+  ::v-deep(p) {
+    & + p {
+      margin-top: 24px;
     }
   }
 }
