@@ -8,10 +8,27 @@ export interface BlogPost {
   content: string
 }
 
-export interface ZennPost {
+export interface ZennPostSummary {
   title: string
   link: string
   pubDate: string
+}
+
+export interface ZennPost {
+  creator: string
+  title: string
+  link: string
+  pubDate: string
+  enclosure: {
+    url: string
+    length: string
+    type: string
+  }
+  'dc:creator':string
+  content: string
+  contentSnippet: string
+  guid: string
+  isoDate: string
 }
 
 export interface MergedPost {
