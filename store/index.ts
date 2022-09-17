@@ -2,11 +2,11 @@ import dayjs from 'dayjs';
 import { defineStore } from 'pinia';
 import { DOMParser } from 'xmldom';
 import {
-  BlogPost, MergedPost, ZennPostSummary,
+  BlogPost, MergedPost, ZennPost,
 } from '../types';
 
 interface State {
-  zennPosts: ZennPostSummary[];
+  zennPosts: ZennPost[];
   blogPosts: BlogPost[];
 }
 
