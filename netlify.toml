@@ -1,0 +1,5 @@
+[build]
+  publish = ".output/public"
+
+[functions]
+  directory = ".output/server"

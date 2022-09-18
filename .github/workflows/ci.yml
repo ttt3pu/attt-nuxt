@@ -50,10 +50,8 @@ jobs:
 
       - name: Netlify Draft Deploy
         if: github.ref != 'refs/heads/main'
-        run: npx netlify-cli deploy --dir=./.output
+        run: netlify deploy
 
       - name: Netlify Production Deploy
         if: github.ref == 'refs/heads/main'
-        run: npx netlify-cli deploy --prod --dir=./.output
-
-
+        run: netlify deploy --prod
