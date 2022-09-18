@@ -4,7 +4,7 @@
 [functions]
   directory = ".output/server"
 
-[redirects]
+[[redirects]]
   from = "/*"
   to = "/.netlify/functions/index"
   status = 200
