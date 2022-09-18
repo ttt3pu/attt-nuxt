@@ -38,9 +38,7 @@
 import dayjs from 'dayjs';
 import icnBack from 'vue-material-design-icons/ChevronLeft.vue';
 import md from 'markdown-it';
-import { BlogPost } from '@/types';
 const route = useRoute();
-const runtimeConfig = useRuntimeConfig();
 
 const renderer = md();
 
@@ -48,11 +46,8 @@ const renderedContent = ref('');
 const publishedAtRef = ref<string | undefined>(undefined);
 const titleRef = ref('');
 
-const response = await useFetch<BlogPost>(`https://attt.microcms.io/api/v1/blog/${route.params.slug}`, {
-  headers: { 'X-MICROCMS-API-KEY': runtimeConfig.MICROCMS_API_KEY },
-});
-
-const { publishedAt, title, content } = response.data.value!;
+const response = await useFetch(`/api/blog/${route.params.slug}`);
+const { publishedAt, title, content } = response.data.value as any;
 
 publishedAtRef.value = publishedAt;
 titleRef.value = title;
