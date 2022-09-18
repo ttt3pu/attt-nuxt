@@ -46,14 +46,14 @@ jobs:
         run: pnpm lint:style
 
       - name: Generate
-        run: pnpm generate
+        run: pnpm build
 
       - name: Netlify Draft Deploy
         if: github.ref != 'refs/heads/main'
-        run: npx netlify-cli deploy --dir=./.output/public
+        run: npx netlify-cli deploy --dir=./.output
 
       - name: Netlify Production Deploy
         if: github.ref == 'refs/heads/main'
-        run: npx netlify-cli deploy --prod --dir=./.output/public
+        run: npx netlify-cli deploy --prod --dir=./.output
 
 
