@@ -36,6 +36,8 @@
     "@nuxt/eslint-config": "^0.2.0",
     "@nuxtjs/stylelint-module": "^5.1.0",
     "@pinia/nuxt": "^0.4.2",
+    "@types/markdown-it": "^13.0.2",
+    "@types/xmldom": "^0.1.32",
     "dayjs": "^1.10.4",
     "eslint": "^8.51.0",
     "http-server": "^14.1.1",
