@@ -1,7 +1,10 @@
 <template>
   <div>
     <div class="logo-area">
-      <the-logo :mini="true" :is-active-logo="false" />
+      <the-logo
+        :mini="true"
+        :is-active-logo="false"
+      />
 
       <NuxtLink
         class="back"
@@ -25,10 +28,12 @@
           </h1>
         </div>
 
+        <!-- eslint-disable vue/no-v-html -->
         <div
           class="post"
           v-html="renderedContent"
         />
+        <!-- eslint-enable vue/no-v-html -->
       </div>
     </main>
   </div>

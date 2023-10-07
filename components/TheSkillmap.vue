@@ -20,7 +20,10 @@
         </svg>
 
         <span>{{ item.heading }}</span>
-        <span v-if="i !== mainItems.length - 1" class="slash">/</span>
+        <span
+          v-if="i !== mainItems.length - 1"
+          class="slash"
+        >/</span>
       </li>
     </ul>
 
@@ -40,7 +43,10 @@
         </svg>
 
         <span>{{ item.heading }}</span>
-        <span v-if="i !== subItems.length - 1" class="slash">/</span>
+        <span
+          v-if="i !== subItems.length - 1"
+          class="slash"
+        >/</span>
       </li>
     </ul>
   </div>

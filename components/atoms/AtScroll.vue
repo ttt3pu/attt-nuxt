@@ -1,5 +1,8 @@
 <template>
-  <button class="at-scroll" @click="scroll">
+  <button
+    class="at-scroll"
+    @click="scroll"
+  >
     <span class="at-scroll__txt">Scroll down</span>
     <i class="at-scroll__arr" />
   </button>

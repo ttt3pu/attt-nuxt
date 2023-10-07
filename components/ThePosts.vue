@@ -43,7 +43,10 @@
             decorative
           />
 
-          <time class="item__date" :datetime="item.date">{{ item.dateFormatted }}</time>
+          <time
+            class="item__date"
+            :datetime="item.date"
+          >{{ item.dateFormatted }}</time>
         </span>
 
         <span class="item__heading">{{ item.title }}</span>

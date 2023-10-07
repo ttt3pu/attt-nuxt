@@ -29,13 +29,12 @@ export default defineNuxtConfig({
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
 
-  // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
-  buildModules: ["@nuxtjs/stylelint-module", "@nuxtjs/eslint-module"],
-
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     "@nuxtjs/google-fonts",
     "@pinia/nuxt",
+    // "@nuxtjs/stylelint-module",
+    "@nuxtjs/eslint-module"
     // '@nuxtjs/feed',
   ],
 
