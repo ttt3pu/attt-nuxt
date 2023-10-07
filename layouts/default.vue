@@ -51,7 +51,7 @@ useHead({
   font-family: var(--font-family-en);
   text-align: center;
   color: var(--txt-color-white);
-  background: var(--bg-color-lv2);
+  background: var(--bg-color-lv0);
 
   @media (min-width: 769px) {
     padding: 36px var(--padding-lr-pc);
