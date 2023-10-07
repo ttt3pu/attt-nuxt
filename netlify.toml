@@ -1,6 +1,2 @@
 [build]
-  # publish-dir: './.output/public'
-  publish = "dist"
-
-[functions]
-  directory = ".output/server"
+  publish = ".output/public"
