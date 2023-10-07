@@ -34,12 +34,6 @@
           <the-skillmap />
         </div>
       </div>
-
-      <div class="main-contents__box">
-        <div class="main-contents__box__inner">
-          <the-works />
-        </div>
-      </div>
     </div><!-- /main-contents -->
   </div>
 </template>

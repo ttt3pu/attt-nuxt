@@ -6,9 +6,7 @@
 
     @if $value == auto {
       $result-z: $before-index + 1;
-    }
-
-    @else {
+    } @else {
       $result-z: $value;
     }
 
@@ -22,8 +20,8 @@ html {
   // font settings
   --line-height: 2;
   --line-height-heading: 1.5;
-  --font-family-en: 'Poppins', sans-serif;
-  --font-family-jp: 'Noto Sans JP', sans-serif;
+  --font-family-en: "Poppins", sans-serif;
+  --font-family-jp: "Noto Sans JP", sans-serif;
   // colors
   --txt-color-white: #e2f1ff;
   --txt-color-white-hover: #{lighten(#e2f1ff, 5%)};
@@ -36,7 +34,7 @@ html {
   --tertiary-color: #b95d7b;
   // bg colors
   --bg-color-grad: linear-gradient(to top, #2e3255, #081025);
-  --bg-color-lv1: #2B1F45;
+  --bg-color-lv1: #2b1f45;
   --bg-color-lv2: #2e2d50;
   // padding
   --padding-lr-pc: #{math.div(100, 1980) * 100}vw;
@@ -48,15 +46,17 @@ html {
   --gray-color: #aaaabc;
   --vh: 1vh;
 
-  @include z-map((
-    --z-init: auto,
-    --z-cat: auto,
-    --z-cat-layer: auto,
-    --z-title: auto,
-    --z-sns: auto,
-    --z-scroll: auto,
-    --z-language: auto,
-  ));
+  @include z-map(
+    (
+      --z-init: auto,
+      --z-cat: auto,
+      --z-cat-layer: auto,
+      --z-title: auto,
+      --z-sns: auto,
+      --z-scroll: auto,
+      --z-language: auto,
+    )
+  );
 
   font-family: sans-serif;
   font-size: 16px;
