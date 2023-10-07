@@ -15,6 +15,14 @@ export default defineNuxtConfig({
     },
   },
 
+  typescript: {
+    tsConfig: {
+      compilerOptions: {
+        types: ['@pinia/nuxt', '@types/node'],
+      },
+    },
+  },
+
   css: ['@/assets/scss/common.scss'],
 
   plugins: ['./plugins/vue-gtag.ts'],
