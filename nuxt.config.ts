@@ -1,17 +1,15 @@
-import { defineNuxtConfig } from 'nuxt';
-
 export default defineNuxtConfig({
   // Target (https://go.nuxtjs.dev/config-target)
-  target: 'static',
+  target: "static",
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { charset: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
       // @FIXME
       // {
       //   rel: 'alternate',
@@ -23,39 +21,31 @@ export default defineNuxtConfig({
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: [
-    '@/assets/scss/common.scss',
-  ],
+  css: ["@/assets/scss/common.scss"],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: [
-    './plugins/vue-gtag.ts',
-  ],
+  plugins: ["./plugins/vue-gtag.ts"],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
-  buildModules: [
-    '@nuxtjs/stylelint-module',
-    '@nuxtjs/eslint-module',
-  ],
+  buildModules: ["@nuxtjs/stylelint-module", "@nuxtjs/eslint-module"],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
-    '@nuxtjs/google-fonts',
-    '@pinia/nuxt',
+    "@nuxtjs/google-fonts",
+    "@pinia/nuxt",
     // '@nuxtjs/feed',
   ],
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
-  build: {
-  },
+  build: {},
 
   googleFonts: {
     families: {
       Poppins: [400, 500],
-      'Noto Sans JP': [400],
+      "Noto Sans JP": [400],
     },
   },
 
@@ -112,7 +102,7 @@ export default defineNuxtConfig({
   },
 
   router: {
-    middleware: ['server-init'],
+    middleware: ["server-init"],
   },
 
   bridge: {
