@@ -15,9 +15,8 @@ export interface ZennPost {
 }
 
 export interface MergedPost {
-  type: 'blog' | 'zenn';
+  type: 'blog' | 'zenn' | 'other';
   title: string;
   date: string;
-  dateFormatted: string;
   link: string;
 }

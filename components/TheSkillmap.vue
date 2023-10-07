@@ -55,7 +55,7 @@ import {
   siVitest,
   siNodedotjs,
   siHasura,
-} from 'simple-icons/icons';
+} from 'simple-icons';
 
 type IconItem = {
   heading: String;

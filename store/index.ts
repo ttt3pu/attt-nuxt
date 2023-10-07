@@ -2,6 +2,7 @@ import dayjs from 'dayjs';
 import { defineStore } from 'pinia';
 import { DOMParser } from 'xmldom';
 import { BlogPost, MergedPost, ZennPost } from '../types';
+import { otherPosts } from '@/constants/otherPosts';
 
 interface State {
   zennPosts: ZennPost[];
@@ -19,7 +20,6 @@ export const usePostsStore = defineStore('posts', {
         type: 'zenn',
         title: row.title,
         date: row.pubDate,
-        dateFormatted: dayjs(row.pubDate).format('YYYY.MM.DD'),
         link: row.link,
       }));
 
@@ -27,11 +27,10 @@ export const usePostsStore = defineStore('posts', {
         type: 'blog',
         title: row.title,
         date: row.publishedAt,
-        dateFormatted: dayjs(row.publishedAt).format('YYYY.MM.DD'),
         link: row.id,
       }));
 
-      const mergedPosts = [...filteredZennPosts, ...filteredBlogPosts];
+      const mergedPosts = [...filteredZennPosts, ...filteredBlogPosts, ...otherPosts];
 
       // 日付順に並び替え
       mergedPosts.sort((a, b) => +new Date(b.date) - +new Date(a.date));

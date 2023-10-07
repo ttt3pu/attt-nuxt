@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts" setup>
-import { siGithub, siTwitter, siZenn } from 'simple-icons/icons';
+import { siGithub, siTwitter, siZenn } from 'simple-icons';
 
 const props = defineProps({
   isActiveLogo: {

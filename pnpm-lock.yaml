@@ -29,12 +29,6 @@ dependencies:
   postcss-html:
     specifier: ^1.3.0
     version: 1.5.0
-  typescript:
-    specifier: ^5.0.0
-    version: 5.2.2
-  vue:
-    specifier: ^3.2.39
-    version: 3.3.4
   vue-gtag-next:
     specifier: ^1.14.0
     version: 1.14.0(vue@3.3.4)

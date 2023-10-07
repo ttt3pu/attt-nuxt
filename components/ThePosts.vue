@@ -10,27 +10,29 @@
         role="listitem"
         class="item"
         v-bind="
-          item.type === 'zenn'
+          item.type === 'blog'
             ? {
+                to: `/blog/${item.link}`,
+              }
+            : {
                 href: item.link,
                 rel: 'noopener',
                 target: '_blank',
               }
-            : {
-                to: `/blog/${item.link}`,
-              }
         "
       >
         <span class="item__meta">
-          <span v-if="item.type === 'zenn'" class="item__icn">
+          <span v-if="item.type === 'zenn'" class="item__icn zenn">
             <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path :d="icnZenn" />
             </svg>
           </span>
 
-          <icn-pencil v-else class="item__icn pencil" decorative />
+          <IcnPencilBoxMultiple v-else-if="item.type === 'other'" class="item__icn" decorative />
 
-          <time class="item__date" :datetime="item.date">{{ item.dateFormatted }}</time>
+          <IcnPencilBox v-else class="item__icn" decorative />
+
+          <time class="item__date" :datetime="item.date">{{ dayjs(item.date).format('YYYY.MM.DD') }}</time>
         </span>
 
         <span class="item__heading">{{ item.title }}</span>
@@ -40,8 +42,10 @@
 </template>
 
 <script lang="ts" setup>
-import { siZenn } from 'simple-icons/icons';
-import icnPencil from 'vue-material-design-icons/Pencil.vue';
+import dayjs from 'dayjs';
+import { siZenn } from 'simple-icons';
+import IcnPencilBox from 'vue-material-design-icons/PencilBox.vue';
+import IcnPencilBoxMultiple from 'vue-material-design-icons/PencilBoxMultiple.vue';
 import { MergedPost } from '~/types';
 import { NuxtLink } from '#components';
 
@@ -89,7 +93,6 @@ const recentPosts = computed(() => {
 
   &__meta {
     display: flex;
-    align-items: baseline;
     color: var(--txt-color-white);
   }
 
@@ -110,9 +113,15 @@ const recentPosts = computed(() => {
 
     /* stylelint-disable-next-line */
     ::v-deep(svg) {
+      position: absolute;
       width: 100%;
       height: 100%;
     }
+  }
+
+  .zenn {
+    width: 18px;
+    height: 18px;
   }
 
   &__heading {
