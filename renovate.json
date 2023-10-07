@@ -4,5 +4,16 @@
   "ignorePresets": [":prHourlyLimit2"],
   "timezone": "Asia/Tokyo",
   "dependencyDashboard": false,
-  "branchConcurrentLimit": 0
+  "branchConcurrentLimit": 0,
+  "packageRules": [
+    {
+      "matchPackagePatterns": ["lint", "prettier", "actions/checkout"],
+      "automerge": true
+    },
+    {
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchPackagePatterns": ["simple-icons", "vue-material-design-icons"],
+      "automerge": true
+    }
+  ]
 }
