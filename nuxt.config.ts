@@ -1,32 +1,26 @@
 export default defineNuxtConfig({
-  // Target (https://go.nuxtjs.dev/config-target)
-  target: 'static',
-
-  // Global page headers (https://go.nuxtjs.dev/config-head)
-  head: {
-    meta: [{ charset: 'utf-8' }, { name: 'viewport', content: 'width=device-width, initial-scale=1' }],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      // @FIXME
-      // {
-      //   rel: 'alternate',
-      //   type: 'application/atom+xml',
-      //   title: 'attt RSS feed',
-      //   href: '/blog/feed.xml',
-      // },
-    ],
+  app: {
+    head: {
+      meta: [{ charset: 'utf-8' }, { name: 'viewport', content: 'width=device-width, initial-scale=1' }],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        // @FIXME
+        // {
+        //   rel: 'alternate',
+        //   type: 'application/atom+xml',
+        //   title: 'attt RSS feed',
+        //   href: '/blog/feed.xml',
+        // },
+      ],
+    },
   },
 
-  // Global CSS (https://go.nuxtjs.dev/config-css)
   css: ['@/assets/scss/common.scss'],
 
-  // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: ['./plugins/vue-gtag.ts'],
 
-  // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
 
-  // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     '@nuxtjs/google-fonts',
     '@pinia/nuxt',
@@ -35,7 +29,6 @@ export default defineNuxtConfig({
     // '@nuxtjs/feed',
   ],
 
-  // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
 
   googleFonts: {
@@ -95,14 +88,5 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     MICROCMS_API_KEY: process.env.MICROCMS_API_KEY,
-  },
-
-  router: {
-    middleware: ['server-init'],
-  },
-
-  bridge: {
-    vite: true,
-    meta: true,
   },
 });
