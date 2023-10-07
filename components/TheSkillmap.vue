@@ -47,6 +47,7 @@
 </template>
 
 <script lang="ts" setup>
+import { SimpleIcon } from 'simple-icons';
 import {
   siCss3,
   siGrunt,
@@ -67,9 +68,19 @@ import {
   siSwagger,
   siGithubactions,
   siCircleci,
+  siVite,
+  siGraphql,
+  siVitest,
+  siNodedotjs,
+  siHasura,
 } from 'simple-icons/icons';
 
-const mainItems = ref([
+type IconItem = {
+  heading: String;
+  icnData: SimpleIcon;
+};
+
+const mainItems = ref<IconItem[]>([
   {
     heading: 'Vue',
     icnData: siVuedotjs,
@@ -87,6 +98,10 @@ const mainItems = ref([
     icnData: siJavascript,
   },
   {
+    heading: 'Vitest',
+    icnData: siVitest,
+  },
+  {
     heading: 'Jest',
     icnData: siJest,
   },
@@ -102,28 +117,20 @@ const mainItems = ref([
     heading: 'CSS',
     icnData: siCss3,
   },
-  {
-    heading: 'Scss',
-    icnData: siSass,
-  },
 ]);
 
-const subItems = ref([
+const subItems = ref<IconItem[]>([
   {
     heading: 'Rails',
     icnData: siRubyonrails,
   },
   {
+    heading: 'Node.js',
+    icnData: siNodedotjs,
+  },
+  {
     heading: 'React',
     icnData: siReact,
-  },
-  {
-    heading: 'webpack',
-    icnData: siWebpack,
-  },
-  {
-    heading: 'Stoybook',
-    icnData: siStorybook,
   },
   {
     heading: 'Swagger',
@@ -136,6 +143,30 @@ const subItems = ref([
   {
     heading: 'Circle CI',
     icnData: siCircleci,
+  },
+  {
+    heading: 'Vite',
+    icnData: siVite,
+  },
+  {
+    heading: 'Hasura',
+    icnData: siHasura,
+  },
+  {
+    heading: 'GraphQL',
+    icnData: siGraphql,
+  },
+  {
+    heading: 'Scss',
+    icnData: siSass,
+  },
+  {
+    heading: 'webpack',
+    icnData: siWebpack,
+  },
+  {
+    heading: 'Stoybook',
+    icnData: siStorybook,
   },
   {
     heading: 'jQuery',
