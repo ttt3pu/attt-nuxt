@@ -95,12 +95,12 @@ const data = reactive({
         white-space: pre-wrap;
       }
 
-      @media (min-width: 769px) {
+      @media (width >= 769px) {
         padding: 8px 32px;
         margin-left: 20px;
       }
 
-      @media (max-width: 769px) {
+      @media (width <= 769px) {
         padding: 8px 16px;
       }
 

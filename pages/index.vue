@@ -63,11 +63,11 @@ useHead({
     position: relative;
     height: 100%;
 
-    @media (min-width: 769px) {
+    @media (width >= 769px) {
       display: flex;
     }
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -81,7 +81,7 @@ useHead({
     display: flex;
     flex-direction: column;
 
-    @media (min-width: 769px) {
+    @media (width >= 769px) {
       justify-content: center;
     }
 
@@ -96,11 +96,11 @@ useHead({
     z-index: var(--z-title);
     margin-bottom: 32px;
 
-    @media (min-width: 769px) {
+    @media (width >= 769px) {
       padding: 35px var(--padding-lr-pc) 40px;
     }
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       padding: 16px var(--padding-lr-sp) 24px;
     }
   }
@@ -109,12 +109,12 @@ useHead({
     position: absolute;
     z-index: var(--z-scroll);
 
-    @media (min-width: 769px) {
+    @media (width >= 769px) {
       left: calc(var(--padding-lr-pc) - 4px);
       bottom: 80px;
     }
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       left: calc(var(--padding-lr-sp) - 4px);
       bottom: 48px;
     }
@@ -138,11 +138,11 @@ useHead({
       max-width: var(--max-width);
       margin: 0 auto;
 
-      @media (min-width: 769px) {
+      @media (width >= 769px) {
         padding: 80px var(--padding-lr-pc);
       }
 
-      @media (max-width: 768px) {
+      @media (width <= 768px) {
         padding: 40px var(--padding-lr-sp);
       }
     }

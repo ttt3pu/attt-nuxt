@@ -22,7 +22,7 @@
 
 <style lang="scss" scoped>
 .the-profile {
-  @media (min-width: 769px) {
+  @media (width >= 769px) {
     text-align: center;
   }
 
@@ -38,7 +38,7 @@
 }
 
 .justify-left {
-  @media (min-width: 769px) {
+  @media (width >= 769px) {
     text-align-last: left;
     width: fit-content;
   }

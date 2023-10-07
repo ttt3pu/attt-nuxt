@@ -61,11 +61,11 @@ useHead({
   color: var(--txt-color-white);
   background: var(--bg-color-lv0);
 
-  @media (min-width: 769px) {
+  @media (width >= 769px) {
     padding: 36px var(--padding-lr-pc);
   }
 
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     padding: 24px var(--padding-lr-sp);
   }
 

@@ -33,7 +33,7 @@ export default defineNuxtConfig({
   modules: [
     "@nuxtjs/google-fonts",
     "@pinia/nuxt",
-    // "@nuxtjs/stylelint-module",
+    "@nuxtjs/stylelint-module",
     "@nuxtjs/eslint-module"
     // '@nuxtjs/feed',
   ],

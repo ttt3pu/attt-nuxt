@@ -70,11 +70,11 @@ useHead({
   max-width: var(--max-width);
   margin: 0 auto;
 
-  @media (min-width: 769px) {
+  @media (width >= 769px) {
     padding: 48px var(--padding-lr-pc) 56px;
   }
 
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     padding: 32px var(--padding-lr-sp) 44px;
   }
 }
@@ -109,11 +109,11 @@ useHead({
     max-width: var(--max-width);
     margin: 0 auto;
 
-    @media (min-width: 769px) {
+    @media (width >= 769px) {
       padding: 80px var(--padding-lr-pc);
     }
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       padding: 48px var(--padding-lr-sp);
     }
   }
