@@ -42,7 +42,7 @@
 
 <style lang="scss" scoped>
 @mixin cat-size($prop, $px) {
-  @media (min-width: 1601px) {
+  @media (width >= 1601px) {
     #{$prop}: #{$px * 1.7}px;
   }
 
@@ -50,15 +50,15 @@
   //   #{$prop}: #{math.div($px, 1000) * 100}vw;
   // }
 
-  @media (max-width: 1600px) {
+  @media (width <= 1600px) {
     #{$prop}: #{math.div($px, 800) * 100}vw;
   }
 
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     #{$prop}: #{math.div($px * 1.3, 768) * 100}vh;
   }
 
-  @media (max-width: 568px) {
+  @media (width <= 568px) {
     #{$prop}: #{math.div($px * 1.1, 768) * 100}vh;
   }
 }
@@ -76,14 +76,14 @@ img {
 
   overflow-x: hidden;
 
-  @media (min-width: 769px) {
+  @media (width >= 769px) {
     position: absolute;
     right: 0;
     bottom: 0;
     z-index: var(--z-cat-layer);
   }
 
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     position: absolute;
     bottom: -2px;
     right: calc(-25% - 3vh);
@@ -127,7 +127,7 @@ img {
   z-index: var(--z-cat);
 
   &::before {
-    content: "";
+    content: '';
     display: block;
     position: absolute;
     background-color: #fff;
@@ -137,7 +137,7 @@ img {
   }
 
   &::after {
-    content: "";
+    content: '';
     display: block;
     position: absolute;
     background-color: #fff;
@@ -219,7 +219,7 @@ img {
   }
 
   &::before {
-    content: "";
+    content: '';
     display: block;
     position: absolute;
     top: 50%;
@@ -269,7 +269,7 @@ img {
 
     position: absolute;
     display: block;
-    content: "";
+    content: '';
     background-color: #121212;
   }
 

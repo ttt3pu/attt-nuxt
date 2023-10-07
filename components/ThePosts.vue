@@ -2,46 +2,33 @@
   <div class="the-posts">
     <v-heading-lv2>Posts</v-heading-lv2>
 
-    <div
-      role="list"
-      class="the-posts__items"
-    >
+    <div role="list" class="the-posts__items">
       <component
         :is="item.type === 'zenn' ? 'a' : NuxtLink"
         v-for="(item, i) in recentPosts"
         :key="i"
         role="listitem"
         class="item"
-        v-bind="item.type === 'zenn'
-          ? {
-            href: item.link,
-            rel: 'noopener',
-            target: '_blank',
-          }
-          : {
-            to: `/blog/${item.link}`,
-          }
+        v-bind="
+          item.type === 'zenn'
+            ? {
+                href: item.link,
+                rel: 'noopener',
+                target: '_blank',
+              }
+            : {
+                to: `/blog/${item.link}`,
+              }
         "
       >
         <span class="item__meta">
-          <span
-            v-if="item.type === 'zenn'"
-            class="item__icn"
-          >
-            <svg
-              role="img"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+          <span v-if="item.type === 'zenn'" class="item__icn">
+            <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path :d="icnZenn" />
             </svg>
           </span>
 
-          <icn-pencil
-            v-else
-            class="item__icn pencil"
-            decorative
-          />
+          <icn-pencil v-else class="item__icn pencil" decorative />
 
           <time class="item__date" :datetime="item.date">{{ item.dateFormatted }}</time>
         </span>

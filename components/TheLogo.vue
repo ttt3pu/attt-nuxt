@@ -1,41 +1,22 @@
 <template>
   <div class="the-logo">
     <NuxtLink to="/">
-      <h1 class="title">
-        attt
-      </h1>
+      <h1 class="title">attt</h1>
     </NuxtLink>
 
-    <p v-if="props.isActiveLogo">
-      Front End Developer
-    </p>
+    <p v-if="props.isActiveLogo">Front End Developer</p>
 
-    <ul
-      v-if="props.isActiveLogo"
-      class="sns"
-    >
-      <li
-        v-for="item in snsItems"
-        :key="item.title"
-        class="sns__item"
-      >
-        <a
-          :href="item.href"
-          target="_blank"
-          rel="noopener"
-          :title="item.title"
-        >
-          <svg
-            role="img"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-            class="sns__icn"
-          >
+    <ul v-if="props.isActiveLogo" class="sns">
+      <li v-for="item in snsItems" :key="item.title" class="sns__item">
+        <a :href="item.href" target="_blank" rel="noopener" :title="item.title">
+          <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="sns__icn">
             <path :d="item.path" />
           </svg>
         </a>
-      </li><!-- /sns__item -->
-    </ul><!-- /sns -->
+      </li>
+      <!-- /sns__item -->
+    </ul>
+    <!-- /sns -->
   </div>
 </template>
 

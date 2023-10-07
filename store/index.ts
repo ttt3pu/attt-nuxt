@@ -1,9 +1,7 @@
 import dayjs from 'dayjs';
 import { defineStore } from 'pinia';
 import { DOMParser } from 'xmldom';
-import {
-  BlogPost, MergedPost, ZennPost,
-} from '../types';
+import { BlogPost, MergedPost, ZennPost } from '../types';
 
 interface State {
   zennPosts: ZennPost[];
@@ -16,8 +14,8 @@ export const usePostsStore = defineStore('posts', {
     blogPosts: [],
   }),
   getters: {
-    mergedPosts (state) {
-      const filteredZennPosts: MergedPost[] = state.zennPosts.map(row => ({
+    mergedPosts(state) {
+      const filteredZennPosts: MergedPost[] = state.zennPosts.map((row) => ({
         type: 'zenn',
         title: row.title,
         date: row.pubDate,
@@ -25,7 +23,7 @@ export const usePostsStore = defineStore('posts', {
         link: row.link,
       }));
 
-      const filteredBlogPosts: MergedPost[] = state.blogPosts.map(row => ({
+      const filteredBlogPosts: MergedPost[] = state.blogPosts.map((row) => ({
         type: 'blog',
         title: row.title,
         date: row.publishedAt,
@@ -33,10 +31,7 @@ export const usePostsStore = defineStore('posts', {
         link: row.id,
       }));
 
-      const mergedPosts = [
-        ...filteredZennPosts,
-        ...filteredBlogPosts,
-      ];
+      const mergedPosts = [...filteredZennPosts, ...filteredBlogPosts];
 
       // 日付順に並び替え
       mergedPosts.sort((a, b) => +new Date(b.date) - +new Date(a.date));
@@ -45,9 +40,9 @@ export const usePostsStore = defineStore('posts', {
     },
   },
   actions: {
-    async getPosts (microcmsApiKey: string) {
+    async getPosts(microcmsApiKey: string) {
       const today = dayjs(new Date()).format('YYYYMMDDhhmm');
-      const zennPostsResponse = await fetch(`https://zenn.dev/attt/feed?${today}`).then(response => response.text());
+      const zennPostsResponse = await fetch(`https://zenn.dev/attt/feed?${today}`).then((response) => response.text());
       const domParsedZennPosts = new DOMParser().parseFromString(zennPostsResponse, 'text/html');
       const zennPosts = domParsedZennPosts.documentElement.getElementsByTagName('item');
       this.zennPosts = Array.prototype.slice.call(zennPosts).map((post) => {
@@ -60,7 +55,7 @@ export const usePostsStore = defineStore('posts', {
 
       const blogPosts = await fetch('https://attt.microcms.io/api/v1/blog', {
         headers: { 'X-MICROCMS-API-KEY': microcmsApiKey },
-      }).then(response => response.json());
+      }).then((response) => response.json());
 
       this.blogPosts = blogPosts.contents;
     },

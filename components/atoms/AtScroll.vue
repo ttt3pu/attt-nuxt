@@ -38,7 +38,7 @@ const scroll = () => {
 
     &::before,
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       width: $size;
       height: $size;

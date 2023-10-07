@@ -3,10 +3,7 @@
     <div class="logo-area">
       <the-logo :mini="true" :is-active-logo="false" />
 
-      <NuxtLink
-        class="back"
-        to="/"
-      >
+      <NuxtLink class="back" to="/">
         <icn-back class="back__icn" />
         <span>Main page</span>
       </NuxtLink>
@@ -15,20 +12,16 @@
     <main class="main">
       <div class="main__inner">
         <div class="heading-container">
-          <time
-            class="date"
-            :datetime="publishedAtRef"
-          >{{ publishedAtFormatted }}</time>
+          <time class="date" :datetime="publishedAtRef">{{ publishedAtFormatted }}</time>
 
           <h1 class="title">
             {{ titleRef }}
           </h1>
         </div>
 
-        <div
-          class="post"
-          v-html="renderedContent"
-        />
+        <!-- eslint-disable vue/no-v-html -->
+        <div class="post" v-html="renderedContent" />
+        <!-- eslint-enable vue/no-v-html -->
       </div>
     </main>
   </div>
@@ -65,11 +58,11 @@ useHead({
   max-width: var(--max-width);
   margin: 0 auto;
 
-  @media (min-width: 769px) {
+  @media (width >= 769px) {
     padding: 48px var(--padding-lr-pc) 56px;
   }
 
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     padding: 32px var(--padding-lr-sp) 44px;
   }
 }
@@ -104,11 +97,11 @@ useHead({
     max-width: var(--max-width);
     margin: 0 auto;
 
-    @media (min-width: 769px) {
+    @media (width >= 769px) {
       padding: 80px var(--padding-lr-pc);
     }
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       padding: 48px var(--padding-lr-sp);
     }
   }

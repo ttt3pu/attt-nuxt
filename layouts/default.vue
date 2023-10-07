@@ -5,8 +5,10 @@
     </div>
 
     <div class="copyright">
-      <a href="https://domini.cat" target="_blank" rel="noopener">.cat is a domain intended to be used to highlight the Catalan language.(Not meow. 😼)</a><br>
-      <a href="https://github.com/ttt3pu/attt" target="_blank" rel="noopener">Source code</a><br>
+      <a href="https://domini.cat" target="_blank" rel="noopener"
+        >.cat is a domain intended to be used to highlight the Catalan language.(Not meow. 😼)</a
+      ><br />
+      <a href="https://github.com/ttt3pu/attt" target="_blank" rel="noopener">Source code</a><br />
       <small>&copy; {{ _year }}, attt All rights reserved.</small>
     </div>
   </div>
@@ -53,11 +55,11 @@ useHead({
   color: var(--txt-color-white);
   background: var(--bg-color-lv0);
 
-  @media (min-width: 769px) {
+  @media (width >= 769px) {
     padding: 36px var(--padding-lr-pc);
   }
 
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     padding: 24px var(--padding-lr-sp);
   }
 

@@ -1,21 +1,11 @@
 <template>
   <div class="the-skillmap">
-    <v-heading-lv2 class="h2">
-      Skills
-    </v-heading-lv2>
+    <v-heading-lv2 class="h2"> Skills </v-heading-lv2>
 
     <v-heading-lv3>Main</v-heading-lv3>
     <ul>
-      <li
-        v-for="(item, i) in mainItems"
-        :key="i"
-      >
-        <svg
-          role="img"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-          :style="`fill: #${item.icnData.hex};`"
-        >
+      <li v-for="(item, i) in mainItems" :key="i">
+        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" :style="`fill: #${item.icnData.hex};`">
           <path :d="item.icnData.path" />
         </svg>
 
@@ -26,16 +16,8 @@
 
     <v-heading-lv3>Sub</v-heading-lv3>
     <ul>
-      <li
-        v-for="(item, i) in subItems"
-        :key="i"
-      >
-        <svg
-          role="img"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-          :style="`fill: #${item.icnData.hex};`"
-        >
+      <li v-for="(item, i) in subItems" :key="i">
+        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" :style="`fill: #${item.icnData.hex};`">
           <path :d="item.icnData.path" />
         </svg>
 
