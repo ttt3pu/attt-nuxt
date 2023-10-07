@@ -127,7 +127,7 @@ img {
   z-index: var(--z-cat);
 
   &::before {
-    content: "";
+    content: '';
     display: block;
     position: absolute;
     background-color: #fff;
@@ -137,7 +137,7 @@ img {
   }
 
   &::after {
-    content: "";
+    content: '';
     display: block;
     position: absolute;
     background-color: #fff;
@@ -219,7 +219,7 @@ img {
   }
 
   &::before {
-    content: "";
+    content: '';
     display: block;
     position: absolute;
     top: 50%;
@@ -269,7 +269,7 @@ img {
 
     position: absolute;
     display: block;
-    content: "";
+    content: '';
     background-color: #121212;
   }
 

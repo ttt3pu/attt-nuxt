@@ -16,6 +16,8 @@
     "lint:js": "eslint --ext .js,.vue,.ts --ignore-path .gitignore .",
     "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore",
     "lint": "pnpm lint:js && pnpm lint:style",
+    "prettier": "prettier . --check --ignore-path .gitignore",
+    "prettier:fix": "prettier . --write --ignore-path .gitignore",
     "netlify": "netlify"
   },
   "dependencies": {
@@ -40,8 +42,10 @@
     "@types/xmldom": "^0.1.32",
     "dayjs": "^1.10.4",
     "eslint": "^8.51.0",
+    "eslint-config-prettier": "^9.0.0",
     "http-server": "^14.1.1",
     "pinia": "^2.0.22",
+    "prettier": "^3.0.3",
     "rss-parser": "^3.12.0",
     "sass": "^1.49.9",
     "sass-loader": "^13.0.0",

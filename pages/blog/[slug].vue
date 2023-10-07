@@ -1,15 +1,9 @@
 <template>
   <div>
     <div class="logo-area">
-      <the-logo
-        :mini="true"
-        :is-active-logo="false"
-      />
+      <the-logo :mini="true" :is-active-logo="false" />
 
-      <NuxtLink
-        class="back"
-        to="/"
-      >
+      <NuxtLink class="back" to="/">
         <icn-back class="back__icn" />
         <span>Main page</span>
       </NuxtLink>
@@ -18,10 +12,7 @@
     <main class="main">
       <div class="main__inner">
         <div class="heading-container">
-          <time
-            class="date"
-            :datetime="publishedAtRef"
-          >{{ publishedAtFormatted }}</time>
+          <time class="date" :datetime="publishedAtRef">{{ publishedAtFormatted }}</time>
 
           <h1 class="title">
             {{ titleRef }}
@@ -29,10 +20,7 @@
         </div>
 
         <!-- eslint-disable vue/no-v-html -->
-        <div
-          class="post"
-          v-html="renderedContent"
-        />
+        <div class="post" v-html="renderedContent" />
         <!-- eslint-enable vue/no-v-html -->
       </div>
     </main>

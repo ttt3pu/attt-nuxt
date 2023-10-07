@@ -3,11 +3,7 @@
     <v-heading-lv2>Works</v-heading-lv2>
 
     <ul>
-      <li
-        v-for="item in data.items"
-        :key="item.heading"
-        class="the-works__item"
-      >
+      <li v-for="item in data.items" :key="item.heading" class="the-works__item">
         <h3 class="the-works__item__heading">
           {{ item.heading }}
         </h3>
@@ -28,11 +24,13 @@ const data = reactive({
     },
     {
       heading: 'Node.jsを用いたビルド環境周りの初期構築・カスタマイズ',
-      paragraph: '数々の案件で、ビルド環境の構築や、案件都合に合わせた細かいカスタマイズを行いました。\n特にwebpack.config周りの構築・運用は数多く行いました。\n例) npm scripts、webpack、Scss、Storybook、Pug、PostCSS、ESLint、Stylelint、Babel、Cloudinaly Node.js SDK、Grunt、 etc...',
+      paragraph:
+        '数々の案件で、ビルド環境の構築や、案件都合に合わせた細かいカスタマイズを行いました。\n特にwebpack.config周りの構築・運用は数多く行いました。\n例) npm scripts、webpack、Scss、Storybook、Pug、PostCSS、ESLint、Stylelint、Babel、Cloudinaly Node.js SDK、Grunt、 etc...',
     },
     {
       heading: 'Storybook環境の構築＆活用',
-      paragraph: 'Storybookを活用し、多量のコンポーネントを管理しやすく運用しました。\nバニラでの使用だけでなく、案件の条件に応じて数々のカスタマイズも実装しました。',
+      paragraph:
+        'Storybookを活用し、多量のコンポーネントを管理しやすく運用しました。\nバニラでの使用だけでなく、案件の条件に応じて数々のカスタマイズも実装しました。',
     },
     {
       heading: 'Vuex + Cookie / Web Storage + REST APIを活用した機能実装',
@@ -44,11 +42,13 @@ const data = reactive({
     },
     {
       heading: 'レガシーなビルド環境からモダンなビルド環境への移行',
-      paragraph: 'いくつかの案件で技術移行を対応しました。結果として、表示速度の改善、業務効率化や、不具合発生率の軽減、その他多くのメリットを生み出すことができました。\n例）「Grunt.js + ES5 + etc...」 to 「webpack + Babel + ES6~ + etc...」',
+      paragraph:
+        'いくつかの案件で技術移行を対応しました。結果として、表示速度の改善、業務効率化や、不具合発生率の軽減、その他多くのメリットを生み出すことができました。\n例）「Grunt.js + ES5 + etc...」 to 「webpack + Babel + ES6~ + etc...」',
     },
     {
       heading: 'Git-flowに準じたバージョン管理',
-      paragraph: '複雑にリリース日が分かれるような、適切なGitフローの知識が必要とされるプロジェクトに複数携わりました。',
+      paragraph:
+        '複雑にリリース日が分かれるような、適切なGitフローの知識が必要とされるプロジェクトに複数携わりました。',
     },
   ],
 });
@@ -72,7 +72,7 @@ const data = reactive({
       align-items: baseline;
 
       &::before {
-        content: "";
+        content: '';
         display: block;
         width: 8px;
         height: 8px;
@@ -105,7 +105,7 @@ const data = reactive({
       }
 
       &::before {
-        content: "";
+        content: '';
         display: block;
         position: absolute;
         left: 0;

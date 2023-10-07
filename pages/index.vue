@@ -5,7 +5,8 @@
         <div class="title-container__inner-inner">
           <div class="title-container__logo">
             <the-logo />
-          </div><!-- /title-container__logo -->
+          </div>
+          <!-- /title-container__logo -->
         </div>
 
         <div class="title-container__cat">
@@ -14,7 +15,8 @@
 
         <AtScroll class="title-container__scroll" />
       </div>
-    </div><!-- /title-container -->
+    </div>
+    <!-- /title-container -->
 
     <div class="main-contents">
       <div class="main-contents__box">
@@ -34,7 +36,8 @@
           <the-skillmap />
         </div>
       </div>
-    </div><!-- /main-contents -->
+    </div>
+    <!-- /main-contents -->
   </div>
 </template>
 
