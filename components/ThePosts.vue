@@ -7,7 +7,7 @@
       class="the-posts__items"
     >
       <component
-        :is="item.type === 'zenn' ? 'a' : 'nuxt-link'"
+        :is="item.type === 'zenn' ? 'a' : NuxtLink"
         v-for="(item, i) in recentPosts"
         :key="i"
         role="listitem"
@@ -52,44 +52,31 @@
   </div>
 </template>
 
-<script lang="ts">
-import { computed, defineComponent, ref, useContext } from '@nuxtjs/composition-api';
+<script lang="ts" setup>
 import { siZenn } from 'simple-icons/icons';
 import icnPencil from 'vue-material-design-icons/Pencil.vue';
-import { usePostsStore } from '~/store';
+import { MergedPost } from '~/types';
+import { NuxtLink } from '#components';
 
-export default defineComponent({
-  components: {
-    icnPencil,
-  },
-  setup () {
-    const { $pinia } = useContext();
-    const postsStore = usePostsStore($pinia);
+const props = defineProps<{
+  mergedPosts: MergedPost[];
+}>();
 
-    const icnZenn = ref(siZenn.path);
-    const mergedPosts = computed(() => postsStore.mergedPosts);
+const icnZenn = ref(siZenn.path);
 
-    const recentPosts = computed(() => {
-      const recentPosts = JSON.parse(JSON.stringify(mergedPosts.value));
+const recentPosts = computed(() => {
+  const recentPosts = JSON.parse(JSON.stringify(props.mergedPosts));
 
-      // ブログの投稿を1個だけ一番前に持ってくる
-      for (let i = 0; i < recentPosts.length; i++) {
-        if (recentPosts[i].type === 'blog') {
-          recentPosts.unshift(recentPosts[i]);
-          recentPosts.splice(i + 1, 1);
-          break;
-        }
-      }
+  // ブログの投稿を1個だけ一番前に持ってくる
+  for (let i = 0; i < recentPosts.length; i++) {
+    if (recentPosts[i].type === 'blog') {
+      recentPosts.unshift(recentPosts[i]);
+      recentPosts.splice(i + 1, 1);
+      break;
+    }
+  }
 
-      return recentPosts;
-    });
-
-    return {
-      icnZenn,
-      mergedPosts,
-      recentPosts,
-    };
-  },
+  return recentPosts;
 });
 </script>
 
@@ -135,7 +122,7 @@ export default defineComponent({
     top: 2px;
 
     /* stylelint-disable-next-line */
-    ::v-deep svg {
+    ::v-deep(svg) {
       width: 100%;
       height: 100%;
     }

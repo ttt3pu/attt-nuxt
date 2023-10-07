@@ -3,13 +3,13 @@
     <div class="logo-area">
       <the-logo :mini="true" :is-active-logo="false" />
 
-      <nuxt-link
+      <NuxtLink
         class="back"
         to="/"
       >
         <icn-back class="back__icn" />
         <span>Main page</span>
-      </nuxt-link>
+      </NuxtLink>
     </div>
 
     <main class="main">
@@ -18,7 +18,7 @@
           <time
             class="date"
             :datetime="publishedAtRef"
-          >{{ publishedAtFormatted() }}</time>
+          >{{ publishedAtFormatted }}</time>
 
           <h1 class="title">
             {{ titleRef }}
@@ -27,58 +27,36 @@
 
         <div
           class="post"
-          v-html="data.content"
+          v-html="renderedContent"
         />
       </div>
     </main>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, reactive, ref, useContext, useFetch, useMeta } from '@nuxtjs/composition-api';
-import axios from 'axios';
+<script setup lang="ts">
 import dayjs from 'dayjs';
-// eslint-disable-next-line
 import icnBack from 'vue-material-design-icons/ChevronLeft.vue';
+import md from 'markdown-it';
+const route = useRoute();
 
-export default defineComponent({
-  components: {
-    icnBack,
-  },
-  setup () {
-    const { $config, params, $md } = useContext();
-    const metaTitle = useMeta().title;
+const renderer = md();
 
-    const data = reactive({
-      content: '',
-    });
+const renderedContent = ref('');
+const publishedAtRef = ref<string | undefined>(undefined);
+const titleRef = ref('');
 
-    const publishedAtRef = ref(new Date());
-    const titleRef = ref('');
+const response = await useFetch(`/api/blog/${route.params.slug}`);
+const { publishedAt, title, content } = response.data.value as any;
 
-    useFetch(async () => {
-      const response = await axios.get(`https://attt.microcms.io/api/v1/blog/${params.value.slug}`, {
-        headers: { 'X-MICROCMS-API-KEY': $config.MICROCMS_API_KEY },
-      });
+publishedAtRef.value = publishedAt;
+titleRef.value = title;
+renderedContent.value = renderer.render(content);
 
-      const { publishedAt, title, content } = response.data;
+const publishedAtFormatted = computed(() => dayjs(publishedAtRef.value).format('YYYY.MM.DD'));
 
-      publishedAtRef.value = publishedAt;
-      titleRef.value = title;
-      data.content = $md.render(content);
-      metaTitle.value = `${titleRef.value} | attt`;
-    });
-
-    const publishedAtFormatted = () => dayjs((publishedAtRef.value) as Date).format('YYYY.MM.DD');
-
-    return {
-      titleRef,
-      publishedAtRef,
-      data,
-      publishedAtFormatted,
-    };
-  },
-  head: {},
+useHead({
+  title: `${titleRef.value} | attt`,
 });
 </script>
 
@@ -112,7 +90,7 @@ export default defineComponent({
     position: relative;
 
     /* stylelint-disable-next-line */
-    ::v-deep svg {
+    ::v-deep(svg) {
       width: 100%;
       height: 100%;
     }
@@ -157,22 +135,21 @@ export default defineComponent({
   color: var(--txt-color-white);
 
   /* stylelint-disable-next-line */
-  ::v-deep {
-    a {
-      color: var(--txt-color-link);
-      text-decoration: none;
+  ::v-deep(a) {
+    color: var(--txt-color-link);
+    text-decoration: none;
 
-      &:hover {
-        text-decoration: underline;
-        text-decoration-color: var(--txt-color-link-hover);
-        text-underline-offset: 4px;
-      }
+    &:hover {
+      text-decoration: underline;
+      text-decoration-color: var(--txt-color-link-hover);
+      text-underline-offset: 4px;
     }
+  }
 
-    p {
-      & + p {
-        margin-top: 24px;
-      }
+  /* stylelint-disable-next-line */
+  ::v-deep(p) {
+    & + p {
+      margin-top: 24px;
     }
   }
 }

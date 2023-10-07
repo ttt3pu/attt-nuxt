@@ -1,5 +1,3 @@
-@use "sass:math";
-@use "sass:color";
 
 @mixin line-height-crop($line-height: var(--line-height)) {
   &::before {

@@ -19,7 +19,7 @@
     <div class="main-contents">
       <div class="main-contents__box">
         <div class="main-contents__box__inner">
-          <the-posts />
+          <the-posts :merged-posts="mergedPosts" />
         </div>
       </div>
 
@@ -34,42 +34,19 @@
           <the-skillmap />
         </div>
       </div>
-
-      <div class="main-contents__box">
-        <div class="main-contents__box__inner">
-          <the-works />
-        </div>
-      </div>
     </div><!-- /main-contents -->
   </div>
 </template>
 
-<script lang="ts">
-import { computed, defineComponent, ref, useContext } from '@nuxtjs/composition-api';
-import { siZenn } from 'simple-icons/icons';
+<script lang="ts" setup>
 import AtScroll from '@/components/atoms/AtScroll.vue';
 import { usePostsStore } from '~/store';
+const { $pinia } = useNuxtApp();
+const postsStore = usePostsStore($pinia);
+const mergedPosts = computed(() => postsStore.mergedPosts);
 
-export default defineComponent({
-  components: {
-    AtScroll,
-  },
-  setup () {
-    const { $pinia } = useContext();
-    const postsStore = usePostsStore($pinia);
-    const icnZenn = ref(siZenn.path);
-    const mergedPosts = computed(() => postsStore.mergedPosts);
-    const latestPost = computed(() => mergedPosts.value && mergedPosts.value[0]);
-
-    return {
-      icnZenn,
-      mergedPosts,
-      latestPost,
-    };
-  },
-  head: {
-    title: 'attt - Front End Developer',
-  },
+useHead({
+  title: 'attt - Front End Developer',
 });
 </script>
 

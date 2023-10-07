@@ -46,8 +46,7 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from '@nuxtjs/composition-api';
+<script lang="ts" setup>
 import {
   siCss3,
   siGrunt,
@@ -64,82 +63,93 @@ import {
   siTypescript,
   siVuedotjs,
   siWebpack,
+  siRubyonrails,
+  siSwagger,
+  siGithubactions,
+  siCircleci,
 } from 'simple-icons/icons';
 
-export default defineComponent({
-  setup () {
-    const mainItems = ref([
-      {
-        heading: 'Vue',
-        icnData: siVuedotjs,
-      },
-      {
-        heading: 'Nuxt',
-        icnData: siNuxtdotjs,
-      },
-      {
-        heading: 'TypeScript',
-        icnData: siTypescript,
-      },
-      {
-        heading: 'JavaScript',
-        icnData: siJavascript,
-      },
-      {
-        heading: 'Jest',
-        icnData: siJest,
-      },
-      {
-        heading: 'HTML',
-        icnData: siHtml5,
-      },
-      {
-        heading: 'CSS',
-        icnData: siCss3,
-      },
-      {
-        heading: 'Scss',
-        icnData: siSass,
-      },
-    ]);
-
-    const subItems = ref([
-      {
-        heading: 'React',
-        icnData: siReact,
-      },
-      {
-        heading: 'Tailwind',
-        icnData: siTailwindcss,
-      },
-      {
-        heading: 'webpack',
-        icnData: siWebpack,
-      },
-      {
-        heading: 'Stoybook',
-        icnData: siStorybook,
-      },
-      {
-        heading: 'jQuery',
-        icnData: siJquery,
-      },
-      {
-        heading: 'Grunt',
-        icnData: siGrunt,
-      },
-      {
-        heading: 'Pug',
-        icnData: siPug,
-      },
-    ]);
-
-    return {
-      mainItems,
-      subItems,
-    };
+const mainItems = ref([
+  {
+    heading: 'Vue',
+    icnData: siVuedotjs,
   },
-});
+  {
+    heading: 'Nuxt',
+    icnData: siNuxtdotjs,
+  },
+  {
+    heading: 'TypeScript',
+    icnData: siTypescript,
+  },
+  {
+    heading: 'JavaScript',
+    icnData: siJavascript,
+  },
+  {
+    heading: 'Jest',
+    icnData: siJest,
+  },
+  {
+    heading: 'HTML',
+    icnData: siHtml5,
+  },
+  {
+    heading: 'Tailwind',
+    icnData: siTailwindcss,
+  },
+  {
+    heading: 'CSS',
+    icnData: siCss3,
+  },
+  {
+    heading: 'Scss',
+    icnData: siSass,
+  },
+]);
+
+const subItems = ref([
+  {
+    heading: 'Rails',
+    icnData: siRubyonrails,
+  },
+  {
+    heading: 'React',
+    icnData: siReact,
+  },
+  {
+    heading: 'webpack',
+    icnData: siWebpack,
+  },
+  {
+    heading: 'Stoybook',
+    icnData: siStorybook,
+  },
+  {
+    heading: 'Swagger',
+    icnData: siSwagger,
+  },
+  {
+    heading: 'GH Actions',
+    icnData: siGithubactions,
+  },
+  {
+    heading: 'Circle CI',
+    icnData: siCircleci,
+  },
+  {
+    heading: 'jQuery',
+    icnData: siJquery,
+  },
+  {
+    heading: 'Grunt',
+    icnData: siGrunt,
+  },
+  {
+    heading: 'Pug',
+    icnData: siPug,
+  },
+]);
 </script>
 
 <style lang="scss" scoped>

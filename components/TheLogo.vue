@@ -1,22 +1,22 @@
 <template>
   <div class="the-logo">
-    <nuxt-link to="/">
+    <NuxtLink to="/">
       <h1 class="title">
         attt
       </h1>
-    </nuxt-link>
+    </NuxtLink>
 
-    <p v-if="$props.isActiveLogo">
+    <p v-if="props.isActiveLogo">
       Front End Developer
     </p>
 
     <ul
-      v-if="$props.isActiveLogo"
+      v-if="props.isActiveLogo"
       class="sns"
     >
       <li
         v-for="item in snsItems"
-        :key="item.name"
+        :key="item.title"
         class="sns__item"
       >
         <a
@@ -39,41 +39,33 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from '@nuxtjs/composition-api';
+<script lang="ts" setup>
 import { siGithub, siTwitter, siZenn } from 'simple-icons/icons';
 
-export default defineComponent({
-  props: {
-    isActiveLogo: {
-      type: Boolean,
-      default: true,
-    },
-  },
-  setup () {
-    const snsItems = ref([
-      {
-        title: 'GitHub',
-        path: siGithub.path,
-        href: 'https://github.com/ttt3pu',
-      },
-      {
-        title: 'Zenn',
-        path: siZenn.path,
-        href: 'https://zenn.dev/attt',
-      },
-      {
-        title: 'Twitter',
-        path: siTwitter.path,
-        href: 'https://twitter.com/ttt3pu',
-      },
-    ]);
-
-    return {
-      snsItems,
-    };
+const props = defineProps({
+  isActiveLogo: {
+    type: Boolean,
+    default: true,
   },
 });
+
+const snsItems = ref([
+  {
+    title: 'GitHub',
+    path: siGithub.path,
+    href: 'https://github.com/ttt3pu',
+  },
+  {
+    title: 'Zenn',
+    path: siZenn.path,
+    href: 'https://zenn.dev/attt',
+  },
+  {
+    title: 'Twitter',
+    path: siTwitter.path,
+    href: 'https://twitter.com/ttt3pu',
+  },
+]);
 </script>
 
 <style lang="scss" scoped>

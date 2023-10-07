@@ -1,7 +1,7 @@
 <template>
   <div class="page-wrapper">
     <div class="contents-wrapper">
-      <Nuxt />
+      <slot />
     </div>
 
     <div class="copyright">
@@ -12,43 +12,32 @@
   </div>
 </template>
 
-<script lang="ts">
-import { computed, defineComponent } from '@nuxtjs/composition-api';
+<script lang="ts" setup>
+const _year = computed(() => new Date().getFullYear());
 
-export default defineComponent({
-  setup () {
-    const _year = computed(() => new Date().getFullYear());
+if (process.client) {
+  const setFillHeight = () => {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  };
 
-    if (process.client) {
-      const setFillHeight = () => {
-        const vh = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty('--vh', `${vh}px`);
-      };
+  setFillHeight();
 
-      setFillHeight();
+  if (!navigator.userAgent.match(/(iPhone|iPad|iPod|Android)/i)) {
+    let beforeHeight = window.innerHeight;
 
-      if (!navigator.userAgent.match(/(iPhone|iPad|iPod|Android)/i)) {
-        let beforeHeight = window.innerHeight;
-
-        window.addEventListener('resize', () => {
-          if (beforeHeight !== window.innerHeight) {
-            beforeHeight = window.innerHeight;
-            setFillHeight();
-          }
-        });
+    window.addEventListener('resize', () => {
+      if (beforeHeight !== window.innerHeight) {
+        beforeHeight = window.innerHeight;
+        setFillHeight();
       }
-    }
+    });
+  }
+}
 
-    return {
-      _year,
-    };
-  },
-  head () {
-    return {
-      htmlAttrs: {
-        lang: 'ja',
-      },
-    };
+useHead({
+  htmlAttrs: {
+    lang: 'ja',
   },
 });
 </script>
@@ -62,6 +51,7 @@ export default defineComponent({
   font-family: var(--font-family-en);
   text-align: center;
   color: var(--txt-color-white);
+  background: var(--bg-color-lv0);
 
   @media (min-width: 769px) {
     padding: 36px var(--padding-lr-pc);

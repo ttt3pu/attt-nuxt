@@ -19,48 +19,38 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, reactive } from '@nuxtjs/composition-api';
-
-export default defineComponent({
-  setup () {
-    const data = reactive({
-      items: [
-        {
-          heading: '複数案件での大規模サイトの構築、改修',
-          paragraph: '数々の数百～数千ページ単位の大規模サイト制作に、フロントエンド担当として携わりました。',
-        },
-        {
-          heading: 'Node.jsを用いたビルド環境周りの初期構築・カスタマイズ',
-          paragraph: '数々の案件で、ビルド環境の構築や、案件都合に合わせた細かいカスタマイズを行いました。\n特にwebpack.config周りの構築・運用は数多く行いました。\n例) npm scripts、webpack、Scss、Storybook、Pug、PostCSS、ESLint、Stylelint、Babel、Cloudinaly Node.js SDK、Grunt、 etc...',
-        },
-        {
-          heading: 'Storybook環境の構築＆活用',
-          paragraph: 'Storybookを活用し、多量のコンポーネントを管理しやすく運用しました。\nバニラでの使用だけでなく、案件の条件に応じて数々のカスタマイズも実装しました。',
-        },
-        {
-          heading: 'Vuex + Cookie / Web Storage + REST APIを活用した機能実装',
-          paragraph: '複雑な状態管理が必要となる実装を複数案件で対応しました。',
-        },
-        {
-          heading: 'ReactをベースとしたSPAサイト構築',
-          paragraph: 'REST APIでデータをやり取りする、簡易版GAのようなサイトを構築しました。',
-        },
-        {
-          heading: 'レガシーなビルド環境からモダンなビルド環境への移行',
-          paragraph: 'いくつかの案件で技術移行を対応しました。結果として、表示速度の改善、業務効率化や、不具合発生率の軽減、その他多くのメリットを生み出すことができました。\n例）「Grunt.js + ES5 + etc...」 to 「webpack + Babel + ES6~ + etc...」',
-        },
-        {
-          heading: 'Git-flowに準じたバージョン管理',
-          paragraph: '複雑にリリース日が分かれるような、適切なGitフローの知識が必要とされるプロジェクトに複数携わりました。',
-        },
-      ],
-    });
-
-    return {
-      data,
-    };
-  },
+<script lang="ts" setup>
+const data = reactive({
+  items: [
+    {
+      heading: '複数案件での大規模サイトの構築、改修',
+      paragraph: '数々の数百～数千ページ単位の大規模サイト制作に、フロントエンド担当として携わりました。',
+    },
+    {
+      heading: 'Node.jsを用いたビルド環境周りの初期構築・カスタマイズ',
+      paragraph: '数々の案件で、ビルド環境の構築や、案件都合に合わせた細かいカスタマイズを行いました。\n特にwebpack.config周りの構築・運用は数多く行いました。\n例) npm scripts、webpack、Scss、Storybook、Pug、PostCSS、ESLint、Stylelint、Babel、Cloudinaly Node.js SDK、Grunt、 etc...',
+    },
+    {
+      heading: 'Storybook環境の構築＆活用',
+      paragraph: 'Storybookを活用し、多量のコンポーネントを管理しやすく運用しました。\nバニラでの使用だけでなく、案件の条件に応じて数々のカスタマイズも実装しました。',
+    },
+    {
+      heading: 'Vuex + Cookie / Web Storage + REST APIを活用した機能実装',
+      paragraph: '複雑な状態管理が必要となる実装を複数案件で対応しました。',
+    },
+    {
+      heading: 'ReactをベースとしたSPAサイト構築',
+      paragraph: 'REST APIでデータをやり取りする、簡易版GAのようなサイトを構築しました。',
+    },
+    {
+      heading: 'レガシーなビルド環境からモダンなビルド環境への移行',
+      paragraph: 'いくつかの案件で技術移行を対応しました。結果として、表示速度の改善、業務効率化や、不具合発生率の軽減、その他多くのメリットを生み出すことができました。\n例）「Grunt.js + ES5 + etc...」 to 「webpack + Babel + ES6~ + etc...」',
+    },
+    {
+      heading: 'Git-flowに準じたバージョン管理',
+      paragraph: '複雑にリリース日が分かれるような、適切なGitフローの知識が必要とされるプロジェクトに複数携わりました。',
+    },
+  ],
 });
 </script>
 
