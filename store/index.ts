@@ -33,7 +33,6 @@ export const usePostsStore = defineStore('posts', {
 
       // 日付順に並び替え
       mergedPosts.sort((a, b) => +new Date(b.date) - +new Date(a.date));
-      console.log({ mergedPosts });
 
       return mergedPosts;
     },
