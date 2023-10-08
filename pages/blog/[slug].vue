@@ -40,9 +40,16 @@ const publishedAtRef = ref<string | undefined>(undefined);
 const titleRef = ref('');
 
 const response = await useFetch(`/api/blog/${route.params.slug}`);
-const { publishedAt, title, content } = response.data.value as any;
 
-publishedAtRef.value = publishedAt;
+if (!response.data.value) {
+  showError({
+    statusCode: 404,
+  });
+}
+
+const { published_at, title, content } = response.data.value!;
+
+publishedAtRef.value = published_at;
 titleRef.value = title;
 renderedContent.value = renderer.render(content);
 
