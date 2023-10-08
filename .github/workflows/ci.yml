@@ -46,13 +46,10 @@ jobs:
       - name: Lint Style
         run: pnpm lint:style
 
-      - name: Generate
-        run: pnpm generate
-
       - name: Netlify Draft Deploy
         if: github.ref != 'refs/heads/main'
-        run: netlify deploy
+        run: netlify deploy --build
 
       - name: Netlify Production Deploy
         if: github.ref == 'refs/heads/main'
-        run: netlify deploy --prod
+        run: netlify deploy -build --prod

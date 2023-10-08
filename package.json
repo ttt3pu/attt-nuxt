@@ -14,7 +14,7 @@
   },
   "scripts": {
     "dev": "nuxi dev",
-    "start": "nuxi start",
+    "start": "nuxi start --port=3000",
     "build": "nuxi build",
     "generate": "nuxi generate",
     "prepare": "nuxi prepare",
