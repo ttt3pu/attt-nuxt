@@ -2,7 +2,6 @@ import { defineStore } from 'pinia';
 import { MergedPost, ZennPost } from '../types';
 import { BlogPost } from '@prisma/client';
 import { otherPosts } from '@/constants/otherPosts';
-import dayjs from 'dayjs';
 
 interface State {
   zennPosts: ZennPost[];
@@ -26,7 +25,7 @@ export const usePostsStore = defineStore('posts', {
       const filteredBlogPosts: MergedPost[] = state.blogPosts.map((row) => ({
         type: 'blog',
         title: row.title,
-        date: dayjs(row.published_at).format('YYYYMMDDhhmm'),
+        date: row.published_at.toString(),
         link: row.slug,
       }));
 
@@ -34,6 +33,7 @@ export const usePostsStore = defineStore('posts', {
 
       // 日付順に並び替え
       mergedPosts.sort((a, b) => +new Date(b.date) - +new Date(a.date));
+      console.log({ mergedPosts });
 
       return mergedPosts;
     },
