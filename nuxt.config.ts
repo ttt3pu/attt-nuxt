@@ -101,4 +101,9 @@ export default defineNuxtConfig({
   nitro: {
     preset: 'netlify',
   },
+
+  routeRules: {
+    '/': { ssr: true, prerender: true },
+    '/blog/**': { ssr: true, prerender: true },
+  },
 });
