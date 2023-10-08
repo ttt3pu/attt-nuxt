@@ -14,8 +14,8 @@ model BlogPost {
   id      Int           @id @default(autoincrement())
   slug    String        @unique
   title   String
-  content String
-  create_at DateTime    @default(now())
+  content String        @db.Text
+  created_at DateTime    @default(now())
   updated_at DateTime   @default(now())
   published_at DateTime @default(now())
 }
