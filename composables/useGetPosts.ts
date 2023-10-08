@@ -1,6 +1,6 @@
 import { usePostsStore } from '@/store';
 import dayjs from 'dayjs';
-import { DOMParser } from 'xmldom';
+import { DOMParser } from '@xmldom/xmldom';
 
 export async function useGetPosts() {
   const postsStore = usePostsStore();

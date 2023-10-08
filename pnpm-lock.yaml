@@ -18,8 +18,8 @@ dependencies:
     specifier: 5.4.1
     version: 5.4.1(prisma@5.4.1)
   '@xmldom/xmldom':
-    specifier: ^0.7.5
-    version: 0.7.13
+    specifier: ^0.8.10
+    version: 0.8.10
   markdown-it:
     specifier: ^13.0.1
     version: 13.0.2
@@ -58,9 +58,6 @@ devDependencies:
   '@types/markdown-it':
     specifier: ^13.0.2
     version: 13.0.2
-  '@types/xmldom':
-    specifier: ^0.1.32
-    version: 0.1.32
   dayjs:
     specifier: ^1.10.4
     version: 1.11.10
@@ -3193,10 +3190,6 @@ packages:
     resolution: {integrity: sha512-6tOUG+nVHn0cJbVp25JFayS5UE6+xlbcNF9Lo9mU7U0zk3zeUShZied4YEQZjy1JBF043FSkdXw8YkUJuVtB5g==}
     dev: false
 
-  /@types/xmldom@0.1.32:
-    resolution: {integrity: sha512-zPO1iqnODar0cIXhuCc0QyGP+t2IG9dr//VkxDtYKZJSikgN7bdLyMdnUNWRtCKeHkgc9KkbgsdccVbrCHCn2g==}
-    dev: true
-
   /@types/yargs-parser@21.0.1:
     resolution: {integrity: sha512-axdPBuLuEJt0c4yI5OZssC19K2Mq1uKdrfZBzuxLvaztgqUtFYZUNw7lETExPYJR9jdEoIg4mb7RQKRQzOkeGQ==}
 
@@ -3755,8 +3748,8 @@ packages:
       p-event: 5.0.1
     dev: false
 
-  /@xmldom/xmldom@0.7.13:
-    resolution: {integrity: sha512-lm2GW5PkosIzccsaZIz7tp8cPADSIlIHWDFTR1N0SzfinhhYgeIQjFMz4rYzanCScr3DqQLeomUDArp6MWKm+g==}
+  /@xmldom/xmldom@0.8.10:
+    resolution: {integrity: sha512-2WALfTl4xo2SkGCYRt6rDTFfk9R1czmBvUQy12gK2KuRKIpWEhcbbzy8EZXtz/jkRqHX8bFEc6FC1HjX4TUWYw==}
     engines: {node: '>=10.0.0'}
     dev: false
 
