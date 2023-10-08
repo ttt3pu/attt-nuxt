@@ -33,22 +33,22 @@ jobs:
           cache: 'pnpm'
 
       - name: Install dependencies
-        run: pnpm install
-
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Lint JS
-        run: pnpm lint:js
-
-      - name: Lint Style
-        run: pnpm lint:style
+        run: pnpm install --ignore-scripts
 
       - name: Prisma migrate
         run: pnpm prisma db push
 
       - name: Prisma generate types and etc
         run: pnpm prisma generate
+
+      - name: Nuxi prepare
+        run: pnpm prepare
+
+      - name: Lint JS
+        run: pnpm lint:js
+
+      - name: Lint Style
+        run: pnpm lint:style
 
       - name: Netlify Draft Deploy
         if: github.ref != 'refs/heads/main'
