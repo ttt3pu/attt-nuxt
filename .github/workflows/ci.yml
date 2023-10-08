@@ -50,6 +50,9 @@ jobs:
       - name: Prisma migrate
         run: pnpm prisma db push
 
+      - name: Prisma generate types and etc
+        run: pnpm prisma generate
+
       - name: Netlify Draft Deploy
         if: github.ref != 'refs/heads/main'
         run: netlify deploy --build
