@@ -98,3 +98,6 @@ sw.*
 
 # Stylelint cache
 .stylelintcache
+
+# Prisma DB files
+*.db
