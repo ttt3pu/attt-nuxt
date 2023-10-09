@@ -29,7 +29,6 @@
   },
   "dependencies": {
     "@nuxtjs/eslint-module": "^4.1.0",
-    "@nuxtjs/feed": "^2.0.0",
     "@nuxtjs/google-fonts": "3.0.2",
     "@prisma/client": "5.4.1",
     "@xmldom/xmldom": "^0.8.10",
