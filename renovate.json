@@ -7,12 +7,35 @@
   "branchConcurrentLimit": 0,
   "packageRules": [
     {
-      "matchPackagePatterns": ["lint", "prettier", "actions/checkout"],
+      "matchPackagePatterns": ["eslint", "stylelint", "prettier", "^@types", "^actions/checkout$", "^http-server$"],
       "automerge": true
     },
     {
       "matchUpdateTypes": ["minor", "patch"],
-      "matchPackagePatterns": ["simple-icons", "vue-material-design-icons"],
+      "matchPackagePatterns": [
+        "faker",
+        "faker",
+        "^simple-icons$",
+        "^vue-material-design-icons$",
+        "^@nuxtjs/google-fonts$",
+        "^@prisma/client$",
+        "^prisma$",
+        "^netlify-cli$",
+        "^nuxt$",
+        "^postcss$",
+        "^postcss-html$",
+        "^markdown-it$",
+        "^vue-gtag-next$",
+        "^dayjs$",
+        "^pinia$",
+        "^sass$",
+        "^ts-node$"
+      ],
+      "automerge": true
+    },
+    {
+      "matchUpdateTypes": ["patch"],
+      "matchPackagePatterns": ["^@xmldom/xmldom$", "^@pinia/nuxt$"],
       "automerge": true
     }
   ]
