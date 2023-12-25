@@ -77,8 +77,8 @@ devDependencies:
     specifier: ^1.49.9
     version: 1.69.0
   simple-icons:
-    specifier: ^9.0.0
-    version: 9.16.1
+    specifier: ^10.0.0
+    version: 10.4.0
   stylelint:
     specifier: ^16.0.0
     version: 16.0.2(typescript@5.2.2)
@@ -10792,8 +10792,8 @@ packages:
     resolution: {integrity: sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw==}
     engines: {node: '>=14'}
 
-  /simple-icons@9.16.1:
-    resolution: {integrity: sha512-iWSWO+kPrVDojgJGn9CI8yAdIcuUqIsJeosdV3ejaYA7sw4+F4rAHB1E5I+33Z3jq6jcP5qR8dGm2EqH89Dttw==}
+  /simple-icons@10.4.0:
+    resolution: {integrity: sha512-XBoU1ljCsWjw59IVkaQ1nKc0PiaDAAKNFVx59ueC0tBy4WY/I4Q040sGj6ok2cZRLT8zBzL1HaTubi8MRqmojQ==}
     engines: {node: '>=0.12.18'}
     dev: true
 
