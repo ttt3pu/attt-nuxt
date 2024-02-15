@@ -3,14 +3,8 @@
   "type": "module",
   "version": "1.0.0",
   "private": true,
-  "engines": {
-    "node": "18.18.0"
-  },
   "prisma": {
-    "seed": "ts-node-esm -- prisma/seed.ts"
-  },
-  "ts-node": {
-    "esm": true
+    "seed": "tsx prisma/seed.ts"
   },
   "scripts": {
     "dev": "nuxi dev",
@@ -37,7 +31,6 @@
     "nuxt": "^3.7.4",
     "postcss": "^8.4.12",
     "postcss-html": "^1.3.0",
-    "prisma": "^5.4.1",
     "vue-gtag-next": "^1.14.0"
   },
   "devDependencies": {
@@ -52,13 +45,14 @@
     "http-server": "^14.1.1",
     "pinia": "^2.0.22",
     "prettier": "^3.0.3",
+    "prisma": "^5.9.1",
     "sass": "^1.49.9",
     "simple-icons": "^9.0.0",
     "stylelint": "^16.0.0",
     "stylelint-config-standard": "^36.0.0",
     "stylelint-config-standard-scss": "^12.0.0",
     "stylelint-scss": "^6.0.0",
-    "ts-node": "^10.9.1",
+    "tsx": "^4.7.1",
     "vue-material-design-icons": "^5.0.0"
   }
 }
