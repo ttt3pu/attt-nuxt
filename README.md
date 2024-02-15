@@ -17,7 +17,7 @@ make setup
 
 ```sh
 pnpm dev
-cd ./attt-prisma
+cd ./prisma
 docker compose up -d
 ```
 
