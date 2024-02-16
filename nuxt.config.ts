@@ -27,28 +27,29 @@ export default defineNuxtConfig({
   components: true,
 
   modules: [
-    '@nuxtjs/google-fonts',
+    [
+      '@nuxtjs/google-fonts',
+      {
+        families: {
+          Poppins: [400, 500],
+          'Noto Sans JP': [400],
+        },
+      },
+    ],
     '@pinia/nuxt',
     '@nuxtjs/stylelint-module',
     '@nuxtjs/eslint-module',
     '@sidebase/nuxt-auth',
     'nuxt-typed-router',
-    'nuxt-gtag',
+    [
+      'nuxt-gtag',
+      {
+        id: 'G-YY7ZSN9HY4',
+      },
+    ],
   ],
 
   build: {},
-
-  gtag: {
-    id: 'G-YY7ZSN9HY4',
-  },
-
-  // FIXME
-  googleFonts: {
-    families: {
-      Poppins: [400, 500],
-      'Noto Sans JP': [400],
-    },
-  },
 
   vite: {
     css: {
