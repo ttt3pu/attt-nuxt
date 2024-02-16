@@ -42,6 +42,9 @@ jobs:
       - name: Nuxi prepare
         run: pnpm prepare
 
+      - name: Type check
+        run: pnpm typeCheck
+
       - name: Lint JS
         run: pnpm lint:js
 
