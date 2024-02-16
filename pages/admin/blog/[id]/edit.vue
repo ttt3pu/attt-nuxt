@@ -13,11 +13,12 @@ definePageMeta({
 });
 
 const route = useRoute('admin-blog-id-edit');
+import { BlogPost } from '@prisma/client';
 import { useToast } from 'vue-toast-notification';
 import { usePrismaErrorHandling } from '~/composables/usePrismaErrorHandling';
 
 const $toast = useToast();
-const response = await useFetch(`/api/blog/${route.params.id}`);
+const response = await useFetch<BlogPost>(`/api/blog/${route.params.id}`);
 
 if (!response.data.value) {
   showError({

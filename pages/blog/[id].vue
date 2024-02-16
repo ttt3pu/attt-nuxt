@@ -3,8 +3,10 @@
 </template>
 
 <script setup lang="ts">
+import { BlogPost } from '@prisma/client';
+
 const route = useRoute('blog-id');
-const response = await useFetch(`/api/blog/${route.params.id}`);
+const response = await useFetch<BlogPost>(`/api/blog/${route.params.id}`);
 
 if (!response.data.value) {
   showError({
