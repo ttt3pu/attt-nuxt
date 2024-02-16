@@ -26,7 +26,7 @@ export const usePostsStore = defineStore('posts', {
         type: 'blog',
         title: row.title,
         date: row.published_at.toString(),
-        link: row.slug,
+        link: row.id.toString(),
       }));
 
       const mergedPosts = [...filteredZennPosts, ...filteredBlogPosts, ...otherPosts];
