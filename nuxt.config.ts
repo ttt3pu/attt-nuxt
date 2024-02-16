@@ -83,8 +83,10 @@ export default defineNuxtConfig({
 
       const prisma = new PrismaClient();
       const posts = await prisma.blogPost.findMany();
+      console.log('posts', posts);
 
       posts.forEach((post) => {
+        console.log('post', post);
         nitroConfig.prerender?.routes?.push(`/blog/${post.id}`);
       });
     },
