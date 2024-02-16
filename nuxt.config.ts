@@ -1,5 +1,3 @@
-import { PrismaClient } from '@prisma/client';
-
 export default defineNuxtConfig({
   app: {
     head: {
@@ -26,8 +24,6 @@ export default defineNuxtConfig({
     '@vuepic/vue-datepicker/dist/main.css',
   ],
 
-  plugins: ['./plugins/vue-gtag.ts'],
-
   components: true,
 
   modules: [
@@ -37,10 +33,16 @@ export default defineNuxtConfig({
     '@nuxtjs/eslint-module',
     '@sidebase/nuxt-auth',
     'nuxt-typed-router',
+    'nuxt-gtag',
   ],
 
   build: {},
 
+  gtag: {
+    id: 'G-YY7ZSN9HY4',
+  },
+
+  // FIXME
   googleFonts: {
     families: {
       Poppins: [400, 500],
