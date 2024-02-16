@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @mixin z-map($z-map) {
   $before-index: -1;
 
@@ -32,16 +36,9 @@ html {
   --primary-color: #f9f871;
   --secondary-color: #ffb962;
   --tertiary-color: #b95d7b;
-  // bg colors
-  --bg-color-grad: linear-gradient(to top, #2e3255, #081025);
-  --bg-color-lv0: rgb(27, 26, 48);
-  --bg-color-lv1: #2b1f45;
-  --bg-color-lv2: #2e2d50;
   // padding
   --padding-lr-pc: #{math.div(100, 1980) * 100}vw;
   --padding-lr-sp: #{math.div(100, 1980) * 100}vw;
-  // box-shadow
-  --box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   // etc
   --max-width: 1600px;
   --gray-color: #aaaabc;
@@ -72,7 +69,7 @@ html {
 }
 
 body {
-  background: var(--bg-color-lv1);
+  @apply bg-bg;
   min-height: calc(100 * var(--vh));
 }
 

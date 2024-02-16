@@ -35,7 +35,7 @@
           <time class="item__date" :datetime="item.date">{{ dayjs(item.date).format('YYYY.MM.DD') }}</time>
         </span>
 
-        <span class="item__heading">{{ item.title }}</span>
+        <span class="font-jp w-full text-link">{{ item.title }}</span>
       </component>
     </div>
   </div>
@@ -77,14 +77,6 @@ const recentPosts = computed(() => {
 
   display: block;
 
-  &:hover {
-    #{$this-item}__heading {
-      text-decoration: underline;
-      text-decoration-color: var(--txt-color-link-hover);
-      text-underline-offset: 4px;
-    }
-  }
-
   &:not(:last-child) {
     padding-bottom: 16px;
     margin-bottom: 16px;
@@ -123,11 +115,9 @@ const recentPosts = computed(() => {
     width: 18px;
     height: 18px;
   }
+}
 
-  &__heading {
-    font-family: var(--font-family-jp);
-    width: 100%;
-    color: var(--txt-color-link);
-  }
+.item:hover span:last-child {
+  @apply underline decoration-link underline-offset-4;
 }
 </style>
