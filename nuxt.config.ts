@@ -3,12 +3,16 @@ import { PrismaClient } from '@prisma/client';
 export default defineNuxtConfig({
   app: {
     head: {
+      htmlAttrs: {
+        lang: 'ja',
+      },
       meta: [{ charset: 'utf-8' }, { name: 'viewport', content: 'width=device-width, initial-scale=1' }],
       link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     },
   },
 
   typescript: {
+    shim: false,
     tsConfig: {
       compilerOptions: {
         types: ['@pinia/nuxt', '@types/node'],
@@ -16,13 +20,24 @@ export default defineNuxtConfig({
     },
   },
 
-  css: ['@/assets/scss/common.scss'],
+  css: [
+    '@/assets/scss/common.scss',
+    'vue-toast-notification/dist/theme-sugar.css',
+    '@vuepic/vue-datepicker/dist/main.css',
+  ],
 
   plugins: ['./plugins/vue-gtag.ts'],
 
   components: true,
 
-  modules: ['@nuxtjs/google-fonts', '@pinia/nuxt', '@nuxtjs/stylelint-module', '@nuxtjs/eslint-module'],
+  modules: [
+    '@nuxtjs/google-fonts',
+    '@pinia/nuxt',
+    '@nuxtjs/stylelint-module',
+    '@nuxtjs/eslint-module',
+    '@sidebase/nuxt-auth',
+    'nuxt-typed-router',
+  ],
 
   build: {},
 
@@ -70,8 +85,15 @@ export default defineNuxtConfig({
       const posts = await prisma.blogPost.findMany();
 
       posts.forEach((post) => {
-        nitroConfig.prerender?.routes?.push(`/blog/${post.slug}`);
+        nitroConfig.prerender?.routes?.push(`/blog/${post.id}`);
       });
+    },
+  },
+
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
     },
   },
 });
