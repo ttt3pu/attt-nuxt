@@ -166,10 +166,6 @@ const subItems = ref<IconItem[]>([
 </script>
 
 <style lang="scss" scoped>
-.h2 {
-  margin-bottom: 16px;
-}
-
 .the-skillmap {
   font-family: var(--font-family-en);
 
