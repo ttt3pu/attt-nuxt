@@ -47,6 +47,7 @@ export default defineNuxtConfig({
         id: 'G-YY7ZSN9HY4',
       },
     ],
+    '@nuxtjs/tailwindcss',
   ],
 
   build: {},
@@ -72,12 +73,5 @@ export default defineNuxtConfig({
   routeRules: {
     '/': { isr: true },
     '/blog/**': { isr: true },
-  },
-
-  postcss: {
-    plugins: {
-      tailwindcss: {},
-      autoprefixer: {},
-    },
   },
 });
