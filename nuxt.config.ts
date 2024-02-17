@@ -47,6 +47,10 @@ export default defineNuxtConfig({
     },
   },
 
+  features: {
+    inlineStyles: false,
+  },
+
   vite: {
     css: {
       preprocessorOptions: {
