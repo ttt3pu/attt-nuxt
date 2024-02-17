@@ -29,7 +29,7 @@
 </template>
 
 <script lang="ts" setup>
-import { SimpleIcon } from 'simple-icons';
+import type { SimpleIcon } from 'simple-icons';
 import {
   siCss3,
   siGrunt,
