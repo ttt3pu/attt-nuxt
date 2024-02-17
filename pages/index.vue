@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div>
     <div class="title-container">
       <div class="title-container__inner">
         <div class="title-container__inner-inner">
@@ -19,23 +19,17 @@
     <!-- /title-container -->
 
     <div class="main-contents">
-      <div class="main-contents__box">
-        <div class="main-contents__box__inner">
-          <the-posts :merged-posts="mergedPosts" />
-        </div>
-      </div>
+      <AtomsContentsBox>
+        <the-posts :merged-posts="mergedPosts" />
+      </AtomsContentsBox>
 
-      <div class="main-contents__box">
-        <div class="main-contents__box__inner">
-          <the-profile />
-        </div>
-      </div>
+      <AtomsContentsBox :color="2">
+        <the-profile />
+      </AtomsContentsBox>
 
-      <div class="main-contents__box">
-        <div class="main-contents__box__inner">
-          <the-skillmap />
-        </div>
-      </div>
+      <AtomsContentsBox>
+        <the-skillmap />
+      </AtomsContentsBox>
     </div>
     <!-- /main-contents -->
   </div>
@@ -55,9 +49,8 @@ useHead({
 
 <style lang="scss" scoped>
 .title-container {
-  background: var(--bg-color-grad);
+  background: linear-gradient(to top, #2e3255, #081025);
   border-bottom: 1px solid var(--color-gray);
-  box-shadow: var(--box-shadow);
   height: calc(var(--vh) * 100);
 
   &__inner {
@@ -125,30 +118,6 @@ useHead({
 
   &__cat {
     position: relative;
-  }
-}
-
-.main-contents {
-  &__box {
-    background: var(--bg-color-lv1);
-    border-bottom: 1px solid var(--color-gray);
-
-    &:nth-child(even) {
-      background: var(--bg-color-lv2);
-    }
-
-    &__inner {
-      max-width: var(--max-width);
-      margin: 0 auto;
-
-      @media (width >= 769px) {
-        padding: 80px var(--padding-lr-pc);
-      }
-
-      @media (width <= 768px) {
-        padding: 40px var(--padding-lr-sp);
-      }
-    }
   }
 }
 </style>
