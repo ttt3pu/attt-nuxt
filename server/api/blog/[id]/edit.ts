@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client';
+import { getServerSession } from '#auth';
 
 export default defineEventHandler<{
   body: {
@@ -7,6 +8,15 @@ export default defineEventHandler<{
     published_at: string;
   };
 }>(async (e) => {
+  const session = await getServerSession(e);
+  const isAdmin = session?.user?.email === 'ttt3pu@gmail.com';
+
+  if (!isAdmin) {
+    throw createError({
+      statusCode: 401,
+    });
+  }
+
   const id = e.context.params!.id;
   const prisma = new PrismaClient();
 
