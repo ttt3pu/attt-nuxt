@@ -46,7 +46,7 @@ import dayjs from 'dayjs';
 import { siZenn } from 'simple-icons';
 import IcnPencilBox from 'vue-material-design-icons/PencilBox.vue';
 import IcnPencilBoxMultiple from 'vue-material-design-icons/PencilBoxMultiple.vue';
-import { MergedPost } from '~/types';
+import type { MergedPost } from '~/types';
 import { NuxtLink } from '#components';
 
 const props = defineProps<{

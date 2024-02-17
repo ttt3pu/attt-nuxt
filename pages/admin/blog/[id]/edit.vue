@@ -13,7 +13,7 @@ definePageMeta({
 });
 
 const route = useRoute('admin-blog-id-edit');
-import { BlogPost } from '@prisma/client';
+import type { BlogPost } from '@prisma/client';
 import { useToast } from 'vue-toast-notification';
 import { usePrismaErrorHandling } from '~/composables/usePrismaErrorHandling';
 

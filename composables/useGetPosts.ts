@@ -1,7 +1,7 @@
 import { usePostsStore } from '@/store';
 import dayjs from 'dayjs';
 import { DOMParser } from '@xmldom/xmldom';
-import { BlogPost } from '@prisma/client';
+import { type BlogPost } from '@prisma/client';
 
 export async function useGetPosts() {
   const postsStore = usePostsStore();
