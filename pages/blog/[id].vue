@@ -2,12 +2,6 @@
   <OrganismsBlogPost :title="title" :content="content" :published-at="published_at" />
 </template>
 
-<script lang="ts">
-export default {
-  auth: false,
-};
-</script>
-
 <script setup lang="ts">
 import type { BlogPost } from '@prisma/client';
 

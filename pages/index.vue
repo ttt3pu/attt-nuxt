@@ -35,12 +35,6 @@
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  auth: false,
-};
-</script>
-
 <script lang="ts" setup>
 import AtScroll from '@/components/atoms/AtScroll.vue';
 import { usePostsStore } from '~/store';
