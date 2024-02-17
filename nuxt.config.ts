@@ -37,7 +37,9 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
   ],
 
-  build: {},
+  auth: {
+    baseURL: process.env.NEXTAUTH_URL,
+  },
 
   gtag: {
     id: 'G-YY7ZSN9HY4',
@@ -77,8 +79,8 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    '/': { isr: true },
-    '/blog/**': { isr: true },
+    '/': { swr: true },
+    '/blog/**': { swr: true },
     '/admin/**': { ssr: false },
   },
 
