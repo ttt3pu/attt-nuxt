@@ -63,5 +63,8 @@
     "tsx": "^4.7.1",
     "vue-material-design-icons": "^5.0.0",
     "vue-tsc": "1.8.27"
+  },
+  "resolutions": {
+    "next-auth": "4.22.5"
   }
 }
