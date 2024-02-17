@@ -39,7 +39,7 @@ const renderedContent = ref('');
 const publishedAtRef = ref<string | undefined>(undefined);
 const titleRef = ref('');
 
-const response = await useFetch(`/api/blog/${route.params.slug}`);
+const response = await useFetch(`/api/blog/${route.params.id}`);
 
 if (!response.data.value) {
   showError({

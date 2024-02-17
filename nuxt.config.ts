@@ -1,5 +1,3 @@
-import { PrismaClient } from '@prisma/client';
-
 export default defineNuxtConfig({
   app: {
     head: {
@@ -56,22 +54,7 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    '/': { ssr: true, prerender: true },
-    '/blog/**': { ssr: true, prerender: true },
-  },
-
-  hooks: {
-    async 'nitro:config'(nitroConfig) {
-      if (nitroConfig.dev) {
-        return;
-      }
-
-      const prisma = new PrismaClient();
-      const posts = await prisma.blogPost.findMany();
-
-      posts.forEach((post) => {
-        nitroConfig.prerender?.routes?.push(`/blog/${post.slug}`);
-      });
-    },
+    '/': { isr: true },
+    '/blog/**': { isr: true },
   },
 });
