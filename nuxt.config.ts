@@ -24,7 +24,14 @@ export default defineNuxtConfig({
 
   components: true,
 
-  modules: ['@nuxtjs/google-fonts', '@pinia/nuxt', '@nuxtjs/stylelint-module', '@nuxtjs/eslint-module', 'nuxt-gtag'],
+  modules: [
+    '@nuxtjs/google-fonts',
+    '@pinia/nuxt',
+    '@nuxtjs/stylelint-module',
+    '@nuxtjs/eslint-module',
+    'nuxt-gtag',
+    '@nuxtjs/tailwindcss',
+  ],
 
   build: {},
 
@@ -78,6 +85,13 @@ export default defineNuxtConfig({
       posts.forEach((post) => {
         nitroConfig.prerender?.routes?.push(`/blog/${post.id}`);
       });
+    },
+  },
+
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
     },
   },
 });
