@@ -79,6 +79,7 @@ export default defineNuxtConfig({
   routeRules: {
     '/': { isr: true },
     '/blog/**': { isr: true },
+    '/admin/**': { ssr: false },
   },
 
   postcss: {
