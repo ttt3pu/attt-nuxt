@@ -52,6 +52,14 @@ export default defineNuxtConfig({
     },
   },
 
+  features: {
+    // NOTE: 設定しておかないとNetlifyのデプロイに失敗する
+    // Error message
+    // TypeError: pattern is too long
+    // ref: https://answers.netlify.com/t/typeerror-pattern-is-too-long/98172
+    inlineStyles: false,
+  },
+
   vite: {
     css: {
       preprocessorOptions: {
@@ -87,6 +95,13 @@ export default defineNuxtConfig({
       posts.forEach((post) => {
         nitroConfig.prerender?.routes?.push(`/blog/${post.id}`);
       });
+    },
+  },
+
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
     },
   },
 });

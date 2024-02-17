@@ -7,8 +7,6 @@
 </template>
 
 <script setup lang="ts">
-import type { PropType } from 'vue';
-
 defineProps({
   color: {
     type: Number as PropType<1 | 2>,
