@@ -18,13 +18,15 @@ export default defineNuxtConfig({
 
   css: ['@/assets/scss/common.scss'],
 
-  plugins: ['./plugins/vue-gtag.ts'],
-
   components: true,
 
-  modules: ['@nuxtjs/google-fonts', '@pinia/nuxt', '@nuxtjs/stylelint-module', '@nuxtjs/eslint-module'],
+  modules: ['@nuxtjs/google-fonts', '@pinia/nuxt', '@nuxtjs/stylelint-module', '@nuxtjs/eslint-module', 'nuxt-gtag'],
 
   build: {},
+
+  gtag: {
+    id: 'G-YY7ZSN9HY4',
+  },
 
   googleFonts: {
     families: {

@@ -30,8 +30,7 @@
     "netlify-cli": "17.16.2",
     "nuxt": "3.10.2",
     "postcss": "8.4.35",
-    "postcss-html": "1.5.0",
-    "vue-gtag-next": "1.14.0"
+    "postcss-html": "1.5.0"
   },
   "devDependencies": {
     "@faker-js/faker": "^8.1.0",
@@ -43,6 +42,7 @@
     "eslint": "^8.51.0",
     "eslint-config-prettier": "^9.0.0",
     "http-server": "^14.1.1",
+    "nuxt-gtag": "^1.2.0",
     "pinia": "^2.0.22",
     "prettier": "^3.0.3",
     "prisma": "^5.9.1",
