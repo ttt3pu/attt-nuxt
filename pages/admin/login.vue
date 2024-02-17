@@ -20,7 +20,9 @@ const session = await getSession();
 const loggedIn = computed(() => status.value === 'authenticated');
 const roleError = computed(() => loggedIn.value && session.user?.email !== 'ttt3pu@gmail.com');
 
-useFetch('/api/blog/create');
+definePageMeta({
+  middleware: ['admin-check'],
+});
 
 async function handleSignIn() {
   await signIn('github');

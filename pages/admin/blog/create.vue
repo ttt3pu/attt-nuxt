@@ -15,6 +15,8 @@ definePageMeta({
 import { useToast } from 'vue-toast-notification';
 import { usePrismaErrorHandling } from '~/composables/usePrismaErrorHandling';
 
+definePageMeta({ middleware: 'admin-check' });
+
 const $toast = useToast();
 
 const localModelValue = ref({

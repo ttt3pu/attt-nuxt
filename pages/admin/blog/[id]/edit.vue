@@ -17,6 +17,8 @@ import type { BlogPost } from '@prisma/client';
 import { useToast } from 'vue-toast-notification';
 import { usePrismaErrorHandling } from '~/composables/usePrismaErrorHandling';
 
+definePageMeta({ middleware: 'admin-check' });
+
 const $toast = useToast();
 const response = await useFetch<BlogPost>(`/api/blog/${route.params.id}`);
 

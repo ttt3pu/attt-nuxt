@@ -22,6 +22,8 @@
 import dayjs from 'dayjs';
 const res = await useFetch('/api/blog');
 const posts = res.data.value;
+
+definePageMeta({ middleware: 'admin-check' });
 </script>
 
 <style lang="scss" scoped>
