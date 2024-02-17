@@ -77,8 +77,8 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    '/': { isr: true },
-    '/blog/**': { isr: true },
+    '/': { swr: true },
+    '/blog/**': { swr: true },
   },
 
   postcss: {
