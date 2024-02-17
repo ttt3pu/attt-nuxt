@@ -12,6 +12,7 @@ export default defineNuxtConfig({
   },
 
   typescript: {
+    shim: false,
     tsConfig: {
       compilerOptions: {
         types: ['@pinia/nuxt', '@types/node'],
