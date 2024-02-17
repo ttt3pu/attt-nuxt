@@ -1,3 +1,5 @@
+import { PrismaClient } from "@prisma/client";
+
 export default defineNuxtConfig({
   app: {
     head: {
@@ -27,30 +29,28 @@ export default defineNuxtConfig({
   components: true,
 
   modules: [
-    [
-      '@nuxtjs/google-fonts',
-      {
-        families: {
-          Poppins: [400, 500],
-          'Noto Sans JP': [400],
-        },
-      },
-    ],
+    '@nuxtjs/google-fonts',
     '@pinia/nuxt',
     '@nuxtjs/stylelint-module',
     '@nuxtjs/eslint-module',
     '@sidebase/nuxt-auth',
     'nuxt-typed-router',
-    [
-      'nuxt-gtag',
-      {
-        id: 'G-YY7ZSN9HY4',
-      },
-    ],
+    'nuxt-gtag',
     '@nuxtjs/tailwindcss',
   ],
 
   build: {},
+
+  gtag: {
+    id: 'G-YY7ZSN9HY4',
+  },
+
+  googleFonts: {
+    families: {
+      Poppins: [400, 500],
+      'Noto Sans JP': [400],
+    },
+  },
 
   vite: {
     css: {
@@ -71,7 +71,22 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    '/': { isr: true },
-    '/blog/**': { isr: true },
+    '/': { ssr: true, prerender: true },
+    '/blog/**': { ssr: true, prerender: true },
+  },
+
+  hooks: {
+    async 'nitro:config'(nitroConfig) {
+      if (nitroConfig.dev) {
+        return;
+      }
+
+      const prisma = new PrismaClient();
+      const posts = await prisma.blogPost.findMany();
+
+      posts.forEach((post) => {
+        nitroConfig.prerender?.routes?.push(`/blog/${post.id}`);
+      });
+    },
   },
 });

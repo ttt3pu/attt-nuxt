@@ -1,4 +1,4 @@
-import { type MergedPost } from '@/types';
+import type { MergedPost } from '@/types';
 
 export const otherPosts: MergedPost[] = [
   {

@@ -47,6 +47,9 @@ jobs:
       - name: Lint Style
         run: pnpm lint:style
 
+      - name: Type Check
+        run: pnpm typeCheck
+
       - name: Netlify Draft Deploy
         if: github.ref != 'refs/heads/main'
         run: netlify deploy --build
