@@ -31,6 +31,7 @@ export default defineNuxtConfig({
     '@nuxtjs/eslint-module',
     'nuxt-gtag',
     '@nuxtjs/tailwindcss',
+    'nuxt-typed-router',
   ],
 
   build: {},
