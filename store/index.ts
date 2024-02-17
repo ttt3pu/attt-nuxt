@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
-import { MergedPost, ZennPost } from '../types';
-import { BlogPost } from '@prisma/client';
+import type { MergedPost, ZennPost } from '../types';
+import type { BlogPost } from '@prisma/client';
 import { otherPosts } from '@/constants/otherPosts';
 
 interface State {
