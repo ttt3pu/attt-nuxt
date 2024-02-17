@@ -38,16 +38,13 @@ jobs:
       - name: Nuxi prepare
         run: pnpm prepare
 
-      - name: Type check
-        run: pnpm typeCheck
-
       - name: Lint JS
         run: pnpm lint:js
 
       - name: Lint Style
         run: pnpm lint:style
 
-      - name: Type Check
+      - name: Type check
         run: pnpm typeCheck
 
       - name: Netlify Draft Deploy
