@@ -29,7 +29,7 @@
     "markdown-it": "14.0.0",
     "netlify-cli": "17.16.2",
     "nuxt": "3.10.2",
-    "postcss": "8.4.32",
+    "postcss": "8.4.35",
     "postcss-html": "1.5.0",
     "vue-gtag-next": "1.14.0"
   },
