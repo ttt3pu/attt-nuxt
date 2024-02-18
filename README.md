@@ -16,9 +16,7 @@ make setup
 ### Start dev mode
 
 ```sh
-pnpm dev
-cd ./prisma
-docker compose up -d
+make dev
 ```
 
 ### Seed
