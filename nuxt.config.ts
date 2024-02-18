@@ -1,4 +1,7 @@
 const baseURL = (() => {
+  console.log('env', process.env);
+  console.log('HEAD', process.env.HEAD);
+
   switch (process.env.HEAD) {
     case undefined:
       return 'http://localhost:3000';
