@@ -1,9 +1,9 @@
 const baseURL = (() => {
-  switch (process.env.CONTEXT) {
+  switch (process.env.BUILD_ID) {
     case undefined:
       return 'http://localhost:3000';
     case 'production':
-      return 'https://attt.hachiware.cat';
+      return process.env.URL;
     default:
       return process.env.DEPLOY_PRIME_URL?.replace('HEAD', process.env.SHORT_SHA as string);
   }
