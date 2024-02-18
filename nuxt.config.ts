@@ -1,14 +1,8 @@
 const baseURL = (() => {
-  console.log('env', process.env);
-  console.log('DEPLOY_ID', process.env.DEPLOY_ID);
-  console.log('SITE_ID', process.env.SITE_ID);
-  console.log('BUILD_ID', process.env.BUILD_ID);
-  console.log('CONTEXT', process.env.CONTEXT);
-
-  switch (process.env.DEPLOY_ID) {
+  switch (process.env.HEAD) {
     case undefined:
       return 'http://localhost:3000';
-    case 'production':
+    case 'main':
       return process.env.URL;
     default:
       return process.env.DEPLOY_PRIME_URL?.replace('HEAD', process.env.SHORT_SHA as string);
