@@ -13,7 +13,6 @@ jobs:
     env:
       NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
       NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-      MICROCMS_API_KEY: ${{ secrets.MICROCMS_API_KEY }}
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
     steps:
@@ -45,12 +44,15 @@ jobs:
       - name: Lint Style
         run: pnpm lint:style
 
-      - name: Type Check
+      - name: Type check
         run: pnpm typeCheck
+
+      - name: Add SHORT_SHA env property with commit short sha
+        run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
 
       - name: Netlify Draft Deploy
         if: github.ref != 'refs/heads/main'
-        run: netlify deploy --build
+        run: netlify deploy --build --alias $SHORT_SHA
 
       - name: Netlify Production Deploy
         if: github.ref == 'refs/heads/main'

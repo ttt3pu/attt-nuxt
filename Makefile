@@ -4,3 +4,6 @@ setup:
 	pnpm prisma migrate dev
 	pnpm prisma generate
 	pnpm prepare
+dev:
+	cd prisma; docker compose up -d --wait
+	pnpm dev

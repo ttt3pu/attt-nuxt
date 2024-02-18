@@ -1,10 +1,11 @@
 import { usePostsStore } from '@/store';
 import dayjs from 'dayjs';
 import { DOMParser } from '@xmldom/xmldom';
+import { type BlogPost } from '@prisma/client';
 
 export async function useGetPosts() {
   const postsStore = usePostsStore();
-  const blogPosts = await useFetch('/api/blog');
+  const blogPosts = await useFetch<BlogPost[]>('/api/blog');
 
   const today = dayjs(new Date()).format('YYYYMMDDhhmm');
   const zennPostsResponse = await fetch(`https://zenn.dev/attt/feed?${today}`).then((response) => response.text());

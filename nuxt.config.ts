@@ -1,4 +1,13 @@
-import { PrismaClient } from '@prisma/client';
+const baseURL = (() => {
+  switch (process.env.CONTEXT) {
+    case undefined:
+      return 'http://localhost:3000';
+    case 'production':
+      return process.env.URL;
+    default:
+      return process.env.DEPLOY_PRIME_URL?.replace('HEAD', process.env.SHORT_SHA as string);
+  }
+})();
 
 export default defineNuxtConfig({
   app: {
@@ -20,7 +29,11 @@ export default defineNuxtConfig({
     },
   },
 
-  css: ['@/assets/scss/common.scss'],
+  css: [
+    '@/assets/scss/common.scss',
+    'vue-toast-notification/dist/theme-sugar.css',
+    '@vuepic/vue-datepicker/dist/main.css',
+  ],
 
   components: true,
 
@@ -29,12 +42,15 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxtjs/stylelint-module',
     '@nuxtjs/eslint-module',
+    '@sidebase/nuxt-auth',
+    'nuxt-typed-router',
     'nuxt-gtag',
     '@nuxtjs/tailwindcss',
-    'nuxt-typed-router',
   ],
 
-  build: {},
+  auth: {
+    baseURL,
+  },
 
   gtag: {
     id: 'G-YY7ZSN9HY4',
@@ -69,32 +85,14 @@ export default defineNuxtConfig({
     },
   },
 
-  runtimeConfig: {
-    MICROCMS_API_KEY: process.env.MICROCMS_API_KEY,
-  },
-
   nitro: {
     preset: 'netlify',
   },
 
   routeRules: {
-    '/': { ssr: true, prerender: true },
-    '/blog/**': { ssr: true, prerender: true },
-  },
-
-  hooks: {
-    async 'nitro:config'(nitroConfig) {
-      if (nitroConfig.dev) {
-        return;
-      }
-
-      const prisma = new PrismaClient();
-      const posts = await prisma.blogPost.findMany();
-
-      posts.forEach((post) => {
-        nitroConfig.prerender?.routes?.push(`/blog/${post.id}`);
-      });
-    },
+    '/': { swr: true },
+    '/blog/**': { swr: true },
+    '/admin/**': { ssr: false },
   },
 
   postcss: {
