@@ -1,5 +1,5 @@
 const baseURL = (() => {
-  switch (process.env.BUILD_ID) {
+  switch (process.env.DEPLOY_ID) {
     case undefined:
       return 'http://localhost:3000';
     case 'production':
