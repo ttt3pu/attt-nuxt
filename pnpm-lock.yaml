@@ -18,7 +18,7 @@ dependencies:
     specifier: 5.9.1
     version: 5.9.1(prisma@5.9.1)
   '@vuepic/vue-datepicker':
-    specifier: ^7.2.0
+    specifier: 7.4.1
     version: 7.4.1(vue@3.4.19)
   '@xmldom/xmldom':
     specifier: 0.8.10
@@ -39,7 +39,7 @@ dependencies:
     specifier: 1.6.0
     version: 1.6.0
   vue-toast-notification:
-    specifier: ^3.1.1
+    specifier: 3.1.2
     version: 3.1.2(vue@3.4.19)
 
 devDependencies:
