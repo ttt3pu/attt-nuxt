@@ -3,7 +3,7 @@ const baseURL = (() => {
     case undefined:
       return 'http://localhost:3000';
     case 'production':
-      return process.env.URL;
+      return 'https://attt.hachiware.cat';
     default:
       return process.env.DEPLOY_PRIME_URL?.replace('HEAD', process.env.SHORT_SHA as string);
   }
