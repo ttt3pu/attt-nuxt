@@ -1,3 +1,14 @@
+const baseURL = (() => {
+  switch (process.env.CONTEXT) {
+    case undefined:
+      return 'http://localhost:3000';
+    case 'production':
+      return process.env.URL;
+    default:
+      return process.env.DEPLOY_PRIME_URL?.replace('HEAD', process.env.SHORT_SHA as string);
+  }
+})();
+
 export default defineNuxtConfig({
   app: {
     head: {
@@ -38,7 +49,7 @@ export default defineNuxtConfig({
   ],
 
   auth: {
-    baseURL: process.env.NEXTAUTH_URL,
+    baseURL,
   },
 
   gtag: {
