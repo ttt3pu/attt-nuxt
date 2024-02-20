@@ -72,6 +72,12 @@ export default defineNuxtConfig({
         },
       },
     },
+    resolve: {
+      alias: {
+        // ref: https://github.com/prisma/prisma/issues/12504#issuecomment-1870563695
+        '.prisma/client/index-browser': './node_modules/@prisma/client/index-browser.js',
+      },
+    },
   },
 
   nitro: {
