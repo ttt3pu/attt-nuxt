@@ -28,7 +28,7 @@
     "@vuepic/vue-datepicker": "8.1.1",
     "@xmldom/xmldom": "0.8.10",
     "markdown-it": "14.0.0",
-    "netlify-cli": "17.16.4",
+    "netlify-cli": "17.17.0",
     "nuxt": "3.10.3",
     "postcss": "8.4.35",
     "postcss-html": "1.6.0",
