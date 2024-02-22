@@ -84,13 +84,13 @@ devDependencies:
     version: 1.2.1
   nuxt-typed-router:
     specifier: 3.6.0
-    version: 3.6.0(prettier@3.0.3)
+    version: 3.6.0(prettier@3.2.5)
   pinia:
     specifier: 2.1.7
     version: 2.1.7(typescript@5.2.2)(vue@3.4.19)
   prettier:
-    specifier: 3.0.3
-    version: 3.0.3
+    specifier: 3.2.5
+    version: 3.2.5
   prisma:
     specifier: 5.9.1
     version: 5.9.1
@@ -9704,7 +9704,7 @@ packages:
       - supports-color
     dev: true
 
-  /nuxt-typed-router@3.6.0(prettier@3.0.3):
+  /nuxt-typed-router@3.6.0(prettier@3.2.5):
     resolution: {integrity: sha512-GLlg+CwHS0JLf9+mdkL75mgcwnUlGgv0MZyg7vvjIV5Zq0tq9Bwu/X7v0iPEZrM/0r9zAK4DmPzq21KnRlvPSg==}
     peerDependencies:
       prettier: ^2.5.x || 3.x
@@ -9717,7 +9717,7 @@ packages:
       mkdirp: 3.0.1
       nanoid: 5.0.3
       pathe: 1.1.1
-      prettier: 3.0.3
+      prettier: 3.2.5
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -10947,8 +10947,8 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
 
-  /prettier@3.0.3:
-    resolution: {integrity: sha512-L/4pUDMxcNa8R/EthV08Zt42WBO4h1rarVtK0K+QJG0X187OLo7l699jWw0GKuwzkPQ//jMFA/8Xm6Fh3J/DAg==}
+  /prettier@3.2.5:
+    resolution: {integrity: sha512-3/GWa9aOC0YeD7LUfvOG2NiDyhOWRvt1k+rcKhOuYnMY24iiCphgneUfJDyFXd6rZCAnuLBv6UeAULtrhT/F4A==}
     engines: {node: '>=14'}
     hasBin: true
     dev: true
