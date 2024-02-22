@@ -9,7 +9,8 @@ https://mycolor.space/?hex=#2E3255&sub=1#001731&sub=1
 ### Setup
 
 ```sh
-cp .sample.env .env
+cp .sample.envrc .envrc
+direnv allow
 make setup
 ```
 
