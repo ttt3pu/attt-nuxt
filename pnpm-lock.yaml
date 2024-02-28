@@ -80,8 +80,8 @@ devDependencies:
     specifier: 14.1.1
     version: 14.1.1
   nuxt-gtag:
-    specifier: 2.0.1
-    version: 2.0.1
+    specifier: 2.0.4
+    version: 2.0.4
   nuxt-typed-router:
     specifier: 3.6.1
     version: 3.6.1(prettier@3.2.5)
@@ -9687,8 +9687,8 @@ packages:
       fsevents: 2.3.3
     dev: false
 
-  /nuxt-gtag@2.0.1:
-    resolution: {integrity: sha512-fNgCHonuOr4MQnNUdejmzxTGgBrahHlGtDgKZ5XeqhhdvwbdiPiiNknAtjEkt73pftVIwBCoxEYeklXo34HhSQ==}
+  /nuxt-gtag@2.0.4:
+    resolution: {integrity: sha512-oQgLc+GlxX0W0buYW+HYv6G+W5rS2yARA3kITOYN4rPURRbbK15G9XzKErUF8hhQLmTUj3rFGQmWeVzrWuscig==}
     dependencies:
       '@nuxt/kit': 3.10.3
       defu: 6.1.4
