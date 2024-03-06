@@ -18,8 +18,8 @@ dependencies:
     specifier: 5.10.2
     version: 5.10.2(prisma@5.10.2)
   '@vuepic/vue-datepicker':
-    specifier: 8.1.1
-    version: 8.1.1(vue@3.4.19)
+    specifier: 8.2.0
+    version: 8.2.0(vue@3.4.19)
   '@xmldom/xmldom':
     specifier: 0.8.10
     version: 0.8.10
@@ -3791,8 +3791,8 @@ packages:
   /@vue/shared@3.4.19:
     resolution: {integrity: sha512-/KliRRHMF6LoiThEy+4c1Z4KB/gbPrGjWwJR+crg2otgrf/egKzRaCPvJ51S5oetgsgXLfc4Rm5ZgrKHZrtMSw==}
 
-  /@vuepic/vue-datepicker@8.1.1(vue@3.4.19):
-    resolution: {integrity: sha512-/t9+dROb/hYN/DInff8ctIiVm5tVyuJdiWA+nWcjHOLjUhvAQ9vyJwhxAkoWX5o0EB5x5XeCME2cajfTPz86RA==}
+  /@vuepic/vue-datepicker@8.2.0(vue@3.4.19):
+    resolution: {integrity: sha512-H3X9/XRvF4/ttdgxgNhFCp9m9gt9UVsiuv8FXOfAPpfQvVlmlTHZ3yf3E5oAxzP/INVhBIJCGrkijhCl5+UAPg==}
     engines: {node: '>=18.12.0'}
     peerDependencies:
       vue: '>=3.2.0'
