@@ -28,7 +28,7 @@
       </AtomsContentsBox>
 
       <AtomsContentsBox>
-        <the-skillmap />
+        <OrganismsSkillMap />
       </AtomsContentsBox>
     </div>
     <!-- /main-contents -->
