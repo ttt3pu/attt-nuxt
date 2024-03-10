@@ -98,8 +98,8 @@ devDependencies:
     specifier: 1.71.1
     version: 1.71.1
   simple-icons:
-    specifier: 11.7.0
-    version: 11.7.0
+    specifier: 11.8.0
+    version: 11.8.0
   stylelint:
     specifier: 16.2.1
     version: 16.2.1(typescript@5.2.2)
@@ -8443,7 +8443,6 @@ packages:
 
   /jose@4.15.4:
     resolution: {integrity: sha512-W+oqK4H+r5sITxfxpSU+MMdr/YSWGvgZMQDIsNoBDGGy4i7GBPTtvFKibQzW06n3U3TqHjhvBJsirShsEJ6eeQ==}
-    deprecated: this version is no longer supported
     dev: true
 
   /js-string-escape@1.0.1:
@@ -12196,8 +12195,8 @@ packages:
       - supports-color
     dev: false
 
-  /simple-icons@11.7.0:
-    resolution: {integrity: sha512-ecsOO6vPi3tf21BMZDw4gYI8ouaSq9mfFlBxBU8WEfcA+8Pz217jxM29K6YkGfO0dszakrcfHK1rrAr9vIfpkQ==}
+  /simple-icons@11.8.0:
+    resolution: {integrity: sha512-PlbTchVVDyVccqT+M1HvfiB1gjzi6ewnpsj9QCFLsX9lZiJJIMrCY+bSELRMl0GUM0+wgH9mr8ZAj4XJdaMJvg==}
     engines: {node: '>=0.12.18'}
     dev: true
 
