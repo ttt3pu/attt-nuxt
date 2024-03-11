@@ -27,8 +27,8 @@ dependencies:
     specifier: 14.0.0
     version: 14.0.0
   netlify-cli:
-    specifier: 17.19.1
-    version: 17.19.1(@types/node@20.8.3)
+    specifier: 17.19.2
+    version: 17.19.2(@types/node@20.8.3)
   nuxt:
     specifier: 3.10.3
     version: 3.10.3(@types/node@20.8.3)(eslint@8.57.0)(sass@1.71.1)(stylelint@16.2.1)(typescript@5.2.2)(vite@5.1.4)(vue-tsc@2.0.6)
@@ -1676,12 +1676,12 @@ packages:
       yargs: 17.7.2
     dev: false
 
-  /@netlify/build@29.36.1(@types/node@20.8.3):
-    resolution: {integrity: sha512-S+zQbdw7Np4NesLK3kA1BzmNK8oijNZ13y2kknJdGLyQbz+bQxU0iMIuMyFca+6LtGPPonCFlWPz+cKe9G0/Mw==}
+  /@netlify/build@29.36.3(@types/node@20.8.3):
+    resolution: {integrity: sha512-WLJB98MVt1jfHuUZq3dg2RvqbThTtbrs/0zOyjFq0b3TVMic7CyOnVfDOz78pfwLwbojZM0PW+AVBh5hHkRJVA==}
     engines: {node: ^14.16.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
-      '@netlify/opentelemetry-sdk-setup': ^1.0.3
+      '@netlify/opentelemetry-sdk-setup': ^1.0.4
     peerDependenciesMeta:
       '@netlify/opentelemetry-sdk-setup':
         optional: true
@@ -1690,7 +1690,7 @@ packages:
       '@netlify/blobs': 6.5.0
       '@netlify/cache-utils': 5.1.5
       '@netlify/config': 20.12.1
-      '@netlify/edge-bundler': 11.2.2(supports-color@9.4.0)
+      '@netlify/edge-bundler': 11.3.0(supports-color@9.4.0)
       '@netlify/framework-info': 9.8.10
       '@netlify/functions-utils': 5.2.51(supports-color@9.4.0)
       '@netlify/git-utils': 5.1.1
@@ -1797,40 +1797,7 @@ packages:
       yargs: 17.7.2
     dev: false
 
-  /@netlify/edge-bundler@11.2.2(supports-color@9.4.0):
-    resolution: {integrity: sha512-RrRmM/bSl9K5InIJS9BbpY89Y7Y+83DoOoKR1/PE3gy7b9FONm8Cry9/YC4y+tUUWLuUo4dgt8+/Pw0uGFyI+g==}
-    engines: {node: ^14.16.0 || >=16.0.0}
-    dependencies:
-      '@import-maps/resolve': 1.0.1
-      '@vercel/nft': 0.26.4(supports-color@9.4.0)
-      ajv: 8.12.0
-      ajv-errors: 3.0.0(ajv@8.12.0)
-      better-ajv-errors: 1.2.0(ajv@8.12.0)
-      common-path-prefix: 3.0.0
-      env-paths: 3.0.0
-      esbuild: 0.19.11
-      execa: 6.1.0
-      find-up: 6.3.0
-      get-package-name: 2.2.0
-      get-port: 6.1.2
-      is-path-inside: 4.0.0
-      jsonc-parser: 3.2.1
-      node-fetch: 3.3.2
-      node-stream-zip: 1.15.0
-      p-retry: 5.1.2
-      p-wait-for: 4.1.0
-      path-key: 4.0.0
-      regexp-tree: 0.1.27
-      semver: 7.6.0
-      tmp-promise: 3.0.3
-      urlpattern-polyfill: 8.0.2
-      uuid: 9.0.1
-    transitivePeerDependencies:
-      - encoding
-      - supports-color
-    dev: false
-
-  /@netlify/edge-bundler@11.3.0:
+  /@netlify/edge-bundler@11.3.0(supports-color@9.4.0):
     resolution: {integrity: sha512-ROyjrrOCe4TYdBf9Eky8EFrSFENcKdsHHqGe0nSwbyLKDfbe9gPNwN9LoXt9QhxmPyJCOGwxz12kDX2rqFc+Mw==}
     engines: {node: ^14.16.0 || >=16.0.0}
     dependencies:
@@ -9466,8 +9433,8 @@ packages:
     resolution: {integrity: sha512-9iN1ka/9zmX1ZvLV9ewJYEk9h7RyRRtqdK0woXcqohu8EWIerfPUjYJPg0ULy0UqP7cslmdGc8xKDJcojlKiaw==}
     dev: false
 
-  /netlify-cli@17.19.1(@types/node@20.8.3):
-    resolution: {integrity: sha512-ScaO5LuU++Ibls73elvaTdjDHbtg2+//dvfoYVKMnVUHKlDULKWaXQnrQjAO9cV0M9VfMFAIK51rfMEQP7hugg==}
+  /netlify-cli@17.19.2(@types/node@20.8.3):
+    resolution: {integrity: sha512-+gchPkM6tmM2iEt5oVpQeWdhewX+fYvNZOU3Qwq43XgLZ2nfqJb2fg4cgzKb+FyeuWAo4Jsnh3GcCZdgx2gnTQ==}
     engines: {node: '>=18.14.0'}
     hasBin: true
     requiresBuild: true
@@ -9475,10 +9442,10 @@ packages:
       '@bugsnag/js': 7.20.2
       '@fastify/static': 6.10.2
       '@netlify/blobs': 7.0.1
-      '@netlify/build': 29.36.1(@types/node@20.8.3)
+      '@netlify/build': 29.36.3(@types/node@20.8.3)
       '@netlify/build-info': 7.13.0
       '@netlify/config': 20.12.1
-      '@netlify/edge-bundler': 11.3.0
+      '@netlify/edge-bundler': 11.3.0(supports-color@9.4.0)
       '@netlify/local-functions-proxy': 1.1.1
       '@netlify/zip-it-and-ship-it': 9.30.0
       '@octokit/rest': 19.0.13
@@ -11703,11 +11670,6 @@ packages:
     dependencies:
       extend-shallow: 3.0.2
       safe-regex: 1.1.0
-    dev: false
-
-  /regexp-tree@0.1.27:
-    resolution: {integrity: sha512-iETxpjK6YoRWJG5o6hXLwvjYAoW+FEZn9os0PD/b6AP6xQwsa/Y7lCVgIixBbUPMfhu+i2LtdeAqVTgGlQarfA==}
-    hasBin: true
     dev: false
 
   /registry-auth-token@5.0.2:
