@@ -27,8 +27,8 @@ dependencies:
     specifier: 14.0.0
     version: 14.0.0
   netlify-cli:
-    specifier: 17.19.4
-    version: 17.19.4(@types/node@20.8.3)
+    specifier: 17.19.5
+    version: 17.19.5(@types/node@20.8.3)
   nuxt:
     specifier: 3.10.3
     version: 3.10.3(@types/node@20.8.3)(eslint@8.57.0)(sass@1.72.0)(stylelint@16.2.1)(typescript@5.2.2)(vite@5.1.4)(vue-tsc@2.0.6)
@@ -3873,7 +3873,7 @@ packages:
       '@vue/shared': 3.4.19
       entities: 4.5.0
       estree-walker: 2.0.2
-      source-map-js: 1.0.2
+      source-map-js: 1.1.0
 
   /@vue/compiler-dom@3.4.19:
     resolution: {integrity: sha512-vm6+cogWrshjqEHTzIDCp72DKtea8Ry/QVpQRYoyTIg9k7QZDX6D8+HGURjtmatfgM8xgCFtJJaOlCaRYRK3QA==}
@@ -3892,7 +3892,7 @@ packages:
       estree-walker: 2.0.2
       magic-string: 0.30.7
       postcss: 8.4.36
-      source-map-js: 1.0.2
+      source-map-js: 1.1.0
 
   /@vue/compiler-ssr@3.4.19:
     resolution: {integrity: sha512-P0PLKC4+u4OMJ8sinba/5Z/iDT84uMRRlrWzadgLA69opCpI1gG4N55qDSC+dedwq2fJtzmGald05LWR5TFfLw==}
@@ -5631,7 +5631,7 @@ packages:
     engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0, npm: '>=7.0.0'}
     dependencies:
       mdn-data: 2.0.28
-      source-map-js: 1.0.2
+      source-map-js: 1.1.0
     dev: false
 
   /css-tree@2.3.1:
@@ -5639,7 +5639,7 @@ packages:
     engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0}
     dependencies:
       mdn-data: 2.0.30
-      source-map-js: 1.0.2
+      source-map-js: 1.1.0
 
   /css-what@6.1.0:
     resolution: {integrity: sha512-HTUrgRJ7r4dsZKU6GjmpfRK1O76h97Z8MfS1G0FozR+oF2kG6Vfe8JE6zwrkbxigziPHinCJ+gCPjA9EaBDtRw==}
@@ -8912,7 +8912,7 @@ packages:
     dependencies:
       '@babel/parser': 7.23.9
       '@babel/types': 7.23.9
-      source-map-js: 1.0.2
+      source-map-js: 1.1.0
     dev: false
 
   /make-dir@3.1.0:
@@ -9396,8 +9396,8 @@ packages:
     resolution: {integrity: sha512-9iN1ka/9zmX1ZvLV9ewJYEk9h7RyRRtqdK0woXcqohu8EWIerfPUjYJPg0ULy0UqP7cslmdGc8xKDJcojlKiaw==}
     dev: false
 
-  /netlify-cli@17.19.4(@types/node@20.8.3):
-    resolution: {integrity: sha512-00JOpNQS4qoHuQoxZZLeBLkya3wFBTb+zQ0cpsaVmaHs9pGWoCjdv7AGCBSrxThfkvuM1CHWmSLFKLd0eTvhXA==}
+  /netlify-cli@17.19.5(@types/node@20.8.3):
+    resolution: {integrity: sha512-u3dnipag7psX0cKmBewZj/1aOkwGB9vPziqbMLIKD27XPtSQC0c0zECO0j8QBpUMOqCOta49hnyHDdyj1VNEUA==}
     engines: {node: '>=18.14.0'}
     hasBin: true
     requiresBuild: true
@@ -11196,7 +11196,7 @@ packages:
     dependencies:
       nanoid: 3.3.7
       picocolors: 1.0.0
-      source-map-js: 1.0.2
+      source-map-js: 1.1.0
     dev: true
 
   /postcss@8.4.36:
