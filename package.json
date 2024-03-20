@@ -61,7 +61,7 @@
     "stylelint-scss": "6.2.1",
     "tsx": "4.7.1",
     "vue-material-design-icons": "5.3.0",
-    "vue-tsc": "2.0.6"
+    "vue-tsc": "2.0.7"
   },
   "resolutions": {
     "next-auth": "4.22.5"
