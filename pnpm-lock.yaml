@@ -27,8 +27,8 @@ dependencies:
     specifier: 14.1.0
     version: 14.1.0
   netlify-cli:
-    specifier: 17.19.5
-    version: 17.19.5(@types/node@20.8.3)
+    specifier: 17.19.6
+    version: 17.19.6(@types/node@20.8.3)
   nuxt:
     specifier: 3.10.3
     version: 3.10.3(@types/node@20.8.3)(eslint@8.57.0)(sass@1.72.0)(stylelint@16.2.1)(typescript@5.2.2)(vite@5.1.4)(vue-tsc@2.0.7)
@@ -9396,8 +9396,8 @@ packages:
     resolution: {integrity: sha512-9iN1ka/9zmX1ZvLV9ewJYEk9h7RyRRtqdK0woXcqohu8EWIerfPUjYJPg0ULy0UqP7cslmdGc8xKDJcojlKiaw==}
     dev: false
 
-  /netlify-cli@17.19.5(@types/node@20.8.3):
-    resolution: {integrity: sha512-u3dnipag7psX0cKmBewZj/1aOkwGB9vPziqbMLIKD27XPtSQC0c0zECO0j8QBpUMOqCOta49hnyHDdyj1VNEUA==}
+  /netlify-cli@17.19.6(@types/node@20.8.3):
+    resolution: {integrity: sha512-qZQiHkdjQY+zTt9aWU2O7STUxll7bBeIoKrtzmZ2DPjOIPAs7IQp56+PH2SAhqTAmAl0E+4IUvOPyDK3F9vHOg==}
     engines: {node: '>=18.14.0'}
     hasBin: true
     requiresBuild: true
