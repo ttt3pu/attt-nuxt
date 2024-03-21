@@ -37,10 +37,20 @@
 
 <script lang="ts" setup>
 import AtScroll from '@/components/atoms/AtScroll.vue';
-import { usePostsStore } from '~/store';
-const { $pinia } = useNuxtApp();
-const postsStore = usePostsStore($pinia);
+import { usePostsStore } from '@/store';
+import type { BlogPost } from '@prisma/client';
+import type { ZennPost } from '@/types';
+
+const postsStore = usePostsStore();
 const mergedPosts = computed(() => postsStore.mergedPosts);
+
+const blogPosts = await useFetch<BlogPost[]>('/api/blog');
+const zennPosts = await useFetch<ZennPost[]>('/api/zenn');
+
+postsStore.$patch({
+  blogPosts: blogPosts.data.value!,
+  zennPosts: zennPosts.data.value!,
+});
 
 useHead({
   title: 'attt - Front End Developer',
