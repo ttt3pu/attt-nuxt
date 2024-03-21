@@ -60,24 +60,32 @@ const publishedAtFormatted = computed(() => dayjs(props.publishedAt).format('YYY
 .post {
   font-family: var(--font-family-jp);
   color: var(--txt-color-white);
+}
 
-  /* stylelint-disable-next-line */
-  ::v-deep(a) {
-    color: var(--txt-color-link);
-    text-decoration: none;
+/* stylelint-disable-next-line */
+:deep(.post > *) {
+  @apply mt-6;
+}
 
-    &:hover {
-      text-decoration: underline;
-      text-decoration-color: var(--txt-color-link-hover);
-      text-underline-offset: 4px;
-    }
+/* stylelint-disable-next-line */
+:deep(a) {
+  color: var(--txt-color-link);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--txt-color-link-hover);
+    text-underline-offset: 4px;
   }
+}
 
-  /* stylelint-disable-next-line */
-  ::v-deep(p) {
-    & + p {
-      margin-top: 24px;
-    }
-  }
+/* stylelint-disable-next-line */
+:deep(ol) {
+  @apply list-decimal pl-6;
+}
+
+/* stylelint-disable-next-line */
+:deep(ul) {
+  @apply list-disc pl-6;
 }
 </style>
