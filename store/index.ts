@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import type { MergedPost, ZennPost } from '../types';
+import type { MergedPost, ZennPost } from '@/types';
 import type { BlogPost } from '@prisma/client';
 import { otherPosts } from '@/constants/otherPosts';
 

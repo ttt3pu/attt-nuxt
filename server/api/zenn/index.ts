@@ -1,15 +1,11 @@
-import { usePostsStore } from '@/store';
-import dayjs from 'dayjs';
+import type { ZennPost } from '@/types';
 import { DOMParser } from '@xmldom/xmldom';
-import { type BlogPost } from '@prisma/client';
+import dayjs from 'dayjs';
 
-export async function useGetPosts() {
-  const postsStore = usePostsStore();
-  const blogPosts = await useFetch<BlogPost[]>('/api/blog');
-
+export default defineEventHandler(async () => {
   const today = dayjs(new Date()).format('YYYYMMDDhhmm');
   const zennPostsResponse = await fetch(`https://zenn.dev/attt/feed?${today}`).then((response) => response.text());
-  const domParsedZennPosts = new DOMParser().parseFromString(zennPostsResponse, 'text/html');
+  const domParsedZennPosts = new DOMParser().parseFromString(zennPostsResponse, 'text/xml');
   const zennPosts = domParsedZennPosts.documentElement.getElementsByTagName('item');
   const transformedZennPosts = Array.prototype.slice.call(zennPosts).map((post) => {
     return {
@@ -17,10 +13,6 @@ export async function useGetPosts() {
       pubDate: post.getElementsByTagName('pubDate')[0].textContent,
       link: post.getElementsByTagName('link')[0].textContent,
     };
-  });
-
-  postsStore.$patch({
-    blogPosts: blogPosts.data.value!,
-    zennPosts: transformedZennPosts,
-  });
-}
+  }) as ZennPost[];
+  return transformedZennPosts;
+});
