@@ -27,8 +27,8 @@ dependencies:
     specifier: 14.1.0
     version: 14.1.0
   netlify-cli:
-    specifier: 17.21.2
-    version: 17.21.2(@types/node@20.8.3)
+    specifier: 17.22.0
+    version: 17.22.0(@types/node@20.8.3)
   nuxt:
     specifier: 3.10.3
     version: 3.10.3(@types/node@20.8.3)(eslint@8.57.0)(sass@1.74.1)(stylelint@16.3.1)(typescript@5.2.2)(vite@5.1.4)(vue-tsc@2.0.11)
@@ -1840,6 +1840,10 @@ packages:
     transitivePeerDependencies:
       - encoding
       - supports-color
+    dev: false
+
+  /@netlify/edge-functions@2.5.1:
+    resolution: {integrity: sha512-6YGlbzxPaSqc/D2LhP4T4PXrim/vRmqpO1RwQKqVod6WCWlkdtJcAd3mGoI7efrjfND8twh7TqXtL7RRCI23qA==}
     dev: false
 
   /@netlify/framework-info@9.8.11:
@@ -9756,8 +9760,8 @@ packages:
     resolution: {integrity: sha512-9iN1ka/9zmX1ZvLV9ewJYEk9h7RyRRtqdK0woXcqohu8EWIerfPUjYJPg0ULy0UqP7cslmdGc8xKDJcojlKiaw==}
     dev: false
 
-  /netlify-cli@17.21.2(@types/node@20.8.3):
-    resolution: {integrity: sha512-St125NfR3N+PVbWa5736rlJszG9YhxznDhU3xhZvjRkGimr2CkKSs5mDhc2c7f7/aOlke5v/SedK0bszRbkgJw==}
+  /netlify-cli@17.22.0(@types/node@20.8.3):
+    resolution: {integrity: sha512-JBDMjAPurWVh7iX+JxAnjkuzA9eOLQgBM+NKSgZsgesWZEKndPOmyfVVyAA9NX3kVTY1THKjHQbkZHQv4uJ1fw==}
     engines: {node: '>=18.14.0'}
     hasBin: true
     requiresBuild: true
@@ -9769,6 +9773,7 @@ packages:
       '@netlify/build-info': 7.13.2
       '@netlify/config': 20.12.1
       '@netlify/edge-bundler': 11.3.0(supports-color@9.4.0)
+      '@netlify/edge-functions': 2.5.1
       '@netlify/local-functions-proxy': 1.1.1
       '@netlify/zip-it-and-ship-it': 9.31.1(supports-color@9.4.0)
       '@octokit/rest': 19.0.13
