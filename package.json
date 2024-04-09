@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@faker-js/faker": "8.4.1",
-    "@nuxt/eslint-config": "0.3.2",
+    "@nuxt/eslint-config": "0.3.4",
     "@nuxtjs/stylelint-module": "5.2.0",
     "@nuxtjs/tailwindcss": "6.11.4",
     "@pinia/nuxt": "0.5.1",
