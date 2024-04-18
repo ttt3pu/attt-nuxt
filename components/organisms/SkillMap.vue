@@ -49,11 +49,12 @@ import {
   siPrisma,
   siNetlify,
   siVercel,
-  siAwsamplify,
   siAwslambda,
   siNextdotjs,
   siRenovatebot,
   siDocker,
+  siRemix,
+  siExpress,
 } from 'simple-icons';
 
 const primaryItems = [
@@ -125,10 +126,6 @@ const secondaryItems = [
     icnData: siAmazonaws,
   },
   {
-    heading: 'Amplify',
-    icnData: siAwsamplify,
-  },
-  {
     heading: 'Lambda',
     icnData: siAwslambda,
   },
@@ -172,8 +169,16 @@ const tertiaryItems = [
     icnData: siNextdotjs,
   },
   {
+    heading: 'Remix',
+    icnData: siRemix,
+  },
+  {
     heading: 'Prisma',
     icnData: siPrisma,
+  },
+  {
+    heading: 'Express',
+    icnData: siExpress,
   },
   {
     heading: 'Netlify',
