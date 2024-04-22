@@ -5,7 +5,7 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
-  next-auth: 4.22.5
+  next-auth: 4.24.7
 
 importers:
 
@@ -1994,7 +1994,7 @@ packages:
   '@sidebase/nuxt-auth@0.6.7':
     resolution: {integrity: sha512-cfCRL0LTtv2Ih8VQSkyLyuYAJwNxYXT7ocAXRF9Ys0Lru0XtCl8gbtZMkbjk4iPDlCJv8QIqXCUM0t5TRUcytA==}
     peerDependencies:
-      next-auth: 4.22.5
+      next-auth: 4.24.7
 
   '@sigstore/bundle@2.2.0':
     resolution: {integrity: sha512-5VI58qgNs76RDrwXNhpmyN/jKpq9evV/7f1XrcqcAfvxDl5SeVY/I5Rmfe96ULAV7/FK5dge9RBKGBJPhL1WsQ==}
