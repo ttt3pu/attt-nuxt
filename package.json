@@ -25,7 +25,7 @@
     "@nuxtjs/eslint-module": "4.1.0",
     "@nuxtjs/google-fonts": "3.2.0",
     "@prisma/client": "5.13.0",
-    "@vuepic/vue-datepicker": "8.5.0",
+    "@vuepic/vue-datepicker": "8.5.1",
     "@xmldom/xmldom": "0.8.10",
     "markdown-it": "14.1.0",
     "netlify-cli": "17.23.1",
