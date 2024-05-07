@@ -30,8 +30,8 @@ importers:
         specifier: 14.1.0
         version: 14.1.0
       netlify-cli:
-        specifier: 17.23.1
-        version: 17.23.1(@types/node@20.8.3)(encoding@0.1.13)(ioredis@5.3.2)(picomatch@2.3.1)
+        specifier: 17.23.2
+        version: 17.23.2(@types/node@20.8.3)(encoding@0.1.13)(ioredis@5.3.2)(picomatch@2.3.1)
       nuxt:
         specifier: 3.11.2
         version: 3.11.2(@netlify/blobs@7.3.0)(@parcel/watcher@2.4.1)(@types/node@20.8.3)(@unocss/reset@0.59.3)(encoding@0.1.13)(eslint@8.57.0)(floating-vue@5.2.2(@nuxt/kit@3.11.2(rollup@4.14.3))(vue@3.4.23(typescript@5.2.2)))(ioredis@5.3.2)(jwt-decode@3.1.2)(optionator@0.9.3)(rollup@4.14.3)(sass@1.77.0)(stylelint@16.5.0(typescript@5.2.2))(terser@5.21.0)(typescript@5.2.2)(unocss@0.59.3(postcss@8.4.38)(rollup@4.14.3)(vite@5.2.9(@types/node@20.8.3)(sass@1.77.0)(terser@5.21.0)))(vite@5.2.9(@types/node@20.8.3)(sass@1.77.0)(terser@5.21.0))(vue-tsc@2.0.16(typescript@5.2.2))
@@ -3142,20 +3142,12 @@ packages:
     resolution: {integrity: sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==}
     engines: {node: '>=10'}
 
-  chalk@5.2.0:
-    resolution: {integrity: sha512-ree3Gqw/nazQAPuJJEy+avdl7QfZMcUvmHIKgEZkGL+xOBzRvup5Hxo6LHuMceSxOabuJLJm5Yp/92R9eMmMvA==}
-    engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
-
   chalk@5.3.0:
     resolution: {integrity: sha512-dLitG79d+GV1Nb/VYcCDFivJeK1hiukt9QjRNVOsUtTy1rR1YJsmpGGTZ3qJos+uw7WmWF4wUwBd9jxjocFC2w==}
     engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
 
   chardet@0.7.0:
     resolution: {integrity: sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==}
-
-  chokidar@3.5.3:
-    resolution: {integrity: sha512-Dr3sfKRP6oTcjf2JmUmFJfeVMvXBdegxB0iVQ5eb2V10uFJUCAS8OByZdVAyVb8xXNz3GjjTgj9kLWsZTqE6kw==}
-    engines: {node: '>= 8.10.0'}
 
   chokidar@3.6.0:
     resolution: {integrity: sha512-7VT13fmjotKpGipCW9JEQAusEPE+Ei8nl6/g4FBAmIm0GOOLMua9NDDo/DWp0ZAxCr3cPq5ZpBqmPAQgDda2Pw==}
@@ -5814,8 +5806,8 @@ packages:
   nested-error-stacks@2.1.1:
     resolution: {integrity: sha512-9iN1ka/9zmX1ZvLV9ewJYEk9h7RyRRtqdK0woXcqohu8EWIerfPUjYJPg0ULy0UqP7cslmdGc8xKDJcojlKiaw==}
 
-  netlify-cli@17.23.1:
-    resolution: {integrity: sha512-MISg7qb1wVP0umvB0Tn6KhZUIB/HPph0w1OzzV4DP+Mm0MS+/t0wqzcYx0WJeLdJsLzywq2lfL2smttQz/6lwQ==}
+  netlify-cli@17.23.2:
+    resolution: {integrity: sha512-C/9gr4Gx5v4oONlzMGtk898AA6hIqe26XN4Fmbz537JIAIeJF86NoePljS4ukIlMu+5Kzr4J7maeDBhHVfRX1w==}
     engines: {node: '>=18.14.0'}
     hasBin: true
 
@@ -12504,23 +12496,9 @@ snapshots:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
 
-  chalk@5.2.0: {}
-
   chalk@5.3.0: {}
 
   chardet@0.7.0: {}
-
-  chokidar@3.5.3:
-    dependencies:
-      anymatch: 3.1.3
-      braces: 3.0.2
-      glob-parent: 5.1.2
-      is-binary-path: 2.1.0
-      is-glob: 4.0.3
-      normalize-path: 3.0.0
-      readdirp: 3.6.0
-    optionalDependencies:
-      fsevents: 2.3.3
 
   chokidar@3.6.0:
     dependencies:
@@ -15463,7 +15441,7 @@ snapshots:
 
   nested-error-stacks@2.1.1: {}
 
-  netlify-cli@17.23.1(@types/node@20.8.3)(encoding@0.1.13)(ioredis@5.3.2)(picomatch@2.3.1):
+  netlify-cli@17.23.2(@types/node@20.8.3)(encoding@0.1.13)(ioredis@5.3.2)(picomatch@2.3.1):
     dependencies:
       '@bugsnag/js': 7.22.7
       '@fastify/static': 6.12.0
@@ -15484,8 +15462,8 @@ snapshots:
       backoff: 2.5.0
       better-opn: 3.0.2
       boxen: 7.1.1
-      chalk: 5.2.0
-      chokidar: 3.5.3
+      chalk: 5.3.0
+      chokidar: 3.6.0
       ci-info: 3.8.0
       clean-deep: 3.4.0
       commander: 10.0.1
