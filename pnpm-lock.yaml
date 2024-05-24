@@ -30,8 +30,8 @@ importers:
         specifier: 14.1.0
         version: 14.1.0
       netlify-cli:
-        specifier: 17.23.7
-        version: 17.23.7(@types/node@20.8.3)(encoding@0.1.13)(ioredis@5.3.2)(picomatch@2.3.1)
+        specifier: 17.23.8
+        version: 17.23.8(@types/node@20.8.3)(encoding@0.1.13)(ioredis@5.3.2)(picomatch@2.3.1)
       nuxt:
         specifier: 3.11.2
         version: 3.11.2(@netlify/blobs@7.3.0)(@parcel/watcher@2.4.1)(@types/node@20.8.3)(@unocss/reset@0.59.3)(encoding@0.1.13)(eslint@8.57.0)(floating-vue@5.2.2(@nuxt/kit@3.11.2(rollup@4.14.3))(vue@3.4.23(typescript@5.2.2)))(ioredis@5.3.2)(jwt-decode@4.0.0)(optionator@0.9.3)(rollup@4.14.3)(sass@1.77.2)(stylelint@16.6.0(typescript@5.2.2))(terser@5.21.0)(typescript@5.2.2)(unocss@0.59.3(postcss@8.4.38)(rollup@4.14.3)(vite@5.2.9(@types/node@20.8.3)(sass@1.77.2)(terser@5.21.0)))(vite@5.2.9(@types/node@20.8.3)(sass@1.77.2)(terser@5.21.0))(vue-tsc@2.0.19(typescript@5.2.2))
@@ -5740,8 +5740,8 @@ packages:
   nested-error-stacks@2.1.1:
     resolution: {integrity: sha512-9iN1ka/9zmX1ZvLV9ewJYEk9h7RyRRtqdK0woXcqohu8EWIerfPUjYJPg0ULy0UqP7cslmdGc8xKDJcojlKiaw==}
 
-  netlify-cli@17.23.7:
-    resolution: {integrity: sha512-U63+72a2aWeez5HkcThoWq4WHQSu5QoJsdMHkKO9DhDg+5XnM+rVkWpL++NO66edrJXWNOfR3QUsCiKHYFhBZA==}
+  netlify-cli@17.23.8:
+    resolution: {integrity: sha512-13eynAnJkhTK9RZMe7L+DRBnC2lJi2jBPsqIojN2ecblJkersunRNfHbo+aXSj2sgImDyGj+bTtFH791h2AUlg==}
     engines: {node: '>=18.14.0'}
     hasBin: true
 
@@ -15084,7 +15084,7 @@ snapshots:
 
   nested-error-stacks@2.1.1: {}
 
-  netlify-cli@17.23.7(@types/node@20.8.3)(encoding@0.1.13)(ioredis@5.3.2)(picomatch@2.3.1):
+  netlify-cli@17.23.8(@types/node@20.8.3)(encoding@0.1.13)(ioredis@5.3.2)(picomatch@2.3.1):
     dependencies:
       '@bugsnag/js': 7.23.0
       '@fastify/static': 7.0.4
@@ -16411,7 +16411,7 @@ snapshots:
   postcss@8.4.31:
     dependencies:
       nanoid: 3.3.7
-      picocolors: 1.0.0
+      picocolors: 1.0.1
       source-map-js: 1.2.0
 
   postcss@8.4.38:
@@ -17404,7 +17404,7 @@ snapshots:
       css-tree: 2.3.1
       css-what: 6.1.0
       csso: 5.0.5
-      picocolors: 1.0.0
+      picocolors: 1.0.1
 
   system-architecture@0.1.0: {}
 
