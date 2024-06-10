@@ -21,8 +21,8 @@ importers:
         specifier: 5.15.0
         version: 5.15.0(prisma@5.15.0)
       '@vuepic/vue-datepicker':
-        specifier: 8.7.0
-        version: 8.7.0(vue@3.4.23(typescript@5.2.2))
+        specifier: 8.8.0
+        version: 8.8.0(vue@3.4.23(typescript@5.2.2))
       '@xmldom/xmldom':
         specifier: 0.8.10
         version: 0.8.10
@@ -1257,6 +1257,7 @@ packages:
   '@humanwhocodes/config-array@0.11.14':
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}
     engines: {node: '>=10.10.0'}
+    deprecated: Use @eslint/config-array instead
 
   '@humanwhocodes/module-importer@1.0.1':
     resolution: {integrity: sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA==}
@@ -1268,6 +1269,7 @@ packages:
 
   '@humanwhocodes/object-schema@2.0.2':
     resolution: {integrity: sha512-6EwiSjwWYP7pTckG6I5eyFANjPhmPjUX9JRLUSfNPC7FX7zK9gyZAfUEaECL6ALTpGX5AjnBq3C9XmVWPitNpw==}
+    deprecated: Use @eslint/object-schema instead
 
   '@iarna/toml@2.2.5':
     resolution: {integrity: sha512-trnsAYxU3xnS1gPHPyU961coFyLkh4gAD/0zQ5mymY4yOZ+CYvsPqUbOFSw0aDM4y0tV7tiFxL/1XfXPNC6IPg==}
@@ -2885,8 +2887,8 @@ packages:
   '@vue/shared@3.4.23':
     resolution: {integrity: sha512-wBQ0gvf+SMwsCQOyusNw/GoXPV47WGd1xB5A1Pgzy0sQ3Bi5r5xm3n+92y3gCnB3MWqnRDdvfkRGxhKtbBRNgg==}
 
-  '@vuepic/vue-datepicker@8.7.0':
-    resolution: {integrity: sha512-EqL51GdaRg6AExVuPCOmnO81n9+oLqgTi+LlST44TwU0UcX0UfefHx1HXwV948fAqBgj0ESgTyDvjXx7EFFL2A==}
+  '@vuepic/vue-datepicker@8.8.0':
+    resolution: {integrity: sha512-I9c0EBF+zsCXEGRM/2D8M8N3Jafr0/KftxdLqbbn2DZ1RfVDefUrWZaGDrp8XwWfowEw7963ES59NPKC+nkgdA==}
     engines: {node: '>=18.12.0'}
     peerDependencies:
       vue: '>=3.2.0'
@@ -12138,7 +12140,7 @@ snapshots:
 
   '@vue/shared@3.4.23': {}
 
-  '@vuepic/vue-datepicker@8.7.0(vue@3.4.23(typescript@5.2.2))':
+  '@vuepic/vue-datepicker@8.8.0(vue@3.4.23(typescript@5.2.2))':
     dependencies:
       date-fns: 3.6.0
       vue: 3.4.23(typescript@5.2.2)
