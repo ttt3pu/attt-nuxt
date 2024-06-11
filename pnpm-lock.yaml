@@ -86,13 +86,13 @@ importers:
         version: 2.0.6(rollup@4.14.3)
       nuxt-typed-router:
         specifier: 3.6.3
-        version: 3.6.3(prettier@3.3.1)(rollup@4.14.3)
+        version: 3.6.3(prettier@3.3.2)(rollup@4.14.3)
       pinia:
         specifier: 2.1.7
         version: 2.1.7(typescript@5.2.2)(vue@3.4.23(typescript@5.2.2))
       prettier:
-        specifier: 3.3.1
-        version: 3.3.1
+        specifier: 3.3.2
+        version: 3.3.2
       prisma:
         specifier: 5.15.0
         version: 5.15.0
@@ -6961,8 +6961,8 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
 
-  prettier@3.3.1:
-    resolution: {integrity: sha512-7CAwy5dRsxs8PHXT3twixW9/OEll8MLE0VRPCJyl7CkS6VHGPSlsVaWTiASPTyGyYRyApxlaWTzwUxVNrhcwDg==}
+  prettier@3.3.2:
+    resolution: {integrity: sha512-rAVeHYMcv8ATV5d508CFdn+8/pHPpXeIid1DdrPwXnaAdH7cqjVbpJaT5eq4yRAFU/lsbwYwSF/n5iNrdJHPQA==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -16266,7 +16266,7 @@ snapshots:
       - rollup
       - supports-color
 
-  nuxt-typed-router@3.6.3(prettier@3.3.1)(rollup@4.14.3):
+  nuxt-typed-router@3.6.3(prettier@3.3.2)(rollup@4.14.3):
     dependencies:
       '@nuxt/kit': 3.11.2(rollup@4.14.3)
       chalk: 5.3.0
@@ -16276,7 +16276,7 @@ snapshots:
       mkdirp: 3.0.1
       nanoid: 5.0.7
       pathe: 1.1.2
-      prettier: 3.3.1
+      prettier: 3.3.2
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -17076,7 +17076,7 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier@3.3.1: {}
+  prettier@3.3.2: {}
 
   pretty-bytes@6.1.1: {}
 
