@@ -100,8 +100,8 @@ importers:
         specifier: 1.77.6
         version: 1.77.6
       simple-icons:
-        specifier: 11.15.0
-        version: 11.15.0
+        specifier: 12.4.0
+        version: 12.4.0
       stylelint:
         specifier: 16.6.1
         version: 16.6.1(typescript@5.2.2)
@@ -7543,8 +7543,8 @@ packages:
   simple-git@3.24.0:
     resolution: {integrity: sha512-QqAKee9Twv+3k8IFOFfPB2hnk6as6Y6ACUpwCtQvRYBAes23Wv3SZlHVobAzqcE8gfsisCvPw3HGW3HYM+VYYw==}
 
-  simple-icons@11.15.0:
-    resolution: {integrity: sha512-uDAdtIGc56YJiGpdzImENY4E+5qtHEorW11KoXiwDj4u4YSY74G+q/a9idlY8iEqrjghHGkZ/ras0jRT7JpDTQ==}
+  simple-icons@12.4.0:
+    resolution: {integrity: sha512-2uL8PHFDyBLQGhZsAvYcaHqm5KjNzIepPshTLZky9Dc6HgPFI83SAVC8of3KYtr+7O8zJggrGYTxyUu/9hyYgA==}
     engines: {node: '>=0.12.18'}
 
   simple-swizzle@0.2.2:
@@ -17876,7 +17876,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  simple-icons@11.15.0: {}
+  simple-icons@12.4.0: {}
 
   simple-swizzle@0.2.2:
     dependencies:
