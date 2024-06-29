@@ -30,7 +30,7 @@
     "markdown-it": "14.1.0",
     "netlify-cli": "17.30.0",
     "nuxt": "3.12.2",
-    "postcss": "8.4.38",
+    "postcss": "8.4.39",
     "postcss-html": "1.7.0",
     "vue-toast-notification": "3.1.2"
   },
@@ -50,7 +50,7 @@
     "nuxt-gtag": "2.0.6",
     "nuxt-typed-router": "3.6.5",
     "pinia": "2.1.7",
-    "postcss": "8.4.38",
+    "postcss": "8.4.39",
     "prettier": "3.3.2",
     "prisma": "5.16.1",
     "sass": "1.77.6",
