@@ -30,11 +30,11 @@ importers:
         specifier: 14.1.0
         version: 14.1.0
       netlify-cli:
-        specifier: 17.33.1
-        version: 17.33.1(@types/node@20.8.3)(encoding@0.1.13)(ioredis@5.4.1)(picomatch@2.3.1)
+        specifier: 17.33.2
+        version: 17.33.2(@types/node@20.8.3)(encoding@0.1.13)(ioredis@5.4.1)(picomatch@2.3.1)
       nuxt:
         specifier: 3.12.3
-        version: 3.12.3(@netlify/blobs@7.3.0)(@opentelemetry/api@1.8.0)(@parcel/watcher@2.4.1)(@types/node@20.8.3)(encoding@0.1.13)(eslint@8.57.0)(ioredis@5.4.1)(magicast@0.3.4)(optionator@0.9.3)(rollup@4.18.0)(sass@1.77.7)(stylelint@16.6.1(typescript@5.2.2))(terser@5.21.0)(typescript@5.2.2)(vite@5.3.2(@types/node@20.8.3)(sass@1.77.7)(terser@5.21.0))(vue-tsc@2.0.26(typescript@5.2.2))
+        version: 3.12.3(@netlify/blobs@7.4.0)(@opentelemetry/api@1.8.0)(@parcel/watcher@2.4.1)(@types/node@20.8.3)(encoding@0.1.13)(eslint@8.57.0)(ioredis@5.4.1)(magicast@0.3.4)(optionator@0.9.3)(rollup@4.18.0)(sass@1.77.7)(stylelint@16.6.1(typescript@5.2.2))(terser@5.21.0)(typescript@5.2.2)(vite@5.3.2(@types/node@20.8.3)(sass@1.77.7)(terser@5.21.0))(vue-tsc@2.0.26(typescript@5.2.2))
       postcss:
         specifier: 8.4.39
         version: 8.4.39
@@ -62,7 +62,7 @@ importers:
         version: 0.5.1(rollup@4.18.0)(typescript@5.2.2)(vue@3.4.31(typescript@5.2.2))
       '@sidebase/nuxt-auth':
         specifier: 0.6.7
-        version: 0.6.7(@netlify/blobs@7.3.0)(encoding@0.1.13)(next-auth@4.22.5(next@13.5.6(@babel/core@7.24.7)(@opentelemetry/api@1.8.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.77.7))(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(rollup@4.18.0)(vue@3.4.31(typescript@5.2.2))
+        version: 0.6.7(@netlify/blobs@7.4.0)(encoding@0.1.13)(next-auth@4.22.5(next@13.5.6(@babel/core@7.24.7)(@opentelemetry/api@1.8.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.77.7))(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(rollup@4.18.0)(vue@3.4.31(typescript@5.2.2))
       '@types/markdown-it':
         specifier: 14.1.1
         version: 14.1.1
@@ -1410,21 +1410,17 @@ packages:
   '@netlify/binary-info@1.0.0':
     resolution: {integrity: sha512-4wMPu9iN3/HL97QblBsBay3E1etIciR84izI3U+4iALY+JHCrI+a2jO0qbAZ/nxKoegypYEaiiqWXylm+/zfrw==}
 
-  '@netlify/blobs@7.3.0':
-    resolution: {integrity: sha512-wN/kNTZo4xjlUM/C0WILOkJbe8p4AFquSGkZEIoIcgnsx5ikp2GyqGiq1WMLee7QdbnqeIV2g2hn/PjT324E5w==}
-    engines: {node: ^14.16.0 || >=16.0.0}
-
   '@netlify/blobs@7.4.0':
     resolution: {integrity: sha512-7rdPzo8bggt3D2CVO+U1rmEtxxs8X7cLusDbHZRJaMlxqxBD05mXgThj5DUJMFOvmfVjhEH/S/3AyiLUbDQGDg==}
     engines: {node: ^14.16.0 || >=16.0.0}
 
-  '@netlify/build-info@7.14.0':
-    resolution: {integrity: sha512-Z7kh5z8boT+TAqCgEyauXnegPqjCSV0mustiUUwQkZary68wGQZiYzNqHD2v545iT9MqbRqd/hv+z9NsU3uruA==}
+  '@netlify/build-info@7.14.1':
+    resolution: {integrity: sha512-0FhHK8+v80pDt0hkN4s5+sFUL5OF8bVU4bqwqDx04NiSQ/jOUSwCZ70F5MHkbvjuqf4RoP0vVKqrvIB3EP0wyA==}
     engines: {node: ^14.16.0 || >=16.0.0}
     hasBin: true
 
-  '@netlify/build@29.50.6':
-    resolution: {integrity: sha512-uTrK/gN3xWGlXQY0A0LRrfTFX8F9WxsmyBb8T8j9A0pg8WY0aMmGnIi1/OJXbjPfulcKJevvrygwz+sz/311vg==}
+  '@netlify/build@29.51.0':
+    resolution: {integrity: sha512-x5DojkFzcSL7LfRv5nSP57NqIDnaTIxoAXp+m0/2Oyae8raXLtj49oavZBRaKAoeK32UFmgq+uNy7LxlKlLtWA==}
     engines: {node: ^14.16.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
@@ -1438,8 +1434,8 @@ packages:
     resolution: {integrity: sha512-lMNdFmy2Yu3oVquSPooRDLxJ8QOsIX6X6vzA2pKz/9V2LQFJiqBukggXM+Rnqzk1regPpdJ0jK3dPGvOKaRQgg==}
     engines: {node: ^14.16.0 || >=16.0.0}
 
-  '@netlify/config@20.16.0':
-    resolution: {integrity: sha512-+373pOiNplb5hPbSaTOBCHB2F5VMcBSgiJ6f4UcdXFsEOGtFzAhRafziOLDrIcsUTjGCmQrEp6dgfkljq8zKzg==}
+  '@netlify/config@20.17.0':
+    resolution: {integrity: sha512-sws+WVno3fq2YtHO23TO5tkNO4TzXZJepU8+9sCJkTBR2/DfNBMqVVxPoEXpl+p1Knqv/BVklTAQk/ny4oNM5A==}
     engines: {node: ^14.16.0 || >=16.0.0}
     hasBin: true
 
@@ -5934,8 +5930,8 @@ packages:
   nested-error-stacks@2.1.1:
     resolution: {integrity: sha512-9iN1ka/9zmX1ZvLV9ewJYEk9h7RyRRtqdK0woXcqohu8EWIerfPUjYJPg0ULy0UqP7cslmdGc8xKDJcojlKiaw==}
 
-  netlify-cli@17.33.1:
-    resolution: {integrity: sha512-SlmsjB6/RyQ/bBZr6tmDg/GT+5Y9GUEJNcODk3FgT4m5Y0ydBCZjlGBwEdodqohe7jO8ScpS5FLwuNNOrW4OPg==}
+  netlify-cli@17.33.2:
+    resolution: {integrity: sha512-JYZGnNyEmMqOkj2zKGPgyvB3BBNt+jBJq3EDtCVsSWKvO2xQ/wwaI0Rv30oM3JRavrZl/52qW8jGZ3wjHzJ09w==}
     engines: {node: '>=18.14.0'}
     hasBin: true
 
@@ -9526,11 +9522,9 @@ snapshots:
 
   '@netlify/binary-info@1.0.0': {}
 
-  '@netlify/blobs@7.3.0': {}
-
   '@netlify/blobs@7.4.0': {}
 
-  '@netlify/build-info@7.14.0':
+  '@netlify/build-info@7.14.1':
     dependencies:
       '@bugsnag/js': 7.23.0
       '@iarna/toml': 2.2.5
@@ -9542,12 +9536,12 @@ snapshots:
       yaml: 2.4.5
       yargs: 17.7.2
 
-  '@netlify/build@29.50.6(@opentelemetry/api@1.8.0)(@types/node@20.8.3)(encoding@0.1.13)(picomatch@2.3.1)':
+  '@netlify/build@29.51.0(@opentelemetry/api@1.8.0)(@types/node@20.8.3)(encoding@0.1.13)(picomatch@2.3.1)':
     dependencies:
       '@bugsnag/js': 7.23.0
       '@netlify/blobs': 7.4.0
       '@netlify/cache-utils': 5.1.5
-      '@netlify/config': 20.16.0
+      '@netlify/config': 20.17.0
       '@netlify/edge-bundler': 12.2.1(encoding@0.1.13)(supports-color@9.4.0)
       '@netlify/framework-info': 9.8.13
       '@netlify/functions-utils': 5.2.73(encoding@0.1.13)(supports-color@9.4.0)
@@ -9621,7 +9615,7 @@ snapshots:
       path-exists: 5.0.0
       readdirp: 3.6.0
 
-  '@netlify/config@20.16.0':
+  '@netlify/config@20.17.0':
     dependencies:
       '@iarna/toml': 2.2.5
       chalk: 5.3.0
@@ -10994,7 +10988,7 @@ snapshots:
 
   '@rushstack/eslint-patch@1.10.3': {}
 
-  '@sidebase/nuxt-auth@0.6.7(@netlify/blobs@7.3.0)(encoding@0.1.13)(next-auth@4.22.5(next@13.5.6(@babel/core@7.24.7)(@opentelemetry/api@1.8.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.77.7))(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(rollup@4.18.0)(vue@3.4.31(typescript@5.2.2))':
+  '@sidebase/nuxt-auth@0.6.7(@netlify/blobs@7.4.0)(encoding@0.1.13)(next-auth@4.22.5(next@13.5.6(@babel/core@7.24.7)(@opentelemetry/api@1.8.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.77.7))(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(rollup@4.18.0)(vue@3.4.31(typescript@5.2.2))':
     dependencies:
       '@nuxt/kit': 3.10.2(rollup@4.18.0)
       '@vueuse/core': 9.13.0(vue@3.4.31(typescript@5.2.2))
@@ -11002,7 +10996,7 @@ snapshots:
       h3: 1.10.1
       knitwork: 1.0.0
       next-auth: 4.22.5(next@13.5.6(@babel/core@7.24.7)(@opentelemetry/api@1.8.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.77.7))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      nitropack: 2.8.1(@netlify/blobs@7.3.0)(encoding@0.1.13)
+      nitropack: 2.8.1(@netlify/blobs@7.4.0)(encoding@0.1.13)
       requrl: 3.0.2
       ufo: 1.4.0
     transitivePeerDependencies:
@@ -14331,7 +14325,7 @@ snapshots:
 
   ipaddr.js@1.9.1: {}
 
-  ipx@2.1.0(@netlify/blobs@7.3.0)(ioredis@5.4.1):
+  ipx@2.1.0(@netlify/blobs@7.4.0)(ioredis@5.4.1):
     dependencies:
       '@fastify/accept-negotiator': 1.1.0
       citty: 0.1.6
@@ -14347,7 +14341,7 @@ snapshots:
       sharp: 0.32.6
       svgo: 3.3.2
       ufo: 1.5.3
-      unstorage: 1.10.2(@netlify/blobs@7.3.0)(ioredis@5.4.1)
+      unstorage: 1.10.2(@netlify/blobs@7.4.0)(ioredis@5.4.1)
       xss: 1.0.14
     transitivePeerDependencies:
       - '@azure/app-configuration'
@@ -15136,14 +15130,14 @@ snapshots:
 
   nested-error-stacks@2.1.1: {}
 
-  netlify-cli@17.33.1(@types/node@20.8.3)(encoding@0.1.13)(ioredis@5.4.1)(picomatch@2.3.1):
+  netlify-cli@17.33.2(@types/node@20.8.3)(encoding@0.1.13)(ioredis@5.4.1)(picomatch@2.3.1):
     dependencies:
       '@bugsnag/js': 7.23.0
       '@fastify/static': 7.0.4
-      '@netlify/blobs': 7.3.0
-      '@netlify/build': 29.50.6(@opentelemetry/api@1.8.0)(@types/node@20.8.3)(encoding@0.1.13)(picomatch@2.3.1)
-      '@netlify/build-info': 7.14.0
-      '@netlify/config': 20.16.0
+      '@netlify/blobs': 7.4.0
+      '@netlify/build': 29.51.0(@opentelemetry/api@1.8.0)(@types/node@20.8.3)(encoding@0.1.13)(picomatch@2.3.1)
+      '@netlify/build-info': 7.14.1
+      '@netlify/config': 20.17.0
       '@netlify/edge-bundler': 12.2.1(encoding@0.1.13)(supports-color@9.4.0)
       '@netlify/edge-functions': 2.9.0
       '@netlify/local-functions-proxy': 1.1.1
@@ -15197,7 +15191,7 @@ snapshots:
       https-proxy-agent: 7.0.5
       inquirer: 6.5.2
       inquirer-autocomplete-prompt: 1.4.0(inquirer@6.5.2)
-      ipx: 2.1.0(@netlify/blobs@7.3.0)(ioredis@5.4.1)
+      ipx: 2.1.0(@netlify/blobs@7.4.0)(ioredis@5.4.1)
       is-docker: 3.0.0
       is-stream: 4.0.1
       is-wsl: 3.1.0
@@ -15347,7 +15341,7 @@ snapshots:
       - '@babel/core'
       - babel-plugin-macros
 
-  nitropack@2.8.1(@netlify/blobs@7.3.0)(encoding@0.1.13):
+  nitropack@2.8.1(@netlify/blobs@7.4.0)(encoding@0.1.13):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.3.0
       '@netlify/functions': 2.6.0
@@ -15412,7 +15406,7 @@ snapshots:
       unctx: 2.3.1
       unenv: 1.9.0
       unimport: 3.7.1(rollup@4.12.0)
-      unstorage: 1.10.1(@netlify/blobs@7.3.0)
+      unstorage: 1.10.1(@netlify/blobs@7.4.0)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -15430,7 +15424,7 @@ snapshots:
       - supports-color
       - uWebSockets.js
 
-  nitropack@2.9.7(@netlify/blobs@7.3.0)(@opentelemetry/api@1.8.0)(encoding@0.1.13)(magicast@0.3.4):
+  nitropack@2.9.7(@netlify/blobs@7.4.0)(@opentelemetry/api@1.8.0)(encoding@0.1.13)(magicast@0.3.4):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.3.4
       '@netlify/functions': 2.8.0(@opentelemetry/api@1.8.0)
@@ -15496,7 +15490,7 @@ snapshots:
       unctx: 2.3.1
       unenv: 1.9.0
       unimport: 3.7.2(rollup@4.18.0)
-      unstorage: 1.10.2(@netlify/blobs@7.3.0)(ioredis@5.4.1)
+      unstorage: 1.10.2(@netlify/blobs@7.4.0)(ioredis@5.4.1)
       unwasm: 0.3.9
     transitivePeerDependencies:
       - '@azure/app-configuration'
@@ -15657,7 +15651,7 @@ snapshots:
       - rollup
       - supports-color
 
-  nuxt@3.12.3(@netlify/blobs@7.3.0)(@opentelemetry/api@1.8.0)(@parcel/watcher@2.4.1)(@types/node@20.8.3)(encoding@0.1.13)(eslint@8.57.0)(ioredis@5.4.1)(magicast@0.3.4)(optionator@0.9.3)(rollup@4.18.0)(sass@1.77.7)(stylelint@16.6.1(typescript@5.2.2))(terser@5.21.0)(typescript@5.2.2)(vite@5.3.2(@types/node@20.8.3)(sass@1.77.7)(terser@5.21.0))(vue-tsc@2.0.26(typescript@5.2.2)):
+  nuxt@3.12.3(@netlify/blobs@7.4.0)(@opentelemetry/api@1.8.0)(@parcel/watcher@2.4.1)(@types/node@20.8.3)(encoding@0.1.13)(eslint@8.57.0)(ioredis@5.4.1)(magicast@0.3.4)(optionator@0.9.3)(rollup@4.18.0)(sass@1.77.7)(stylelint@16.6.1(typescript@5.2.2))(terser@5.21.0)(typescript@5.2.2)(vite@5.3.2(@types/node@20.8.3)(sass@1.77.7)(terser@5.21.0))(vue-tsc@2.0.26(typescript@5.2.2)):
     dependencies:
       '@nuxt/devalue': 2.0.2
       '@nuxt/devtools': 1.3.9(rollup@4.18.0)(vite@5.3.2(@types/node@20.8.3)(sass@1.77.7)(terser@5.21.0))
@@ -15690,7 +15684,7 @@ snapshots:
       knitwork: 1.1.0
       magic-string: 0.30.10
       mlly: 1.7.1
-      nitropack: 2.9.7(@netlify/blobs@7.3.0)(@opentelemetry/api@1.8.0)(encoding@0.1.13)(magicast@0.3.4)
+      nitropack: 2.9.7(@netlify/blobs@7.4.0)(@opentelemetry/api@1.8.0)(encoding@0.1.13)(magicast@0.3.4)
       nuxi: 3.12.0
       nypm: 0.3.9
       ofetch: 1.3.4
@@ -15711,7 +15705,7 @@ snapshots:
       unimport: 3.7.2(rollup@4.18.0)
       unplugin: 1.11.0
       unplugin-vue-router: 0.10.0(rollup@4.18.0)(vue-router@4.4.0(vue@3.4.31(typescript@5.2.2)))(vue@3.4.31(typescript@5.2.2))
-      unstorage: 1.10.2(@netlify/blobs@7.3.0)(ioredis@5.4.1)
+      unstorage: 1.10.2(@netlify/blobs@7.4.0)(ioredis@5.4.1)
       untyped: 1.4.2
       vue: 3.4.31(typescript@5.2.2)
       vue-bundle-renderer: 2.1.0
@@ -17843,7 +17837,7 @@ snapshots:
       webpack-sources: 3.2.3
       webpack-virtual-modules: 0.6.1
 
-  unstorage@1.10.1(@netlify/blobs@7.3.0):
+  unstorage@1.10.1(@netlify/blobs@7.4.0):
     dependencies:
       anymatch: 3.1.3
       chokidar: 3.6.0
@@ -17857,12 +17851,12 @@ snapshots:
       ofetch: 1.3.4
       ufo: 1.5.3
     optionalDependencies:
-      '@netlify/blobs': 7.3.0
+      '@netlify/blobs': 7.4.0
     transitivePeerDependencies:
       - supports-color
       - uWebSockets.js
 
-  unstorage@1.10.2(@netlify/blobs@7.3.0)(ioredis@5.4.1):
+  unstorage@1.10.2(@netlify/blobs@7.4.0)(ioredis@5.4.1):
     dependencies:
       anymatch: 3.1.3
       chokidar: 3.6.0
@@ -17875,7 +17869,7 @@ snapshots:
       ofetch: 1.3.4
       ufo: 1.5.3
     optionalDependencies:
-      '@netlify/blobs': 7.3.0
+      '@netlify/blobs': 7.4.0
       ioredis: 5.4.1
     transitivePeerDependencies:
       - uWebSockets.js
