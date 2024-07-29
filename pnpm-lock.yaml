@@ -34,7 +34,7 @@ importers:
         version: 17.33.4(@types/node@20.8.3)(encoding@0.1.13)(ioredis@5.4.1)(picomatch@2.3.1)
       nuxt:
         specifier: 3.12.4
-        version: 3.12.4(@netlify/blobs@7.4.0)(@opentelemetry/api@1.8.0)(@parcel/watcher@2.4.1)(@types/node@20.8.3)(encoding@0.1.13)(eslint@8.57.0)(ioredis@5.4.1)(magicast@0.3.4)(optionator@0.9.3)(rollup@4.18.0)(sass@1.77.8)(stylelint@16.7.0(typescript@5.2.2))(terser@5.21.0)(typescript@5.2.2)(vite@5.3.4(@types/node@20.8.3)(sass@1.77.8)(terser@5.21.0))(vue-tsc@2.0.29(typescript@5.2.2))
+        version: 3.12.4(@netlify/blobs@7.4.0)(@opentelemetry/api@1.8.0)(@parcel/watcher@2.4.1)(@types/node@20.8.3)(encoding@0.1.13)(eslint@8.57.0)(ioredis@5.4.1)(magicast@0.3.4)(optionator@0.9.3)(rollup@4.18.0)(sass@1.77.8)(stylelint@16.8.0(typescript@5.2.2))(terser@5.21.0)(typescript@5.2.2)(vite@5.3.4(@types/node@20.8.3)(sass@1.77.8)(terser@5.21.0))(vue-tsc@2.0.29(typescript@5.2.2))
       postcss:
         specifier: 8.4.40
         version: 8.4.40
@@ -53,7 +53,7 @@ importers:
         version: 0.4.0(eslint@8.57.0)(typescript@5.2.2)
       '@nuxtjs/stylelint-module':
         specifier: 5.2.0
-        version: 5.2.0(postcss@8.4.40)(rollup@4.18.0)(stylelint@16.7.0(typescript@5.2.2))(vite@5.3.4(@types/node@20.8.3)(sass@1.77.8)(terser@5.21.0))(webpack@5.88.2)
+        version: 5.2.0(postcss@8.4.40)(rollup@4.18.0)(stylelint@16.8.0(typescript@5.2.2))(vite@5.3.4(@types/node@20.8.3)(sass@1.77.8)(terser@5.21.0))(webpack@5.88.2)
       '@nuxtjs/tailwindcss':
         specifier: 6.11.4
         version: 6.11.4(rollup@4.18.0)(ts-node@10.9.1(@types/node@20.8.3)(typescript@5.2.2))
@@ -103,17 +103,17 @@ importers:
         specifier: 11.15.0
         version: 11.15.0
       stylelint:
-        specifier: 16.7.0
-        version: 16.7.0(typescript@5.2.2)
+        specifier: 16.8.0
+        version: 16.8.0(typescript@5.2.2)
       stylelint-config-standard:
         specifier: 36.0.1
-        version: 36.0.1(stylelint@16.7.0(typescript@5.2.2))
+        version: 36.0.1(stylelint@16.8.0(typescript@5.2.2))
       stylelint-config-standard-scss:
         specifier: 13.1.0
-        version: 13.1.0(postcss@8.4.40)(stylelint@16.7.0(typescript@5.2.2))
+        version: 13.1.0(postcss@8.4.40)(stylelint@16.8.0(typescript@5.2.2))
       stylelint-scss:
         specifier: 6.4.1
-        version: 6.4.1(stylelint@16.7.0(typescript@5.2.2))
+        version: 6.4.1(stylelint@16.8.0(typescript@5.2.2))
       tsx:
         specifier: 4.16.2
         version: 4.16.2
@@ -2416,9 +2416,6 @@ packages:
   '@types/eslint@8.44.3':
     resolution: {integrity: sha512-iM/WfkwAhwmPff3wZuPLYiHX18HI24jU8k1ZSH7P8FHwxTjZ2P6CoX2wnF43oprR+YXJM6UUxATkNvyv/JHd+g==}
 
-  '@types/eslint@8.56.10':
-    resolution: {integrity: sha512-Shavhk87gCtY2fhXDctcfS3e6FdxWkCx1iUZ9eEUbh7rTqlZT0/IzOkCOVt0fCjcFuZ9FPYfuezTBImfHCDBGQ==}
-
   '@types/eslint@9.6.0':
     resolution: {integrity: sha512-gi6WQJ7cHRgZxtkQEoyHMppPjq9Kxo5Tjn2prSKDSmZrCz8TZ3jSRCeTJm+WoM+oB0WG37bRqLzaaU3q7JypGg==}
 
@@ -3783,6 +3780,15 @@ packages:
 
   debug@4.3.5:
     resolution: {integrity: sha512-pt0bNEmneDIvdL1Xsd9oDQ/wrQRkXDT4AUWlNZNPKvW5x/jyO9VFXkJUP07vQ2upmw5PlaITaPKc31jK13V+jg==}
+    engines: {node: '>=6.0'}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
+
+  debug@4.3.6:
+    resolution: {integrity: sha512-O/09Bd4Z1fBrU4VzkhFqVgpPzaGbw6Sm9FEkBT1A/YBXQFGuuSxa1dN2nxgxS34JmKXqYx8CZAwEVoJFImUXIg==}
     engines: {node: '>=6.0'}
     peerDependencies:
       supports-color: '*'
@@ -6618,6 +6624,9 @@ packages:
   postcss-resolve-nested-selector@0.1.1:
     resolution: {integrity: sha512-HvExULSwLqHLgUy1rl3ANIqCsvMS0WHss2UOsXhXnQaZ9VCc2oBvIpXrl00IUFT5ZDITME0o6oiXeiHr2SAIfw==}
 
+  postcss-resolve-nested-selector@0.1.4:
+    resolution: {integrity: sha512-R6vHqZWgVnTAPq0C+xjyHfEZqfIYboCBVSy24MjxEDm+tIh1BU4O6o7DP7AA7kHzf136d+Qc5duI4tlpHjixDw==}
+
   postcss-safe-parser@6.0.0:
     resolution: {integrity: sha512-FARHN8pwH+WiS2OPCxJI8FuRJpTVnn6ZNFiqAM2aeW2LwTHWWmWgIyKC6cUo0L8aeKiF/14MNvnpls6R2PBeMQ==}
     engines: {node: '>=12.0'}
@@ -6638,6 +6647,10 @@ packages:
 
   postcss-selector-parser@6.1.0:
     resolution: {integrity: sha512-UMz42UD0UY0EApS0ZL9o1XnLhSTtvvvLe5Dc2H2O56fvRZi+KulDyf5ctDhhtYJBGKStV2FL1fy6253cmLgqVQ==}
+    engines: {node: '>=4'}
+
+  postcss-selector-parser@6.1.1:
+    resolution: {integrity: sha512-b4dlw/9V8A71rLIDsSwVmak9z2DuBUB7CA1/wSdelNEzqsjoSPeADTWNO09lpH49Diy3/JIZ2bSPB1dI3LJCHg==}
     engines: {node: '>=4'}
 
   postcss-svgo@7.0.1:
@@ -7489,8 +7502,8 @@ packages:
       stylelint: ^13.0.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
       webpack: ^5.0.0
 
-  stylelint@16.7.0:
-    resolution: {integrity: sha512-Q1ATiXlz+wYr37a7TGsfvqYn2nSR3T/isw3IWlZQzFzCNoACHuGBb6xBplZXz56/uDRJHIygxjh7jbV/8isewA==}
+  stylelint@16.8.0:
+    resolution: {integrity: sha512-Jjr40w3PXDiJVW6c9swLM0a1e0DgDm/XkFozc4XgAcREFas+/nchzmDmeVxazbzXgpDrwm+cW6W6iGtZqYUh+g==}
     engines: {node: '>=18.12.0'}
     hasBin: true
 
@@ -7741,9 +7754,6 @@ packages:
 
   tslib@1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
-
-  tslib@2.6.2:
-    resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
 
   tslib@2.6.3:
     resolution: {integrity: sha512-xNvxJEOUiWPGhUuUdQgAJPKOOJfGnIyKySOc09XkKsgdUV/3E2zvwZYdejjmRgPCgcym1juLH3226yA7sEFJKQ==}
@@ -8778,6 +8788,10 @@ snapshots:
   '@csstools/selector-specificity@3.1.1(postcss-selector-parser@6.1.0)':
     dependencies:
       postcss-selector-parser: 6.1.0
+
+  '@csstools/selector-specificity@3.1.1(postcss-selector-parser@6.1.1)':
+    dependencies:
+      postcss-selector-parser: 6.1.1
 
   '@dabh/diagnostics@2.0.3':
     dependencies:
@@ -10085,7 +10099,7 @@ snapshots:
 
   '@nuxt/ui-templates@1.3.1': {}
 
-  '@nuxt/vite-builder@3.12.4(@types/node@20.8.3)(eslint@8.57.0)(magicast@0.3.4)(optionator@0.9.3)(rollup@4.18.0)(sass@1.77.8)(stylelint@16.7.0(typescript@5.2.2))(terser@5.21.0)(typescript@5.2.2)(vue-tsc@2.0.29(typescript@5.2.2))(vue@3.4.32(typescript@5.2.2))':
+  '@nuxt/vite-builder@3.12.4(@types/node@20.8.3)(eslint@8.57.0)(magicast@0.3.4)(optionator@0.9.3)(rollup@4.18.0)(sass@1.77.8)(stylelint@16.8.0(typescript@5.2.2))(terser@5.21.0)(typescript@5.2.2)(vue-tsc@2.0.29(typescript@5.2.2))(vue@3.4.32(typescript@5.2.2))':
     dependencies:
       '@nuxt/kit': 3.12.4(magicast@0.3.4)(rollup@4.18.0)
       '@rollup/plugin-replace': 5.0.7(rollup@4.18.0)
@@ -10118,7 +10132,7 @@ snapshots:
       unplugin: 1.11.0
       vite: 5.3.4(@types/node@20.8.3)(sass@1.77.8)(terser@5.21.0)
       vite-node: 2.0.3(@types/node@20.8.3)(sass@1.77.8)(terser@5.21.0)
-      vite-plugin-checker: 0.7.2(eslint@8.57.0)(optionator@0.9.3)(stylelint@16.7.0(typescript@5.2.2))(typescript@5.2.2)(vite@5.3.4(@types/node@20.8.3)(sass@1.77.8)(terser@5.21.0))(vue-tsc@2.0.29(typescript@5.2.2))
+      vite-plugin-checker: 0.7.2(eslint@8.57.0)(optionator@0.9.3)(stylelint@16.8.0(typescript@5.2.2))(typescript@5.2.2)(vite@5.3.4(@types/node@20.8.3)(sass@1.77.8)(terser@5.21.0))(vue-tsc@2.0.29(typescript@5.2.2))
       vue: 3.4.32(typescript@5.2.2)
       vue-bundle-renderer: 2.1.0
     transitivePeerDependencies:
@@ -10166,14 +10180,14 @@ snapshots:
       - rollup
       - supports-color
 
-  '@nuxtjs/stylelint-module@5.2.0(postcss@8.4.40)(rollup@4.18.0)(stylelint@16.7.0(typescript@5.2.2))(vite@5.3.4(@types/node@20.8.3)(sass@1.77.8)(terser@5.21.0))(webpack@5.88.2)':
+  '@nuxtjs/stylelint-module@5.2.0(postcss@8.4.40)(rollup@4.18.0)(stylelint@16.8.0(typescript@5.2.2))(vite@5.3.4(@types/node@20.8.3)(sass@1.77.8)(terser@5.21.0))(webpack@5.88.2)':
     dependencies:
       '@nuxt/kit': 3.10.2(rollup@4.18.0)
       chokidar: 3.6.0
       pathe: 1.1.2
-      stylelint: 16.7.0(typescript@5.2.2)
-      stylelint-webpack-plugin: 5.0.0(stylelint@16.7.0(typescript@5.2.2))(webpack@5.88.2)
-      vite-plugin-stylelint: 5.3.1(postcss@8.4.40)(rollup@4.18.0)(stylelint@16.7.0(typescript@5.2.2))(vite@5.3.4(@types/node@20.8.3)(sass@1.77.8)(terser@5.21.0))
+      stylelint: 16.8.0(typescript@5.2.2)
+      stylelint-webpack-plugin: 5.0.0(stylelint@16.8.0(typescript@5.2.2))(webpack@5.88.2)
+      vite-plugin-stylelint: 5.3.1(postcss@8.4.40)(rollup@4.18.0)(stylelint@16.8.0(typescript@5.2.2))(vite@5.3.4(@types/node@20.8.3)(sass@1.77.8)(terser@5.21.0))
     transitivePeerDependencies:
       - '@types/stylelint'
       - postcss
@@ -10896,7 +10910,7 @@ snapshots:
 
   '@swc/helpers@0.5.2':
     dependencies:
-      tslib: 2.6.2
+      tslib: 2.6.3
 
   '@szmarczak/http-timer@5.0.1':
     dependencies:
@@ -10916,18 +10930,13 @@ snapshots:
 
   '@types/eslint-scope@3.7.5':
     dependencies:
-      '@types/eslint': 8.56.10
+      '@types/eslint': 9.6.0
       '@types/estree': 1.0.5
 
   '@types/eslint@8.44.3':
     dependencies:
       '@types/estree': 1.0.5
       '@types/json-schema': 7.0.13
-
-  '@types/eslint@8.56.10':
-    dependencies:
-      '@types/estree': 1.0.5
-      '@types/json-schema': 7.0.15
 
   '@types/eslint@9.6.0':
     dependencies:
@@ -12560,6 +12569,10 @@ snapshots:
       ms: 2.1.2
     optionalDependencies:
       supports-color: 9.4.0
+
+  debug@4.3.6:
+    dependencies:
+      ms: 2.1.2
 
   decache@4.6.2:
     dependencies:
@@ -15436,14 +15449,14 @@ snapshots:
       - rollup
       - supports-color
 
-  nuxt@3.12.4(@netlify/blobs@7.4.0)(@opentelemetry/api@1.8.0)(@parcel/watcher@2.4.1)(@types/node@20.8.3)(encoding@0.1.13)(eslint@8.57.0)(ioredis@5.4.1)(magicast@0.3.4)(optionator@0.9.3)(rollup@4.18.0)(sass@1.77.8)(stylelint@16.7.0(typescript@5.2.2))(terser@5.21.0)(typescript@5.2.2)(vite@5.3.4(@types/node@20.8.3)(sass@1.77.8)(terser@5.21.0))(vue-tsc@2.0.29(typescript@5.2.2)):
+  nuxt@3.12.4(@netlify/blobs@7.4.0)(@opentelemetry/api@1.8.0)(@parcel/watcher@2.4.1)(@types/node@20.8.3)(encoding@0.1.13)(eslint@8.57.0)(ioredis@5.4.1)(magicast@0.3.4)(optionator@0.9.3)(rollup@4.18.0)(sass@1.77.8)(stylelint@16.8.0(typescript@5.2.2))(terser@5.21.0)(typescript@5.2.2)(vite@5.3.4(@types/node@20.8.3)(sass@1.77.8)(terser@5.21.0))(vue-tsc@2.0.29(typescript@5.2.2)):
     dependencies:
       '@nuxt/devalue': 2.0.2
       '@nuxt/devtools': 1.3.9(rollup@4.18.0)(vite@5.3.4(@types/node@20.8.3)(sass@1.77.8)(terser@5.21.0))
       '@nuxt/kit': 3.12.4(magicast@0.3.4)(rollup@4.18.0)
       '@nuxt/schema': 3.12.4(rollup@4.18.0)
       '@nuxt/telemetry': 2.5.4(magicast@0.3.4)(rollup@4.18.0)
-      '@nuxt/vite-builder': 3.12.4(@types/node@20.8.3)(eslint@8.57.0)(magicast@0.3.4)(optionator@0.9.3)(rollup@4.18.0)(sass@1.77.8)(stylelint@16.7.0(typescript@5.2.2))(terser@5.21.0)(typescript@5.2.2)(vue-tsc@2.0.29(typescript@5.2.2))(vue@3.4.32(typescript@5.2.2))
+      '@nuxt/vite-builder': 3.12.4(@types/node@20.8.3)(eslint@8.57.0)(magicast@0.3.4)(optionator@0.9.3)(rollup@4.18.0)(sass@1.77.8)(stylelint@16.8.0(typescript@5.2.2))(terser@5.21.0)(typescript@5.2.2)(vue-tsc@2.0.29(typescript@5.2.2))(vue@3.4.32(typescript@5.2.2))
       '@unhead/dom': 1.9.16
       '@unhead/ssr': 1.9.16
       '@unhead/vue': 1.9.16(vue@3.4.32(typescript@5.2.2))
@@ -16122,6 +16135,8 @@ snapshots:
 
   postcss-resolve-nested-selector@0.1.1: {}
 
+  postcss-resolve-nested-selector@0.1.4: {}
+
   postcss-safe-parser@6.0.0(postcss@8.4.40):
     dependencies:
       postcss: 8.4.40
@@ -16135,6 +16150,11 @@ snapshots:
       postcss: 8.4.40
 
   postcss-selector-parser@6.1.0:
+    dependencies:
+      cssesc: 3.0.0
+      util-deprecate: 1.0.2
+
+  postcss-selector-parser@6.1.1:
     dependencies:
       cssesc: 3.0.0
       util-deprecate: 1.0.2
@@ -17004,68 +17024,68 @@ snapshots:
       postcss: 8.4.40
       postcss-selector-parser: 6.1.0
 
-  stylelint-config-recommended-scss@14.0.0(postcss@8.4.40)(stylelint@16.7.0(typescript@5.2.2)):
+  stylelint-config-recommended-scss@14.0.0(postcss@8.4.40)(stylelint@16.8.0(typescript@5.2.2)):
     dependencies:
       postcss-scss: 4.0.9(postcss@8.4.40)
-      stylelint: 16.7.0(typescript@5.2.2)
-      stylelint-config-recommended: 14.0.0(stylelint@16.7.0(typescript@5.2.2))
-      stylelint-scss: 6.4.1(stylelint@16.7.0(typescript@5.2.2))
+      stylelint: 16.8.0(typescript@5.2.2)
+      stylelint-config-recommended: 14.0.0(stylelint@16.8.0(typescript@5.2.2))
+      stylelint-scss: 6.4.1(stylelint@16.8.0(typescript@5.2.2))
     optionalDependencies:
       postcss: 8.4.40
 
-  stylelint-config-recommended@14.0.0(stylelint@16.7.0(typescript@5.2.2)):
+  stylelint-config-recommended@14.0.0(stylelint@16.8.0(typescript@5.2.2)):
     dependencies:
-      stylelint: 16.7.0(typescript@5.2.2)
+      stylelint: 16.8.0(typescript@5.2.2)
 
-  stylelint-config-recommended@14.0.1(stylelint@16.7.0(typescript@5.2.2)):
+  stylelint-config-recommended@14.0.1(stylelint@16.8.0(typescript@5.2.2)):
     dependencies:
-      stylelint: 16.7.0(typescript@5.2.2)
+      stylelint: 16.8.0(typescript@5.2.2)
 
-  stylelint-config-standard-scss@13.1.0(postcss@8.4.40)(stylelint@16.7.0(typescript@5.2.2)):
+  stylelint-config-standard-scss@13.1.0(postcss@8.4.40)(stylelint@16.8.0(typescript@5.2.2)):
     dependencies:
-      stylelint: 16.7.0(typescript@5.2.2)
-      stylelint-config-recommended-scss: 14.0.0(postcss@8.4.40)(stylelint@16.7.0(typescript@5.2.2))
-      stylelint-config-standard: 36.0.1(stylelint@16.7.0(typescript@5.2.2))
+      stylelint: 16.8.0(typescript@5.2.2)
+      stylelint-config-recommended-scss: 14.0.0(postcss@8.4.40)(stylelint@16.8.0(typescript@5.2.2))
+      stylelint-config-standard: 36.0.1(stylelint@16.8.0(typescript@5.2.2))
     optionalDependencies:
       postcss: 8.4.40
 
-  stylelint-config-standard@36.0.1(stylelint@16.7.0(typescript@5.2.2)):
+  stylelint-config-standard@36.0.1(stylelint@16.8.0(typescript@5.2.2)):
     dependencies:
-      stylelint: 16.7.0(typescript@5.2.2)
-      stylelint-config-recommended: 14.0.1(stylelint@16.7.0(typescript@5.2.2))
+      stylelint: 16.8.0(typescript@5.2.2)
+      stylelint-config-recommended: 14.0.1(stylelint@16.8.0(typescript@5.2.2))
 
-  stylelint-scss@6.4.1(stylelint@16.7.0(typescript@5.2.2)):
+  stylelint-scss@6.4.1(stylelint@16.8.0(typescript@5.2.2)):
     dependencies:
       known-css-properties: 0.34.0
       postcss-media-query-parser: 0.2.3
       postcss-resolve-nested-selector: 0.1.1
       postcss-selector-parser: 6.1.0
       postcss-value-parser: 4.2.0
-      stylelint: 16.7.0(typescript@5.2.2)
+      stylelint: 16.8.0(typescript@5.2.2)
 
-  stylelint-webpack-plugin@5.0.0(stylelint@16.7.0(typescript@5.2.2))(webpack@5.88.2):
+  stylelint-webpack-plugin@5.0.0(stylelint@16.8.0(typescript@5.2.2))(webpack@5.88.2):
     dependencies:
       globby: 11.1.0
       jest-worker: 29.7.0
       micromatch: 4.0.5
       normalize-path: 3.0.0
       schema-utils: 4.2.0
-      stylelint: 16.7.0(typescript@5.2.2)
+      stylelint: 16.8.0(typescript@5.2.2)
       webpack: 5.88.2
 
-  stylelint@16.7.0(typescript@5.2.2):
+  stylelint@16.8.0(typescript@5.2.2):
     dependencies:
       '@csstools/css-parser-algorithms': 2.7.1(@csstools/css-tokenizer@2.4.1)
       '@csstools/css-tokenizer': 2.4.1
       '@csstools/media-query-list-parser': 2.1.13(@csstools/css-parser-algorithms@2.7.1(@csstools/css-tokenizer@2.4.1))(@csstools/css-tokenizer@2.4.1)
-      '@csstools/selector-specificity': 3.1.1(postcss-selector-parser@6.1.0)
+      '@csstools/selector-specificity': 3.1.1(postcss-selector-parser@6.1.1)
       '@dual-bundle/import-meta-resolve': 4.1.0
       balanced-match: 2.0.0
       colord: 2.9.3
       cosmiconfig: 9.0.0(typescript@5.2.2)
       css-functions-list: 3.2.2
       css-tree: 2.3.1
-      debug: 4.3.5(supports-color@9.4.0)
+      debug: 4.3.6
       fast-glob: 3.3.2
       fastest-levenshtein: 1.0.16
       file-entry-cache: 9.0.0
@@ -17083,9 +17103,9 @@ snapshots:
       normalize-path: 3.0.0
       picocolors: 1.0.1
       postcss: 8.4.40
-      postcss-resolve-nested-selector: 0.1.1
+      postcss-resolve-nested-selector: 0.1.4
       postcss-safe-parser: 7.0.0(postcss@8.4.40)
-      postcss-selector-parser: 6.1.0
+      postcss-selector-parser: 6.1.1
       postcss-value-parser: 4.2.0
       resolve-from: 5.0.0
       string-width: 4.2.3
@@ -17394,8 +17414,6 @@ snapshots:
       yn: 3.1.1
 
   tslib@1.14.1: {}
-
-  tslib@2.6.2: {}
 
   tslib@2.6.3: {}
 
@@ -17785,7 +17803,7 @@ snapshots:
       - supports-color
       - terser
 
-  vite-plugin-checker@0.7.2(eslint@8.57.0)(optionator@0.9.3)(stylelint@16.7.0(typescript@5.2.2))(typescript@5.2.2)(vite@5.3.4(@types/node@20.8.3)(sass@1.77.8)(terser@5.21.0))(vue-tsc@2.0.29(typescript@5.2.2)):
+  vite-plugin-checker@0.7.2(eslint@8.57.0)(optionator@0.9.3)(stylelint@16.8.0(typescript@5.2.2))(typescript@5.2.2)(vite@5.3.4(@types/node@20.8.3)(sass@1.77.8)(terser@5.21.0))(vue-tsc@2.0.29(typescript@5.2.2)):
     dependencies:
       '@babel/code-frame': 7.24.7
       ansi-escapes: 4.3.2
@@ -17805,7 +17823,7 @@ snapshots:
     optionalDependencies:
       eslint: 8.57.0
       optionator: 0.9.3
-      stylelint: 16.7.0(typescript@5.2.2)
+      stylelint: 16.8.0(typescript@5.2.2)
       typescript: 5.2.2
       vue-tsc: 2.0.29(typescript@5.2.2)
 
@@ -17835,12 +17853,12 @@ snapshots:
       - rollup
       - supports-color
 
-  vite-plugin-stylelint@5.3.1(postcss@8.4.40)(rollup@4.18.0)(stylelint@16.7.0(typescript@5.2.2))(vite@5.3.4(@types/node@20.8.3)(sass@1.77.8)(terser@5.21.0)):
+  vite-plugin-stylelint@5.3.1(postcss@8.4.40)(rollup@4.18.0)(stylelint@16.8.0(typescript@5.2.2))(vite@5.3.4(@types/node@20.8.3)(sass@1.77.8)(terser@5.21.0)):
     dependencies:
       '@rollup/pluginutils': 5.1.0(rollup@4.18.0)
       chokidar: 3.6.0
       debug: 4.3.4
-      stylelint: 16.7.0(typescript@5.2.2)
+      stylelint: 16.8.0(typescript@5.2.2)
       vite: 5.3.4(@types/node@20.8.3)(sass@1.77.8)(terser@5.21.0)
     optionalDependencies:
       postcss: 8.4.40
@@ -17985,7 +18003,7 @@ snapshots:
       browserslist: 4.23.1
       chrome-trace-event: 1.0.3
       enhanced-resolve: 5.15.0
-      es-module-lexer: 1.3.1
+      es-module-lexer: 1.5.4
       eslint-scope: 5.1.1
       events: 3.3.0
       glob-to-regexp: 0.4.1
