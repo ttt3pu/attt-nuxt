@@ -112,8 +112,8 @@ importers:
         specifier: 13.1.0
         version: 13.1.0(postcss@8.4.40)(stylelint@16.8.1(typescript@5.2.2))
       stylelint-scss:
-        specifier: 6.4.1
-        version: 6.4.1(stylelint@16.8.1(typescript@5.2.2))
+        specifier: 6.5.0
+        version: 6.5.0(stylelint@16.8.1(typescript@5.2.2))
       tsx:
         specifier: 4.16.5
         version: 4.16.5
@@ -6612,9 +6612,6 @@ packages:
     peerDependencies:
       postcss: ^8.4.31
 
-  postcss-resolve-nested-selector@0.1.1:
-    resolution: {integrity: sha512-HvExULSwLqHLgUy1rl3ANIqCsvMS0WHss2UOsXhXnQaZ9VCc2oBvIpXrl00IUFT5ZDITME0o6oiXeiHr2SAIfw==}
-
   postcss-resolve-nested-selector@0.1.4:
     resolution: {integrity: sha512-R6vHqZWgVnTAPq0C+xjyHfEZqfIYboCBVSy24MjxEDm+tIh1BU4O6o7DP7AA7kHzf136d+Qc5duI4tlpHjixDw==}
 
@@ -6635,10 +6632,6 @@ packages:
     engines: {node: '>=12.0'}
     peerDependencies:
       postcss: ^8.4.29
-
-  postcss-selector-parser@6.1.0:
-    resolution: {integrity: sha512-UMz42UD0UY0EApS0ZL9o1XnLhSTtvvvLe5Dc2H2O56fvRZi+KulDyf5ctDhhtYJBGKStV2FL1fy6253cmLgqVQ==}
-    engines: {node: '>=4'}
 
   postcss-selector-parser@6.1.1:
     resolution: {integrity: sha512-b4dlw/9V8A71rLIDsSwVmak9z2DuBUB7CA1/wSdelNEzqsjoSPeADTWNO09lpH49Diy3/JIZ2bSPB1dI3LJCHg==}
@@ -7480,8 +7473,8 @@ packages:
     peerDependencies:
       stylelint: ^16.1.0
 
-  stylelint-scss@6.4.1:
-    resolution: {integrity: sha512-+clI2bQC2FPOt06ZwUlXZZ95IO2C5bKTP0GLN1LNQPVvISfSNcgMKv/VTwym1mK9vnqhHbOk8lO4rj4nY7L9pw==}
+  stylelint-scss@6.5.0:
+    resolution: {integrity: sha512-yOnYlr71wrTPT3rYyUurgTj6Rw7JUtzsZQsiPEjvs+k/yqoYHdweqpw6XN/ARpxjAuvJpddoMUvV8aAIpvUwTg==}
     engines: {node: '>=18.12.0'}
     peerDependencies:
       stylelint: ^16.0.2
@@ -15097,7 +15090,7 @@ snapshots:
       '@next/env': 13.5.6
       '@swc/helpers': 0.5.2
       busboy: 1.6.0
-      caniuse-lite: 1.0.30001639
+      caniuse-lite: 1.0.30001646
       postcss: 8.4.31
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -16114,8 +16107,6 @@ snapshots:
       postcss: 8.4.40
       postcss-value-parser: 4.2.0
 
-  postcss-resolve-nested-selector@0.1.1: {}
-
   postcss-resolve-nested-selector@0.1.4: {}
 
   postcss-safe-parser@6.0.0(postcss@8.4.40):
@@ -16129,11 +16120,6 @@ snapshots:
   postcss-scss@4.0.9(postcss@8.4.40):
     dependencies:
       postcss: 8.4.40
-
-  postcss-selector-parser@6.1.0:
-    dependencies:
-      cssesc: 3.0.0
-      util-deprecate: 1.0.2
 
   postcss-selector-parser@6.1.1:
     dependencies:
@@ -17010,7 +16996,7 @@ snapshots:
       postcss-scss: 4.0.9(postcss@8.4.40)
       stylelint: 16.8.1(typescript@5.2.2)
       stylelint-config-recommended: 14.0.0(stylelint@16.8.1(typescript@5.2.2))
-      stylelint-scss: 6.4.1(stylelint@16.8.1(typescript@5.2.2))
+      stylelint-scss: 6.5.0(stylelint@16.8.1(typescript@5.2.2))
     optionalDependencies:
       postcss: 8.4.40
 
@@ -17035,12 +17021,14 @@ snapshots:
       stylelint: 16.8.1(typescript@5.2.2)
       stylelint-config-recommended: 14.0.1(stylelint@16.8.1(typescript@5.2.2))
 
-  stylelint-scss@6.4.1(stylelint@16.8.1(typescript@5.2.2)):
+  stylelint-scss@6.5.0(stylelint@16.8.1(typescript@5.2.2)):
     dependencies:
+      css-tree: 2.3.1
+      is-plain-object: 5.0.0
       known-css-properties: 0.34.0
       postcss-media-query-parser: 0.2.3
-      postcss-resolve-nested-selector: 0.1.1
-      postcss-selector-parser: 6.1.0
+      postcss-resolve-nested-selector: 0.1.4
+      postcss-selector-parser: 6.1.1
       postcss-value-parser: 4.2.0
       stylelint: 16.8.1(typescript@5.2.2)
 
@@ -17981,7 +17969,7 @@ snapshots:
       '@webassemblyjs/wasm-parser': 1.11.6
       acorn: 8.12.1
       acorn-import-assertions: 1.9.0(acorn@8.12.1)
-      browserslist: 4.23.1
+      browserslist: 4.23.3
       chrome-trace-event: 1.0.3
       enhanced-resolve: 5.15.0
       es-module-lexer: 1.5.4
