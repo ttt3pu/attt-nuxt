@@ -70,8 +70,8 @@ importers:
         specifier: 10.4.20
         version: 10.4.20(postcss@8.4.41)
       dayjs:
-        specifier: 1.11.12
-        version: 1.11.12
+        specifier: 1.11.13
+        version: 1.11.13
       eslint:
         specifier: 8.57.0
         version: 8.57.0
@@ -3204,8 +3204,8 @@ packages:
     resolution: {integrity: sha512-uqCUKXE5q1PNBXjPqvwhwJf9SwMoAHBgWJ6DcrnS5o+W2JOiIILl0JEdVD8SGujrNS02GGxgwAg2PN2zONgtjg==}
     engines: {node: '>=6'}
 
-  dayjs@1.11.12:
-    resolution: {integrity: sha512-Rt2g+nTbLlDWZTwwrIXjy9MeiZmSDI375FvZs72ngxx8PDC6YXOeR3q5LAuPzjZQxhiWdRKac7RKV+YyQYfYIg==}
+  dayjs@1.11.13:
+    resolution: {integrity: sha512-oaMBel6gjolK862uaPQOVTA7q3TZhuSvuMQAAglQDOWYO9A91IrAOUJEyKVlqJlHE0vq5p5UXxzdPfMH/x6xNg==}
 
   db0@0.1.4:
     resolution: {integrity: sha512-Ft6eCwONYxlwLjBXSJxw0t0RYtA5gW9mq8JfBXn9TtC0nDPlqePAhpv9v4g9aONBi6JI1OXHTKKkUYGd+BOrCA==}
@@ -11140,7 +11140,7 @@ snapshots:
     dependencies:
       time-zone: 1.0.0
 
-  dayjs@1.11.12: {}
+  dayjs@1.11.13: {}
 
   db0@0.1.4: {}
 
