@@ -49,8 +49,8 @@ importers:
         specifier: 8.4.1
         version: 8.4.1
       '@nuxt/eslint-config':
-        specifier: 0.5.1
-        version: 0.5.1(eslint@8.57.0)(typescript@5.5.4)
+        specifier: 0.5.2
+        version: 0.5.2(eslint@8.57.0)(typescript@5.5.4)
       '@nuxtjs/stylelint-module':
         specifier: 5.2.0
         version: 5.2.0(magicast@0.3.4)(postcss@8.4.41)(rollup@4.20.0)(stylelint@16.8.2(typescript@5.5.4))(vite@5.3.5(@types/node@22.1.0)(sass@1.77.8)(terser@5.31.3))(webpack@5.93.0)
@@ -1483,13 +1483,13 @@ packages:
     peerDependencies:
       vite: '*'
 
-  '@nuxt/eslint-config@0.5.1':
-    resolution: {integrity: sha512-Z6JNHe4trtJdte3y5Fy0CueFCris/kEIbDAoY1bYum1EtOFjEhOcx6BWCrkQybzUIfPVel7YgJ4CiG9bkD3plQ==}
+  '@nuxt/eslint-config@0.5.2':
+    resolution: {integrity: sha512-InlT4s6dUaO7YGxz0J2yaW3pRiCbIPBH4Mc3OxUPFT5+BYYXASm/Os+Ssc0Ia/UDAjiofLwd0Ov+QforPOeQUg==}
     peerDependencies:
       eslint: ^8.57.0 || ^9.0.0
 
-  '@nuxt/eslint-plugin@0.5.1':
-    resolution: {integrity: sha512-erJ6bum60DTAy+nCq+oU2ZmG4kat+zhvTPvBEkA9SSnJvrHLSjTzJ/r74rgwPM5yuUfIxtujYQ6BBvwvbCBzXw==}
+  '@nuxt/eslint-plugin@0.5.2':
+    resolution: {integrity: sha512-Z7v+mVJp6ertuwyYSU5NQbPzAEjvNDI3W88jcRr6cM94SzlJCJWfgZgZtxumbISGT2SAIO4TqNC++wFxDC5Jgw==}
     peerDependencies:
       eslint: ^8.57.0 || ^9.0.0
 
@@ -9003,10 +9003,10 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@nuxt/eslint-config@0.5.1(eslint@8.57.0)(typescript@5.5.4)':
+  '@nuxt/eslint-config@0.5.2(eslint@8.57.0)(typescript@5.5.4)':
     dependencies:
       '@eslint/js': 9.9.0
-      '@nuxt/eslint-plugin': 0.5.1(eslint@8.57.0)(typescript@5.5.4)
+      '@nuxt/eslint-plugin': 0.5.2(eslint@8.57.0)(typescript@5.5.4)
       '@rushstack/eslint-patch': 1.10.4
       '@stylistic/eslint-plugin': 2.6.4(eslint@8.57.0)(typescript@5.5.4)
       '@typescript-eslint/eslint-plugin': 8.1.0(@typescript-eslint/parser@8.1.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4)
@@ -9028,7 +9028,7 @@ snapshots:
       - supports-color
       - typescript
 
-  '@nuxt/eslint-plugin@0.5.1(eslint@8.57.0)(typescript@5.5.4)':
+  '@nuxt/eslint-plugin@0.5.2(eslint@8.57.0)(typescript@5.5.4)':
     dependencies:
       '@typescript-eslint/types': 8.1.0
       '@typescript-eslint/utils': 8.1.0(eslint@8.57.0)(typescript@5.5.4)
