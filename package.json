@@ -53,7 +53,7 @@
     "postcss": "8.4.47",
     "prettier": "3.3.3",
     "prisma": "5.18.0",
-    "sass": "1.78.0",
+    "sass": "1.79.3",
     "simple-icons": "11.15.0",
     "stylelint": "16.8.2",
     "stylelint-config-standard": "36.0.1",
