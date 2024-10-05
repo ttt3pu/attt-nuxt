@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts" setup>
-import { siGithub, siTwitter, siZenn } from 'simple-icons';
+import { siGithub, siX, siZenn } from 'simple-icons';
 
 const props = defineProps({
   isActiveLogo: {
@@ -42,9 +42,9 @@ const snsItems = ref([
     href: 'https://zenn.dev/attt',
   },
   {
-    title: 'Twitter',
-    path: siTwitter.path,
-    href: 'https://twitter.com/ttt3pu',
+    title: 'X',
+    path: siX.path,
+    href: 'https://x.com/ttt3pu',
   },
 ]);
 </script>

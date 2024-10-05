@@ -44,14 +44,14 @@ import {
   siHasura,
   siTerraform,
   siPostgresql,
-  siAmazonaws,
+  siAmazonwebservices,
   siMysql,
   siPrisma,
   siNetlify,
   siVercel,
   siAwslambda,
   siNextdotjs,
-  siRenovatebot,
+  siRenovate,
   siDocker,
   siRemix,
   siExpress,
@@ -123,7 +123,7 @@ const secondaryItems = [
   },
   {
     heading: 'AWS',
-    icnData: siAmazonaws,
+    icnData: siAmazonwebservices,
   },
   {
     heading: 'Lambda',
@@ -139,7 +139,7 @@ const secondaryItems = [
   },
   {
     heading: 'Renovate',
-    icnData: siRenovatebot,
+    icnData: siRenovate,
   },
   {
     heading: 'Docker',
