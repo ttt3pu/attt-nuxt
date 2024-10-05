@@ -55,8 +55,8 @@ importers:
         specifier: 5.2.0
         version: 5.2.0(magicast@0.3.4)(postcss@8.4.47)(rollup@4.20.0)(stylelint@16.8.2(typescript@5.5.4))(vite@5.3.5(@types/node@22.1.0)(sass@1.79.4)(terser@5.31.3))(webpack@5.93.0)
       '@nuxtjs/tailwindcss':
-        specifier: 6.11.4
-        version: 6.11.4(magicast@0.3.4)(rollup@4.20.0)(ts-node@10.9.2(@types/node@22.1.0)(typescript@5.5.4))
+        specifier: 6.12.1
+        version: 6.12.1(magicast@0.3.4)(rollup@4.20.0)(ts-node@10.9.2(@types/node@22.1.0)(typescript@5.5.4))
       '@pinia/nuxt':
         specifier: 0.5.4
         version: 0.5.4(magicast@0.3.4)(rollup@4.20.0)(typescript@5.5.4)(vue@3.4.36(typescript@5.5.4))
@@ -323,28 +323,11 @@ packages:
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
     engines: {node: '>=12'}
 
-  '@csstools/cascade-layer-name-parser@1.0.13':
-    resolution: {integrity: sha512-MX0yLTwtZzr82sQ0zOjqimpZbzjMaK/h2pmlrLK7DCzlmiZLYFpoO94WmN1akRVo6ll/TdpHb53vihHLUMyvng==}
-    engines: {node: ^14 || ^16 || >=18}
-    peerDependencies:
-      '@csstools/css-parser-algorithms': ^2.7.1
-      '@csstools/css-tokenizer': ^2.4.1
-
-  '@csstools/css-parser-algorithms@2.7.1':
-    resolution: {integrity: sha512-2SJS42gxmACHgikc1WGesXLIT8d/q2l0UFM7TaEeIzdFCE/FPMtTiizcPGGJtlPo2xuQzY09OhrLTzRxqJqwGw==}
-    engines: {node: ^14 || ^16 || >=18}
-    peerDependencies:
-      '@csstools/css-tokenizer': ^2.4.1
-
   '@csstools/css-parser-algorithms@3.0.0':
     resolution: {integrity: sha512-20hEErXV9GEx15qRbsJVzB91ryayx1F2duHPBrfZXQAHz/dJG0u/611URpr28+sFjm3EI7U17Pj9SVA9NSAGJA==}
     engines: {node: '>=18'}
     peerDependencies:
       '@csstools/css-tokenizer': ^3.0.0
-
-  '@csstools/css-tokenizer@2.4.1':
-    resolution: {integrity: sha512-eQ9DIktFJBhGjioABJRtUucoWR2mwllurfnM8LuNGAqX3ViZXaUchqk+1s7jjtkFiT9ySdACsFEA3etErkALUg==}
-    engines: {node: ^14 || ^16 || >=18}
 
   '@csstools/css-tokenizer@3.0.0':
     resolution: {integrity: sha512-efZvfJyYrqH9hPCKtOBywlTsCXnEzAI9sLHFzUsDpBb+1bQ+bxJnwL9V2bRKv9w4cpIp75yxGeZRaVKoMQnsEg==}
@@ -374,12 +357,6 @@ packages:
     engines: {node: '>=18'}
     peerDependencies:
       postcss-selector-parser: ^6.1.0
-
-  '@csstools/utilities@1.0.0':
-    resolution: {integrity: sha512-tAgvZQe/t2mlvpNosA4+CkMiZ2azISW5WPAcdSalZlEjQvUfghHxfQcrCiK/7/CrfAWVxyM88kGFYO82heIGDg==}
-    engines: {node: ^14 || ^16 || >=18}
-    peerDependencies:
-      postcss: ^8.4
 
   '@dabh/diagnostics@2.0.3':
     resolution: {integrity: sha512-hrlQOIi7hAfzsMqlGSFyVucrx38O+j6wiGOf//H2ecvIEqYN4ADBSS2iLMh5UFyDunCNniUIPk/q3riFv45xRA==}
@@ -1529,8 +1506,8 @@ packages:
     peerDependencies:
       stylelint: '>=13'
 
-  '@nuxtjs/tailwindcss@6.11.4':
-    resolution: {integrity: sha512-09cksgZD4seQj054Z/BeiwFg1bzQTol8KPulLDLGnmMTkEi21vj/z+WlXQRpVbN1GS9+oU9tcSsu2ufXCM3DBg==}
+  '@nuxtjs/tailwindcss@6.12.1':
+    resolution: {integrity: sha512-UKmaPRVpxlFqLorhL6neEba2tySlsj6w6yDb7jzS6A0AAjyBQ6k3BQqWO+AaTy2iQLX7eR+1yj3/w43HzY8RtA==}
 
   '@octokit/auth-token@4.0.0':
     resolution: {integrity: sha512-tY/msAuJo6ARbK6SPIxZrPBms3xPbfwBrulZe0Wtr/DIY9lje2HeV1uoebShn6mx7SjCHif6EjMvoREj+gZ+SA==}
@@ -2830,10 +2807,6 @@ packages:
   clean-stack@4.2.0:
     resolution: {integrity: sha512-LYv6XPxoyODi36Dp976riBtSY27VmFo+MKqEU9QCCWyTrdEPDog+RWA7xQWHi6Vbp61j5c4cdzzX1NidnwtUWg==}
     engines: {node: '>=12'}
-
-  clear-module@4.1.2:
-    resolution: {integrity: sha512-LWAxzHqdHsAZlPlEyJ2Poz6AIs384mPeqLVCru2p0BrP9G/kVGuhNyZYClLO6cXlnuJjzC8xtsJIuMjKqLXoAw==}
-    engines: {node: '>=8'}
 
   clear@0.1.0:
     resolution: {integrity: sha512-qMjRnoL+JDPJHeLePZJuao6+8orzHMGP04A8CdwCNsKhRbOnKRjefxONR7bwILT3MHecxKBjHkKL/tkZ8r4Uzw==}
@@ -5616,10 +5589,6 @@ packages:
     resolution: {integrity: sha512-GQ2EWRpQV8/o+Aw8YqtfZZPfNRWZYkbidE9k5rpl/hC3vtHHBfGm2Ifi6qWV+coDGkrUKZAxE3Lot5kcsRlh+g==}
     engines: {node: '>=6'}
 
-  parent-module@2.0.0:
-    resolution: {integrity: sha512-uo0Z9JJeWzv8BG+tRcapBKNJ0dro9cLyczGzulS6EfeyAdeC9sbojtW6XwvYxJkEne9En+J2XEl4zyglVeIwFg==}
-    engines: {node: '>=8'}
-
   parse-git-config@3.0.0:
     resolution: {integrity: sha512-wXoQGL1D+2COYWCD35/xbiKma1Z15xvZL8cI25wvxzled58V51SJM04Urt/uznS900iQor7QO04SgdfT/XlbuA==}
     engines: {node: '>=8'}
@@ -5792,12 +5761,6 @@ packages:
     engines: {node: ^18.12.0 || ^20.9.0 || >=22.0}
     peerDependencies:
       postcss: ^8.4.31
-
-  postcss-custom-properties@13.3.12:
-    resolution: {integrity: sha512-oPn/OVqONB2ZLNqN185LDyaVByELAA/u3l2CS2TS16x2j2XsmV4kd8U49+TMxmUsEU9d8fB/I10E6U7kB0L1BA==}
-    engines: {node: ^14 || ^16 || >=18}
-    peerDependencies:
-      postcss: ^8.4
 
   postcss-discard-comments@7.0.1:
     resolution: {integrity: sha512-GVrQxUOhmle1W6jX2SvNLt4kmN+JYhV7mzI6BMnkAWR9DtVvg8e67rrV0NfdWhn7x1zxvzdWkMBPdBDCls+uwQ==}
@@ -5994,10 +5957,6 @@ packages:
     engines: {node: '>=12.0'}
     peerDependencies:
       postcss: ^8.4.29
-
-  postcss-selector-parser@6.1.1:
-    resolution: {integrity: sha512-b4dlw/9V8A71rLIDsSwVmak9z2DuBUB7CA1/wSdelNEzqsjoSPeADTWNO09lpH49Diy3/JIZ2bSPB1dI3LJCHg==}
-    engines: {node: '>=4'}
 
   postcss-selector-parser@6.1.2:
     resolution: {integrity: sha512-Q8qQfPiZ+THO/3ZrOrO0cJJKfpYCagtMUkXbnEfmgUjwXg6z/WBeOyS9APBBPCTSiDV+s4SwQGu8yFsiMRIudg==}
@@ -6886,9 +6845,9 @@ packages:
   tabtab@3.0.2:
     resolution: {integrity: sha512-jANKmUe0sIQc/zTALTBy186PoM/k6aPrh3A7p6AaAfF6WPSbTx1JYeGIGH162btpH+mmVEXln+UxwViZHO2Jhg==}
 
-  tailwind-config-viewer@1.7.3:
-    resolution: {integrity: sha512-rgeFXe9vL4njtaSI1y2uUAD1aRx05RYHbReN72ARAVEVSlNmS0Zf46pj3/ORc3xQwLK/AzbaIs6UFcK7hJSIlA==}
-    engines: {node: '>=8'}
+  tailwind-config-viewer@2.0.4:
+    resolution: {integrity: sha512-icvcmdMmt9dphvas8wL40qttrHwAnW3QEN4ExJ2zICjwRsPj7gowd1cOceaWG3IfTuM/cTNGQcx+bsjMtmV+cw==}
+    engines: {node: '>=13'}
     hasBin: true
     peerDependencies:
       tailwindcss: 1 || 2 || 2.0.1-compat || 3
@@ -7744,7 +7703,7 @@ snapshots:
   '@babel/code-frame@7.24.7':
     dependencies:
       '@babel/highlight': 7.24.7
-      picocolors: 1.0.1
+      picocolors: 1.1.0
 
   '@babel/compat-data@7.25.2': {}
 
@@ -7873,7 +7832,7 @@ snapshots:
       '@babel/helper-validator-identifier': 7.24.7
       chalk: 2.4.2
       js-tokens: 4.0.0
-      picocolors: 1.0.1
+      picocolors: 1.1.0
 
   '@babel/parser@7.25.3':
     dependencies:
@@ -7994,20 +7953,9 @@ snapshots:
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
 
-  '@csstools/cascade-layer-name-parser@1.0.13(@csstools/css-parser-algorithms@2.7.1(@csstools/css-tokenizer@2.4.1))(@csstools/css-tokenizer@2.4.1)':
-    dependencies:
-      '@csstools/css-parser-algorithms': 2.7.1(@csstools/css-tokenizer@2.4.1)
-      '@csstools/css-tokenizer': 2.4.1
-
-  '@csstools/css-parser-algorithms@2.7.1(@csstools/css-tokenizer@2.4.1)':
-    dependencies:
-      '@csstools/css-tokenizer': 2.4.1
-
   '@csstools/css-parser-algorithms@3.0.0(@csstools/css-tokenizer@3.0.0)':
     dependencies:
       '@csstools/css-tokenizer': 3.0.0
-
-  '@csstools/css-tokenizer@2.4.1': {}
 
   '@csstools/css-tokenizer@3.0.0': {}
 
@@ -8016,21 +7964,17 @@ snapshots:
       '@csstools/css-parser-algorithms': 3.0.0(@csstools/css-tokenizer@3.0.0)
       '@csstools/css-tokenizer': 3.0.0
 
-  '@csstools/selector-resolve-nested@1.1.0(postcss-selector-parser@6.1.1)':
+  '@csstools/selector-resolve-nested@1.1.0(postcss-selector-parser@6.1.2)':
     dependencies:
-      postcss-selector-parser: 6.1.1
+      postcss-selector-parser: 6.1.2
 
-  '@csstools/selector-specificity@3.1.1(postcss-selector-parser@6.1.1)':
+  '@csstools/selector-specificity@3.1.1(postcss-selector-parser@6.1.2)':
     dependencies:
-      postcss-selector-parser: 6.1.1
+      postcss-selector-parser: 6.1.2
 
   '@csstools/selector-specificity@4.0.0(postcss-selector-parser@6.1.2)':
     dependencies:
       postcss-selector-parser: 6.1.2
-
-  '@csstools/utilities@1.0.0(postcss@8.4.47)':
-    dependencies:
-      postcss: 8.4.47
 
   '@dabh/diagnostics@2.0.3':
     dependencies:
@@ -9195,23 +9139,20 @@ snapshots:
       - vite
       - webpack
 
-  '@nuxtjs/tailwindcss@6.11.4(magicast@0.3.4)(rollup@4.20.0)(ts-node@10.9.2(@types/node@22.1.0)(typescript@5.5.4))':
+  '@nuxtjs/tailwindcss@6.12.1(magicast@0.3.4)(rollup@4.20.0)(ts-node@10.9.2(@types/node@22.1.0)(typescript@5.5.4))':
     dependencies:
       '@nuxt/kit': 3.12.4(magicast@0.3.4)(rollup@4.20.0)
       autoprefixer: 10.4.20(postcss@8.4.47)
-      chokidar: 3.6.0
-      clear-module: 4.1.2
       consola: 3.2.3
       defu: 6.1.4
       h3: 1.12.0
-      micromatch: 4.0.7
       pathe: 1.1.2
       postcss: 8.4.47
-      postcss-custom-properties: 13.3.12(postcss@8.4.47)
       postcss-nesting: 12.1.5(postcss@8.4.47)
-      tailwind-config-viewer: 1.7.3(tailwindcss@3.4.7(ts-node@10.9.2(@types/node@22.1.0)(typescript@5.5.4)))
+      tailwind-config-viewer: 2.0.4(tailwindcss@3.4.7(ts-node@10.9.2(@types/node@22.1.0)(typescript@5.5.4)))
       tailwindcss: 3.4.7(ts-node@10.9.2(@types/node@22.1.0)(typescript@5.5.4))
       ufo: 1.5.4
+      unctx: 2.3.1
     transitivePeerDependencies:
       - magicast
       - rollup
@@ -10724,11 +10665,6 @@ snapshots:
   clean-stack@4.2.0:
     dependencies:
       escape-string-regexp: 5.0.0
-
-  clear-module@4.1.2:
-    dependencies:
-      parent-module: 2.0.0
-      resolve-from: 5.0.0
 
   clear@0.1.0: {}
 
@@ -14098,10 +14034,6 @@ snapshots:
     dependencies:
       callsites: 3.1.0
 
-  parent-module@2.0.0:
-    dependencies:
-      callsites: 3.1.0
-
   parse-git-config@3.0.0:
     dependencies:
       git-config-path: 2.0.0
@@ -14257,15 +14189,6 @@ snapshots:
       postcss: 8.4.47
       postcss-value-parser: 4.2.0
 
-  postcss-custom-properties@13.3.12(postcss@8.4.47):
-    dependencies:
-      '@csstools/cascade-layer-name-parser': 1.0.13(@csstools/css-parser-algorithms@2.7.1(@csstools/css-tokenizer@2.4.1))(@csstools/css-tokenizer@2.4.1)
-      '@csstools/css-parser-algorithms': 2.7.1(@csstools/css-tokenizer@2.4.1)
-      '@csstools/css-tokenizer': 2.4.1
-      '@csstools/utilities': 1.0.0(postcss@8.4.47)
-      postcss: 8.4.47
-      postcss-value-parser: 4.2.0
-
   postcss-discard-comments@7.0.1(postcss@8.4.47):
     dependencies:
       postcss: 8.4.47
@@ -14358,10 +14281,10 @@ snapshots:
 
   postcss-nesting@12.1.5(postcss@8.4.47):
     dependencies:
-      '@csstools/selector-resolve-nested': 1.1.0(postcss-selector-parser@6.1.1)
-      '@csstools/selector-specificity': 3.1.1(postcss-selector-parser@6.1.1)
+      '@csstools/selector-resolve-nested': 1.1.0(postcss-selector-parser@6.1.2)
+      '@csstools/selector-specificity': 3.1.1(postcss-selector-parser@6.1.2)
       postcss: 8.4.47
-      postcss-selector-parser: 6.1.1
+      postcss-selector-parser: 6.1.2
 
   postcss-normalize-charset@7.0.0(postcss@8.4.47):
     dependencies:
@@ -14438,11 +14361,6 @@ snapshots:
   postcss-scss@4.0.9(postcss@8.4.47):
     dependencies:
       postcss: 8.4.47
-
-  postcss-selector-parser@6.1.1:
-    dependencies:
-      cssesc: 3.0.0
-      util-deprecate: 1.0.2
 
   postcss-selector-parser@6.1.2:
     dependencies:
@@ -15429,7 +15347,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  tailwind-config-viewer@1.7.3(tailwindcss@3.4.7(ts-node@10.9.2(@types/node@22.1.0)(typescript@5.5.4))):
+  tailwind-config-viewer@2.0.4(tailwindcss@3.4.7(ts-node@10.9.2(@types/node@22.1.0)(typescript@5.5.4))):
     dependencies:
       '@koa/router': 12.0.1
       commander: 6.2.1
@@ -15458,13 +15376,13 @@ snapshots:
       micromatch: 4.0.7
       normalize-path: 3.0.0
       object-hash: 3.0.0
-      picocolors: 1.0.1
+      picocolors: 1.1.0
       postcss: 8.4.47
       postcss-import: 15.1.0(postcss@8.4.47)
       postcss-js: 4.0.1(postcss@8.4.47)
       postcss-load-config: 4.0.2(postcss@8.4.47)(ts-node@10.9.2(@types/node@22.1.0)(typescript@5.5.4))
       postcss-nested: 6.2.0(postcss@8.4.47)
-      postcss-selector-parser: 6.1.1
+      postcss-selector-parser: 6.1.2
       resolve: 1.22.8
       sucrase: 3.35.0
     transitivePeerDependencies:
