@@ -96,4 +96,6 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+
+  compatibilityDate: '2024-10-05',
 });
