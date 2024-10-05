@@ -41,7 +41,7 @@
     "@nuxtjs/stylelint-module": "5.2.0",
     "@nuxtjs/tailwindcss": "6.11.4",
     "@pinia/nuxt": "0.5.4",
-    "@sidebase/nuxt-auth": "0.6.7",
+    "@sidebase/nuxt-auth": "0.9.3",
     "@types/markdown-it": "14.1.2",
     "autoprefixer": "10.4.20",
     "dayjs": "1.11.13",
