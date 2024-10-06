@@ -58,8 +58,8 @@ importers:
         specifier: 6.12.1
         version: 6.12.1(magicast@0.3.4)(rollup@4.20.0)(ts-node@10.9.2(@types/node@22.1.0)(typescript@5.5.4))
       '@pinia/nuxt':
-        specifier: 0.5.4
-        version: 0.5.4(magicast@0.3.4)(rollup@4.20.0)(typescript@5.5.4)(vue@3.4.36(typescript@5.5.4))
+        specifier: 0.5.5
+        version: 0.5.5(magicast@0.3.4)(rollup@4.20.0)(typescript@5.5.4)(vue@3.4.36(typescript@5.5.4))
       '@sidebase/nuxt-auth':
         specifier: 0.9.3
         version: 0.9.3(@netlify/blobs@8.0.0)(magicast@0.3.4)(next-auth@4.22.5(next@13.5.6(@babel/core@7.25.2)(@opentelemetry/api@1.8.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.79.4))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(rollup@4.20.0)
@@ -1650,8 +1650,8 @@ packages:
     resolution: {integrity: sha512-HNjmfLQEVRZmHRET336f20H/8kOozUGwk7yajvsonjNxbj2wBTK1WsQuHkD5yYh9RxFGL2EyDHryOihOwUoKDA==}
     engines: {node: '>= 10.0.0'}
 
-  '@pinia/nuxt@0.5.4':
-    resolution: {integrity: sha512-nNEs2pq6+Ji5qIyRwmeD9LUdctL8aJ8QMVLTYxUc16cXEOcIIN+MSA8Xudsd0lVETYgEAROT5HiBHnOYRDY3yQ==}
+  '@pinia/nuxt@0.5.5':
+    resolution: {integrity: sha512-wjxS7YqIesh4OLK+qE3ZjhdOJ5pYZQ+VlEmZNtTwzQn1Kavei/khovx7mzXVXNA/mvSPXVhb9xBzhyS3XMURtw==}
 
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
@@ -5705,6 +5705,18 @@ packages:
       typescript:
         optional: true
 
+  pinia@2.2.4:
+    resolution: {integrity: sha512-K7ZhpMY9iJ9ShTC0cR2+PnxdQRuwVIsXDO/WIEV/RnMC/vmSoKDTKW/exNQYPI+4ij10UjXqdNiEHwn47McANQ==}
+    peerDependencies:
+      '@vue/composition-api': ^1.4.0
+      typescript: '>=4.4.4'
+      vue: ^2.6.14 || ^3.3.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+      typescript:
+        optional: true
+
   pino-abstract-transport@1.2.0:
     resolution: {integrity: sha512-Guhh8EZfPCfH+PMXAb6rKOjGQEoy0xlAIn+irODG5kgfYV+BQ0rGYYWTIel3P5mmyXqkYkPmdIkywsn6QKUR1Q==}
 
@@ -9278,7 +9290,7 @@ snapshots:
       '@parcel/watcher-win32-ia32': 2.4.1
       '@parcel/watcher-win32-x64': 2.4.1
 
-  '@pinia/nuxt@0.5.4(magicast@0.3.4)(rollup@4.20.0)(typescript@5.5.4)(vue@3.4.36(typescript@5.5.4))':
+  '@pinia/nuxt@0.5.5(magicast@0.3.4)(rollup@4.20.0)(typescript@5.5.4)(vue@3.4.36(typescript@5.5.4))':
     dependencies:
       '@nuxt/kit': 3.12.4(magicast@0.3.4)(rollup@4.20.0)
       pinia: 2.2.4(typescript@5.5.4)(vue@3.4.36(typescript@5.5.4))
@@ -14084,6 +14096,14 @@ snapshots:
   picomatch@4.0.2: {}
 
   pify@2.3.0: {}
+
+  pinia@2.2.4(typescript@5.5.4)(vue@3.4.36(typescript@5.5.4)):
+    dependencies:
+      '@vue/devtools-api': 6.6.3
+      vue: 3.4.36(typescript@5.5.4)
+      vue-demi: 0.14.10(vue@3.4.36(typescript@5.5.4))
+    optionalDependencies:
+      typescript: 5.5.4
 
   pinia@2.2.4(typescript@5.5.4)(vue@3.4.36(typescript@5.5.4)):
     dependencies:
