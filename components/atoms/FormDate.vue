@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Datepicker v-model="localModelValue" input-class-name="input-class" />
+    <Datepicker v-model="localModelValue" :ui="{ input: 'input-class' }" />
   </div>
 </template>
 
