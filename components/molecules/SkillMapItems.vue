@@ -19,7 +19,7 @@ defineProps({
     required: true,
     type: Array as PropType<
       {
-        heading: String;
+        heading: string;
         icnData: SimpleIcon;
       }[]
     >,
