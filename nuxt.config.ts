@@ -30,11 +30,11 @@ export default defineNuxtConfig({
     '@nuxtjs/google-fonts',
     '@pinia/nuxt',
     '@nuxtjs/stylelint-module',
-    '@nuxtjs/eslint-module',
     '@sidebase/nuxt-auth',
     'nuxt-typed-router',
     'nuxt-gtag',
     '@nuxtjs/tailwindcss',
+    '@nuxt/eslint',
   ],
 
   auth: {
