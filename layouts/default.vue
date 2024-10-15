@@ -13,7 +13,7 @@
 <script lang="ts" setup>
 const route = useRoute();
 
-if (process.client) {
+if (import.meta.client) {
   const setFillHeight = () => {
     const vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);

@@ -1,8 +1,7 @@
-<template>
-  <OrganismsAdminBlogForm v-model="localModelValue" heading="Create Post" @submit="submit" />
-</template>
-
 <script setup lang="ts">
+import { useToast } from 'vue-toast-notification';
+import { usePrismaErrorHandling } from '~/composables/usePrismaErrorHandling';
+
 definePageMeta({
   breadcrumbs: [
     {
@@ -11,9 +10,6 @@ definePageMeta({
     },
   ],
 });
-
-import { useToast } from 'vue-toast-notification';
-import { usePrismaErrorHandling } from '~/composables/usePrismaErrorHandling';
 
 definePageMeta({ middleware: 'admin-check' });
 
@@ -40,3 +36,7 @@ async function submit() {
   }
 }
 </script>
+
+<template>
+  <OrganismsAdminBlogForm v-model="localModelValue" heading="Create Post" @submit="submit" />
+</template>

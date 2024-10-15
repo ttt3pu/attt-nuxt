@@ -1,8 +1,7 @@
-<template>
-  <OrganismsAdminBlogForm v-model="localModelValue" heading="Edit Post" @submit="submit" />
-</template>
-
 <script setup lang="ts">
+import type { BlogPost } from '@prisma/client';
+import { useToast } from 'vue-toast-notification';
+import { usePrismaErrorHandling } from '~/composables/usePrismaErrorHandling';
 definePageMeta({
   breadcrumbs: [
     {
@@ -13,9 +12,6 @@ definePageMeta({
 });
 
 const route = useRoute('admin-blog-id-edit');
-import type { BlogPost } from '@prisma/client';
-import { useToast } from 'vue-toast-notification';
-import { usePrismaErrorHandling } from '~/composables/usePrismaErrorHandling';
 
 definePageMeta({ middleware: 'admin-check' });
 
@@ -50,3 +46,7 @@ async function submit() {
   }
 }
 </script>
+
+<template>
+  <OrganismsAdminBlogForm v-model="localModelValue" heading="Edit Post" @submit="submit" />
+</template>
