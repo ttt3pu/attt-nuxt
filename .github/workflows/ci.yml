@@ -52,8 +52,8 @@ jobs:
 
       - name: Netlify Draft Deploy
         if: github.ref != 'refs/heads/main'
-        run: netlify deploy --build --alias $SHORT_SHA
+        run: pnpm netlify deploy --build --alias $SHORT_SHA
 
       - name: Netlify Production Deploy
         if: github.ref == 'refs/heads/main'
-        run: netlify deploy --build --prod
+        run: pnpm netlify deploy --build --prod
