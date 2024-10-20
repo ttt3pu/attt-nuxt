@@ -40,7 +40,7 @@
     "@nuxtjs/stylelint-module": "5.2.0",
     "@nuxtjs/tailwindcss": "6.12.2",
     "@pinia/nuxt": "0.5.5",
-    "@sidebase/nuxt-auth": "0.9.3",
+    "@sidebase/nuxt-auth": "0.9.4",
     "@types/eslint-config-prettier": "6.11.3",
     "@types/markdown-it": "14.1.2",
     "autoprefixer": "10.4.20",
