@@ -58,8 +58,8 @@ importers:
         specifier: 0.5.5
         version: 0.5.5(magicast@0.3.4)(rollup@4.20.0)(typescript@5.5.4)(vue@3.4.36(typescript@5.5.4))(webpack-sources@3.2.3)
       '@sidebase/nuxt-auth':
-        specifier: 0.9.3
-        version: 0.9.3(@netlify/blobs@8.0.0)(magicast@0.3.4)(next-auth@4.22.5(next@13.5.6(@babel/core@7.25.2)(@opentelemetry/api@1.8.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.79.5))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(rollup@4.20.0)(webpack-sources@3.2.3)
+        specifier: 0.9.4
+        version: 0.9.4(@netlify/blobs@8.0.0)(magicast@0.3.4)(next-auth@4.22.5(next@13.5.6(@babel/core@7.25.2)(@opentelemetry/api@1.8.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.79.5))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(rollup@4.20.0)(webpack-sources@3.2.3)
       '@types/eslint-config-prettier':
         specifier: 6.11.3
         version: 6.11.3
@@ -1923,8 +1923,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@sidebase/nuxt-auth@0.9.3':
-    resolution: {integrity: sha512-celbFy5j1IIFUpVQA+0CvqzxqFTdHS3SFMHnPGONzrjka0BDIDOHtMfZ7xyIgOb8OaBdibjRsqeUhhJmBYfkOA==}
+  '@sidebase/nuxt-auth@0.9.4':
+    resolution: {integrity: sha512-TpOI9E6BJLjU558cl4AwE8tmGbvKt4GJtAmm8TUNJEEPLX6i5MbpzpJyoSXDALp19RqHa1INe7oDWggtEiba/w==}
     engines: {node: '>=20', pnpm: '>=9.4.0'}
     peerDependencies:
       next-auth: 4.24.8
@@ -8511,7 +8511,7 @@ snapshots:
       fast-glob: 3.3.2
       find-up: 7.0.0
       get-port-please: 3.1.2
-      h3: 1.12.0
+      h3: 1.13.0
       minimatch: 9.0.5
       mlly: 1.7.2
       mrmime: 2.0.0
@@ -9338,7 +9338,7 @@ snapshots:
       estree-walker: 3.0.3
       externality: 1.0.2
       get-port-please: 3.1.2
-      h3: 1.12.0
+      h3: 1.13.0
       knitwork: 1.1.0
       magic-string: 0.30.11
       mlly: 1.7.1
@@ -9626,7 +9626,7 @@ snapshots:
 
   '@rollup/plugin-commonjs@25.0.8(rollup@4.20.0)':
     dependencies:
-      '@rollup/pluginutils': 5.1.0(rollup@4.20.0)
+      '@rollup/pluginutils': 5.1.2(rollup@4.20.0)
       commondir: 1.0.1
       estree-walker: 2.0.2
       glob: 8.1.0
@@ -9637,7 +9637,7 @@ snapshots:
 
   '@rollup/plugin-inject@5.0.5(rollup@4.20.0)':
     dependencies:
-      '@rollup/pluginutils': 5.1.0(rollup@4.20.0)
+      '@rollup/pluginutils': 5.1.2(rollup@4.20.0)
       estree-walker: 2.0.2
       magic-string: 0.30.11
     optionalDependencies:
@@ -9645,13 +9645,13 @@ snapshots:
 
   '@rollup/plugin-json@6.1.0(rollup@4.20.0)':
     dependencies:
-      '@rollup/pluginutils': 5.1.0(rollup@4.20.0)
+      '@rollup/pluginutils': 5.1.2(rollup@4.20.0)
     optionalDependencies:
       rollup: 4.20.0
 
   '@rollup/plugin-node-resolve@15.2.3(rollup@4.20.0)':
     dependencies:
-      '@rollup/pluginutils': 5.1.0(rollup@4.20.0)
+      '@rollup/pluginutils': 5.1.2(rollup@4.20.0)
       '@types/resolve': 1.20.2
       deepmerge: 4.3.1
       is-builtin-module: 3.2.1
@@ -9662,7 +9662,7 @@ snapshots:
 
   '@rollup/plugin-replace@5.0.7(rollup@4.20.0)':
     dependencies:
-      '@rollup/pluginutils': 5.1.0(rollup@4.20.0)
+      '@rollup/pluginutils': 5.1.2(rollup@4.20.0)
       magic-string: 0.30.11
     optionalDependencies:
       rollup: 4.20.0
@@ -9690,7 +9690,7 @@ snapshots:
 
   '@rollup/pluginutils@5.1.2(rollup@4.20.0)':
     dependencies:
-      '@types/estree': 1.0.5
+      '@types/estree': 1.0.6
       estree-walker: 2.0.2
       picomatch: 2.3.1
     optionalDependencies:
@@ -9744,11 +9744,11 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.20.0':
     optional: true
 
-  '@sidebase/nuxt-auth@0.9.3(@netlify/blobs@8.0.0)(magicast@0.3.4)(next-auth@4.22.5(next@13.5.6(@babel/core@7.25.2)(@opentelemetry/api@1.8.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.79.5))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(rollup@4.20.0)(webpack-sources@3.2.3)':
+  '@sidebase/nuxt-auth@0.9.4(@netlify/blobs@8.0.0)(magicast@0.3.4)(next-auth@4.22.5(next@13.5.6(@babel/core@7.25.2)(@opentelemetry/api@1.8.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.79.5))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(rollup@4.20.0)(webpack-sources@3.2.3)':
     dependencies:
-      '@nuxt/kit': 3.12.4(magicast@0.3.4)(rollup@4.20.0)(webpack-sources@3.2.3)
+      '@nuxt/kit': 3.13.2(magicast@0.3.4)(rollup@4.20.0)(webpack-sources@3.2.3)
       defu: 6.1.4
-      h3: 1.12.0
+      h3: 1.13.0
       knitwork: 1.1.0
       next-auth: 4.22.5(next@13.5.6(@babel/core@7.25.2)(@opentelemetry/api@1.8.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.79.5))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       nitropack: 2.9.7(@netlify/blobs@8.0.0)(magicast@0.3.4)(webpack-sources@3.2.3)
@@ -10140,7 +10140,7 @@ snapshots:
   '@vue-macros/common@1.12.2(rollup@4.20.0)(vue@3.4.36(typescript@5.5.4))':
     dependencies:
       '@babel/types': 7.25.2
-      '@rollup/pluginutils': 5.1.0(rollup@4.20.0)
+      '@rollup/pluginutils': 5.1.2(rollup@4.20.0)
       '@vue/compiler-sfc': 3.4.36
       ast-kit: 1.0.1
       local-pkg: 0.5.0
@@ -10841,7 +10841,7 @@ snapshots:
       giget: 1.2.3
       jiti: 1.21.6
       mlly: 1.7.2
-      ohash: 1.1.3
+      ohash: 1.1.4
       pathe: 1.1.2
       perfect-debounce: 1.0.0
       pkg-types: 1.2.1
@@ -12391,7 +12391,7 @@ snapshots:
       defu: 6.1.4
       node-fetch-native: 1.6.4
       nypm: 0.3.9
-      ohash: 1.1.3
+      ohash: 1.1.4
       pathe: 1.1.2
       tar: 6.2.1
 
@@ -12845,7 +12845,7 @@ snapshots:
       defu: 6.1.4
       destr: 2.0.3
       etag: 1.8.1
-      h3: 1.12.0
+      h3: 1.13.0
       image-meta: 0.2.1
       listhen: 1.7.2
       ofetch: 1.3.4
@@ -12955,7 +12955,7 @@ snapshots:
 
   is-reference@1.2.1:
     dependencies:
-      '@types/estree': 1.0.5
+      '@types/estree': 1.0.6
 
   is-ssh@1.4.0:
     dependencies:
@@ -13247,10 +13247,10 @@ snapshots:
       crossws: 0.2.4
       defu: 6.1.4
       get-port-please: 3.1.2
-      h3: 1.12.0
+      h3: 1.13.0
       http-shutdown: 1.2.2
       jiti: 1.21.6
-      mlly: 1.7.1
+      mlly: 1.7.2
       node-forge: 1.3.1
       pathe: 1.1.2
       std-env: 3.7.0
@@ -13827,11 +13827,11 @@ snapshots:
       '@rollup/plugin-node-resolve': 15.2.3(rollup@4.20.0)
       '@rollup/plugin-replace': 5.0.7(rollup@4.20.0)
       '@rollup/plugin-terser': 0.4.4(rollup@4.20.0)
-      '@rollup/pluginutils': 5.1.0(rollup@4.20.0)
+      '@rollup/pluginutils': 5.1.2(rollup@4.20.0)
       '@types/http-proxy': 1.17.14
       '@vercel/nft': 0.26.5
       archiver: 7.0.1
-      c12: 1.11.1(magicast@0.3.4)
+      c12: 1.11.2(magicast@0.3.4)
       chalk: 5.3.0
       chokidar: 3.6.0
       citty: 0.1.6
@@ -13849,7 +13849,7 @@ snapshots:
       fs-extra: 11.2.0
       globby: 14.0.2
       gzip-size: 7.0.0
-      h3: 1.12.0
+      h3: 1.13.0
       hookable: 5.5.3
       httpxy: 0.1.5
       ioredis: 5.4.1
@@ -13859,15 +13859,15 @@ snapshots:
       listhen: 1.7.2
       magic-string: 0.30.11
       mime: 4.0.4
-      mlly: 1.7.1
+      mlly: 1.7.2
       mri: 1.2.0
       node-fetch-native: 1.6.4
       ofetch: 1.3.4
-      ohash: 1.1.3
+      ohash: 1.1.4
       openapi-typescript: 6.7.6
       pathe: 1.1.2
       perfect-debounce: 1.0.0
-      pkg-types: 1.1.3
+      pkg-types: 1.2.1
       pretty-bytes: 6.1.1
       radix3: 1.1.2
       rollup: 4.20.0
@@ -13881,9 +13881,9 @@ snapshots:
       uncrypto: 0.1.3
       unctx: 2.3.1(webpack-sources@3.2.3)
       unenv: 1.10.0
-      unimport: 3.10.0(rollup@4.20.0)
+      unimport: 3.13.1(rollup@4.20.0)(webpack-sources@3.2.3)
       unstorage: 1.10.2(@netlify/blobs@8.0.0)(ioredis@5.4.1)
-      unwasm: 0.3.9
+      unwasm: 0.3.9(webpack-sources@3.2.3)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -16123,7 +16123,7 @@ snapshots:
       anymatch: 3.1.3
       chokidar: 3.6.0
       destr: 2.0.3
-      h3: 1.12.0
+      h3: 1.13.0
       listhen: 1.7.2
       lru-cache: 10.4.3
       mri: 1.2.0
@@ -16156,14 +16156,16 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  unwasm@0.3.9:
+  unwasm@0.3.9(webpack-sources@3.2.3):
     dependencies:
       knitwork: 1.1.0
       magic-string: 0.30.11
-      mlly: 1.7.1
+      mlly: 1.7.2
       pathe: 1.1.2
-      pkg-types: 1.1.3
-      unplugin: 1.12.0
+      pkg-types: 1.2.1
+      unplugin: 1.14.1(webpack-sources@3.2.3)
+    transitivePeerDependencies:
+      - webpack-sources
 
   update-browserslist-db@1.1.0(browserslist@4.23.3):
     dependencies:
@@ -16265,7 +16267,7 @@ snapshots:
   vite-plugin-inspect@0.8.5(@nuxt/kit@3.13.2(magicast@0.3.4)(rollup@4.20.0)(webpack-sources@3.2.3))(rollup@4.20.0)(vite@5.3.5(@types/node@22.1.0)(sass@1.79.5)(terser@5.31.3)):
     dependencies:
       '@antfu/utils': 0.7.10
-      '@rollup/pluginutils': 5.1.0(rollup@4.20.0)
+      '@rollup/pluginutils': 5.1.2(rollup@4.20.0)
       debug: 4.3.6(supports-color@9.4.0)
       error-stack-parser-es: 0.1.5
       fs-extra: 11.2.0
