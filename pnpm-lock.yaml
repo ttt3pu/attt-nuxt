@@ -5,7 +5,7 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
-  next-auth: 4.24.8
+  next-auth: 4.24.10
 
 importers:
 
@@ -1931,7 +1931,7 @@ packages:
     resolution: {integrity: sha512-TpOI9E6BJLjU558cl4AwE8tmGbvKt4GJtAmm8TUNJEEPLX6i5MbpzpJyoSXDALp19RqHa1INe7oDWggtEiba/w==}
     engines: {node: '>=20', pnpm: '>=9.4.0'}
     peerDependencies:
-      next-auth: 4.24.8
+      next-auth: 4.24.10
 
   '@sinclair/typebox@0.27.8':
     resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
