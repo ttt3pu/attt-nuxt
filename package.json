@@ -23,7 +23,7 @@
     "netlify": "netlify"
   },
   "dependencies": {
-    "@nuxt/eslint": "0.7.0",
+    "@nuxt/eslint": "0.7.1",
     "@nuxtjs/google-fonts": "3.2.0",
     "@prisma/client": "5.18.0",
     "@vuepic/vue-datepicker": "9.0.3",
