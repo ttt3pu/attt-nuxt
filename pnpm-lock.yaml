@@ -88,8 +88,8 @@ importers:
         specifier: 3.6.5
         version: 3.6.5(magicast@0.3.4)(prettier@3.4.2)(rollup@4.20.0)(webpack-sources@3.2.3)
       pinia:
-        specifier: 2.2.8
-        version: 2.2.8(typescript@5.5.4)(vue@3.4.36(typescript@5.5.4))
+        specifier: 2.3.0
+        version: 2.3.0(typescript@5.5.4)(vue@3.4.36(typescript@5.5.4))
       prettier:
         specifier: 3.4.2
         version: 3.4.2
@@ -6175,15 +6175,12 @@ packages:
     resolution: {integrity: sha512-udgsAY+fTnvv7kI7aaxbqwWNb0AHiB0qBO89PZKPkoTmGOgdbrHDKD+0B2X4uTfJ/FT1R09r9gTsjUjNJotuog==}
     engines: {node: '>=0.10.0'}
 
-  pinia@2.2.8:
-    resolution: {integrity: sha512-NRTYy2g+kju5tBRe0oNlriZIbMNvma8ZJrpHsp3qudyiMEA8jMmPPKQ2QMHg0Oc4BkUyQYWagACabrwriCK9HQ==}
+  pinia@2.3.0:
+    resolution: {integrity: sha512-ohZj3jla0LL0OH5PlLTDMzqKiVw2XARmC1XYLdLWIPBMdhDW/123ZWr4zVAhtJm+aoSkFa13pYXskAvAscIkhQ==}
     peerDependencies:
-      '@vue/composition-api': ^1.4.0
       typescript: '>=4.4.4'
-      vue: ^2.6.14 || ^3.5.11
+      vue: ^2.7.0 || ^3.5.11
     peerDependenciesMeta:
-      '@vue/composition-api':
-        optional: true
       typescript:
         optional: true
 
@@ -10235,7 +10232,7 @@ snapshots:
   '@pinia/nuxt@0.5.5(magicast@0.3.4)(rollup@4.20.0)(typescript@5.5.4)(vue@3.4.36(typescript@5.5.4))(webpack-sources@3.2.3)':
     dependencies:
       '@nuxt/kit': 3.12.4(magicast@0.3.4)(rollup@4.20.0)(webpack-sources@3.2.3)
-      pinia: 2.2.8(typescript@5.5.4)(vue@3.4.36(typescript@5.5.4))
+      pinia: 2.3.0(typescript@5.5.4)(vue@3.4.36(typescript@5.5.4))
     transitivePeerDependencies:
       - '@vue/composition-api'
       - magicast
@@ -15253,13 +15250,15 @@ snapshots:
 
   pify@2.3.0: {}
 
-  pinia@2.2.8(typescript@5.5.4)(vue@3.4.36(typescript@5.5.4)):
+  pinia@2.3.0(typescript@5.5.4)(vue@3.4.36(typescript@5.5.4)):
     dependencies:
       '@vue/devtools-api': 6.6.3
       vue: 3.4.36(typescript@5.5.4)
       vue-demi: 0.14.10(vue@3.4.36(typescript@5.5.4))
     optionalDependencies:
       typescript: 5.5.4
+    transitivePeerDependencies:
+      - '@vue/composition-api'
 
   pino-abstract-transport@1.2.0:
     dependencies:
