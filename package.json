@@ -64,6 +64,6 @@
     "vue-tsc": "2.1.10"
   },
   "resolutions": {
-    "next-auth": "4.22.5"
+    "next-auth": "4.21.1"
   }
 }
