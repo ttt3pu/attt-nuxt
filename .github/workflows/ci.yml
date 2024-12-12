@@ -1,4 +1,4 @@
-name: cd
+name: ci
 
 on:
   push:
@@ -8,11 +8,9 @@ on:
     types: [opened, synchronize]
 
 jobs:
-  cd:
+  ci:
     runs-on: ubuntu-latest
     env:
-      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-      NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
     steps:
@@ -46,14 +44,3 @@ jobs:
 
       - name: Type check
         run: pnpm typeCheck
-
-      - name: Add SHORT_SHA env property with commit short sha
-        run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
-
-      - name: Netlify Draft Deploy
-        if: github.ref != 'refs/heads/main'
-        run: pnpm netlify deploy --build --alias $SHORT_SHA
-
-      - name: Netlify Production Deploy
-        if: github.ref == 'refs/heads/main'
-        run: pnpm netlify deploy --build --prod
