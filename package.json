@@ -19,8 +19,7 @@
     "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore",
     "lint": "pnpm lint:js && pnpm lint:style",
     "prettier": "prettier . --check --ignore-path .gitignore",
-    "prettier:fix": "prettier . --write --ignore-path .gitignore",
-    "netlify": "netlify"
+    "prettier:fix": "prettier . --write --ignore-path .gitignore"
   },
   "dependencies": {
     "@nuxt/eslint": "0.7.2",
@@ -29,7 +28,6 @@
     "@vuepic/vue-datepicker": "9.0.3",
     "@xmldom/xmldom": "0.8.10",
     "markdown-it": "14.1.0",
-    "netlify-cli": "17.34.3",
     "nuxt": "3.12.4",
     "postcss": "8.4.49",
     "postcss-html": "1.7.0",

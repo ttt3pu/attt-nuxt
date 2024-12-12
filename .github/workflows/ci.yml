@@ -49,11 +49,3 @@ jobs:
 
       - name: Add SHORT_SHA env property with commit short sha
         run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
-
-      - name: Netlify Draft Deploy
-        if: github.ref != 'refs/heads/main'
-        run: pnpm netlify deploy --build --alias $SHORT_SHA
-
-      - name: Netlify Production Deploy
-        if: github.ref == 'refs/heads/main'
-        run: pnpm netlify deploy --build --prod
