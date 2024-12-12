@@ -45,7 +45,7 @@
     "eslint": "9.16.0",
     "eslint-config-prettier": "9.1.0",
     "http-server": "14.1.1",
-    "nuxt": "3.12.4",
+    "nuxt": "3.14.1592",
     "nuxt-gtag": "2.1.0",
     "nuxt-typed-router": "3.6.5",
     "pinia": "2.3.0",
@@ -62,8 +62,5 @@
     "typescript": "5.6.3",
     "vue-material-design-icons": "5.3.1",
     "vue-tsc": "2.1.10"
-  },
-  "resolutions": {
-    "next-auth": "4.24.11"
   }
 }
