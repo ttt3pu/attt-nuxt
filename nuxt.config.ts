@@ -1,6 +1,8 @@
+import { fileURLToPath } from 'url';
+
 export default defineNuxtConfig({
   alias: {
-    '@resume': '../packages/resume/src',
+    '@resume': fileURLToPath(new URL('./packages/resume/src', import.meta.url)),
   },
 
   app: {
@@ -100,6 +102,10 @@ export default defineNuxtConfig({
       tailwindcss: {},
       autoprefixer: {},
     },
+  },
+
+  runtimeConfig: {
+    SECRET_TOKEN: '',
   },
 
   compatibilityDate: '2024-10-05',

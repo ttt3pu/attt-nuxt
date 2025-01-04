@@ -1,5 +1,6 @@
 <template>
   <div>
+    <MoleculesTokenForm class="fixed bottom-0 right-0 p-4 z-50" />
     <div class="title-container">
       <div class="title-container__inner">
         <div class="title-container__inner-inner">

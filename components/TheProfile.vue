@@ -1,14 +1,28 @@
 <script setup lang="ts">
-import PROFILE from '@resume/profile.md?raw';
-import JOBS from '@resume/jobs.md?raw';
+const { passedToken } = useToken();
 
-const { renderedContent: profileContent } = useMd(PROFILE);
-const { renderedContent: jobsContent } = useMd(JOBS);
+const { data } = await useFetch('/api/resume', {
+  query: {
+    token: passedToken,
+  },
+});
+
+const profile = computed(() => {
+  return data.value?.profile ?? 'loading...';
+});
+
+const jobs = computed(() => {
+  return data.value?.jobs ?? 'loading...';
+});
+
+const { renderedContent: profileContent } = useMd(profile);
+const { renderedContent: jobsContent } = useMd(jobs);
 </script>
 
 <template>
   <div class="the-profile">
     <v-heading-lv2>Profile</v-heading-lv2>
+
     <!-- eslint-disable-next-line vue/no-v-html -->
     <div class="md-contents" v-html="profileContent" />
 
@@ -27,7 +41,7 @@ const { renderedContent: jobsContent } = useMd(JOBS);
 
 /* stylelint-disable-next-line */
 ::v-deep(.md-contents) {
-  @apply mx-auto text-white font-jp [&:not(:last-child)]:mb-4;
+  @apply mx-auto text-white font-jp [&:not(:last-child)]:mb-4 break-all;
 }
 
 .justify-left {

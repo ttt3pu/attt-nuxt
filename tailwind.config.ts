@@ -28,6 +28,7 @@ export default {
         },
         tertiary: {
           DEFAULT: '#b95d7b',
+          300: '#C57891',
         },
         white: {
           DEFAULT: '#e2f1ff;',
