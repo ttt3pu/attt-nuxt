@@ -1,6 +1,8 @@
+import { fileURLToPath } from 'url';
+
 export default defineNuxtConfig({
   alias: {
-    '@resume': '../packages/resume/src',
+    '@resume': fileURLToPath(new URL('./packages/resume/src', import.meta.url)),
   },
 
   app: {

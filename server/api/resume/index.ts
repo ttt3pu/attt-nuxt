@@ -1,11 +1,6 @@
 import { z } from 'zod';
-// FIXME
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import PROFILE from '../../../packages/resume/src/profile.md';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import JOBS from '../../../packages/resume/src/jobs.md';
+import PROFILE from '@resume/profile.md';
+import JOBS from '@resume/jobs.md';
 
 const querySchema = z.object({
   token: z.string().optional(),
