@@ -1,4 +1,8 @@
 export default defineNuxtConfig({
+  alias: {
+    '@resume': '../packages/resume/src',
+  },
+
   app: {
     head: {
       htmlAttrs: {
@@ -78,6 +82,7 @@ export default defineNuxtConfig({
         '.prisma/client/index-browser': './node_modules/@prisma/client/index-browser.js',
       },
     },
+    assetsInclude: ['packages/resume/**/*.md'],
   },
 
   nitro: {

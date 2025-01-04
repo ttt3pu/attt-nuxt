@@ -1,22 +1,20 @@
+<script setup lang="ts">
+import PROFILE from '@resume/profile.md?raw';
+import JOBS from '@resume/jobs.md?raw';
+
+const { renderedContent: profileContent } = useMd(PROFILE);
+const { renderedContent: jobsContent } = useMd(JOBS);
+</script>
+
 <template>
   <div class="the-profile">
     <v-heading-lv2>Profile</v-heading-lv2>
-    <p>
-      2017年から東京でフロントエンドエンジニアとして働いています。<br />
-      Nuxt (Vue) をメインで扱っています。
-    </p>
-
-    <p>
-      出身＆在住 - 埼玉県<br />
-      生年月日 - 1996.11.6<br />
-      好きなもの - ゲーム 🎮 / 猫 😺 / 料理 👩‍🍳 / お酒 🍺 / etc...
-    </p>
+    <!-- eslint-disable-next-line vue/no-v-html -->
+    <div class="md-contents" v-html="profileContent" />
 
     <v-heading-lv3>Jobs</v-heading-lv3>
-    <p class="justify-left">
-      2017 - 株式会社キノトロープ<br />
-      2021 - メドピア株式会社
-    </p>
+    <!-- eslint-disable-next-line vue/no-v-html -->
+    <div class="md-contents justify-left" v-html="jobsContent" />
   </div>
 </template>
 
@@ -27,7 +25,8 @@
   }
 }
 
-p {
+/* stylelint-disable-next-line */
+::v-deep(.md-contents) {
   @apply mx-auto text-white font-jp [&:not(:last-child)]:mb-4;
 }
 
