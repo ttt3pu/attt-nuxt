@@ -22,8 +22,9 @@ function createMaskedText(text: string, isPassed: boolean) {
 }
 
 export default defineEventHandler(async (event) => {
+  const config = useRuntimeConfig();
   const params = await getValidatedQuery(event, (body) => querySchema.safeParse(body));
-  const isPassed = params.data?.token === 'foobar';
+  const isPassed = params.data?.token === config.SECRET_TOKEN;
 
   return {
     isPassed,

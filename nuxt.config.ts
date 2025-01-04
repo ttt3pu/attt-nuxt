@@ -102,5 +102,9 @@ export default defineNuxtConfig({
     },
   },
 
+  runtimeConfig: {
+    SECRET_TOKEN: '',
+  },
+
   compatibilityDate: '2024-10-05',
 });
