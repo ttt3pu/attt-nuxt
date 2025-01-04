@@ -28,10 +28,9 @@ html {
   --font-family-jp: 'Noto Sans JP', sans-serif;
   // colors
   --txt-color-white: #e2f1ff;
-  --txt-color-white-hover: #{lighten(#e2f1ff, 5%)};
   --txt-color-white-lv2: #939ca5;
   --txt-color-link: #fff7d6;
-  --txt-color-link-hover: #{lighten(#fff7d6, 10%)};
+  --txt-color-link-hover: #{color.adjust(#fff7d6, $lightness: 10%)};
   --color-gray: #666;
   --primary-color: #f9f871;
   --secondary-color: #ffb962;
