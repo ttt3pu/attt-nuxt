@@ -4,7 +4,7 @@ import eslintConfigPrettier from 'eslint-config-prettier';
 
 export default withNuxt([
   {
-    ignores: ['prisma/**'],
+    ignores: ['packages/prisma/**'],
   },
   eslintConfigPrettier,
 ]);
