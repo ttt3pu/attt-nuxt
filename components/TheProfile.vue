@@ -9,6 +9,7 @@ const { renderedContent: jobsContent } = useMd(JOBS);
 <template>
   <div class="the-profile">
     <v-heading-lv2>Profile</v-heading-lv2>
+
     <!-- eslint-disable-next-line vue/no-v-html -->
     <div class="md-contents" v-html="profileContent" />
 
@@ -27,7 +28,7 @@ const { renderedContent: jobsContent } = useMd(JOBS);
 
 /* stylelint-disable-next-line */
 ::v-deep(.md-contents) {
-  @apply mx-auto text-white font-jp [&:not(:last-child)]:mb-4;
+  @apply mx-auto text-white font-jp [&:not(:last-child)]:mb-4 break-all;
 }
 
 .justify-left {
