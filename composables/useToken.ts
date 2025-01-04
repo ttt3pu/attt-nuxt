@@ -1,7 +1,7 @@
 export function useToken() {
-  const isTokenPassed = useState('is-token-passed', () => false);
+  const passedToken = useState('passed-token', () => '');
 
   return {
-    isTokenPassed,
+    passedToken,
   };
 }

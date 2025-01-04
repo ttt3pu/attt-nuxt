@@ -2,15 +2,21 @@
 import CheckIcn from 'vue-material-design-icons/LockOpen.vue';
 import { useToast } from 'vue-toast-notification';
 
-const token = ref('');
+const localToken = ref('');
 
-const { isTokenPassed } = useToken();
+const { passedToken } = useToken();
 
 const $toast = useToast();
 
-function submit() {
-  if (token.value === 'foobar') {
-    isTokenPassed.value = true;
+async function submit() {
+  const { data } = await useFetch('/api/resume', {
+    query: {
+      token: localToken.value,
+    },
+  });
+
+  if (data.value?.isPassed) {
+    passedToken.value = localToken.value;
     $toast.success('トークンの入力を受け付けました');
   } else {
     $toast.error('トークンが間違っています');
@@ -19,10 +25,10 @@ function submit() {
 </script>
 
 <template>
-  <form v-if="!isTokenPassed" @submit.prevent="submit">
+  <form v-if="!passedToken" @submit.prevent="submit">
     <div class="flex items-center justify-center">
       <input
-        v-model="token"
+        v-model="localToken"
         placeholder="トークンを入力すると全情報が閲覧できます"
         class="mr-4 grow w-[350px] px-4 py-0.5 shadow rounded bg-white"
       />

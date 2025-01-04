@@ -1,9 +1,22 @@
 <script setup lang="ts">
-import PROFILE from '@resume/profile.md?raw';
-import JOBS from '@resume/jobs.md?raw';
+const { passedToken } = useToken();
 
-const { renderedContent: profileContent } = useMd(PROFILE);
-const { renderedContent: jobsContent } = useMd(JOBS);
+const { data } = await useFetch('/api/resume', {
+  query: {
+    token: passedToken,
+  },
+});
+
+const profile = computed(() => {
+  return data.value?.profile ?? 'loading...';
+});
+
+const jobs = computed(() => {
+  return data.value?.jobs ?? 'loading...';
+});
+
+const { renderedContent: profileContent } = useMd(profile);
+const { renderedContent: jobsContent } = useMd(jobs);
 </script>
 
 <template>
