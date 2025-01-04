@@ -5,7 +5,7 @@
   "private": true,
   "packageManager": "pnpm@9.15.2",
   "prisma": {
-    "seed": "tsx prisma/seed.ts"
+    "schema": "packages/prisma/schema.prisma"
   },
   "scripts": {
     "dev": "nuxi dev",
