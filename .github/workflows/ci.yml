@@ -18,6 +18,7 @@ jobs:
         with:
           submodules: true
           token: ${{ secrets.GH_PERSONAL_TOKEN }}
+          ssh-key: ${{ secrets.PRIVATE_REPO_SSH_KEY }}
 
       - uses: pnpm/action-setup@v4.0.0
 

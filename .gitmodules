@@ -3,4 +3,4 @@
 	url = https://github.com/ttt3pu/attt-prisma.git
 [submodule "packages/resume"]
 	path = packages/resume
-	url = https://github.com/ttt3pu/attt-resume
+	url = git@github.com:ttt3pu/attt-resume.git
