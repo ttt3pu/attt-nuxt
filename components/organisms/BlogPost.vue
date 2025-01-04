@@ -18,7 +18,6 @@
 
 <script setup lang="ts">
 import dayjs from 'dayjs';
-import md from 'markdown-it';
 
 const props = defineProps({
   title: {
@@ -35,9 +34,7 @@ const props = defineProps({
   },
 });
 
-const renderer = md();
-const renderedContent = computed(() => renderer.render(props.content));
-
+const { renderedContent } = useMd(props.content);
 const publishedAtFormatted = computed(() => dayjs(props.publishedAt).format('YYYY.MM.DD'));
 </script>
 
