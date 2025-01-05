@@ -1,3 +1,6 @@
 {
-  "extends": ["github>ttt3pu/renovate-settings"]
+  "extends": ["github>ttt3pu/renovate-settings"],
+  "git-submodules": {
+    "enabled": true
+  }
 }
