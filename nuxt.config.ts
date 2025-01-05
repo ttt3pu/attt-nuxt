@@ -1,6 +1,10 @@
 import { fileURLToPath } from 'url';
 
 export default defineNuxtConfig({
+  experimental: {
+    typedPages: true,
+  },
+
   alias: {
     '@resume': fileURLToPath(new URL('./packages/resume/src', import.meta.url)),
   },
@@ -37,7 +41,6 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxtjs/stylelint-module',
     '@sidebase/nuxt-auth',
-    'nuxt-typed-router',
     'nuxt-gtag',
     '@nuxtjs/tailwindcss',
     '@nuxt/eslint',
