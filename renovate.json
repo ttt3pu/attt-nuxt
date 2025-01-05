@@ -3,5 +3,6 @@
   "git-submodules": {
     "enabled": true
   },
-  "cloneSubmodules": true
+  "cloneSubmodules": true,
+  "cloneSubmodulesFilter": ["packages/prisma"]
 }
