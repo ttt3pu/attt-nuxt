@@ -21,7 +21,7 @@
 
     <div class="main-contents">
       <AtomsContentsBox>
-        <the-posts :merged-posts="mergedPosts" />
+        <OrganismsPostList />
       </AtomsContentsBox>
 
       <AtomsContentsBox :color="2">
@@ -43,7 +43,6 @@ import type { BlogPost } from '@prisma/client';
 import type { ZennPost } from '@/types';
 
 const postsStore = usePostsStore();
-const mergedPosts = computed(() => postsStore.mergedPosts);
 
 const blogPosts = await useFetch<BlogPost[]>('/api/blog');
 const zennPosts = await useFetch<ZennPost[]>('/api/zenn');
