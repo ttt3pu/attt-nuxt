@@ -18,6 +18,9 @@ export default {
       },
       colors: {
         link: {
+          100: '#fffbeb',
+          200: '#fffae4',
+          300: '#fff8dd',
           DEFAULT: '#fff7d6',
         },
         primary: {
