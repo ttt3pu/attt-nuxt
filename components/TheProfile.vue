@@ -2,7 +2,8 @@
 const { passedToken } = useToken();
 
 const { data } = await useFetch('/api/resume', {
-  query: {
+  method: 'POST',
+  body: {
     token: passedToken,
   },
 });
