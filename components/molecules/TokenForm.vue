@@ -10,7 +10,8 @@ const $toast = useToast();
 
 async function submit() {
   const { data } = await useFetch('/api/resume', {
-    query: {
+    method: 'POST',
+    body: {
       token: localToken.value,
     },
   });

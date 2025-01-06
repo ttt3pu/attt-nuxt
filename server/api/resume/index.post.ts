@@ -2,7 +2,7 @@ import { z } from 'zod';
 import PROFILE from '@resume/profile.md';
 import JOBS from '@resume/jobs.md';
 
-const querySchema = z.object({
+const bodySchema = z.object({
   token: z.string().optional(),
 });
 
@@ -18,8 +18,8 @@ function createMaskedText(text: string, isPassed: boolean) {
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
-  const params = await getValidatedQuery(event, (body) => querySchema.safeParse(body));
-  const isPassed = params.data?.token === config.SECRET_TOKEN;
+  const body = await readValidatedBody(event, (body) => bodySchema.safeParse(body));
+  const isPassed = body.data?.token === config.SECRET_TOKEN;
 
   return {
     isPassed,
