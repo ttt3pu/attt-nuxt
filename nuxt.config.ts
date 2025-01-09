@@ -48,6 +48,9 @@ export default defineNuxtConfig({
 
   auth: {
     baseURL: process.env.NEXTAUTH_URL + '/api/auth',
+    provider: {
+      type: 'authjs',
+    },
   },
 
   gtag: {
