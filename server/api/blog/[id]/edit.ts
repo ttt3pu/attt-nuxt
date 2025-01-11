@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { getServerSession } from '#auth';
+import { deployWebhook } from '~/utils/server/deployWebhook';
 
 export default defineEventHandler<{
   body: {
@@ -33,4 +34,6 @@ export default defineEventHandler<{
       updated_at: new Date(),
     },
   });
+
+  await deployWebhook();
 });
