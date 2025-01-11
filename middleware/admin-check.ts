@@ -3,7 +3,7 @@ export default defineNuxtRouteMiddleware(async (to) => {
 
   const loginPath = '/admin/login';
   const session = await getSession();
-  const isAdmin = session.user?.email === 'ttt3pu@gmail.com';
+  const isAdmin = session?.user?.email === 'ttt3pu@gmail.com';
 
   if (to.path === loginPath && isAdmin) {
     return await navigateTo('/admin');
