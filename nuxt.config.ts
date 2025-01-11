@@ -90,10 +90,6 @@ export default defineNuxtConfig({
     assetsInclude: ['packages/resume/**/*.md'],
   },
 
-  nitro: {
-    preset: 'netlify',
-  },
-
   routeRules: {
     '/': { swr: true },
     '/blog/**': { swr: true },
