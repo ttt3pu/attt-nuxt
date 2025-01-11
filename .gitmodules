@@ -1,6 +1,6 @@
 [submodule "packages/prisma"]
 	path = packages/prisma
-	url = git@github.com:ttt3pu/attt-prisma.git
+	url = https://github.com/ttt3pu/attt-prisma.git
 [submodule "packages/resume"]
 	path = packages/resume
-	url = git@github.com:ttt3pu/attt-resume.git
+	url = https://github.com/ttt3pu/attt-resume.git
