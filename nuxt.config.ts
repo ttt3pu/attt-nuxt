@@ -83,8 +83,8 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    '/': { swr: true },
-    '/blog/**': { swr: true },
+    '/': { prerender: true },
+    '/blog/**': { prerender: true },
     '/admin/**': { ssr: false },
   },
 
