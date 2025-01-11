@@ -1,8 +1,5 @@
 {
   "extends": ["github>ttt3pu/renovate-settings"],
-  "git-submodules": {
-    "enabled": true
-  },
   "cloneSubmodules": true,
   "cloneSubmodulesFilter": ["packages/prisma"]
 }
