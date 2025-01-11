@@ -97,6 +97,7 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     SECRET_TOKEN: '',
+    DEPLOY_WEBHOOK_URL: '',
   },
 
   compatibilityDate: '2024-10-05',
