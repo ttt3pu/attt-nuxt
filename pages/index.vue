@@ -44,13 +44,15 @@ import type { ZennPost } from '@/types';
 
 const postsStore = usePostsStore();
 
-const blogPosts = await useFetch<BlogPost[]>('/api/blog');
+const { data: blogPosts } = await useFetch<BlogPost[]>('/api/blog');
 const zennPosts = await useFetch<ZennPost[]>('/api/zenn');
 
 postsStore.$patch({
-  blogPosts: blogPosts.data.value!,
+  blogPosts: blogPosts.value!,
   zennPosts: zennPosts.data.value!,
 });
+
+prerenderRoutes(blogPosts.value!.map((post) => `/blog/${post.id}`));
 
 useHead({
   title: 'attt - Front End Developer',
