@@ -24,7 +24,7 @@ import {
   siJavascript,
   siJest,
   siJquery,
-  siNuxtdotjs,
+  siNuxt,
   siPug,
   siReact,
   siSass,
@@ -64,7 +64,7 @@ const primaryItems = [
   },
   {
     heading: 'Nuxt',
-    icnData: siNuxtdotjs,
+    icnData: siNuxt,
   },
   {
     heading: 'TypeScript',
