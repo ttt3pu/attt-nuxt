@@ -94,9 +94,6 @@ sw.*
 # VSCode settings
 .vscode
 
-# Local Netlify folder
-.netlify
-
 # Stylelint cache
 .stylelintcache
 

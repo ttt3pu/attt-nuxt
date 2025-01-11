@@ -1,4 +1,0 @@
-[build]
-  command = "pnpm prisma generate && pnpm build"
-  functions = ".netlify/functions-internal"
-  publish = "dist"
