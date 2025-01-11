@@ -15,6 +15,8 @@ SUBMODULE_URL_PRISMA="https://${GITHUB_PAT}@github.com/ttt3pu/attt-prisma.git"
 SUBMODULE_NAME_RESUME="packages/resume"
 SUBMODULE_URL_RESUME="https://${GITHUB_PAT}@github.com/ttt3pu/attt-resume.git"
 
+rm -rf packages
+
 echo "Updating submodule URL for ${SUBMODULE_NAME_PRISMA}..."
 git submodule set-url "$SUBMODULE_NAME_PRISMA" "$SUBMODULE_URL_PRISMA"
 
