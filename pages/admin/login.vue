@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import { siGithub } from 'simple-icons';
+import { siGoogle } from 'simple-icons';
 const { status, signIn, signOut, getSession } = useAuth();
 const session = await getSession();
 const loggedIn = computed(() => status.value === 'authenticated');
-const roleError = computed(() => loggedIn.value && session.user?.email !== 'ttt3pu@gmail.com');
+const roleError = computed(() => loggedIn.value && session?.user?.email !== 'ttt3pu@gmail.com');
 
 definePageMeta({
   middleware: ['admin-check'],
 });
 
 async function handleSignIn() {
-  await signIn('github');
+  await signIn('google');
 }
 
 async function handleSignOut() {
@@ -25,9 +25,9 @@ async function handleSignOut() {
 
       <button v-if="loggedIn" @click="handleSignOut">Logout</button>
       <button v-else @click="handleSignIn">
-        <span>Login with GitHub</span>
-        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path :d="siGithub.path" />
+        <span>Login</span>
+        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" :fill="'#' + siGoogle.hex">
+          <path :d="siGoogle.path" />
         </svg>
       </button>
     </AtomsContentsBox>
