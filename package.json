@@ -28,7 +28,7 @@
     "@vuepic/vue-datepicker": "9.0.3",
     "@xmldom/xmldom": "0.9.6",
     "markdown-it": "14.1.0",
-    "nuxt": "3.15.1",
+    "nuxt": "3.15.4",
     "postcss": "8.4.49",
     "postcss-html": "1.7.0",
     "vue-router": "4.5.0",
