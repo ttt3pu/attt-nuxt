@@ -44,7 +44,7 @@
     "autoprefixer": "10.4.21",
     "dayjs": "1.11.13",
     "eslint": "9.24.0",
-    "eslint-config-prettier": "10.1.2",
+    "eslint-config-prettier": "10.1.5",
     "http-server": "14.1.1",
     "nuxt-gtag": "3.0.2",
     "pinia": "3.0.2",
