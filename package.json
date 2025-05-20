@@ -59,7 +59,7 @@
     "tsx": "4.19.4",
     "vue-material-design-icons": "5.3.1",
     "vue-tsc": "2.2.10",
-    "zod": "3.24.3"
+    "zod": "3.25.7"
   },
   "resolutions": {
     "next-auth": "4.24.11"
