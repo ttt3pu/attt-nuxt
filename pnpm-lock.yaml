@@ -112,8 +112,8 @@ importers:
         specifier: 2.2.10
         version: 2.2.10(typescript@5.5.4)
       zod:
-        specifier: 3.25.7
-        version: 3.25.7
+        specifier: 3.25.42
+        version: 3.25.42
 
   packages/prisma:
     dependencies:
@@ -5765,8 +5765,8 @@ packages:
     resolution: {integrity: sha512-zK7YHHz4ZXpW89AHXUPbQVGKI7uvkd3hzusTdotCg1UxyaVtg0zFJSTfW/Dq5f7OBBVnq6cZIaC8Ti4hb6dtCA==}
     engines: {node: '>= 14'}
 
-  zod@3.25.7:
-    resolution: {integrity: sha512-YGdT1cVRmKkOg6Sq7vY7IkxdphySKnXhaUmFI4r4FcuFVNgpCb9tZfNwXbT6BPjD5oz0nubFsoo9pIqKrDcCvg==}
+  zod@3.25.42:
+    resolution: {integrity: sha512-PcALTLskaucbeHc41tU/xfjfhcz8z0GdhhDcSgrCTmSazUuqnYqiXO63M0QUBVwpBlsLsNVn5qHSC5Dw3KZvaQ==}
 
 snapshots:
 
@@ -12255,4 +12255,4 @@ snapshots:
       compress-commons: 6.0.2
       readable-stream: 4.5.2
 
-  zod@3.25.7: {}
+  zod@3.25.42: {}
