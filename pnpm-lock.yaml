@@ -49,8 +49,8 @@ importers:
         specifier: 6.13.2
         version: 6.13.2(magicast@0.3.5)(ts-node@10.9.2(@types/node@22.1.0)(typescript@5.5.4))
       '@pinia/nuxt':
-        specifier: 0.11.0
-        version: 0.11.0(magicast@0.3.5)(pinia@3.0.3(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))
+        specifier: 0.11.1
+        version: 0.11.1(magicast@0.3.5)(pinia@3.0.3(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))
       '@sidebase/nuxt-auth':
         specifier: 0.10.1
         version: 0.10.1(@netlify/blobs@7.4.0)(magicast@0.3.5)(next-auth@4.22.5(next@13.5.6(@babel/core@7.26.0)(@opentelemetry/api@1.8.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.89.2))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(typescript@5.5.4)
@@ -1311,10 +1311,10 @@ packages:
     resolution: {integrity: sha512-HNjmfLQEVRZmHRET336f20H/8kOozUGwk7yajvsonjNxbj2wBTK1WsQuHkD5yYh9RxFGL2EyDHryOihOwUoKDA==}
     engines: {node: '>= 10.0.0'}
 
-  '@pinia/nuxt@0.11.0':
-    resolution: {integrity: sha512-QGFlUAkeVAhPCTXacrtNP4ti24sGEleVzmxcTALY9IkS6U5OUox7vmNL1pkqBeW39oSNq/UC5m40ofDEPHB1fg==}
+  '@pinia/nuxt@0.11.1':
+    resolution: {integrity: sha512-tCD8ioWhhIHKwm8Y9VvyhBAV/kK4W5uGBIYbI5iM4N1t7duOqK6ECBUavrMxMolELayqqMLb9+evegrh3S7s2A==}
     peerDependencies:
-      pinia: ^3.0.2
+      pinia: ^3.0.3
 
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
@@ -7157,7 +7157,7 @@ snapshots:
       '@parcel/watcher-win32-ia32': 2.4.1
       '@parcel/watcher-win32-x64': 2.4.1
 
-  '@pinia/nuxt@0.11.0(magicast@0.3.5)(pinia@3.0.3(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))':
+  '@pinia/nuxt@0.11.1(magicast@0.3.5)(pinia@3.0.3(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))':
     dependencies:
       '@nuxt/kit': 3.16.1(magicast@0.3.5)
       pinia: 3.0.3(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4))
