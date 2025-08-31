@@ -100,8 +100,8 @@ importers:
         specifier: 14.0.0
         version: 14.0.0(postcss@8.4.49)(stylelint@16.12.0(typescript@5.5.4))
       stylelint-scss:
-        specifier: 6.10.1
-        version: 6.10.1(stylelint@16.12.0(typescript@5.5.4))
+        specifier: 6.12.1
+        version: 6.12.1(stylelint@16.12.0(typescript@5.5.4))
       tsx:
         specifier: 4.19.4
         version: 4.19.4
@@ -3563,6 +3563,9 @@ packages:
   known-css-properties@0.35.0:
     resolution: {integrity: sha512-a/RAk2BfKk+WFGhhOCAYqSiFLc34k8Mt/6NWRI4joER0EYUzXIcFivjjnoD3+XU1DggLn/tZc3DOAgke7l8a4A==}
 
+  known-css-properties@0.36.0:
+    resolution: {integrity: sha512-A+9jP+IUmuQsNdsLdcg6Yt7voiMF/D4K83ew0OpJtpu+l34ef7LaohWV0Rc6KNvzw6ZDizkqfyB5JznZnzuKQA==}
+
   koa-compose@4.1.0:
     resolution: {integrity: sha512-8ODW8TrDuMYvXRwra/Kh7/rJo9BtOfPc6qO8eAfC80CnCvSjSl0bkRM24X6/XBBEyj0v1nRUQ1LyOy3dbqOWXw==}
 
@@ -3710,8 +3713,8 @@ packages:
   mdn-data@2.12.2:
     resolution: {integrity: sha512-IEn+pegP1aManZuckezWCO+XZQDplx1366JoVhTpMpBB1sPey/SbveZQUosKiKiGYjg1wH4pMlNgXbCiYgihQA==}
 
-  mdn-data@2.15.0:
-    resolution: {integrity: sha512-KIrS0lFPOqA4DgeO16vI5fkAsy8p++WBlbXtB5P1EQs8ubBgguAInNd1DnrCeTRfGchY0kgThgDOOIPyOLH2dQ==}
+  mdn-data@2.24.0:
+    resolution: {integrity: sha512-i97fklrJl03tL1tdRVw0ZfLLvuDsdb6wxL+TrJ+PKkCbLrp2PCu2+OYdCKychIUm19nSM/35S6qz7pJpnXttoA==}
 
   mdurl@2.0.0:
     resolution: {integrity: sha512-Lf+9+2r+Tdp5wXDXC4PcIBjTDtq4UKjCPMQhKIuzpJNW0b96kVqSwW0bT7FhRSfmAiFYgP+SCRvdrDozfh0U5w==}
@@ -4475,6 +4478,10 @@ packages:
     resolution: {integrity: sha512-9RbEr1Y7FFfptd/1eEdntyjMwLeghW1bHX9GWjXo19vx4ytPQhANltvVxDggzJl7mnWM+dX28kb6cyS/4iQjlQ==}
     engines: {node: '>=4'}
 
+  postcss-selector-parser@7.1.0:
+    resolution: {integrity: sha512-8sLjZwK0R+JlxlYcTuVnyT2v+htpdrjDOKuMcOVdYjt52Lh8hWRYpxBPoKx/Zg+bcjc3wx6fmQevMmUztS/ccA==}
+    engines: {node: '>=4'}
+
   postcss-svgo@7.0.1:
     resolution: {integrity: sha512-0WBUlSL4lhD9rA5k1e5D8EN5wCEyZD6HJk0jIvRxl+FDVOMlJ7DePHYWGGVc5QRqrJ3/06FTXM0bxjmJpmTPSA==}
     engines: {node: ^18.12.0 || ^20.9.0 || >= 18}
@@ -5021,8 +5028,8 @@ packages:
     peerDependencies:
       stylelint: ^16.13.0
 
-  stylelint-scss@6.10.1:
-    resolution: {integrity: sha512-CBqs0jecftIyhic6xba+4OvZUp4B0wNbX19w6Rq1fPo+lBDmTevk+olo8H7u/WQpTSDCDbBN4f3oocQurvXLTQ==}
+  stylelint-scss@6.12.1:
+    resolution: {integrity: sha512-UJUfBFIvXfly8WKIgmqfmkGKPilKB4L5j38JfsDd+OCg2GBdU0vGUV08Uw82tsRZzd4TbsUURVVNGeOhJVF7pA==}
     engines: {node: '>=18.12.0'}
     peerDependencies:
       stylelint: ^16.0.2
@@ -9688,6 +9695,8 @@ snapshots:
 
   known-css-properties@0.35.0: {}
 
+  known-css-properties@0.36.0: {}
+
   koa-compose@4.1.0: {}
 
   koa-convert@2.0.0:
@@ -9880,7 +9889,7 @@ snapshots:
 
   mdn-data@2.12.2: {}
 
-  mdn-data@2.15.0: {}
+  mdn-data@2.24.0: {}
 
   mdurl@2.0.0: {}
 
@@ -10792,6 +10801,11 @@ snapshots:
       cssesc: 3.0.0
       util-deprecate: 1.0.2
 
+  postcss-selector-parser@7.1.0:
+    dependencies:
+      cssesc: 3.0.0
+      util-deprecate: 1.0.2
+
   postcss-svgo@7.0.1(postcss@8.5.1):
     dependencies:
       postcss: 8.5.1
@@ -11312,7 +11326,7 @@ snapshots:
       postcss-scss: 4.0.9(postcss@8.4.49)
       stylelint: 16.12.0(typescript@5.5.4)
       stylelint-config-recommended: 14.0.1(stylelint@16.12.0(typescript@5.5.4))
-      stylelint-scss: 6.10.1(stylelint@16.12.0(typescript@5.5.4))
+      stylelint-scss: 6.12.1(stylelint@16.12.0(typescript@5.5.4))
     optionalDependencies:
       postcss: 8.4.49
 
@@ -11342,15 +11356,15 @@ snapshots:
       stylelint: 16.12.0(typescript@5.5.4)
       stylelint-config-recommended: 15.0.0(stylelint@16.12.0(typescript@5.5.4))
 
-  stylelint-scss@6.10.1(stylelint@16.12.0(typescript@5.5.4)):
+  stylelint-scss@6.12.1(stylelint@16.12.0(typescript@5.5.4)):
     dependencies:
       css-tree: 3.1.0
       is-plain-object: 5.0.0
-      known-css-properties: 0.35.0
-      mdn-data: 2.15.0
+      known-css-properties: 0.36.0
+      mdn-data: 2.24.0
       postcss-media-query-parser: 0.2.3
       postcss-resolve-nested-selector: 0.1.6
-      postcss-selector-parser: 7.0.0
+      postcss-selector-parser: 7.1.0
       postcss-value-parser: 4.2.0
       stylelint: 16.12.0(typescript@5.5.4)
 
