@@ -1,5 +1,5 @@
 <template>
-  <OrganismsBlogPost :title="title" :content="content" :published-at="published_at" />
+  <OrganismsBlogPost :title="title" :content="content" :published-at="published_at || new Date()" />
 </template>
 
 <script setup lang="ts">

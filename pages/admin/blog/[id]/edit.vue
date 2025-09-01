@@ -27,7 +27,7 @@ if (!response.data.value) {
 const { published_at, id, title, content } = response.data.value!;
 
 const localModelValue = ref({
-  published_at: new Date(published_at),
+  published_at: published_at ? new Date(published_at) : new Date(),
   title,
   content,
 });
