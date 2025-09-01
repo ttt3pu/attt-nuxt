@@ -8,13 +8,6 @@ export function usePrismaErrorHandling(e: unknown) {
     });
   }
 
-  if (e instanceof Error) {
-    return showError({
-      message: e.message,
-      statusCode: 500,
-    });
-  }
-
   if (typeof e === 'object') {
     return showError({
       // eslint-disable-next-line @typescript-eslint/no-explicit-any

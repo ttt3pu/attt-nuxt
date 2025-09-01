@@ -33,7 +33,6 @@ jobs:
 
       - name: Prisma generate types and etc
         run: pnpm prisma generate
-        continue-on-error: true
 
       - name: Nuxi prepare
         run: pnpm prepare

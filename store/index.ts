@@ -25,7 +25,7 @@ export const usePostsStore = defineStore('posts', {
       const filteredBlogPosts: MergedPost[] = state.blogPosts.map((row) => ({
         type: 'blog',
         title: row.title,
-        date: row.published_at?.toString() || '',
+        date: row.published_at.toString(),
         link: row.id.toString(),
       }));
 
