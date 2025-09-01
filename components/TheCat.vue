@@ -177,7 +177,7 @@ img {
 
 .ear {
   position: absolute;
-  border-radius: 0% 100% 61% 39% / 0% 100% 0% 100%;
+  border-radius: 0% 100% 61% 39% / 0% 100%;
   background: radial-gradient(#cecece, #fff);
   border: solid #121212;
   box-shadow: 0 3px 6px rgba(#000, 0.16);
@@ -236,7 +236,7 @@ img {
   position: absolute;
   z-index: var(--z-cat);
   background-color: #fec6db;
-  border-radius: 50% 50% 50% 50% / 76% 76% 24% 24%;
+  border-radius: 50% / 76% 76% 24% 24%;
 
   @include cat-size(width, 30);
   @include cat-size(height, 15);
@@ -337,7 +337,7 @@ img {
 .neck {
   bottom: 0;
   position: absolute;
-  border-radius: 50% 50% 50% 50% / 100% 100% 0% 0%;
+  border-radius: 50% / 100% 100% 0% 0%;
   background-color: #fff;
 
   @include cat-size(left, 156);
