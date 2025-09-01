@@ -20,8 +20,9 @@ const posts = computed(() => {
 
   // ブログの投稿を1個だけ一番前に持ってくる
   for (let i = 0; i < result.length; i++) {
-    if (result[i].type === 'blog') {
-      result.unshift(result[i]);
+    const item = result[i];
+    if (item && item.type === 'blog') {
+      result.unshift(item);
       result.splice(i + 1, 1);
       break;
     }
