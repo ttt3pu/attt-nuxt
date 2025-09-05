@@ -37,7 +37,8 @@ export default defineNuxtConfig({
   components: true,
 
   modules: [
-    '@nuxtjs/google-fonts',
+    // Temporarily disable Google Fonts due to network connectivity issues
+    // '@nuxtjs/google-fonts',
     '@pinia/nuxt',
     '@nuxtjs/stylelint-module',
     '@sidebase/nuxt-auth',
@@ -54,12 +55,23 @@ export default defineNuxtConfig({
     id: 'G-YY7ZSN9HY4',
   },
 
-  googleFonts: {
-    families: {
-      Poppins: [400, 500],
-      'Noto Sans JP': [400],
-    },
-  },
+  // Temporarily disabled due to network connectivity issues
+  // googleFonts: {
+  //   families: {
+  //     Poppins: [400, 500],
+  //     'Noto Sans JP': [400],
+  //   },
+  //   download: true,
+  //   inject: true,
+  //   preconnect: true,
+  //   prefetch: true,
+  //   // Make fonts optional to avoid build failures on network issues
+  //   display: 'swap',
+  //   fallbacks: {
+  //     Poppins: ['Arial', 'sans-serif'],
+  //     'Noto Sans JP': ['Hiragino Sans', 'sans-serif'],
+  //   },
+  // },
 
   vite: {
     css: {
