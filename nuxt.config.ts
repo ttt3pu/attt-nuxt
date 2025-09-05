@@ -83,8 +83,9 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    '/': { prerender: true },
-    '/blog/**': { prerender: true },
+    // Prerendering disabled due to Prisma client initialization requirements
+    // Enable after proper database setup: '/': { prerender: true },
+    // Enable after proper database setup: '/blog/**': { prerender: true },
     '/admin/**': { ssr: false },
   },
 
