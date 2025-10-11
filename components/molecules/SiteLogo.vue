@@ -1,5 +1,5 @@
 <template>
-  <div class="the-logo">
+  <div class="site-logo">
     <NuxtLink to="/">
       <h1 class="title">attt</h1>
     </NuxtLink>

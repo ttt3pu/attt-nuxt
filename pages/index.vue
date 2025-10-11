@@ -5,13 +5,13 @@
       <div class="title-container__inner">
         <div class="title-container__inner-inner">
           <div class="title-container__logo">
-            <the-logo />
+            <MoleculesSiteLogo />
           </div>
           <!-- /title-container__logo -->
         </div>
 
         <div class="title-container__cat">
-          <the-cat />
+          <MoleculesCatMascot />
         </div>
 
         <AtScroll class="title-container__scroll" />
@@ -25,7 +25,7 @@
       </AtomsContentsBox>
 
       <AtomsContentsBox :color="2">
-        <the-profile />
+        <OrganismsProfileSection />
       </AtomsContentsBox>
 
       <AtomsContentsBox>

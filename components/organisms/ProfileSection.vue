@@ -21,20 +21,20 @@ const { renderedContent: jobsContent } = useMd(jobs);
 </script>
 
 <template>
-  <div class="the-profile">
-    <v-heading-lv2>Profile</v-heading-lv2>
+  <div class="profile-section">
+    <AtomsHeadingLv2>Profile</AtomsHeadingLv2>
 
     <!-- eslint-disable-next-line vue/no-v-html -->
     <div class="md-contents" v-html="profileContent" />
 
-    <v-heading-lv3>Jobs</v-heading-lv3>
+    <AtomsHeadingLv3>Jobs</AtomsHeadingLv3>
     <!-- eslint-disable-next-line vue/no-v-html -->
     <div class="md-contents justify-left" v-html="jobsContent" />
   </div>
 </template>
 
 <style lang="scss" scoped>
-.the-profile {
+.profile-section {
   @media (width >= 769px) {
     text-align: center;
   }

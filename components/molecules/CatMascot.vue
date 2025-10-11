@@ -1,5 +1,5 @@
 <template>
-  <div class="the-cat">
+  <div class="cat-mascot">
     <!-- <img src="~/assets/mihon.png" alt> -->
     <div class="face-wrapper">
       <!-- face -->
@@ -70,7 +70,7 @@ img {
   opacity: 0.5;
 }
 
-.the-cat {
+.cat-mascot {
   overflow-x: hidden;
 
   @include cat-size(width, 500);
