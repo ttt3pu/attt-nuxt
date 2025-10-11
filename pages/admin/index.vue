@@ -10,7 +10,7 @@ definePageMeta({ middleware: 'admin-check' });
   <div>
     <AtomsContentsBox :color="2">
       <div class="flex justify-between items-start">
-        <v-heading-lv2>Posts</v-heading-lv2>
+        <AtomsHeadingLv2>Posts</AtomsHeadingLv2>
         <AtomsAtttButton to="/admin/blog/create">New Post</AtomsAtttButton>
       </div>
       <div role="list">

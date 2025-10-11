@@ -1,14 +1,14 @@
 <template>
-  <div class="the-works">
-    <v-heading-lv2>Works</v-heading-lv2>
+  <div class="works-section">
+    <AtomsHeadingLv2>Works</AtomsHeadingLv2>
 
     <ul>
-      <li v-for="item in data.items" :key="item.heading" class="the-works__item">
-        <h3 class="the-works__item__heading">
+      <li v-for="item in data.items" :key="item.heading" class="works-section__item">
+        <h3 class="works-section__item__heading">
           {{ item.heading }}
         </h3>
-        <p class="the-works__item__paragraph">
-          <span class="the-works__item__paragraph__inner">{{ item.paragraph }}</span>
+        <p class="works-section__item__paragraph">
+          <span class="works-section__item__paragraph__inner">{{ item.paragraph }}</span>
         </p>
       </li>
     </ul>
@@ -55,7 +55,7 @@ const data = reactive({
 </script>
 
 <style lang="scss" scoped>
-.the-works {
+.works-section {
   &__item {
     font-family: var(--font-family-jp);
 

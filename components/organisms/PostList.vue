@@ -54,7 +54,7 @@ function onClickedNextButton() {
 
 <template>
   <div>
-    <v-heading-lv2>Posts</v-heading-lv2>
+    <AtomsHeadingLv2>Posts</AtomsHeadingLv2>
 
     <div role="list" class="mb-10">
       <component

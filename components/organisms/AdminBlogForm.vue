@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent="emit('submit')">
     <AtomsContentsBox :color="2">
-      <v-heading-lv2>{{ heading }}</v-heading-lv2>
+      <AtomsHeadingLv2>{{ heading }}</AtomsHeadingLv2>
       <div class="sticky right-0 top-4 flex justify-end -mt-16 gap-6">
         <button
           class="bg-white px-4 py-1 rounded shadow-md font-en w-24 flex justify-center border border-gray-950"
@@ -19,7 +19,7 @@
       </div>
 
       <div class="mb-4">
-        <v-heading-lv3>Title</v-heading-lv3>
+        <AtomsHeadingLv3>Title</AtomsHeadingLv3>
         <AtomsFormInput
           required="true"
           :model-value="modelValue.title"
@@ -28,7 +28,7 @@
       </div>
 
       <div class="mb-4">
-        <v-heading-lv3>Published at</v-heading-lv3>
+        <AtomsHeadingLv3>Published at</AtomsHeadingLv3>
         <AtomsFormDate
           required="true"
           :model-value="modelValue.published_at"
@@ -37,7 +37,7 @@
       </div>
 
       <div class="mb-4">
-        <v-heading-lv3>Content</v-heading-lv3>
+        <AtomsHeadingLv3>Content</AtomsHeadingLv3>
         <AtomsFormTextArea
           required="true"
           :model-value="modelValue.content"
