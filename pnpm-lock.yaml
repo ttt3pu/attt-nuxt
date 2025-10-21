@@ -4,9 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  next-auth: 4.24.11
-
 importers:
 
   .:
@@ -1578,7 +1575,7 @@ packages:
     resolution: {integrity: sha512-fCSDfGl6npVIWrb//NbeKA16ATk1CpjzfRrNAdJ2PRr0BF5aJz6KCvDI8dSzs5VLMJBIRLR39G2rWYq5q+v5iA==}
     engines: {node: '>=20', pnpm: '>=9.4.0'}
     peerDependencies:
-      next-auth: 4.24.11
+      next-auth: ~4.21.1
 
   '@sinclair/typebox@0.27.8':
     resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
