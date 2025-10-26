@@ -43,7 +43,7 @@
     "@types/markdown-it": "14.1.2",
     "autoprefixer": "10.4.21",
     "dayjs": "1.11.18",
-    "eslint": "9.37.0",
+    "eslint": "9.38.0",
     "eslint-config-prettier": "10.1.8",
     "http-server": "14.1.1",
     "nuxt-gtag": "3.0.3",
