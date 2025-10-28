@@ -40,7 +40,7 @@
     "@nuxtjs/tailwindcss": "6.13.2",
     "@pinia/nuxt": "0.11.2",
     "@prisma/client": "6.0.1",
-    "@sidebase/nuxt-auth": "0.10.1",
+    "@sidebase/nuxt-auth": "1.1.0",
     "@types/eslint-config-prettier": "6.11.3",
     "@types/markdown-it": "14.1.2",
     "autoprefixer": "10.4.21",
