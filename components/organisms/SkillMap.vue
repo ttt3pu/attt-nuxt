@@ -1,16 +1,16 @@
 <template>
   <div>
-    <v-heading-lv2 class="font-en"> Skills </v-heading-lv2>
+    <AtomsHeadingLv2 class="font-en"> Skills </AtomsHeadingLv2>
 
-    <v-heading-lv3 class="font-en">Primary</v-heading-lv3>
+    <AtomsHeadingLv3 class="font-en">Primary</AtomsHeadingLv3>
     <p class="font-jp text-white mb-6">メイン業務で使用中</p>
     <MoleculesSkillMapItems :items="primaryItems" :size="1" />
 
-    <v-heading-lv3 class="font-en">Secondary</v-heading-lv3>
+    <AtomsHeadingLv3 class="font-en">Secondary</AtomsHeadingLv3>
     <p class="font-jp text-white mb-6">サブ業務で使用中</p>
     <MoleculesSkillMapItems :items="secondaryItems" :size="2" />
 
-    <v-heading-lv3>Tertiary</v-heading-lv3>
+    <AtomsHeadingLv3>Tertiary</AtomsHeadingLv3>
     <p class="font-jp text-white mb-6">勉強中 or 古いバージョンなら使ったことがある</p>
     <MoleculesSkillMapItems :items="tertiaryItems" :size="3" />
   </div>

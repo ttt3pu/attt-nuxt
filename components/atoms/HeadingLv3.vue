@@ -1,11 +1,11 @@
 <template>
-  <h3 class="v-heading-lv3">
+  <h3 class="heading-lv3">
     <slot />
   </h3>
 </template>
 
 <style lang="scss" scoped>
-.v-heading-lv3 {
+.heading-lv3 {
   font-family: var(--font-family-en);
   color: #ffb962;
   font-weight: 500;

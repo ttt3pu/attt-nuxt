@@ -25,7 +25,7 @@ const loggedIn = computed(() => !!session?.user);
   <div class="logo-area">
     <div class="md:flex justify-between items-end">
       <div>
-        <the-logo :mini="true" :is-active-logo="false" />
+        <MoleculesSiteLogo :mini="true" :is-active-logo="false" />
         <p v-if="isAdminPage" class="text-white mb-6">( Admin )</p>
 
         <div class="flex gap-2 -ml-2">
