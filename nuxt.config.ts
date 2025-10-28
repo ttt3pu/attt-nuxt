@@ -23,7 +23,7 @@ export default defineNuxtConfig({
     shim: false,
     tsConfig: {
       compilerOptions: {
-        types: ['@pinia/nuxt', '@types/node'],
+        types: ['@pinia/nuxt'],
       },
     },
   },
