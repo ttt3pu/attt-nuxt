@@ -15,8 +15,8 @@ importers:
         specifier: 3.2.0
         version: 3.2.0(magicast@0.3.5)(rollup@4.30.1)
       '@vuepic/vue-datepicker':
-        specifier: 11.0.2
-        version: 11.0.2(vue@3.5.13(typescript@5.9.3))
+        specifier: 11.0.3
+        version: 11.0.3(vue@3.5.13(typescript@5.9.3))
       '@xmldom/xmldom':
         specifier: 0.9.8
         version: 0.9.8
@@ -142,8 +142,6 @@ importers:
       tsx:
         specifier: 4.19.2
         version: 4.19.2
-
-  packages/resume: {}
 
 packages:
 
@@ -2215,8 +2213,8 @@ packages:
   '@vue/shared@3.5.13':
     resolution: {integrity: sha512-/hnE/qP5ZoGpol0a5mDi45bOd7t3tjYJBjsgCsivow7D48cJeV5l05RD82lPqi7gRiphZM37rnhW1l6ZoCNNnQ==}
 
-  '@vuepic/vue-datepicker@11.0.2':
-    resolution: {integrity: sha512-uHh78mVBXCEjam1uVfTzZ/HkyDwut/H6b2djSN9YTF+l/EA+XONfdCnOVSi1g+qVGSy65DcQAwyBNidAssnudQ==}
+  '@vuepic/vue-datepicker@11.0.3':
+    resolution: {integrity: sha512-sb2adwqwK2PizLQOpxCYps2SwhVT6/ic2HMIOqHJXuYa6iAJZWGL5YVlS7O4aW+sk6ZyxlDURLO7kDZPL4HB/w==}
     engines: {node: '>=18.12.0'}
     peerDependencies:
       vue: '>=3.3.0'
@@ -4009,6 +4007,7 @@ packages:
   keygrip@1.1.0:
     resolution: {integrity: sha512-iYSchDJ+liQ8iwbSI2QqsQOvqv58eJCEanyJPJi+Khyu8smkcKSFUCbPwzFcL7YVtZ6eONjqRX/38caJ7QjRAQ==}
     engines: {node: '>= 0.6'}
+    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
 
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
@@ -8739,7 +8738,7 @@ snapshots:
 
   '@vue/shared@3.5.13': {}
 
-  '@vuepic/vue-datepicker@11.0.2(vue@3.5.13(typescript@5.9.3))':
+  '@vuepic/vue-datepicker@11.0.3(vue@3.5.13(typescript@5.9.3))':
     dependencies:
       date-fns: 4.1.0
       vue: 3.5.13(typescript@5.9.3)
