@@ -105,9 +105,9 @@ export function updateMockBlogPost(
 
   const updated: BlogPost = {
     ...mockData[index],
-    ...(input.title && { title: input.title }),
-    ...(input.content && { content: input.content }),
-    ...(input.published_at && { published_at: new Date(input.published_at) }),
+    ...(input.title !== undefined && { title: input.title }),
+    ...(input.content !== undefined && { content: input.content }),
+    ...(input.published_at !== undefined && { published_at: new Date(input.published_at) }),
     updated_at: input.updated_at || new Date(),
   };
 

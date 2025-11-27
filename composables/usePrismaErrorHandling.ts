@@ -1,20 +1,29 @@
-// Error handling for database operations (works with both Prisma and mock mode)
-export function usePrismaErrorHandling(e: unknown) {
-  // Check if it's a Prisma error (only available when not in mock mode)
-  // We do a dynamic check since Prisma might not be available in mock mode
-  if (
+// Type guard to check if error is a Prisma-like error
+interface PrismaLikeError {
+  name: string;
+  message: string;
+  code: string;
+}
+
+function isPrismaLikeError(e: unknown): e is PrismaLikeError {
+  return (
     typeof e === 'object' &&
     e !== null &&
-    'code' in e &&
-    'message' in e &&
     'name' in e &&
-    typeof (e as { name: unknown }).name === 'string' &&
-    ((e as { name: string }).name as string).includes('Prisma')
-  ) {
-    const prismaError = e as { message: string; code: string };
+    'message' in e &&
+    'code' in e &&
+    typeof (e as PrismaLikeError).name === 'string' &&
+    (e as PrismaLikeError).name.includes('Prisma')
+  );
+}
+
+// Error handling for database operations (works with both Prisma and mock mode)
+export function usePrismaErrorHandling(e: unknown) {
+  // Check if it's a Prisma error using type guard
+  if (isPrismaLikeError(e)) {
     return showError({
-      message: prismaError.message,
-      statusCode: Number(prismaError.code),
+      message: e.message,
+      statusCode: Number(e.code),
     });
   }
 

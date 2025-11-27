@@ -42,6 +42,9 @@ class MockBlogDatabase implements BlogDatabase {
 }
 
 // Prisma implementation
+// Note: Uses lazy initialization with singleton pattern. In serverless environments,
+// consider using Prisma's recommended connection management strategies.
+// See: https://www.prisma.io/docs/guides/performance-and-optimization/connection-management
 class PrismaBlogDatabase implements BlogDatabase {
   private prismaClient: import('@prisma/client').PrismaClient | null = null;
 
