@@ -1,6 +1,6 @@
-import { PrismaClient } from '@prisma/client';
 import { getServerSession } from '#auth';
 import { deployWebhook } from '~/utils/server/deployWebhook';
+import { getBlogDatabase } from '~/server/utils/db';
 
 export default defineEventHandler<{
   body: {
@@ -19,11 +19,11 @@ export default defineEventHandler<{
   }
 
   const id = e.context.params!.id;
-  const prisma = new PrismaClient();
+  const db = getBlogDatabase();
 
   const requestBody = await readBody(e);
 
-  await prisma.blogPost.update({
+  await db.update({
     where: {
       id: Number(id),
     },

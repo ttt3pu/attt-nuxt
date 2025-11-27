@@ -1,6 +1,6 @@
-import { PrismaClient } from '@prisma/client';
 import { getServerSession } from '#auth';
 import { deployWebhook } from '~/utils/server/deployWebhook';
+import { getBlogDatabase } from '~/server/utils/db';
 
 export default defineEventHandler<{
   body: {
@@ -18,11 +18,11 @@ export default defineEventHandler<{
     });
   }
 
-  const prisma = new PrismaClient();
+  const db = getBlogDatabase();
 
   const requestBody = await readBody(e);
 
-  await prisma.blogPost.create({
+  await db.create({
     data: {
       content: requestBody.content,
       title: requestBody.title,

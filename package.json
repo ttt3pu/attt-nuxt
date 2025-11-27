@@ -5,11 +5,12 @@
   "private": true,
   "packageManager": "pnpm@10.18.3",
   "prisma": {
-    "schema": "packages/prisma/schema.prisma",
-    "seed": "tsx packages/prisma/seed.ts"
+    "schema": "server/prisma/schema.prisma",
+    "seed": "tsx server/prisma/seed.ts"
   },
   "scripts": {
     "dev": "nuxi dev",
+    "dev:mock": "MOCK_MODE=true nuxi dev",
     "start": "nuxi start --port=3000",
     "build": "nuxi build",
     "generate": "nuxi generate",

@@ -1,5 +1,5 @@
 {
   "extends": ["github>ttt3pu/renovate-settings"],
   "cloneSubmodules": true,
-  "cloneSubmodulesFilter": ["packages/prisma"]
+  "cloneSubmodulesFilter": ["packages/resume"]
 }

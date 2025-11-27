@@ -1,8 +1,8 @@
-import { PrismaClient } from '@prisma/client';
+import { getBlogDatabase } from '~/server/utils/db';
 
 export default defineEventHandler(async () => {
-  const prisma = new PrismaClient();
-  const posts = await prisma.blogPost.findMany({
+  const db = getBlogDatabase();
+  const posts = await db.findMany({
     orderBy: {
       published_at: 'desc',
     },
