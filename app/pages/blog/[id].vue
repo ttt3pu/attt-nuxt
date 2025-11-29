@@ -1,7 +1,3 @@
-<template>
-  <OrganismsBlogPost :title="title" :content="content" :published-at="published_at" />
-</template>
-
 <script setup lang="ts">
 import type { BlogPost } from '@prisma/client';
 
@@ -20,3 +16,7 @@ useHead({
   title: `${title} | attt`,
 });
 </script>
+
+<template>
+  <OrganismsBlogPost :title="title" :content="content" :published-at="published_at" />
+</template>
