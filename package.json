@@ -10,6 +10,7 @@
   },
   "scripts": {
     "dev": "nuxi dev",
+    "dev:mock": "MOCK_MODE=true nuxi dev",
     "start": "nuxi start --port=3000",
     "build": "nuxi build",
     "generate": "nuxi generate",
