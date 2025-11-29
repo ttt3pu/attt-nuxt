@@ -1,15 +1,15 @@
+<script setup lang="ts">
+const scroll = () => {
+  window.scrollTo(0, window.innerHeight);
+};
+</script>
+
 <template>
   <button class="at-scroll" @click="scroll">
     <span class="at-scroll__txt">Scroll down</span>
     <i class="at-scroll__arr" />
   </button>
 </template>
-
-<script setup lang="ts">
-const scroll = () => {
-  window.scrollTo(0, window.innerHeight);
-};
-</script>
 
 <style lang="scss" scoped>
 .at-scroll {

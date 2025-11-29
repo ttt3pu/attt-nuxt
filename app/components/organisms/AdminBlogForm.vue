@@ -1,3 +1,36 @@
+<script setup lang="ts">
+const isActiveModal = ref(false);
+
+type ModelValue = {
+  title: string;
+  published_at: Date;
+  content: string;
+};
+
+const props = defineProps({
+  heading: {
+    type: String,
+    required: true,
+  },
+  modelValue: {
+    type: Object as PropType<ModelValue>,
+    required: true,
+  },
+});
+
+const emit = defineEmits<{
+  (e: 'update:modelValue', val: ModelValue): void;
+  (e: 'submit'): void;
+}>();
+
+function updateModelValue(key: keyof ModelValue, val: ModelValue[typeof key]) {
+  emit('update:modelValue', {
+    ...props.modelValue,
+    [key]: val,
+  });
+}
+</script>
+
 <template>
   <form @submit.prevent="emit('submit')">
     <AtomsContentsBox :color="2">
@@ -61,36 +94,3 @@
     </div>
   </form>
 </template>
-
-<script setup lang="ts">
-const isActiveModal = ref(false);
-
-type ModelValue = {
-  title: string;
-  published_at: Date;
-  content: string;
-};
-
-const props = defineProps({
-  heading: {
-    type: String,
-    required: true,
-  },
-  modelValue: {
-    type: Object as PropType<ModelValue>,
-    required: true,
-  },
-});
-
-const emit = defineEmits<{
-  (e: 'update:modelValue', val: ModelValue): void;
-  (e: 'submit'): void;
-}>();
-
-function updateModelValue(key: keyof ModelValue, val: ModelValue[typeof key]) {
-  emit('update:modelValue', {
-    ...props.modelValue,
-    [key]: val,
-  });
-}
-</script>

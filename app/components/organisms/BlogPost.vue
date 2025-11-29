@@ -1,21 +1,3 @@
-<template>
-  <main class="main bg-bg-300">
-    <div class="main__inner">
-      <div class="mb-12">
-        <time class="mb-4 block font-en text-white" :datetime="publishedAtFormatted">{{ publishedAtFormatted }}</time>
-
-        <h1 class="font-jp text-5xl font-bold text-primary">
-          {{ title }}
-        </h1>
-      </div>
-
-      <!-- eslint-disable vue/no-v-html -->
-      <div class="post" v-html="renderedContent" />
-      <!-- eslint-enable vue/no-v-html -->
-    </div>
-  </main>
-</template>
-
 <script setup lang="ts">
 import dayjs from 'dayjs';
 
@@ -37,6 +19,24 @@ const props = defineProps({
 const { renderedContent } = useMd(props.content);
 const publishedAtFormatted = computed(() => dayjs(props.publishedAt).format('YYYY.MM.DD'));
 </script>
+
+<template>
+  <main class="main bg-bg-300">
+    <div class="main__inner">
+      <div class="mb-12">
+        <time class="mb-4 block font-en text-white" :datetime="publishedAtFormatted">{{ publishedAtFormatted }}</time>
+
+        <h1 class="font-jp text-5xl font-bold text-primary">
+          {{ title }}
+        </h1>
+      </div>
+
+      <!-- eslint-disable vue/no-v-html -->
+      <div class="post" v-html="renderedContent" />
+      <!-- eslint-enable vue/no-v-html -->
+    </div>
+  </main>
+</template>
 
 <style lang="scss" scoped>
 .main {

@@ -1,15 +1,3 @@
-<template>
-  <div class="page-wrapper">
-    <OrganismsHeaderLogo v-if="route.path !== '/'" />
-
-    <div class="contents-wrapper">
-      <slot />
-    </div>
-
-    <OrganismsGeneralFooter />
-  </div>
-</template>
-
 <script lang="ts" setup>
 const route = useRoute();
 
@@ -33,6 +21,18 @@ if (import.meta.client) {
   }
 }
 </script>
+
+<template>
+  <div class="page-wrapper">
+    <OrganismsHeaderLogo v-if="route.path !== '/'" />
+
+    <div class="contents-wrapper">
+      <slot />
+    </div>
+
+    <OrganismsGeneralFooter />
+  </div>
+</template>
 
 <style lang="scss" scoped>
 .contents-wrapper {

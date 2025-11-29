@@ -1,11 +1,3 @@
-<template>
-  <div class="contents-box border-b border-gray-600" :data-color="color">
-    <div class="contents-box__inner max-w mx-auto">
-      <slot />
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
 defineProps({
   color: {
@@ -14,6 +6,14 @@ defineProps({
   },
 });
 </script>
+
+<template>
+  <div class="contents-box border-b border-gray-600" :data-color="color">
+    <div class="contents-box__inner max-w mx-auto">
+      <slot />
+    </div>
+  </div>
+</template>
 
 <style scope lang="scss">
 .contents-box {

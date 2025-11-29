@@ -1,3 +1,26 @@
+<script lang="ts" setup>
+import AtScroll from '@/components/atoms/AtScroll.vue';
+import { usePostsStore } from '@/store';
+import type { BlogPost } from '@prisma/client';
+import type { ZennPost } from '@/types';
+
+const postsStore = usePostsStore();
+
+const { data: blogPosts } = await useFetch<BlogPost[]>('/api/blog');
+const zennPosts = await useFetch<ZennPost[]>('/api/zenn');
+
+postsStore.$patch({
+  blogPosts: blogPosts.value!,
+  zennPosts: zennPosts.data.value!,
+});
+
+prerenderRoutes(blogPosts.value!.map((post) => `/blog/${post.id}`));
+
+useHead({
+  title: 'attt - Front End Developer',
+});
+</script>
+
 <template>
   <div>
     <MoleculesTokenForm class="fixed bottom-0 right-0 p-4 z-50" />
@@ -35,29 +58,6 @@
     <!-- /main-contents -->
   </div>
 </template>
-
-<script lang="ts" setup>
-import AtScroll from '@/components/atoms/AtScroll.vue';
-import { usePostsStore } from '@/store';
-import type { BlogPost } from '@prisma/client';
-import type { ZennPost } from '@/types';
-
-const postsStore = usePostsStore();
-
-const { data: blogPosts } = await useFetch<BlogPost[]>('/api/blog');
-const zennPosts = await useFetch<ZennPost[]>('/api/zenn');
-
-postsStore.$patch({
-  blogPosts: blogPosts.value!,
-  zennPosts: zennPosts.data.value!,
-});
-
-prerenderRoutes(blogPosts.value!.map((post) => `/blog/${post.id}`));
-
-useHead({
-  title: 'attt - Front End Developer',
-});
-</script>
 
 <style lang="scss" scoped>
 .title-container {

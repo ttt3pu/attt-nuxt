@@ -1,9 +1,3 @@
-<template>
-  <div>
-    <Datepicker v-model="localModelValue" :ui="{ input: 'input-class' }" />
-  </div>
-</template>
-
 <script setup lang="ts">
 import Datepicker from '@vuepic/vue-datepicker';
 
@@ -23,6 +17,12 @@ const localModelValue = computed({
   set: (val) => emit('update:modelValue', val),
 });
 </script>
+
+<template>
+  <div>
+    <Datepicker v-model="localModelValue" :ui="{ input: 'input-class' }" />
+  </div>
+</template>
 
 <style lang="scss">
 .input-class {

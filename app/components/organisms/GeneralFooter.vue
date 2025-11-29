@@ -1,13 +1,13 @@
+<script lang="ts" setup>
+const year = computed(() => new Date().getFullYear());
+</script>
+
 <template>
   <div class="copyright bg-bg-500">
     <a href="https://github.com/ttt3pu/attt" target="_blank" rel="noopener">Source code</a><br />
     <small>&copy; {{ year }}, attt All rights reserved.</small>
   </div>
 </template>
-
-<script lang="ts" setup>
-const year = computed(() => new Date().getFullYear());
-</script>
 
 <style scoped lang="scss">
 .copyright {
