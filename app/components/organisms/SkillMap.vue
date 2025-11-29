@@ -48,21 +48,19 @@ import {
   siHasura,
   siTerraform,
   siPostgresql,
-  siAmazonwebservices,
   siMysql,
   siPrisma,
   siNetlify,
   siVercel,
-  siAwslambda,
   siNextdotjs,
   siRenovate,
   siDocker,
   siRemix,
   siExpress,
-  siAmazonapigateway,
   siZod,
   siGithubcopilot,
 } from 'simple-icons';
+import { awsIcon, awsLambdaIcon, awsApiGatewayIcon } from '~/constants/awsIcons';
 
 const primaryItems = [
   {
@@ -101,7 +99,7 @@ const primaryItems = [
   },
   {
     heading: 'Lambda',
-    icnData: siAwslambda,
+    icnData: awsLambdaIcon,
     proficiency: 4,
     description: 'APIの構築や、CloudFrontのミドルウェアとしての使用、業務改善用のツール開発などに使用しています。',
   },
@@ -175,13 +173,13 @@ const secondaryItems = [
   },
   {
     heading: 'AWS',
-    icnData: siAmazonwebservices,
+    icnData: awsIcon,
     proficiency: 3,
     description: '幅広く構築経験があります（S3、CloudFront、RDS、ECR、ECS、Lambda、API Gateway、DMS、など・・・）。',
   },
   {
     heading: 'API Gateway',
-    icnData: siAmazonapigateway,
+    icnData: awsApiGatewayIcon,
     proficiency: 3,
     description:
       'RESTエンドポイントの作成、WebSocket開発用のエンドポイント開発や認証機構などを、自身で一から構築しました。',
