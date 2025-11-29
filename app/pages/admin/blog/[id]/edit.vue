@@ -9,11 +9,10 @@ definePageMeta({
       name: 'Admin Top',
     },
   ],
+  middleware: 'admin-check',
 });
 
 const route = useRoute('admin-blog-id-edit');
-
-definePageMeta({ middleware: 'admin-check' });
 
 const $toast = useToast();
 const response = await useFetch<BlogPost>(`/api/blog/${route.params.id}`);

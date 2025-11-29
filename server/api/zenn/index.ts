@@ -1,4 +1,4 @@
-import type { ZennPost } from '@/types';
+import type { ZennPost } from '~/types';
 import { DOMParser } from '@xmldom/xmldom';
 import dayjs from 'dayjs';
 
