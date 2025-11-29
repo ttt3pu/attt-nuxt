@@ -9,6 +9,20 @@ export default defineNuxtConfig({
     '@resume': fileURLToPath(new URL('./packages/resume/src', import.meta.url)),
   },
 
+  nitro: {
+    typescript: {
+      tsConfig: {
+        compilerOptions: {
+          paths: {
+            '@resume': ['../packages/resume/src'],
+            '@resume/*': ['../packages/resume/src/*'],
+          },
+        },
+        include: ['../packages/**/*', '../app/types/**/*'],
+      },
+    },
+  },
+
   app: {
     head: {
       htmlAttrs: {
