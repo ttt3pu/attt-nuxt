@@ -50,7 +50,7 @@ import type { SimpleIcon } from 'simple-icons';
 import type { CustomIcon } from '~/constants/awsIcons';
 import md from 'markdown-it';
 
-export type SkillIconData = SimpleIcon | CustomIcon;
+type SkillIconData = SimpleIcon | CustomIcon;
 
 const props = defineProps({
   items: {
