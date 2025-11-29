@@ -61,6 +61,7 @@ import {
   siExpress,
   siAmazonapigateway,
   siZod,
+  siGithubcopilot,
 } from 'simple-icons';
 
 const primaryItems = [
@@ -255,6 +256,12 @@ const studyingItems = [
     icnData: siPrisma,
     proficiency: 3,
     description: '本サイトのデータベース管理に使用しています。',
+  },
+  {
+    heading: 'Github Copilot',
+    icnData: siGithubcopilot,
+    proficiency: 2,
+    description: 'Coding Agentが面白い！色々作らせてみてます。',
   },
   {
     heading: 'Express',
