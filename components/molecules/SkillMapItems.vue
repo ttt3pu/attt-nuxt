@@ -40,6 +40,7 @@
 
 <script lang="ts" setup>
 import type { SimpleIcon } from 'simple-icons';
+import md from 'markdown-it';
 
 const props = defineProps({
   items: {
@@ -55,10 +56,12 @@ const props = defineProps({
   },
 });
 
+// Use markdown-it directly to render descriptions without creating nested computed refs
+const mdRenderer = md();
+
 const renderedDescriptions = computed(() => {
   return props.items.map((item) => {
-    const { renderedContent } = useMd(item.description);
-    return renderedContent.value;
+    return mdRenderer.render(item.description);
   });
 });
 </script>

@@ -258,7 +258,7 @@ const tertiaryItems = [
     description: 'ローダー/プラグイン設定、バンドル最適化の基本経験。現在はViteに移行。',
   },
   {
-    heading: 'Stoybook',
+    heading: 'Storybook',
     icnData: siStorybook,
     proficiency: 2,
     description: 'コンポーネントカタログの作成、ビジュアルテストの設定経験。',
