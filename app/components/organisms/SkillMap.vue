@@ -208,19 +208,19 @@ const secondaryItems = [
   {
     heading: 'PostgreSQL',
     icnData: siPostgresql,
-    proficiency: 2,
+    proficiency: 3,
     description: '主にHasuraを通した操作がメインですが、必要な際は自身でスキーマ設計なども行っています。',
   },
   {
     heading: 'MySQL',
     icnData: siMysql,
-    proficiency: 2,
+    proficiency: 3,
     description: '普段はPostgreSQLがメインですがたまに使います。',
   },
   {
     heading: 'Docker',
     icnData: siDocker,
-    proficiency: 2,
+    proficiency: 3,
     description: 'ECS用のコンテナイメージの作成や、開発環境の構築などに使用しています。',
   },
 ];
@@ -253,7 +253,7 @@ const studyingItems = [
   {
     heading: 'Prisma',
     icnData: siPrisma,
-    proficiency: 2,
+    proficiency: 3,
     description: '本サイトのデータベース管理に使用しています。',
   },
   {
@@ -268,7 +268,7 @@ const experiencedItems = [
   {
     heading: 'Netlify',
     icnData: siNetlify,
-    proficiency: 2,
+    proficiency: 3,
     description:
       '以前このサイトのデプロイに使用していました。\n\n機能的には好きなのですが、無料プランだとリージョンの問題で遅すぎて乗り換え。',
   },
@@ -282,13 +282,13 @@ const experiencedItems = [
   {
     heading: 'Circle CI',
     icnData: siCircleci,
-    proficiency: 2,
+    proficiency: 3,
     description: '以前使用していましたが、最近はGitHub Actionsに完全に乗り換えています。',
   },
   {
     heading: 'webpack',
     icnData: siWebpack,
-    proficiency: 2,
+    proficiency: 3,
     description: '以前は使用していましたが、最近はViteに乗り換えています。\n\nv4からv5への移行経験があります。',
   },
   {
@@ -301,14 +301,14 @@ const experiencedItems = [
   {
     heading: 'jQuery',
     icnData: siJquery,
-    proficiency: 2,
+    proficiency: 3,
     description:
       'レガシープロジェクトに携わる際に使用していました。\n\nゴリゴリ使うというよりは、どちらかというとVanilla JSへの脱却を目指すために学んでいた感じでした。',
   },
   {
     heading: 'Grunt',
     icnData: siGrunt,
-    proficiency: 2,
+    proficiency: 3,
     description: 'レガシープロジェクトでの設定経験があります。\n\n最終的にはwebpackへ乗り換えました。',
   },
   {
