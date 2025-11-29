@@ -66,7 +66,7 @@ export class PrismaClient {
     findUnique: async (options: { where: { id: number } }) => {
       return mockBlogPosts.find((post) => post.id === options.where.id) || null;
     },
-    create: async (options: { data: { title: string; content: string; published_at: string } }) => {
+    create: async (options: { data: { title: string; content: string; published_at: string | Date } }) => {
       const newPost: BlogPost = {
         id: mockBlogPosts.length + 1,
         title: options.data.title,
@@ -80,7 +80,7 @@ export class PrismaClient {
     },
     update: async (options: {
       where: { id: number };
-      data: { title?: string; content?: string; published_at?: string; updated_at?: Date };
+      data: { title?: string; content?: string; published_at?: string | Date; updated_at?: Date };
     }) => {
       const existingPost = mockBlogPosts.find((post) => post.id === options.where.id);
       if (!existingPost) {
@@ -99,4 +99,9 @@ export class PrismaClient {
       return updatedPost;
     },
   };
+
+  // No-op for connection cleanup compatibility
+  async $disconnect(): Promise<void> {
+    // Mock implementation - no actual connection to close
+  }
 }

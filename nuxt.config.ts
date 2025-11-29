@@ -5,6 +5,10 @@ const isMockMode = process.env.MOCK_MODE === 'true';
 const resumePath = isMockMode ? './packages/mock/resume' : './packages/resume/src';
 const prismaPath = isMockMode ? './packages/mock/prisma' : './node_modules/@prisma/client';
 
+// Reusable prisma alias for mock mode
+const prismaAliasPath = fileURLToPath(new URL(prismaPath, import.meta.url));
+const mockPrismaAlias = isMockMode ? { '@prisma/client': prismaAliasPath } : {};
+
 export default defineNuxtConfig({
   experimental: {
     typedPages: true,
@@ -12,9 +16,7 @@ export default defineNuxtConfig({
 
   alias: {
     '@resume': fileURLToPath(new URL(resumePath, import.meta.url)),
-    ...(isMockMode && {
-      '@prisma/client': fileURLToPath(new URL(prismaPath, import.meta.url)),
-    }),
+    ...mockPrismaAlias,
   },
 
   nitro: {
@@ -29,11 +31,7 @@ export default defineNuxtConfig({
         include: ['../packages/**/*', '../app/types/**/*'],
       },
     },
-    alias: isMockMode
-      ? {
-          '@prisma/client': fileURLToPath(new URL(prismaPath, import.meta.url)),
-        }
-      : {},
+    alias: mockPrismaAlias,
   },
 
   app: {
@@ -101,11 +99,9 @@ export default defineNuxtConfig({
       },
     },
     resolve: {
-      alias: {
-        // ref: https://github.com/prisma/prisma/issues/12504#issuecomment-1870563695
-        ...(isMockMode ? {} : { '.prisma/client/index-browser': './node_modules/@prisma/client/index-browser.js' }),
-        ...(isMockMode ? { '@prisma/client': fileURLToPath(new URL(prismaPath, import.meta.url)) } : {}),
-      },
+      alias: isMockMode
+        ? { '@prisma/client': prismaAliasPath }
+        : { '.prisma/client/index-browser': './node_modules/@prisma/client/index-browser.js' },
     },
     assetsInclude: isMockMode ? ['packages/mock/resume/**/*.md'] : ['packages/resume/**/*.md'],
   },
