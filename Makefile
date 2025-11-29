@@ -8,3 +8,5 @@ setup:
 dev:
 	cd packages/prisma; docker compose up -d --wait
 	pnpm dev
+dev-mock:
+	pnpm dev:mock

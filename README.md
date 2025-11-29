@@ -35,6 +35,7 @@ Key directories:
 - `/pages/` - Nuxt pages (file-based routing)
 - `/packages/prisma/` - Database schema and configuration
 - `/packages/resume/` - Resume-related content
+- `/packages/mock/` - Mock data for development without submodules
 - `/assets/` - Static assets and SCSS files
 - `/types/` - TypeScript type definitions
 
@@ -57,6 +58,23 @@ make setup
 ```sh
 make dev
 ```
+
+### Start dev mode without submodules (Mock Mode)
+
+If you don't have the `packages/prisma` and `packages/resume` submodules cloned, you can use mock mode:
+
+```sh
+pnpm install --ignore-scripts
+pnpm dev:mock
+```
+
+Or using Makefile:
+
+```sh
+make dev-mock
+```
+
+This mode uses mock data instead of the actual database and resume content, allowing development without setting up the full environment.
 
 ### Seed
 
