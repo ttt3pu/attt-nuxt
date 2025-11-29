@@ -3,16 +3,20 @@
     <AtomsHeadingLv2 class="font-en"> Skills </AtomsHeadingLv2>
 
     <AtomsHeadingLv3 class="font-en">Primary</AtomsHeadingLv3>
-    <p class="font-jp text-white mb-6">メイン業務で使用中</p>
+    <p class="font-jp text-white mb-6">業務でメインスキルとして使用中</p>
     <MoleculesSkillMapItems :items="primaryItems" />
 
     <AtomsHeadingLv3 class="font-en">Secondary</AtomsHeadingLv3>
-    <p class="font-jp text-white mb-6">サブ業務で使用中</p>
+    <p class="font-jp text-white mb-6">業務でサブスキルとして使用中</p>
     <MoleculesSkillMapItems :items="secondaryItems" />
 
-    <AtomsHeadingLv3>Tertiary</AtomsHeadingLv3>
-    <p class="font-jp text-white mb-6">勉強中 or 古いバージョンなら使ったことがある</p>
-    <MoleculesSkillMapItems :items="tertiaryItems" />
+    <AtomsHeadingLv3>Studying</AtomsHeadingLv3>
+    <p class="font-jp text-white mb-6">勉強中</p>
+    <MoleculesSkillMapItems :items="studyingItems" />
+
+    <AtomsHeadingLv3>Experienced</AtomsHeadingLv3>
+    <p class="font-jp text-white mb-6">以前使ってた</p>
+    <MoleculesSkillMapItems :items="experiencedItems" />
   </div>
 </template>
 
@@ -55,6 +59,8 @@ import {
   siDocker,
   siRemix,
   siExpress,
+  siAmazonapigateway,
+  siZod,
 } from 'simple-icons';
 
 const primaryItems = [
@@ -63,55 +69,79 @@ const primaryItems = [
     icnData: siVuedotjs,
     proficiency: 5,
     description:
-      'Vue 2/3の両方に精通。Composition API、Options API、カスタムディレクティブ、プラグイン開発など幅広く経験。',
+      '主にNuxtを通して使用していますが、たまにバニラでの開発も行っています。\n\nVue 2から3への移行経験があります。',
   },
   {
     heading: 'Nuxt',
     icnData: siNuxt,
     proficiency: 5,
-    description: 'Nuxt 2/3でのSPA・SSR・SSG開発経験あり。モジュール開発やサーバーAPI構築も実施。',
+    description:
+      'SSGでの開発とNode.jsサーバーの開発の両方を行っています。\n\nバージョン2から3、そして4への移行経験があります。',
   },
   {
     heading: 'TypeScript',
     icnData: siTypescript,
+    proficiency: 5,
+    description:
+      'メインはNuxtなどを通したフロントエンドとしての運用ですが、Node.jsとしてのバックエンドやインフラ開発（NuxtやLambdaなど）を行うことも多いです。',
+  },
+  {
+    heading: 'Node.js',
+    icnData: siNodedotjs,
     proficiency: 4,
-    description: '型安全なコード設計を重視。ジェネリクス、ユーティリティ型、型推論を活用した開発が得意。',
+    description: '主にNuxt serverやLambdaでインフラやバックエンド開発を行っています。',
   },
   {
     heading: 'Vitest',
     icnData: siVitest,
+    proficiency: 5,
+    description:
+      'テスト開発は主にVitestで行っています。\n\n主に単体テストを目的として使用しています。\n\n以前はJestを使用していましたが、全面移行しました。',
+  },
+  {
+    heading: 'Lambda',
+    icnData: siAwslambda,
     proficiency: 4,
-    description: 'Viteベースの高速テスト環境構築。コンポーネントテストやユニットテストの設計・実装経験。',
+    description: 'APIの構築や、CloudFrontのミドルウェアとしての使用、業務改善用のツール開発などに使用しています。',
+  },
+  {
+    heading: 'GH Actions',
+    icnData: siGithubactions,
+    proficiency: 4,
+    description:
+      'CI/CDパイプラインの構築に使用しています。自動テスト、デプロイ、業務改善ツール、カスタムアクションなどの作成経験があります。',
   },
   {
     heading: 'Tailwind',
     icnData: siTailwindcss,
     proficiency: 5,
-    description: 'ユーティリティファーストでのUI構築。カスタム設定、レスポンシブデザイン、ダークモード対応など。',
-  },
-  {
-    heading: 'Jest',
-    icnData: siJest,
-    proficiency: 4,
-    description: 'スナップショットテスト、モック、カバレッジ計測など幅広いテスト戦略を実践。',
+    description: 'CSS開発を行う際にメインで使用しています。',
   },
   {
     heading: 'JavaScript',
     icnData: siJavascript,
     proficiency: 5,
-    description: 'ES6+の機能を熟知。非同期処理、クロージャ、プロトタイプチェーンなど深い理解。',
+    description:
+      'TypeScriptとしての使用がほとんどなので、素のJavaScriptを書くことはほとんどありませんが、たまに必要な場合は書いています。',
   },
   {
     heading: 'HTML',
     icnData: siHtml5,
-    proficiency: 5,
-    description: 'セマンティックHTML、アクセシビリティ、SEO対策を意識したマークアップ。',
+    proficiency: 4,
+    description: '過去にアクセシビリティの本格的な対応を行った経験などがあり、その際にマークアップの知識を深めました。',
   },
   {
     heading: 'CSS',
     icnData: siCss3,
-    proficiency: 5,
-    description: 'FlexboxやGridレイアウト、アニメーション、変数、メディアクエリなど幅広く活用。',
+    proficiency: 3,
+    description:
+      '最近はTailwindを使用しているので、素のCSSを書くことはほとんどありませんが、たまに必要な場合は書いています。',
+  },
+  {
+    heading: 'Vite',
+    icnData: siVite,
+    proficiency: 3,
+    description: '主にNuxtを通して使用しています。たまに簡単な静的サイトを作成する際に使用することもあります。',
   },
 ];
 
@@ -120,172 +150,179 @@ const secondaryItems = [
     heading: 'Rails',
     icnData: siRubyonrails,
     proficiency: 3,
-    description: 'バックエンドAPIの開発経験。MVC設計、ActiveRecord、Rspecでのテスト実装など。',
-  },
-  {
-    heading: 'Node.js',
-    icnData: siNodedotjs,
-    proficiency: 4,
-    description: 'Express、Fastifyでのサーバー構築。Lambda関数、CLIツール開発にも活用。',
-  },
-  {
-    heading: 'GH Actions',
-    icnData: siGithubactions,
-    proficiency: 4,
-    description: 'CI/CDパイプラインの構築。自動テスト、デプロイ、カスタムアクション作成経験。',
+    description:
+      '自身で直接コードを触ることは少ないですが、業務のバックエンド開発でメインで使用しているため、知識は取り入れるようにしています。\n\n簡単なAPIエンドポイントの作成などをたまに行っています。',
   },
   {
     heading: 'Hasura',
     icnData: siHasura,
     proficiency: 3,
-    description: 'GraphQLエンドポイントの自動生成。権限設定、リレーション設計、イベントトリガー活用。',
+    description:
+      '業務でGraphQL用のミドルウェアとして使用しています。Hasura Actionsといった機能も一部使用経験があります。\n\nまだまだ使いこなせていない機能が多く、勉強中です。',
   },
   {
     heading: 'GraphQL',
     icnData: siGraphql,
     proficiency: 3,
-    description: 'スキーマ設計、クエリ・ミューテーション実装。Apollo Clientとの連携経験。',
+    description: '主にHasuraとの連携で使用しています。クライアントは主にApolloを使用しています。',
   },
   {
     heading: 'Terraform',
     icnData: siTerraform,
     proficiency: 3,
-    description: 'インフラのコード化。AWS/GCPリソースの管理、モジュール設計、状態管理。',
+    description: 'AWSのインフラ構築や、GitHubの設定管理などを目的とした使用経験があります。',
   },
   {
     heading: 'AWS',
     icnData: siAmazonwebservices,
     proficiency: 3,
-    description: 'EC2、S3、CloudFront、RDSなど基本サービスの構築・運用経験。',
+    description: '幅広く構築経験があります（S3、CloudFront、RDS、ECR、ECS、Lambda、API Gateway、DMS、など・・・）。',
   },
   {
-    heading: 'Lambda',
-    icnData: siAwslambda,
-    proficiency: 4,
-    description: 'サーバーレス関数の開発。API Gateway連携、イベント駆動アーキテクチャの設計。',
-  },
-  {
-    heading: 'postgresql',
-    icnData: siPostgresql,
+    heading: 'API Gateway',
+    icnData: siAmazonapigateway,
     proficiency: 3,
-    description: 'リレーショナルDB設計。インデックス最適化、クエリチューニング経験。',
+    description:
+      'RESTエンドポイントの作成、WebSocket開発用のエンドポイント開発や認証機構などを、自身で一から構築しました。',
   },
   {
     heading: 'Swagger',
     icnData: siSwagger,
-    proficiency: 4,
-    description: 'OpenAPI仕様でのAPI設計・ドキュメント作成。コード生成ツール活用。',
+    proficiency: 3,
+    description:
+      'API設計・ドキュメント作成に使用しています。\n\nTypeScriptと連携したSDK生成機構を構築することで、Railsとフロントエンドのやり取りに使用しています。',
+  },
+  {
+    heading: 'Zod',
+    icnData: siZod,
+    proficiency: 3,
+    description: 'Swaggerとの連携などに使用しています。',
   },
   {
     heading: 'Renovate',
     icnData: siRenovate,
     proficiency: 4,
-    description: '依存関係の自動更新設定。カスタムルール、グループ化、自動マージ設定。',
+    description:
+      '以前はdependabotを使用していましたが乗り換えました。カスタムルール、グループ化、自動マージ設定など色々試しています。',
   },
   {
-    heading: 'Docker',
-    icnData: siDocker,
-    proficiency: 3,
-    description: '開発環境のコンテナ化。Dockerfileの最適化、docker-compose活用。',
-  },
-  {
-    heading: 'Circle CI',
-    icnData: siCircleci,
-    proficiency: 3,
-    description: 'パイプライン設定、並列実行、キャッシュ活用、Orbsの利用経験。',
-  },
-  {
-    heading: 'Scss',
-    icnData: siSass,
-    proficiency: 4,
-    description: '変数、ミックスイン、関数を活用したスタイル設計。BEMなどの命名規則遵守。',
-  },
-  {
-    heading: 'Vite',
-    icnData: siVite,
-    proficiency: 4,
-    description: '高速な開発サーバー構築。プラグイン設定、ビルド最適化の経験。',
-  },
-];
-
-const tertiaryItems = [
-  {
-    heading: 'React',
-    icnData: siReact,
+    heading: 'PostgreSQL',
+    icnData: siPostgresql,
     proficiency: 2,
-    description: '基本的なコンポーネント設計、Hooks、状態管理の理解。個人プロジェクトでの使用経験。',
-  },
-  {
-    heading: 'Next.js',
-    icnData: siNextdotjs,
-    proficiency: 2,
-    description: 'SSR/SSGの基本的な実装経験。App Routerの学習中。',
-  },
-  {
-    heading: 'Remix',
-    icnData: siRemix,
-    proficiency: 1,
-    description: 'ドキュメントベースでの学習経験。ローダー/アクションパターンの理解。',
-  },
-  {
-    heading: 'Prisma',
-    icnData: siPrisma,
-    proficiency: 2,
-    description: 'スキーマ定義、マイグレーション、型安全なクエリビルダーの使用経験。',
-  },
-  {
-    heading: 'Express',
-    icnData: siExpress,
-    proficiency: 2,
-    description: 'ミドルウェア設計、ルーティング、REST APIの基本実装経験。',
-  },
-  {
-    heading: 'Netlify',
-    icnData: siNetlify,
-    proficiency: 2,
-    description: '静的サイトのデプロイ、Functions、フォーム機能の利用経験。',
-  },
-  {
-    heading: 'Vercel',
-    icnData: siVercel,
-    proficiency: 3,
-    description: 'Nuxt/Next.jsアプリのデプロイ。Edge Functions、環境変数設定の経験。',
-  },
-  {
-    heading: 'webpack',
-    icnData: siWebpack,
-    proficiency: 2,
-    description: 'ローダー/プラグイン設定、バンドル最適化の基本経験。現在はViteに移行。',
-  },
-  {
-    heading: 'Storybook',
-    icnData: siStorybook,
-    proficiency: 2,
-    description: 'コンポーネントカタログの作成、ビジュアルテストの設定経験。',
-  },
-  {
-    heading: 'jQuery',
-    icnData: siJquery,
-    proficiency: 3,
-    description: 'レガシープロジェクトでの保守経験。DOM操作、イベント処理の知識。',
+    description: '主にHasuraを通した操作がメインですが、必要な際は自身でスキーマ設計なども行っています。',
   },
   {
     heading: 'MySQL',
     icnData: siMysql,
     proficiency: 2,
-    description: '基本的なCRUD操作、JOIN、インデックス設計の理解。',
+    description: '普段はPostgreSQLがメインですがたまに使います。',
+  },
+  {
+    heading: 'Docker',
+    icnData: siDocker,
+    proficiency: 2,
+    description: 'ECS用のコンテナイメージの作成や、開発環境の構築などに使用しています。',
+  },
+];
+
+const studyingItems = [
+  {
+    heading: 'Vercel',
+    icnData: siVercel,
+    proficiency: 3,
+    description: '本サイトのデプロイもVercelで行っています。業務では使用経験なし（契約などが壁・・・）。',
+  },
+  {
+    heading: 'React',
+    icnData: siReact,
+    proficiency: 3,
+    description: '業務ではほんのちょっとだけ。主に個人開発で使ってます。',
+  },
+  {
+    heading: 'Next.js',
+    icnData: siNextdotjs,
+    proficiency: 2,
+    description: '',
+  },
+  {
+    heading: 'Remix',
+    icnData: siRemix,
+    proficiency: 1,
+    description: '',
+  },
+  {
+    heading: 'Prisma',
+    icnData: siPrisma,
+    proficiency: 2,
+    description: '本サイトのデータベース管理に使用しています。',
+  },
+  {
+    heading: 'Express',
+    icnData: siExpress,
+    proficiency: 1,
+    description: '',
+  },
+];
+
+const experiencedItems = [
+  {
+    heading: 'Netlify',
+    icnData: siNetlify,
+    proficiency: 2,
+    description:
+      '以前このサイトのデプロイに使用していました。\n\n機能的には好きなのですが、無料プランだとリージョンの問題で遅すぎて乗り換え。',
+  },
+  {
+    heading: 'Scss',
+    icnData: siSass,
+    proficiency: 4,
+    description:
+      '以前、やむを得ずモダンな開発が難しかった環境でよく使っていました。\n\nmixinや変数など、色々工夫して頑張っていました。\n\n最近はバニラのCSSが便利になってきたこともあり、ほとんど使っていません。',
+  },
+  {
+    heading: 'Circle CI',
+    icnData: siCircleci,
+    proficiency: 2,
+    description: '以前使用していましたが、最近はGitHub Actionsに完全に乗り換えています。',
+  },
+  {
+    heading: 'webpack',
+    icnData: siWebpack,
+    proficiency: 2,
+    description: '以前は使用していましたが、最近はViteに乗り換えています。\n\nv4からv5への移行経験があります。',
+  },
+  {
+    heading: 'Storybook',
+    icnData: siStorybook,
+    proficiency: 2,
+    description:
+      'だいぶ前のバージョンですが使っていました。普段のメンテナンスに時間を取れず断念しました。\n\n開発体験自体はすごく良かったので、いつかリベンジしたいです。',
+  },
+  {
+    heading: 'jQuery',
+    icnData: siJquery,
+    proficiency: 2,
+    description:
+      'レガシープロジェクトに携わる際に使用していました。\n\nゴリゴリ使うというよりは、どちらかというとVanilla JSへの脱却を目指すために学んでいた感じでした。',
   },
   {
     heading: 'Grunt',
     icnData: siGrunt,
-    proficiency: 1,
-    description: 'レガシープロジェクトでの設定経験。現在は非推奨のため使用機会なし。',
+    proficiency: 2,
+    description: 'レガシープロジェクトでの設定経験があります。\n\n最終的にはwebpackへ乗り換えました。',
   },
   {
     heading: 'Pug',
     icnData: siPug,
-    proficiency: 2,
-    description: 'テンプレートエンジンとしての使用経験。ミックスイン、継承機能の活用。',
+    proficiency: 3,
+    description:
+      'やむを得ずモダンな開発が難しい環境のときに良く使用していました。\n\nミックスインや継承機能などを使って頑張っていました。最近は全く使用していません。',
+  },
+  {
+    heading: 'Jest',
+    icnData: siJest,
+    proficiency: 4,
+    description: 'Vitestに乗り換えたので、最近は全く使っていません。',
   },
 ];
 </script>
