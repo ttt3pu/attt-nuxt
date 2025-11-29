@@ -9,9 +9,8 @@ definePageMeta({
       name: 'Admin Top',
     },
   ],
+  middleware: 'admin-check',
 });
-
-definePageMeta({ middleware: 'admin-check' });
 
 const $toast = useToast();
 
