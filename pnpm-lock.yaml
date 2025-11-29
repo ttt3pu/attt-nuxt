@@ -49,8 +49,8 @@ importers:
         specifier: 5.2.1
         version: 5.2.1(magicast@0.5.1)(postcss@8.4.49)(rollup@4.52.5)(stylelint@16.25.0(typescript@5.9.3))(vite@7.2.4(@types/node@22.1.0)(jiti@2.6.1)(sass@1.94.2)(terser@5.31.3)(tsx@4.20.6)(yaml@2.8.1))(webpack@5.93.0(esbuild@0.25.11))
       '@nuxtjs/tailwindcss':
-        specifier: 6.13.2
-        version: 6.13.2(magicast@0.5.1)(ts-node@10.9.2(@types/node@22.1.0)(typescript@5.9.3))
+        specifier: 6.14.0
+        version: 6.14.0(magicast@0.5.1)(ts-node@10.9.2(@types/node@22.1.0)(typescript@5.9.3))
       '@pinia/nuxt':
         specifier: 0.11.3
         version: 0.11.3(magicast@0.5.1)(pinia@3.0.4(typescript@5.9.3)(vue@3.5.25(typescript@5.9.3)))
@@ -142,8 +142,6 @@ importers:
       tsx:
         specifier: 4.19.2
         version: 4.19.2
-
-  packages/resume: {}
 
 packages:
 
@@ -1154,8 +1152,8 @@ packages:
     peerDependencies:
       stylelint: '>=13'
 
-  '@nuxtjs/tailwindcss@6.13.2':
-    resolution: {integrity: sha512-knCmVe1I0div4tWj6f9GRaHX97zqD257gOeG4JIcWsC0yRfoiT34GBAyqK8Sc15qiKKMB/lZK6Z3skQRYRk/1Q==}
+  '@nuxtjs/tailwindcss@6.14.0':
+    resolution: {integrity: sha512-30RyDK++LrUVRgc2A85MktGWIZoRQgeQKjE4CjjD64OXNozyl+4ScHnnYgqVToMM6Ch2ZG2W4wV2J0EN6F0zkQ==}
 
   '@opentelemetry/api@1.8.0':
     resolution: {integrity: sha512-I/s6F7yKUDdtMsoBWXJe8Qz40Tui5vsuKCWJEWVL+5q9sSWRzzx6v2KeNsOBEwd94j0eWkpWCH4yB6rZg9Mf0w==}
@@ -7036,15 +7034,18 @@ snapshots:
       - vite
       - webpack
 
-  '@nuxtjs/tailwindcss@6.13.2(magicast@0.5.1)(ts-node@10.9.2(@types/node@22.1.0)(typescript@5.9.3))':
+  '@nuxtjs/tailwindcss@6.14.0(magicast@0.5.1)(ts-node@10.9.2(@types/node@22.1.0)(typescript@5.9.3))':
     dependencies:
+      '@nuxt/kit': 3.18.1(magicast@0.5.1)
       autoprefixer: 10.4.22(postcss@8.5.6)
       c12: 3.3.1(magicast@0.5.1)
       consola: 3.4.2
       defu: 6.1.4
       h3: 1.15.4
       klona: 2.0.6
+      ohash: 2.0.11
       pathe: 2.0.3
+      pkg-types: 2.3.0
       postcss: 8.5.6
       postcss-nesting: 13.0.1(postcss@8.5.6)
       tailwind-config-viewer: 2.0.4(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@22.1.0)(typescript@5.9.3)))
