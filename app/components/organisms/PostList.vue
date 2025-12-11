@@ -17,17 +17,6 @@ const currentPage = ref(1);
 
 const posts = computed(() => {
   const result = [...mergedPosts.value];
-
-  // ブログの投稿を1個だけ一番前に持ってくる
-  for (let i = 0; i < result.length; i++) {
-    const item = result[i];
-    if (item && item.type === 'blog') {
-      result.unshift(item);
-      result.splice(i + 1, 1);
-      break;
-    }
-  }
-
   return result.slice((currentPage.value - 1) * PER_PAGE, currentPage.value * PER_PAGE);
 });
 
