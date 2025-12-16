@@ -18,7 +18,6 @@ jobs:
         with:
           submodules: true
           token: ${{ secrets.GH_PERSONAL_TOKEN }}
-          ssh-key: ${{ secrets.PRIVATE_REPO_SSH_KEY }}
 
       - name: Setup project
         uses: ./.github/actions/setup-project
