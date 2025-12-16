@@ -5,22 +5,10 @@ inputs:
   database_url:
     description: 'Database URL'
     required: false
-  gh_personal_token:
-    description: 'GitHub Personal Token for checkout'
-    required: false
-  private_repo_ssh_key:
-    description: 'SSH key for private repository access'
-    required: false
 
 runs:
   using: composite
   steps:
-    - uses: actions/checkout@v4
-      with:
-        submodules: true
-        token: ${{ inputs.gh_personal_token }}
-        ssh-key: ${{ inputs.private_repo_ssh_key }}
-
     - uses: pnpm/action-setup@v4.2.0
 
     - name: Use Node.js
