@@ -44,7 +44,7 @@
     "@sidebase/nuxt-auth": "1.1.1",
     "@types/eslint-config-prettier": "6.11.3",
     "@types/markdown-it": "14.1.2",
-    "autoprefixer": "10.4.22",
+    "autoprefixer": "10.4.23",
     "dayjs": "1.11.19",
     "eslint": "9.39.1",
     "eslint-config-prettier": "10.1.8",
