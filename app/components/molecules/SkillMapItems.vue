@@ -1,3 +1,34 @@
+<script lang="ts" setup>
+import type { SimpleIcon } from 'simple-icons';
+import type { CustomIcon } from '~/constants/awsIcons';
+import md from 'markdown-it';
+
+type SkillIconData = SimpleIcon | CustomIcon;
+
+const props = defineProps({
+  items: {
+    required: true,
+    type: Array as PropType<
+      {
+        heading: string;
+        icnData?: SkillIconData;
+        proficiency: number;
+        description: string;
+      }[]
+    >,
+  },
+});
+
+// Use markdown-it directly to render descriptions without creating nested computed refs
+const mdRenderer = md();
+
+const renderedDescriptions = computed(() => {
+  return props.items.map((item) => {
+    return mdRenderer.render(item.description);
+  });
+});
+</script>
+
 <template>
   <ul class="skill-list mb-8 font-en grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
     <li
@@ -44,38 +75,6 @@
     </li>
   </ul>
 </template>
-
-<script lang="ts" setup>
-import type { SimpleIcon } from 'simple-icons';
-import type { CustomIcon } from '~/constants/awsIcons';
-import md from 'markdown-it';
-
-type SkillIconData = SimpleIcon | CustomIcon;
-
-const props = defineProps({
-  items: {
-    required: true,
-    type: Array as PropType<
-      {
-        heading: string;
-        icnData?: SkillIconData;
-        proficiency: number;
-        description: string;
-      }[]
-    >,
-  },
-});
-
-// Use markdown-it directly to render descriptions without creating nested computed refs
-const mdRenderer = md();
-
-const renderedDescriptions = computed(() => {
-  return props.items.map((item) => {
-    return mdRenderer.render(item.description);
-  });
-});
-</script>
-
 <style lang="scss" scoped>
 .skill-card {
   &:hover {
