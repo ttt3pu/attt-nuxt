@@ -75,6 +75,7 @@ const renderedDescriptions = computed(() => {
     </li>
   </ul>
 </template>
+
 <style lang="scss" scoped>
 .skill-card {
   &:hover {
