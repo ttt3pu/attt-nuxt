@@ -1,6 +1,9 @@
 <script lang="ts" setup>
 import type { SimpleIcon } from 'simple-icons';
+import type { CustomIcon } from '~/constants/awsIcons';
 import md from 'markdown-it';
+
+type SkillIconData = SimpleIcon | CustomIcon;
 
 const props = defineProps({
   items: {
@@ -8,7 +11,7 @@ const props = defineProps({
     type: Array as PropType<
       {
         heading: string;
-        icnData: SimpleIcon;
+        icnData?: SkillIconData;
         proficiency: number;
         description: string;
       }[]
@@ -35,6 +38,7 @@ const renderedDescriptions = computed(() => {
     >
       <div class="skill-card__header flex items-center mb-3">
         <svg
+          v-if="item.icnData"
           role="img"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
@@ -43,6 +47,12 @@ const renderedDescriptions = computed(() => {
         >
           <path :d="item.icnData.path" />
         </svg>
+        <div
+          v-else
+          class="w-8 h-8 mr-3 flex-shrink-0 rounded bg-gray-600 flex items-center justify-center"
+        >
+          <span class="text-gray-400 text-xs font-bold">{{ item.heading.charAt(0) }}</span>
+        </div>
         <span class="text-white text-xl font-medium">{{ item.heading }}</span>
       </div>
 
