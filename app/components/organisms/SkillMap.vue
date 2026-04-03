@@ -286,7 +286,7 @@ const experiencedItems = [
     icnData: siJquery,
     proficiency: 3,
     description:
-      '既存プロジェクトの改善・保守に携わる際に活用していました。\n\nVanilla JSへの移行推進のために積極的に学習しており、モダン化を牽引していました。',
+      '既存プロジェクトの改善・保守において、jQueryによるフロントエンド実装の経験を積みました。\n\n現在はモダンフレームワークでの開発を主軸としており、jQueryについてはメンテナンスや既存資産の把握に活用できるレベルの知見を保持しています。',
   },
   {
     heading: 'Grunt',
