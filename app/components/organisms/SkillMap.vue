@@ -292,7 +292,7 @@ const experiencedItems = [
     heading: 'Grunt',
     icnData: siGrunt,
     proficiency: 3,
-    description: '既存プロジェクトのビルド環境の構築・設定経験があります。\n\nその後、よりモダンなwebpackへの移行を推進しました。',
+    description: 'ビルド環境の構築・設定経験があります。\n\nその後、よりモダンなwebpackへの移行を推進しました。',
   },
   {
     heading: 'Pug',
