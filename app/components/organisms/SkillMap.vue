@@ -260,7 +260,7 @@ const experiencedItems = [
     icnData: siSass,
     proficiency: 4,
     description:
-      'CSS変数などが浸透する前の環境で積極的に活用していました。\n\nmixinや変数を活用して、効率的なスタイル管理を実現していました。\n\n現在はバニラのCSSの進化に伴い、使用頻度は低下しています。',
+      'mixinや変数を活用して、効率的なスタイル管理を実現していました。\n\n現在はバニラのCSSの進化に伴い、使用頻度は低下しています。',
   },
   {
     heading: 'Circle CI',
