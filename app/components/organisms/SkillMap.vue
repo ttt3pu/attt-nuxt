@@ -260,7 +260,7 @@ const experiencedItems = [
     icnData: siSass,
     proficiency: 4,
     description:
-      '以前、やむを得ずモダンな開発が難しかった環境でよく使っていました。\n\nmixinや変数など、色々工夫して頑張っていました。\n\n最近はバニラのCSSが便利になってきたこともあり、ほとんど使っていません。',
+      'mixinや変数を活用して、効率的なスタイル管理を実現していました。\n\n現在はバニラのCSSの進化に伴い、使用頻度は低下しています。',
   },
   {
     heading: 'Circle CI',
@@ -286,20 +286,20 @@ const experiencedItems = [
     icnData: siJquery,
     proficiency: 3,
     description:
-      'レガシープロジェクトに携わる際に使用していました。\n\nゴリゴリ使うというよりは、どちらかというとVanilla JSへの脱却を目指すために学んでいた感じでした。',
+      '既存プロジェクトの改善・保守において、jQueryによるフロントエンド実装の経験を積みました。\n\n現在はモダンフレームワークでの開発を主軸としており、jQueryについてはメンテナンスや既存資産の把握に活用できるレベルの知見を保持しています。',
   },
   {
     heading: 'Grunt',
     icnData: siGrunt,
     proficiency: 3,
-    description: 'レガシープロジェクトでの設定経験があります。\n\n最終的にはwebpackへ乗り換えました。',
+    description: 'ビルド環境の構築・設定経験があります。\n\nその後、よりモダンなwebpackへの移行を推進しました。',
   },
   {
     heading: 'Pug',
     icnData: siPug,
     proficiency: 3,
     description:
-      'やむを得ずモダンな開発が難しい環境のときに良く使用していました。\n\nミックスインや継承機能などを使って頑張っていました。最近は全く使用していません。',
+      'テンプレートエンジンを活用した開発環境でよく使用していました。\n\nミックスインや継承機能を駆使して、テンプレートの再利用性を高める工夫をしていました。現在は使用機会が少なくなっています。',
   },
   {
     heading: 'Jest',
