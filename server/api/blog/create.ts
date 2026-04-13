@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '~/server/utils/prisma';
 import { getServerSession } from '#auth';
 import { deployWebhook } from '~/utils/server/deployWebhook';
 
@@ -17,8 +17,6 @@ export default defineEventHandler<{
       statusCode: 401,
     });
   }
-
-  const prisma = new PrismaClient();
 
   const requestBody = await readBody(e);
 
