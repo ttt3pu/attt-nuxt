@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '#server/utils/prisma';
 import { getServerSession } from '#auth';
 import { deployWebhook } from '~/utils/server/deployWebhook';
 
@@ -19,7 +19,6 @@ export default defineEventHandler<{
   }
 
   const id = e.context.params!.id;
-  const prisma = new PrismaClient();
 
   const requestBody = await readBody(e);
 
