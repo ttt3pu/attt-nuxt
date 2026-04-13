@@ -1,4 +1,4 @@
-import { prisma } from '~/server/utils/prisma';
+import { prisma } from '#server/utils/prisma';
 import { getServerSession } from '#auth';
 import { deployWebhook } from '~/utils/server/deployWebhook';
 
