@@ -18,7 +18,7 @@ export default defineNuxtConfig({
             '@resume/*': ['../packages/resume/src/*'],
           },
         },
-        include: ['../packages/resume/**/*', '../app/types/**/*'],
+        include: ['../packages/**/*', '../app/types/**/*'],
       },
     },
   },
