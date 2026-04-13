@@ -1,8 +1,7 @@
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '~/server/utils/prisma';
 
 export default defineEventHandler(async (e) => {
   const id = e.context.params!.id;
-  const prisma = new PrismaClient();
 
   const post = await prisma.blogPost.findUnique({
     where: {
