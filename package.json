@@ -52,7 +52,7 @@
     "eslint": "9.39.4",
     "eslint-config-prettier": "10.1.8",
     "http-server": "14.1.1",
-    "nuxt-gtag": "3.0.3",
+    "nuxt-gtag": "4.1.0",
     "pinia": "3.0.4",
     "postcss": "8.5.9",
     "prettier": "3.8.2",
