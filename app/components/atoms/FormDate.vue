@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { VueDatePicker } from '@vuepic/vue-datepicker';
+import Datepicker from '@vuepic/vue-datepicker';
 
 const props = defineProps({
   modelValue: {
@@ -20,7 +20,7 @@ const localModelValue = computed({
 
 <template>
   <div>
-    <VueDatePicker v-model="localModelValue" :ui="{ input: 'input-class' }" />
+    <Datepicker v-model="localModelValue" :ui="{ input: 'input-class' }" />
   </div>
 </template>
 
