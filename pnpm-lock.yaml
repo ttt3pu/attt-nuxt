@@ -42,8 +42,8 @@ importers:
         specifier: 1.8.1
         version: 1.8.1
       tailwindcss:
-        specifier: 3.4.19
-        version: 3.4.19(ts-node@10.9.2(@types/node@22.1.0)(typescript@6.0.2))
+        specifier: 4.2.2
+        version: 4.2.2
       unstorage:
         specifier: 1.17.4
         version: 1.17.4(@netlify/blobs@7.4.0)(db0@0.3.4(@electric-sql/pglite@0.4.1)(mysql2@3.15.3))(ioredis@5.9.2)
@@ -5740,6 +5740,9 @@ packages:
     resolution: {integrity: sha512-3ofp+LL8E+pK/JuPLPggVAIaEuhvIz4qNcf3nA1Xn2o/7fb7s/TYpHhwGDv1ZU3PkBluUVaF8PyCHcm48cKLWQ==}
     engines: {node: '>=14.0.0'}
     hasBin: true
+
+  tailwindcss@4.2.2:
+    resolution: {integrity: sha512-KWBIxs1Xb6NoLdMVqhbhgwZf2PGBpPEiwOqgI4pFIYbNTfBXiKYyWoTsXgBQ9WFg/OlhnvHaY+AEpW7wSmFo2Q==}
 
   tapable@2.2.1:
     resolution: {integrity: sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ==}
@@ -12464,6 +12467,8 @@ snapshots:
       sucrase: 3.35.0
     transitivePeerDependencies:
       - ts-node
+
+  tailwindcss@4.2.2: {}
 
   tapable@2.2.1: {}
 
