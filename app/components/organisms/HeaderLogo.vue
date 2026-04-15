@@ -51,6 +51,8 @@ const loggedIn = computed(() => !!session?.user);
 </template>
 
 <style lang="scss" scoped>
+@reference "tailwindcss";
+
 .logo-area {
   max-width: var(--max-width);
   margin: 0 auto;
@@ -71,9 +73,7 @@ const loggedIn = computed(() => !!session?.user);
 }
 
 .logout {
-  @apply cursor-pointer rounded text-xl px-8 py-4 inline-flex items-center whitespace-nowrap;
-  font-family: var(--font-en);
-  background-color: var(--color-white);
+  @apply cursor-pointer rounded font-en bg-white text-xl px-8 py-4 inline-flex items-center whitespace-nowrap;
 
   svg {
     @apply ml-3 w-6 h-6;

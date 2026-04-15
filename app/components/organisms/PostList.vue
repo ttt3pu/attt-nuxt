@@ -109,6 +109,8 @@ function onClickedNextButton() {
 </template>
 
 <style lang="scss" scoped>
+@reference "tailwindcss";
+
 .item {
   @apply pb-4 mb-4 border-b border-b-gray-500;
 }
@@ -123,8 +125,7 @@ function onClickedNextButton() {
 }
 
 .item:hover span:last-child {
-  @apply underline underline-offset-4;
-  text-decoration-color: var(--color-link);
+  @apply underline decoration-link underline-offset-4;
 }
 
 .pagination-button {

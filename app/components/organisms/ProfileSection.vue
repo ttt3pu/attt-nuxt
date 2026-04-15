@@ -34,6 +34,8 @@ const { renderedContent: jobsContent } = useMd(jobs);
 </template>
 
 <style lang="scss" scoped>
+@reference "tailwindcss";
+
 .profile-section {
   @media (width >= 769px) {
     text-align: center;
@@ -42,9 +44,7 @@ const { renderedContent: jobsContent } = useMd(jobs);
 
 /* stylelint-disable-next-line */
 ::v-deep(.md-contents) {
-  @apply mx-auto [&:not(:last-child)]:mb-4 break-all;
-  color: var(--color-white);
-  font-family: var(--font-jp);
+  @apply mx-auto text-white font-jp [&:not(:last-child)]:mb-4 break-all;
 }
 
 .justify-left {

@@ -39,6 +39,8 @@ const publishedAtFormatted = computed(() => dayjs(props.publishedAt).format('YYY
 </template>
 
 <style lang="scss" scoped>
+@reference "tailwindcss";
+
 .main {
   &__inner {
     max-width: var(--max-width);

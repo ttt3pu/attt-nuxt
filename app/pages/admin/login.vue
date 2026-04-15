@@ -35,10 +35,10 @@ async function handleSignOut() {
 </template>
 
 <style scope lang="scss">
+@reference "tailwindcss";
+
 button {
-  @apply cursor-pointer rounded text-xl px-8 py-4 inline-flex items-center whitespace-nowrap;
-  font-family: var(--font-en);
-  background-color: var(--color-white);
+  @apply cursor-pointer rounded font-en bg-white text-xl px-8 py-4 inline-flex items-center whitespace-nowrap;
 
   svg {
     @apply ml-3 w-6 h-6;

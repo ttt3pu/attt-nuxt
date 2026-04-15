@@ -16,13 +16,15 @@ defineProps({
 </template>
 
 <style scope lang="scss">
+@reference "tailwindcss";
+
 .contents-box {
   &[data-color='1'] {
-    background-color: var(--color-bg);
+    @apply bg-bg;
   }
 
   &[data-color='2'] {
-    background-color: var(--color-bg-300);
+    @apply bg-bg-300;
   }
 
   &__inner {
