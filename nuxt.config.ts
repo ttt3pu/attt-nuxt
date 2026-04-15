@@ -1,4 +1,5 @@
 import { fileURLToPath } from 'url';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineNuxtConfig({
   experimental: {
@@ -56,7 +57,6 @@ export default defineNuxtConfig({
     '@nuxtjs/stylelint-module',
     '@sidebase/nuxt-auth',
     'nuxt-gtag',
-    '@nuxtjs/tailwindcss',
     '@nuxt/eslint',
   ],
 
@@ -76,6 +76,7 @@ export default defineNuxtConfig({
   },
 
   vite: {
+    plugins: [tailwindcss()],
     css: {
       preprocessorOptions: {
         scss: {
@@ -100,13 +101,6 @@ export default defineNuxtConfig({
     '/': { prerender: true },
     '/blog/**': { prerender: true },
     '/admin/**': { ssr: false },
-  },
-
-  postcss: {
-    plugins: {
-      tailwindcss: {},
-      autoprefixer: {},
-    },
   },
 
   runtimeConfig: {

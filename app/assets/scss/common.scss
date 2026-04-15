@@ -1,6 +1,29 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --font-family-en: 'Poppins', sans-serif;
+  --font-family-jp: 'Noto Sans JP', sans-serif;
+
+  --color-link: #fff7d6;
+  --color-link-100: #fffbeb;
+  --color-link-200: #fffae4;
+  --color-link-300: #fff8dd;
+
+  --color-primary: #f9f871;
+  --color-secondary: #ffb962;
+  --color-tertiary: #b95d7b;
+  --color-tertiary-300: #c57891;
+
+  --color-white: #e2f1ff;
+
+  --color-bg: #2b1f45;
+  --color-bg-300: #2e2d50;
+  --color-bg-500: #1b1a30;
+}
+
+@utility max-w {
+  max-width: 1600px;
+}
 
 @mixin z-map($z-map) {
   $before-index: -1;
