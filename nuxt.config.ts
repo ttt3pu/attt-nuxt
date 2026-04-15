@@ -44,6 +44,7 @@ export default defineNuxtConfig({
   },
 
   css: [
+    '@/assets/css/tailwind.css',
     '@/assets/scss/common.scss',
     'vue-toast-notification/dist/theme-sugar.css',
     '@vuepic/vue-datepicker/dist/main.css',
