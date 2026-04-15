@@ -38,21 +38,19 @@ const publishedAtFormatted = computed(() => dayjs(props.publishedAt).format('YYY
   </main>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 @reference "~/assets/css/tailwind.css";
 
-.main {
-  &__inner {
-    max-width: var(--max-width);
-    margin: 0 auto;
+.main__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
 
-    @media (width >= 769px) {
-      padding: 80px var(--padding-lr-pc);
-    }
+  @media (width >= 769px) {
+    padding: 80px var(--padding-lr-pc);
+  }
 
-    @media (width <= 768px) {
-      padding: 48px var(--padding-lr-sp);
-    }
+  @media (width <= 768px) {
+    padding: 48px var(--padding-lr-sp);
   }
 }
 

@@ -50,7 +50,7 @@ const loggedIn = computed(() => !!session?.user);
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 @reference "~/assets/css/tailwind.css";
 
 .logo-area {

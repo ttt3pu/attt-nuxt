@@ -108,7 +108,7 @@ function onClickedNextButton() {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 @reference "~/assets/css/tailwind.css";
 
 .item {

@@ -34,7 +34,7 @@ async function handleSignOut() {
   </div>
 </template>
 
-<style scope lang="scss">
+<style scoped>
 @reference "~/assets/css/tailwind.css";
 
 button {
