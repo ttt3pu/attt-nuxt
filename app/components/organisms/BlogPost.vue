@@ -39,7 +39,7 @@ const publishedAtFormatted = computed(() => dayjs(props.publishedAt).format('YYY
 </template>
 
 <style lang="scss" scoped>
-@reference "tailwindcss";
+@reference "~/assets/css/tailwind.css";
 
 .main {
   &__inner {

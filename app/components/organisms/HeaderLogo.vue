@@ -51,7 +51,7 @@ const loggedIn = computed(() => !!session?.user);
 </template>
 
 <style lang="scss" scoped>
-@reference "tailwindcss";
+@reference "~/assets/css/tailwind.css";
 
 .logo-area {
   max-width: var(--max-width);

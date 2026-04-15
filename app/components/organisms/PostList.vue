@@ -109,7 +109,7 @@ function onClickedNextButton() {
 </template>
 
 <style lang="scss" scoped>
-@reference "tailwindcss";
+@reference "~/assets/css/tailwind.css";
 
 .item {
   @apply pb-4 mb-4 border-b border-b-gray-500;

@@ -34,7 +34,7 @@ const { renderedContent: jobsContent } = useMd(jobs);
 </template>
 
 <style lang="scss" scoped>
-@reference "tailwindcss";
+@reference "~/assets/css/tailwind.css";
 
 .profile-section {
   @media (width >= 769px) {

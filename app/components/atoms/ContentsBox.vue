@@ -16,7 +16,7 @@ defineProps({
 </template>
 
 <style scope lang="scss">
-@reference "tailwindcss";
+@reference "~/assets/css/tailwind.css";
 
 .contents-box {
   &[data-color='1'] {
