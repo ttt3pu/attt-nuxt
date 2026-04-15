@@ -123,9 +123,8 @@ function onClickedNextButton() {
 }
 
 .item:hover span:last-child {
-  text-decoration: underline;
+  @apply underline underline-offset-4;
   text-decoration-color: var(--color-link);
-  text-underline-offset: 4px;
 }
 
 .pagination-button {
