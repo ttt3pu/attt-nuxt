@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import {
-  siCss3,
+  siCss,
   siGrunt,
   siHtml5,
   siJavascript,
@@ -109,7 +109,7 @@ const primaryItems = [
   },
   {
     heading: 'CSS',
-    icnData: siCss3,
+    icnData: siCss,
     proficiency: 3,
     description:
       '最近はTailwindを使用しているので、素のCSSを書くことはほとんどありませんが、たまに必要な場合は書いています。',
