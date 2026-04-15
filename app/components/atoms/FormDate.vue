@@ -26,6 +26,7 @@ const localModelValue = computed({
 
 <style lang="scss">
 .input-class {
-  @apply bg-white py-2;
+  @apply py-2;
+  background-color: var(--color-white);
 }
 </style>

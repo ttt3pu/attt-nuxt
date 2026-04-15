@@ -42,7 +42,9 @@ const { renderedContent: jobsContent } = useMd(jobs);
 
 /* stylelint-disable-next-line */
 ::v-deep(.md-contents) {
-  @apply mx-auto text-white font-jp [&:not(:last-child)]:mb-4 break-all;
+  @apply mx-auto [&:not(:last-child)]:mb-4 break-all;
+  color: var(--color-white);
+  font-family: var(--font-jp);
 }
 
 .justify-left {

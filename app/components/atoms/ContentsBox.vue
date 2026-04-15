@@ -18,11 +18,11 @@ defineProps({
 <style scope lang="scss">
 .contents-box {
   &[data-color='1'] {
-    @apply bg-bg;
+    background-color: var(--color-bg);
   }
 
   &[data-color='2'] {
-    @apply bg-bg-300;
+    background-color: var(--color-bg-300);
   }
 
   &__inner {
