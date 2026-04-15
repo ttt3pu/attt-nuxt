@@ -76,7 +76,7 @@ const renderedDescriptions = computed(() => {
   </ul>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .skill-card {
   &:hover {
     transform: translateY(-2px);

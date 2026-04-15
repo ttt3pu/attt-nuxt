@@ -45,7 +45,7 @@ export default defineNuxtConfig({
 
   css: [
     '@/assets/css/tailwind.css',
-    '@/assets/scss/common.scss',
+    '@/assets/css/common.css',
     'vue-toast-notification/dist/theme-sugar.css',
     '@vuepic/vue-datepicker/dist/main.css',
   ],
@@ -81,11 +81,7 @@ export default defineNuxtConfig({
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: `
-@use "sass:math";
-@use "sass:color";
-@use "~/assets/scss/mixins.scss" as *;
-          `,
+          additionalData: `@use "sass:math";\n`,
         },
       },
     },

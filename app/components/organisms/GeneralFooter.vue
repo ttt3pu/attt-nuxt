@@ -9,7 +9,7 @@ const year = computed(() => new Date().getFullYear());
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .copyright {
   font-family: var(--font-family-en);
   text-align: center;

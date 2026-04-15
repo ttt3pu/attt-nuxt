@@ -54,67 +54,65 @@ const data = reactive({
   </div>
 </template>
 
-<style lang="scss" scoped>
-.works-section {
-  &__item {
-    font-family: var(--font-family-jp);
+<style scoped>
+.works-section__item {
+  font-family: var(--font-family-jp);
 
-    &:not(:last-child) {
-      margin-bottom: 28px;
-    }
-
-    &__heading {
-      color: var(--secondary-color);
-      font-weight: 400;
-      font-size: 1.4rem;
-      margin-bottom: 16px;
-      display: flex;
-      align-items: baseline;
-
-      &::before {
-        content: '';
-        display: block;
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background-color: #ffb962;
-        position: relative;
-        bottom: 1px;
-        margin-right: 12px;
-        flex-shrink: 0;
-      }
-    }
-
-    &__paragraph {
-      background-color: var(--tertiary-color);
-      color: var(--txt-color-white);
-      border-radius: 4px;
-      position: relative;
-
-      &__inner {
-        white-space: pre-wrap;
-      }
-
-      @media (width >= 769px) {
-        padding: 8px 32px;
-        margin-left: 20px;
-      }
-
-      @media (width <= 769px) {
-        padding: 8px 16px;
-      }
-
-      &::before {
-        content: '';
-        display: block;
-        position: absolute;
-        left: 0;
-        top: 0;
-        height: 100%;
-        width: 4px;
-        background-color: var(--txt-color-white);
-      }
-    }
+  &:not(:last-child) {
+    margin-bottom: 28px;
   }
+}
+
+.works-section__item__heading {
+  color: var(--secondary-color);
+  font-weight: 400;
+  font-size: 1.4rem;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: baseline;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #ffb962;
+    position: relative;
+    bottom: 1px;
+    margin-right: 12px;
+    flex-shrink: 0;
+  }
+}
+
+.works-section__item__paragraph {
+  background-color: var(--tertiary-color);
+  color: var(--txt-color-white);
+  border-radius: 4px;
+  position: relative;
+
+  @media (width >= 769px) {
+    padding: 8px 32px;
+    margin-left: 20px;
+  }
+
+  @media (width <= 769px) {
+    padding: 8px 16px;
+  }
+
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background-color: var(--txt-color-white);
+  }
+}
+
+.works-section__item__paragraph__inner {
+  white-space: pre-wrap;
 }
 </style>

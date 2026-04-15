@@ -49,7 +49,7 @@ const snsItems = ref([
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .title {
   font-family: var(--font-family-en);
   display: block;
@@ -73,24 +73,24 @@ p {
   display: flex;
   position: relative;
   z-index: var(--z-sns);
+}
 
-  &__item {
-    width: 35px;
+.sns__item {
+  width: 35px;
 
-    &:not(:last-child) {
-      margin-right: 16px;
-    }
+  &:not(:last-child) {
+    margin-right: 16px;
   }
+}
 
-  &__icn {
-    width: 100%;
-    fill: #f4fb7f;
-    transition: fill 0.2s;
-    filter: drop-shadow(0 3px 6px rgb(0 0 0 / 16%));
+.sns__icn {
+  width: 100%;
+  fill: #f4fb7f;
+  transition: fill 0.2s;
+  filter: drop-shadow(0 3px 6px rgb(0 0 0 / 16%));
 
-    &:hover {
-      fill: color.adjust(#f4fb7f, $lightness: 20%);
-    }
+  &:hover {
+    fill: #fdfee2;
   }
 }
 </style>
