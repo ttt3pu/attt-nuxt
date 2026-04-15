@@ -90,9 +90,7 @@ const renderedDescriptions = computed(() => {
 }
 
 /* stylelint-disable-next-line */
-::v-deep(.skill-card__description) {
-  p {
-    margin: 0;
-  }
+:deep(.skill-card__description p) {
+  margin: 0;
 }
 </style>
