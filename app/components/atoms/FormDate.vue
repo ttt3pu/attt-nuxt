@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Datepicker from '@vuepic/vue-datepicker';
+import { VueDatePicker as Datepicker } from '@vuepic/vue-datepicker';
 
 const props = defineProps({
   modelValue: {
