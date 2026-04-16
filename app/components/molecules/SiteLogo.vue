@@ -77,10 +77,10 @@ p {
 
 .sns__item {
   width: 35px;
+}
 
-  &:not(:last-child) {
-    margin-right: 16px;
-  }
+.sns__item:not(:last-child) {
+  margin-right: 16px;
 }
 
 .sns__icn {
@@ -88,9 +88,9 @@ p {
   fill: #f4fb7f;
   transition: fill 0.2s;
   filter: drop-shadow(0 3px 6px rgb(0 0 0 / 16%));
+}
 
-  &:hover {
-    fill: #fdfee2;
-  }
+.sns__icn:hover {
+  fill: #fdfee2;
 }
 </style>

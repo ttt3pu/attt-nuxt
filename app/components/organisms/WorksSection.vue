@@ -57,10 +57,10 @@ const data = reactive({
 <style scoped>
 .works-section__item {
   font-family: var(--font-family-jp);
+}
 
-  &:not(:last-child) {
-    margin-bottom: 28px;
-  }
+.works-section__item:not(:last-child) {
+  margin-bottom: 28px;
 }
 
 .works-section__item__heading {
@@ -70,19 +70,19 @@ const data = reactive({
   margin-bottom: 16px;
   display: flex;
   align-items: baseline;
+}
 
-  &::before {
-    content: '';
-    display: block;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background-color: #ffb962;
-    position: relative;
-    bottom: 1px;
-    margin-right: 12px;
-    flex-shrink: 0;
-  }
+.works-section__item__heading::before {
+  content: '';
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #ffb962;
+  position: relative;
+  bottom: 1px;
+  margin-right: 12px;
+  flex-shrink: 0;
 }
 
 .works-section__item__paragraph {
@@ -99,17 +99,17 @@ const data = reactive({
   @media (width <= 769px) {
     padding: 8px 16px;
   }
+}
 
-  &::before {
-    content: '';
-    display: block;
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 4px;
-    background-color: var(--txt-color-white);
-  }
+.works-section__item__paragraph::before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background-color: var(--txt-color-white);
 }
 
 .works-section__item__paragraph__inner {

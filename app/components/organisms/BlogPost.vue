@@ -68,12 +68,13 @@ const publishedAtFormatted = computed(() => dayjs(props.publishedAt).format('YYY
 :deep(a) {
   color: var(--txt-color-link);
   text-decoration: none;
+}
 
-  &:hover {
-    text-decoration: underline;
-    text-decoration-color: var(--txt-color-link-hover);
-    text-underline-offset: 4px;
-  }
+/* stylelint-disable-next-line */
+:deep(a):hover {
+  text-decoration: underline;
+  text-decoration-color: var(--txt-color-link-hover);
+  text-underline-offset: 4px;
 }
 
 /* stylelint-disable-next-line */

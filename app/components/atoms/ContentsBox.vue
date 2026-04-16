@@ -18,14 +18,12 @@ defineProps({
 <style scoped>
 @reference "~/assets/css/tailwind.css";
 
-.contents-box {
-  &[data-color='1'] {
-    @apply bg-bg;
-  }
+.contents-box[data-color='1'] {
+  @apply bg-bg;
+}
 
-  &[data-color='2'] {
-    @apply bg-bg-300;
-  }
+.contents-box[data-color='2'] {
+  @apply bg-bg-300;
 }
 
 .contents-box__inner {

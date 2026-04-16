@@ -117,11 +117,11 @@ function onClickedNextButton() {
 
 .item-icn {
   @apply shrink-0 fill-current w-5 h-5 inline-block mr-2 relative top-1;
+}
 
-  /* stylelint-disable-next-line */
-  ::v-deep(svg) {
-    @apply absolute w-full h-full;
-  }
+/* stylelint-disable-next-line */
+.item-icn ::v-deep(svg) {
+  @apply absolute w-full h-full;
 }
 
 .item:hover span:last-child {
@@ -130,13 +130,13 @@ function onClickedNextButton() {
 
 .pagination-button {
   @apply flex items-center justify-center px-4 h-10 ms-0 leading-tight text-white bg-gray-800 transition border border-gray-600;
+}
 
-  &[disabled] {
-    @apply cursor-not-allowed text-gray-600;
-  }
+.pagination-button[disabled] {
+  @apply cursor-not-allowed text-gray-600;
+}
 
-  &:not([disabled]) {
-    @apply hover:bg-gray-600;
-  }
+.pagination-button:not([disabled]) {
+  @apply hover:bg-gray-600;
 }
 </style>

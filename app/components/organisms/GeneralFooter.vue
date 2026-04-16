@@ -22,21 +22,21 @@ const year = computed(() => new Date().getFullYear());
   @media (width <= 768px) {
     padding: 24px var(--padding-lr-sp);
   }
+}
 
-  a,
-  small {
-    font-size: 0.8rem;
-  }
+.copyright a,
+.copyright small {
+  font-size: 0.8rem;
+}
 
-  a {
-    color: var(--txt-color-link);
+.copyright a {
+  color: var(--txt-color-link);
+}
 
-    &:hover {
-      text-decoration: underline;
-      color: var(--txt-color-link-hover);
-      text-decoration-color: var(--txt-color-link-hover);
-      text-underline-offset: 4px;
-    }
-  }
+.copyright a:hover {
+  text-decoration: underline;
+  color: var(--txt-color-link-hover);
+  text-decoration-color: var(--txt-color-link-hover);
+  text-underline-offset: 4px;
 }
 </style>

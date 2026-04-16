@@ -45,17 +45,17 @@ definePageMeta({ middleware: 'admin-check' });
 
 .item {
   display: block;
+}
 
-  &:not(:last-child) {
-    padding-bottom: 16px;
-    margin-bottom: 16px;
-    border-bottom: 1px solid var(--gray-color);
-  }
+.item:not(:last-child) {
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--gray-color);
+}
 
-  &:hover .item__heading {
-    text-decoration: underline;
-    text-decoration-color: var(--txt-color-link-hover);
-    text-underline-offset: 4px;
-  }
+.item:hover .item__heading {
+  text-decoration: underline;
+  text-decoration-color: var(--txt-color-link-hover);
+  text-underline-offset: 4px;
 }
 </style>

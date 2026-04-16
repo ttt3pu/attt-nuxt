@@ -78,15 +78,15 @@ const renderedDescriptions = computed(() => {
 
 <style scoped>
 .skill-card {
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgb(0 0 0 / 30%);
-  }
-
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease,
     border-color 0.2s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgb(0 0 0 / 30%);
 }
 
 /* stylelint-disable-next-line */

@@ -34,33 +34,33 @@ const scroll = () => {
   width: 12px;
   height: 12px;
   margin: 0 auto;
+}
 
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    top: 0;
-    left: 0;
-    display: block;
-    border-left: 3px solid;
-    border-bottom: 3px solid;
-    transform: rotate(-45deg);
-    margin-left: auto;
-    margin-right: auto;
-  }
+.at-scroll__arr::before,
+.at-scroll__arr::after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  top: 0;
+  left: 0;
+  display: block;
+  border-left: 3px solid;
+  border-bottom: 3px solid;
+  transform: rotate(-45deg);
+  margin-left: auto;
+  margin-right: auto;
+}
 
-  &::before {
-    border-color: var(--txt-color-white);
-    margin-top: -4px;
-  }
+.at-scroll__arr::before {
+  border-color: var(--txt-color-white);
+  margin-top: -4px;
+}
 
-  &::after {
-    border-color: rgb(0 0 0 / 25%);
-    filter: blur(4px);
-    margin-top: -2px;
-  }
+.at-scroll__arr::after {
+  border-color: rgb(0 0 0 / 25%);
+  filter: blur(4px);
+  margin-top: -2px;
 }
 
 @keyframes sdb {
