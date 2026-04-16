@@ -34,7 +34,7 @@ if (import.meta.client) {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .contents-wrapper {
   position: relative;
 }

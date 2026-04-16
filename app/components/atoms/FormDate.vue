@@ -24,7 +24,9 @@ const localModelValue = computed({
   </div>
 </template>
 
-<style lang="scss">
+<style>
+@reference "~/assets/css/tailwind.css";
+
 .input-class {
   @apply bg-white py-2;
 }

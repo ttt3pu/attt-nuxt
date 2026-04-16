@@ -50,16 +50,22 @@ const loggedIn = computed(() => !!session?.user);
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
+@reference "~/assets/css/tailwind.css";
+
 .logo-area {
   max-width: var(--max-width);
   margin: 0 auto;
+}
 
-  @media (width >= 769px) {
+@media (width >= 769px) {
+  .logo-area {
     padding: 48px var(--padding-lr-pc) 56px;
   }
+}
 
-  @media (width <= 768px) {
+@media (width <= 768px) {
+  .logo-area {
     padding: 32px var(--padding-lr-sp) 44px;
   }
 }
@@ -72,9 +78,9 @@ const loggedIn = computed(() => !!session?.user);
 
 .logout {
   @apply cursor-pointer rounded font-en bg-white text-xl px-8 py-4 inline-flex items-center whitespace-nowrap;
+}
 
-  svg {
-    @apply ml-3 w-6 h-6;
-  }
+.logout svg {
+  @apply ml-3 w-6 h-6;
 }
 </style>

@@ -15,24 +15,26 @@ defineProps({
   </div>
 </template>
 
-<style scope lang="scss">
-.contents-box {
-  &[data-color='1'] {
-    @apply bg-bg;
+<style scoped>
+@reference "~/assets/css/tailwind.css";
+
+.contents-box[data-color='1'] {
+  @apply bg-bg;
+}
+
+.contents-box[data-color='2'] {
+  @apply bg-bg-300;
+}
+
+@media (width >= 769px) {
+  .contents-box__inner {
+    padding: 80px var(--padding-lr-pc);
   }
+}
 
-  &[data-color='2'] {
-    @apply bg-bg-300;
-  }
-
-  &__inner {
-    @media (width >= 769px) {
-      padding: 80px var(--padding-lr-pc);
-    }
-
-    @media (width <= 768px) {
-      padding: 40px var(--padding-lr-sp);
-    }
+@media (width <= 768px) {
+  .contents-box__inner {
+    padding: 40px var(--padding-lr-sp);
   }
 }
 </style>

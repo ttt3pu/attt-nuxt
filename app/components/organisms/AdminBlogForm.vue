@@ -79,7 +79,7 @@ function updateModelValue(key: keyof ModelValue, val: ModelValue[typeof key]) {
       </div>
     </AtomsContentsBox>
 
-    <div v-if="isActiveModal" class="z-10 fixed top-0 left-0 h-screen bg-black bg-opacity-50 w-full">
+    <div v-if="isActiveModal" class="z-10 fixed top-0 left-0 h-screen bg-black/50 w-full">
       <button class="w-full h-full opacity-0" @click="isActiveModal = false" />
       <div
         class="absolute z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4/5 h-4/5 overflow-y-scroll"

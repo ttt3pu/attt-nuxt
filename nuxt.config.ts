@@ -1,4 +1,5 @@
 import { fileURLToPath } from 'url';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineNuxtConfig({
   experimental: {
@@ -43,7 +44,8 @@ export default defineNuxtConfig({
   },
 
   css: [
-    '@/assets/scss/common.scss',
+    '@/assets/css/tailwind.css',
+    '@/assets/css/common.css',
     'vue-toast-notification/dist/theme-sugar.css',
     '@vuepic/vue-datepicker/dist/main.css',
   ],
@@ -56,7 +58,6 @@ export default defineNuxtConfig({
     '@nuxtjs/stylelint-module',
     '@sidebase/nuxt-auth',
     'nuxt-gtag',
-    '@nuxtjs/tailwindcss',
     '@nuxt/eslint',
   ],
 
@@ -76,14 +77,11 @@ export default defineNuxtConfig({
   },
 
   vite: {
+    plugins: [tailwindcss()],
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: `
-@use "sass:math";
-@use "sass:color";
-@use "~/assets/scss/mixins.scss" as *;
-          `,
+          additionalData: `@use "sass:math";\n`,
         },
       },
     },
@@ -100,13 +98,6 @@ export default defineNuxtConfig({
     '/': { prerender: true },
     '/blog/**': { prerender: true },
     '/admin/**': { ssr: false },
-  },
-
-  postcss: {
-    plugins: {
-      tailwindcss: {},
-      autoprefixer: {},
-    },
   },
 
   runtimeConfig: {
