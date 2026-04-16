@@ -61,7 +61,7 @@ const renderedDescriptions = computed(() => {
           <span
             v-for="level in 5"
             :key="level"
-            class="w-4 h-2 rounded-xs"
+            class="w-4 h-2 rounded-sm"
             :class="level <= item.proficiency ? 'bg-secondary' : 'bg-gray-600'"
           />
         </div>
