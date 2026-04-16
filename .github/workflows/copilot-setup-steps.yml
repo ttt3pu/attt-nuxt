@@ -17,6 +17,9 @@ jobs:
     permissions:
       contents: read
 
+    env:
+      COREPACK_ENABLE_AUTO_PIN: "0"
+
     steps:
       - uses: actions/checkout@v6
         with:
