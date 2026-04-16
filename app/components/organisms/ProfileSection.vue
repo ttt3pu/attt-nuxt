@@ -36,8 +36,8 @@ const { renderedContent: jobsContent } = useMd(jobs);
 <style scoped>
 @reference "~/assets/css/tailwind.css";
 
-.profile-section {
-  @media (width >= 769px) {
+@media (width >= 769px) {
+  .profile-section {
     text-align: center;
   }
 }
@@ -47,8 +47,8 @@ const { renderedContent: jobsContent } = useMd(jobs);
   @apply mx-auto text-white font-jp [&:not(:last-child)]:mb-4 break-all;
 }
 
-.justify-left {
-  @media (width >= 769px) {
+@media (width >= 769px) {
+  .justify-left {
     text-align-last: left;
     width: fit-content;
   }
