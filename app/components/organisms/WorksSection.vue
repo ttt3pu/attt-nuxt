@@ -90,13 +90,17 @@ const data = reactive({
   color: var(--txt-color-white);
   border-radius: 4px;
   position: relative;
+}
 
-  @media (width >= 769px) {
+@media (width >= 769px) {
+  .works-section__item__paragraph {
     padding: 8px 32px;
     margin-left: 20px;
   }
+}
 
-  @media (width <= 769px) {
+@media (width <= 769px) {
+  .works-section__item__paragraph {
     padding: 8px 16px;
   }
 }

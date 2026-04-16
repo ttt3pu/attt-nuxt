@@ -26,12 +26,14 @@ defineProps({
   @apply bg-bg-300;
 }
 
-.contents-box__inner {
-  @media (width >= 769px) {
+@media (width >= 769px) {
+  .contents-box__inner {
     padding: 80px var(--padding-lr-pc);
   }
+}
 
-  @media (width <= 768px) {
+@media (width <= 768px) {
+  .contents-box__inner {
     padding: 40px var(--padding-lr-sp);
   }
 }

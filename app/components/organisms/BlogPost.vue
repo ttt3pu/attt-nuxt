@@ -44,12 +44,16 @@ const publishedAtFormatted = computed(() => dayjs(props.publishedAt).format('YYY
 .main__inner {
   max-width: var(--max-width);
   margin: 0 auto;
+}
 
-  @media (width >= 769px) {
+@media (width >= 769px) {
+  .main__inner {
     padding: 80px var(--padding-lr-pc);
   }
+}
 
-  @media (width <= 768px) {
+@media (width <= 768px) {
+  .main__inner {
     padding: 48px var(--padding-lr-sp);
   }
 }

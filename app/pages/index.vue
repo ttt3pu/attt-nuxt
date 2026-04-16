@@ -71,12 +71,16 @@ useHead({
   margin: 0 auto;
   position: relative;
   height: 100%;
+}
 
-  @media (width >= 769px) {
+@media (width >= 769px) {
+  .title-container__inner {
     display: flex;
   }
+}
 
-  @media (width <= 768px) {
+@media (width <= 768px) {
+  .title-container__inner {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -89,8 +93,10 @@ useHead({
   height: 100%;
   display: flex;
   flex-direction: column;
+}
 
-  @media (width >= 769px) {
+@media (width >= 769px) {
+  .title-container__inner-inner {
     justify-content: center;
   }
 }
@@ -101,12 +107,16 @@ useHead({
   position: relative;
   z-index: var(--z-title);
   margin-bottom: 32px;
+}
 
-  @media (width >= 769px) {
+@media (width >= 769px) {
+  .title-container__logo {
     padding: 35px var(--padding-lr-pc) 40px;
   }
+}
 
-  @media (width <= 768px) {
+@media (width <= 768px) {
+  .title-container__logo {
     padding: 16px var(--padding-lr-sp) 24px;
   }
 }
@@ -114,13 +124,17 @@ useHead({
 .title-container__scroll {
   position: absolute;
   z-index: var(--z-scroll);
+}
 
-  @media (width >= 769px) {
+@media (width >= 769px) {
+  .title-container__scroll {
     left: calc(var(--padding-lr-pc) - 4px);
     bottom: 80px;
   }
+}
 
-  @media (width <= 768px) {
+@media (width <= 768px) {
+  .title-container__scroll {
     left: calc(var(--padding-lr-sp) - 4px);
     bottom: 48px;
   }

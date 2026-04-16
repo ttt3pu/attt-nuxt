@@ -14,12 +14,16 @@ const year = computed(() => new Date().getFullYear());
   font-family: var(--font-family-en);
   text-align: center;
   color: var(--txt-color-white);
+}
 
-  @media (width >= 769px) {
+@media (width >= 769px) {
+  .copyright {
     padding: 36px var(--padding-lr-pc);
   }
+}
 
-  @media (width <= 768px) {
+@media (width <= 768px) {
+  .copyright {
     padding: 24px var(--padding-lr-sp);
   }
 }
