@@ -38,19 +38,23 @@ const publishedAtFormatted = computed(() => dayjs(props.publishedAt).format('YYY
   </main>
 </template>
 
-<style lang="scss" scoped>
-.main {
-  &__inner {
-    max-width: var(--max-width);
-    margin: 0 auto;
+<style scoped>
+@reference "~/assets/css/tailwind.css";
 
-    @media (width >= 769px) {
-      padding: 80px var(--padding-lr-pc);
-    }
+.main__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
 
-    @media (width <= 768px) {
-      padding: 48px var(--padding-lr-sp);
-    }
+@media (width >= 769px) {
+  .main__inner {
+    padding: 80px var(--padding-lr-pc);
+  }
+}
+
+@media (width <= 768px) {
+  .main__inner {
+    padding: 48px var(--padding-lr-sp);
   }
 }
 
@@ -68,12 +72,13 @@ const publishedAtFormatted = computed(() => dayjs(props.publishedAt).format('YYY
 :deep(a) {
   color: var(--txt-color-link);
   text-decoration: none;
+}
 
-  &:hover {
-    text-decoration: underline;
-    text-decoration-color: var(--txt-color-link-hover);
-    text-underline-offset: 4px;
-  }
+/* stylelint-disable-next-line */
+:deep(a):hover {
+  text-decoration: underline;
+  text-decoration-color: var(--txt-color-link-hover);
+  text-underline-offset: 4px;
 }
 
 /* stylelint-disable-next-line */

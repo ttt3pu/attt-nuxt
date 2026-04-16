@@ -42,14 +42,14 @@ const renderedDescriptions = computed(() => {
           role="img"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
-          class="w-8 h-8 mr-3 flex-shrink-0"
+          class="w-8 h-8 mr-3 shrink-0"
           :style="`fill: #${item.icnData.hex};`"
         >
           <path :d="item.icnData.path" />
         </svg>
         <div
           v-else
-          class="w-8 h-8 mr-3 flex-shrink-0 rounded bg-gray-600 flex items-center justify-center"
+          class="w-8 h-8 mr-3 shrink-0 rounded bg-gray-600 flex items-center justify-center"
         >
           <span class="text-gray-400 text-xs font-bold">{{ item.heading.charAt(0) }}</span>
         </div>
@@ -76,23 +76,21 @@ const renderedDescriptions = computed(() => {
   </ul>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .skill-card {
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgb(0 0 0 / 30%);
-  }
-
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease,
     border-color 0.2s ease;
 }
 
+.skill-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgb(0 0 0 / 30%);
+}
+
 /* stylelint-disable-next-line */
-::v-deep(.skill-card__description) {
-  p {
-    margin: 0;
-  }
+:deep(.skill-card__description p) {
+  margin: 0;
 }
 </style>

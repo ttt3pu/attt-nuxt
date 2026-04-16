@@ -34,7 +34,9 @@ async function handleSignOut() {
   </div>
 </template>
 
-<style scope lang="scss">
+<style scoped>
+@reference "~/assets/css/tailwind.css";
+
 button {
   @apply cursor-pointer rounded font-en bg-white text-xl px-8 py-4 inline-flex items-center whitespace-nowrap;
 

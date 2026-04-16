@@ -15,6 +15,19 @@
 - パッケージのインストールは `pnpm install` を使用してください
 - スクリプトの実行は `pnpm <script>` を使用してください
 
+### Corepack に関する注意事項
+
+GitHub Actions（Copilot エージェント環境など）では `ENABLE_EXPERIMENTAL_COREPACK=1` が有効になっており、Corepack が `package.json` の `packageManager` フィールドを読み取って `pnpm-lock.yaml` にバイナリ依存（`@pnpm/exe`、`@pnpm/linux-*` 等）を書き込む場合があります。
+
+これを防ぐため、`pnpm install` を実行する GitHub Actions のステップには必ず以下の環境変数を設定してください。
+
+```yaml
+env:
+  COREPACK_ENABLE_AUTO_PIN: "0"
+```
+
+参照: `.github/actions/setup-project/action.yml`
+
 ## 作業開始前の確認
 
 プロジェクトのルートにある `README.md` を読んでください。セットアップ手順や技術スタックの詳細が記載されています。

@@ -59,77 +59,88 @@ useHead({
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .title-container {
   background: linear-gradient(to top, #2e3255, #081025);
   border-bottom: 1px solid var(--color-gray);
   height: calc(var(--vh) * 100);
+}
 
-  &__inner {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    position: relative;
-    height: 100%;
+.title-container__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  position: relative;
+  height: 100%;
+}
 
-    @media (width >= 769px) {
-      display: flex;
-    }
-
-    @media (width <= 768px) {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      overflow: hidden;
-    }
+@media (width >= 769px) {
+  .title-container__inner {
+    display: flex;
   }
+}
 
-  &__inner-inner {
-    flex-grow: 1;
-    height: 100%;
+@media (width <= 768px) {
+  .title-container__inner {
     display: flex;
     flex-direction: column;
-
-    @media (width >= 769px) {
-      justify-content: center;
-    }
-
-    // @media (max-width: 768px) {
-    // }
-  }
-
-  &__logo {
-    display: flex;
     justify-content: space-between;
-    position: relative;
-    z-index: var(--z-title);
-    margin-bottom: 32px;
-
-    @media (width >= 769px) {
-      padding: 35px var(--padding-lr-pc) 40px;
-    }
-
-    @media (width <= 768px) {
-      padding: 16px var(--padding-lr-sp) 24px;
-    }
+    overflow: hidden;
   }
+}
 
-  &__scroll {
-    position: absolute;
-    z-index: var(--z-scroll);
+.title-container__inner-inner {
+  flex-grow: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
 
-    @media (width >= 769px) {
-      left: calc(var(--padding-lr-pc) - 4px);
-      bottom: 80px;
-    }
-
-    @media (width <= 768px) {
-      left: calc(var(--padding-lr-sp) - 4px);
-      bottom: 48px;
-    }
+@media (width >= 769px) {
+  .title-container__inner-inner {
+    justify-content: center;
   }
+}
 
-  &__cat {
-    position: relative;
+.title-container__logo {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  z-index: var(--z-title);
+  margin-bottom: 32px;
+}
+
+@media (width >= 769px) {
+  .title-container__logo {
+    padding: 35px var(--padding-lr-pc) 40px;
   }
+}
+
+@media (width <= 768px) {
+  .title-container__logo {
+    padding: 16px var(--padding-lr-sp) 24px;
+  }
+}
+
+.title-container__scroll {
+  position: absolute;
+  z-index: var(--z-scroll);
+}
+
+@media (width >= 769px) {
+  .title-container__scroll {
+    left: calc(var(--padding-lr-pc) - 4px);
+    bottom: 80px;
+  }
+}
+
+@media (width <= 768px) {
+  .title-container__scroll {
+    left: calc(var(--padding-lr-sp) - 4px);
+    bottom: 48px;
+  }
+}
+
+.title-container__cat {
+  position: relative;
 }
 </style>
