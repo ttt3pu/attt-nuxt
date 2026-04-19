@@ -1,12 +1,66 @@
 <script lang="ts" setup>
 import AtScroll from '@/components/atoms/AtScroll.vue';
 import { usePostsStore } from '@/store';
+import type { OyatsuCatchCatReactionKind } from '@/types/oyatsu-catch';
 import type { BlogPost } from '@prisma/client';
 import type { ZennPost } from '@/types';
 
 const heroGameOpen = ref(false);
 /** おやつキャッチのプレイ中のみ true（scroll down 非表示用） */
 const heroGamePlaying = ref(false);
+
+/** CatMascot おやつキャッチ連動リアクション */
+type CatFaceReaction = 'idle' | OyatsuCatchCatReactionKind;
+const catGameReaction = ref<CatFaceReaction>('idle');
+let catReactionClearTimer: ReturnType<typeof setTimeout> | null = null;
+let lastHappyReactionAt = 0;
+
+function clearCatReactionTimer() {
+  if (catReactionClearTimer !== null) {
+    clearTimeout(catReactionClearTimer);
+    catReactionClearTimer = null;
+  }
+}
+
+function triggerCatReaction(kind: OyatsuCatchCatReactionKind) {
+  clearCatReactionTimer();
+  catGameReaction.value = kind;
+  const ms = kind === 'hurt' ? 520 : 400;
+  catReactionClearTimer = setTimeout(() => {
+    catGameReaction.value = 'idle';
+    catReactionClearTimer = null;
+  }, ms);
+}
+
+function onOyatsuCatReaction(kind: OyatsuCatchCatReactionKind) {
+  if (kind === 'hurt') {
+    triggerCatReaction('hurt');
+    return;
+  }
+  const now = Date.now();
+  if (now - lastHappyReactionAt < 140) {
+    return;
+  }
+  lastHappyReactionAt = now;
+  triggerCatReaction('happy');
+}
+
+function onHeroGameClose() {
+  heroGameOpen.value = false;
+  clearCatReactionTimer();
+  catGameReaction.value = 'idle';
+}
+
+watch(heroGameOpen, (open) => {
+  if (!open) {
+    clearCatReactionTimer();
+    catGameReaction.value = 'idle';
+  }
+});
+
+onBeforeUnmount(() => {
+  clearCatReactionTimer();
+});
 
 const postsStore = usePostsStore();
 
@@ -43,13 +97,14 @@ useHead({
           </template>
           <OrganismsOyatsuCatch
             v-else
-            @close="heroGameOpen = false"
+            @close="onHeroGameClose"
             @playing-change="heroGamePlaying = $event"
+            @cat-reaction="onOyatsuCatReaction"
           />
         </div>
 
         <div class="title-container__cat">
-          <MoleculesCatMascot />
+          <MoleculesCatMascot :game-reaction="catGameReaction" />
         </div>
 
         <AtScroll v-show="!heroGamePlaying" class="title-container__scroll" />

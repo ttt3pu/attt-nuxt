@@ -1,5 +1,21 @@
+<script setup lang="ts">
+withDefaults(
+  defineProps<{
+    /** おやつキャッチ連動。未指定は idle */
+    gameReaction?: 'idle' | 'happy' | 'hurt';
+  }>(),
+  { gameReaction: 'idle' },
+);
+</script>
+
 <template>
-  <div class="cat-mascot">
+  <div
+    class="cat-mascot"
+    :class="{
+      'cat-mascot--react-happy': gameReaction === 'happy',
+      'cat-mascot--react-hurt': gameReaction === 'hurt',
+    }"
+  >
     <!-- <img src="~/assets/mihon.png" alt> -->
     <div class="face-wrapper">
       <!-- face -->
@@ -37,6 +53,41 @@
     </div>
     <!-- neck -->
     <div class="neck" />
+
+    <template v-if="gameReaction === 'happy'">
+      <span class="cat-mascot__heart cat-mascot__heart--1" aria-hidden="true">♥</span>
+      <span class="cat-mascot__heart cat-mascot__heart--2" aria-hidden="true">♥</span>
+      <span class="cat-mascot__heart cat-mascot__heart--3" aria-hidden="true">♥</span>
+      <span class="cat-mascot__heart cat-mascot__heart--4" aria-hidden="true">♥</span>
+    </template>
+
+    <template v-if="gameReaction === 'hurt'">
+      <!-- 見本画像は参考のみ（JPEG は透過不可のため未使用）。SVG で同系の「どんより渦」を描画 -->
+      <span
+        v-for="n in 5"
+        :key="n"
+        class="cat-mascot__gloom-spin"
+        :class="`cat-mascot__gloom-spin--${n}`"
+        aria-hidden="true"
+      >
+        <svg viewBox="0 0 64 80" class="cat-mascot__gloom-svg" xmlns="http://www.w3.org/2000/svg" focusable="false">
+          <path
+            class="cat-mascot__gloom-outline"
+            d="M32 76 L24 72 L18 58 L22 42 L36 30 L48 34 L46 46 L38 52 L30 48 L32 40 L40 36 L44 44 L38 48 L32 44"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            class="cat-mascot__gloom-line"
+            d="M32 76 L24 72 L18 58 L22 42 L36 30 L48 34 L46 46 L38 52 L30 48 L32 40 L40 36 L44 44 L38 48 L32 44"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </span>
+    </template>
   </div>
 </template>
 
@@ -75,6 +126,11 @@ img {
 
   @include cat-size(width, 500);
   @include cat-size(height, 500);
+
+  &.cat-mascot--react-happy,
+  &.cat-mascot--react-hurt {
+    overflow: visible;
+  }
 
   @media (width >= 769px) {
     position: absolute;
@@ -258,6 +314,7 @@ img {
 
 .mouth {
   position: absolute;
+  transition: transform 0.22s ease;
 
   @include cat-size(left, 256);
   @include cat-size(top, 360);
@@ -268,6 +325,7 @@ img {
     display: block;
     content: '';
     background-color: #121212;
+    transition: transform 0.22s ease;
 
     @include cat-size(width, 30);
     @include cat-size(height, 5);
@@ -287,6 +345,10 @@ img {
 .mouth-line {
   position: absolute;
   background-color: #121212;
+  transform-origin: bottom center;
+  transition:
+    transform 0.22s ease,
+    opacity 0.22s ease;
 
   @include cat-size(width, 5);
   @include cat-size(height, 30);
@@ -343,5 +405,167 @@ img {
   @include cat-size(left, 156);
   @include cat-size(width, 200);
   @include cat-size(height, 168);
+}
+
+/* おやつキャッチ連動 — 喜びは口は通常のまま＋周囲ハート。怒りのみ口形状を変える */
+.cat-mascot--react-hurt .mouth {
+  transform: translateY(4px);
+
+  &::before {
+    transform: rotate(26deg);
+  }
+
+  &::after {
+    transform: rotate(-26deg) scale(-1, 1);
+  }
+}
+
+.cat-mascot--react-hurt .mouth-line {
+  transform: scaleY(1.12);
+}
+
+/* 喜び：猫の周りのハート */
+.cat-mascot__heart {
+  position: absolute;
+  z-index: 10;
+  pointer-events: none;
+  color: #fec6db;
+  text-shadow: 0 0 6px rgb(249 248 113 / 45%);
+  animation: cat-heart-float 0.9s ease-in-out infinite;
+
+  @include cat-size(font-size, 42);
+}
+
+.cat-mascot__heart--1 {
+  top: 4%;
+  left: 8%;
+  animation-delay: 0s;
+}
+
+.cat-mascot__heart--2 {
+  top: 8%;
+  right: 6%;
+  animation-delay: 0.15s;
+}
+
+.cat-mascot__heart--3 {
+  top: 38%;
+  left: 2%;
+  animation-delay: 0.3s;
+
+  @include cat-size(font-size, 32);
+}
+
+.cat-mascot__heart--4 {
+  top: 32%;
+  right: 2%;
+  animation-delay: 0.45s;
+
+  @include cat-size(font-size, 36);
+}
+
+@keyframes cat-heart-float {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.75;
+  }
+
+  50% {
+    transform: translateY(-8px) scale(1.08);
+    opacity: 1;
+  }
+}
+
+/* 怒り：周囲の「どんより」渦（白縁＋紫線の SVG。猫の色は変えない） */
+.cat-mascot__gloom-spin {
+  position: absolute;
+  z-index: 10;
+  width: 18%;
+  height: 22%;
+  min-width: 2.5rem;
+  min-height: 2.8rem;
+  pointer-events: none;
+  animation: cat-gloom-spin-float 2.2s ease-in-out infinite;
+}
+
+.cat-mascot__gloom-spin--1 {
+  top: 3%;
+  left: 2%;
+  animation-delay: 0s;
+}
+
+.cat-mascot__gloom-spin--2 {
+  top: 8%;
+  right: 0%;
+  animation-delay: 0.35s;
+}
+
+.cat-mascot__gloom-spin--3 {
+  top: 36%;
+  left: -2%;
+  animation-delay: 0.15s;
+}
+
+.cat-mascot__gloom-spin--4 {
+  top: 30%;
+  right: -1%;
+  animation-delay: 0.5s;
+}
+
+.cat-mascot__gloom-spin--5 {
+  top: 52%;
+  left: 14%;
+  animation-delay: 0.75s;
+}
+
+.cat-mascot__gloom-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.cat-mascot__gloom-outline {
+  stroke: #fff;
+  stroke-width: 10;
+  paint-order: stroke fill;
+}
+
+.cat-mascot__gloom-line {
+  stroke: #7d6b9a;
+  stroke-width: 4;
+}
+
+@keyframes cat-gloom-spin-float {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.82;
+  }
+
+  50% {
+    transform: translate(2px, -4px) scale(1.04);
+    opacity: 0.98;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mouth,
+  .mouth::before,
+  .mouth::after,
+  .mouth-line {
+    transition-duration: 0.01ms;
+  }
+
+  .cat-mascot__heart {
+    animation: none;
+    opacity: 0.9;
+  }
+
+  .cat-mascot__gloom-spin {
+    animation: none;
+    opacity: 0.88;
+  }
 }
 </style>
