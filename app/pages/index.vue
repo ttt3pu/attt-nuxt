@@ -4,6 +4,10 @@ import { usePostsStore } from '@/store';
 import type { BlogPost } from '@prisma/client';
 import type { ZennPost } from '@/types';
 
+const heroGameOpen = ref(false);
+/** おやつキャッチのプレイ中のみ true（scroll down 非表示用） */
+const heroGamePlaying = ref(false);
+
 const postsStore = usePostsStore();
 
 const { data: blogPosts } = await useFetch<BlogPost[]>('/api/blog');
@@ -26,18 +30,29 @@ useHead({
     <MoleculesTokenForm class="fixed bottom-0 right-0 p-4 z-50" />
     <div class="title-container">
       <div class="title-container__inner">
-        <div class="title-container__inner-inner">
-          <div class="title-container__logo">
-            <MoleculesSiteLogo />
-          </div>
-          <!-- /title-container__logo -->
+        <div class="title-container__hero-left">
+          <template v-if="!heroGameOpen">
+            <div class="title-container__inner-inner">
+              <div class="title-container__logo">
+                <MoleculesSiteLogo />
+              </div>
+            </div>
+            <button type="button" class="title-container__play-btn" @click="heroGameOpen = true">
+              遊ぶ
+            </button>
+          </template>
+          <OrganismsOyatsuCatch
+            v-else
+            @close="heroGameOpen = false"
+            @playing-change="heroGamePlaying = $event"
+          />
         </div>
 
         <div class="title-container__cat">
           <MoleculesCatMascot />
         </div>
 
-        <AtScroll class="title-container__scroll" />
+        <AtScroll v-show="!heroGamePlaying" class="title-container__scroll" />
       </div>
     </div>
     <!-- /title-container -->
@@ -86,6 +101,15 @@ useHead({
     justify-content: space-between;
     overflow: hidden;
   }
+}
+
+.title-container__hero-left {
+  flex: 1 1 50%;
+  min-width: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .title-container__inner-inner {
@@ -142,5 +166,33 @@ useHead({
 
 .title-container__cat {
   position: relative;
+  flex: 1 1 50%;
+  min-width: 0;
+}
+
+.title-container__play-btn {
+  position: absolute;
+  z-index: 6;
+  right: var(--padding-lr-pc);
+  bottom: 24px;
+  cursor: pointer;
+  font-family: var(--font-family-jp), sans-serif;
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: 1px solid rgb(249 248 113 / 50%);
+  background: rgb(249 248 113 / 12%);
+  color: var(--primary-color);
+}
+
+.title-container__play-btn:hover {
+  background: rgb(249 248 113 / 22%);
+}
+
+@media (width <= 768px) {
+  .title-container__play-btn {
+    right: var(--padding-lr-sp);
+    bottom: 16px;
+  }
 }
 </style>
