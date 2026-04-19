@@ -5,11 +5,14 @@ import {
   persistAfterRun,
 } from '@/utils/oyatsu-catch-storage';
 import type { OyatsuCatchSave } from '@/types/oyatsu-catch-save';
+import type { OyatsuCatchCatReactionKind } from '@/types/oyatsu-catch';
 
 const emit = defineEmits<{
   close: [];
   /** プレイ中のみ true（親で scroll 表示制御などに使用） */
   playingChange: [playing: boolean];
+  /** 右の CatMascot リアクション用 */
+  catReaction: [kind: OyatsuCatchCatReactionKind];
 }>();
 
 const fieldRef = ref<HTMLElement | null>(null);
@@ -29,7 +32,10 @@ const {
   startRound,
   resetToReady,
   onFieldPointerDown,
-} = useOyatsuCatchGame(() => fieldRef.value);
+} = useOyatsuCatchGame(() => fieldRef.value, {
+  onGoodCatch: () => emit('catReaction', 'happy'),
+  onBadCatch: () => emit('catReaction', 'hurt'),
+});
 
 const save = ref<OyatsuCatchSave>(defaultOyatsuCatchSave());
 const showNewRecord = ref(false);

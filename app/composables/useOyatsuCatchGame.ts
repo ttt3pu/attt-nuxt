@@ -1,4 +1,4 @@
-import type { OyatsuCatchItem, OyatsuCatchPhase } from '~/types/oyatsu-catch';
+import type { OyatsuCatchGameHooks, OyatsuCatchItem, OyatsuCatchPhase } from '~/types/oyatsu-catch';
 
 const INITIAL_LIVES = 3;
 const BASKET_WIDTH_RATIO = 0.22;
@@ -12,7 +12,10 @@ function clamp(n: number, min: number, max: number): number {
   return Math.min(max, Math.max(min, n));
 }
 
-export function useOyatsuCatchGame(getFieldEl: () => HTMLElement | null) {
+export function useOyatsuCatchGame(
+  getFieldEl: () => HTMLElement | null,
+  hooks?: OyatsuCatchGameHooks,
+) {
   const phase = ref<OyatsuCatchPhase>('ready');
   const score = ref(0);
   const lives = ref(INITIAL_LIVES);
@@ -117,9 +120,11 @@ export function useOyatsuCatchGame(getFieldEl: () => HTMLElement | null) {
         if (it.kind === 'good') {
           nextScore += BASE_SCORE * nextCombo;
           nextCombo = Math.min(COMBO_MAX, nextCombo + 1);
+          hooks?.onGoodCatch?.();
         } else {
           nextCombo = 1;
           nextLives -= 1;
+          hooks?.onBadCatch?.();
           if (nextLives <= 0) {
             gameOver = true;
           }
