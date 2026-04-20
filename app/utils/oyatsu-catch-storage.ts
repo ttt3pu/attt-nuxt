@@ -2,14 +2,22 @@ import type { OyatsuCatchSave, OyatsuIncrementalSave } from '~/types/oyatsu-catc
 
 export const OYATSU_CATCH_STORAGE_KEY = 'attt:oyatsu-catch';
 
+/** 初回 3 択が出るまでの累計生産 */
+const FIRST_CHOICE_AT_TOTAL = 42;
+
 export const defaultIncrementalSave = (): OyatsuIncrementalSave => ({
   treats: 0,
   kitchenLevel: 0,
+  pantryLevel: 0,
+  deliveryLevel: 0,
   totalTreatsProduced: 0,
+  globalProductionMult: 1,
+  mood: 52,
+  nextChoiceThreshold: FIRST_CHOICE_AT_TOTAL,
 });
 
 export const defaultOyatsuCatchSave = (): OyatsuCatchSave => ({
-  version: 3,
+  version: 4,
   highScore: 0,
   totalPlays: 0,
   achievements: {},
@@ -32,8 +40,23 @@ function mergeIncremental(parsed: unknown): OyatsuIncrementalSave {
   if (typeof parsed.kitchenLevel === 'number' && Number.isFinite(parsed.kitchenLevel)) {
     d.kitchenLevel = Math.max(0, Math.floor(parsed.kitchenLevel));
   }
+  if (typeof parsed.pantryLevel === 'number' && Number.isFinite(parsed.pantryLevel)) {
+    d.pantryLevel = Math.max(0, Math.floor(parsed.pantryLevel));
+  }
+  if (typeof parsed.deliveryLevel === 'number' && Number.isFinite(parsed.deliveryLevel)) {
+    d.deliveryLevel = Math.max(0, Math.floor(parsed.deliveryLevel));
+  }
   if (typeof parsed.totalTreatsProduced === 'number' && Number.isFinite(parsed.totalTreatsProduced)) {
     d.totalTreatsProduced = Math.max(0, parsed.totalTreatsProduced);
+  }
+  if (typeof parsed.globalProductionMult === 'number' && Number.isFinite(parsed.globalProductionMult)) {
+    d.globalProductionMult = Math.max(0.5, parsed.globalProductionMult);
+  }
+  if (typeof parsed.mood === 'number' && Number.isFinite(parsed.mood)) {
+    d.mood = Math.min(100, Math.max(0, parsed.mood));
+  }
+  if (typeof parsed.nextChoiceThreshold === 'number' && Number.isFinite(parsed.nextChoiceThreshold)) {
+    d.nextChoiceThreshold = Math.max(FIRST_CHOICE_AT_TOTAL, parsed.nextChoiceThreshold);
   }
   return d;
 }
@@ -89,6 +112,9 @@ export function mergeOyatsuCatchSave(parsed: unknown): OyatsuCatchSave {
   if (d.version < 3) {
     d.version = 3;
   }
+  if (d.version < 4) {
+    d.version = 4;
+  }
   return d;
 }
 
@@ -110,7 +136,7 @@ export function persistIncrementalSlice(
 ): OyatsuCatchSave {
   const next: OyatsuCatchSave = {
     ...previous,
-    version: Math.max(previous.version ?? 1, 3),
+    version: Math.max(previous.version ?? 1, 4),
     incremental: { ...inc },
   };
   saveOyatsuCatchSave(next);

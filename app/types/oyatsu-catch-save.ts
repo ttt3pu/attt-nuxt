@@ -4,10 +4,20 @@
 export interface OyatsuIncrementalSave {
   /** 所持おやつ（小数あり） */
   treats: number;
-  /** おやつキッチのレベル（0 から。上げるほど生産増） */
+  /** キッチ（主生産） */
   kitchenLevel: number;
-  /** 累計生産量（表示・実績用） */
+  /** おやつ倉庫（副生産） */
+  pantryLevel: number;
+  /** お届け係（生産倍率） */
+  deliveryLevel: number;
+  /** 累計生産量（表示・実績・3 択トリガー用） */
   totalTreatsProduced: number;
+  /** 3 択などで得た全体倍率（1 基準） */
+  globalProductionMult: number;
+  /** 猫のごきげん 0〜100 */
+  mood: number;
+  /** 次の VS 式 3 択が出る累計生産の閾値 */
+  nextChoiceThreshold: number;
 }
 
 export interface OyatsuCatchSave {
