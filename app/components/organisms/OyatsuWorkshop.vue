@@ -7,8 +7,6 @@ const emit = defineEmits<{
   close: [];
   playingChange: [playing: boolean];
   catReaction: [kind: OyatsuCatchCatReactionKind];
-  /** 0〜100 猫のごきげん（右列マスコットと連動） */
-  moodSync: [mood: number];
 }>();
 
 const ws = inject(oyatsuWorkshopRuntimeKey);
@@ -51,14 +49,6 @@ const multDisplay = computed(() => globalProductionMult.value.toFixed(2));
 
 const achievementUnlockedCount = computed(
   () => achievementDefs.filter((d) => save.value.achievements[d.id]).length,
-);
-
-watch(
-  mood,
-  (m) => {
-    emit('moodSync', m);
-  },
-  { immediate: true },
 );
 
 onMounted(() => {
@@ -193,6 +183,10 @@ function onBuyDelivery() {
         <button type="button" class="oyatsu-workshop__btn" @click="onClose">閉じる</button>
       </div>
 
+      <div class="oyatsu-workshop__mood-meter-wrap">
+        <MoleculesOyatsuMoodMeter :percent="moodDisplay" />
+      </div>
+
       <p v-if="save.highScore > 0 || save.totalPlays > 0" class="oyatsu-workshop__legacy">
         ※昔のキャッチ記録: ハイスコア {{ save.highScore }} / プレイ {{ save.totalPlays }}回
       </p>
@@ -305,6 +299,10 @@ function onBuyDelivery() {
 
 .oyatsu-workshop__actions {
   @apply flex flex-wrap gap-3 pt-1 rounded-lg border border-white/12 bg-white/[0.06] backdrop-blur-md px-3 py-3;
+}
+
+.oyatsu-workshop__mood-meter-wrap {
+  @apply w-full max-w-md mx-auto mt-2 shrink-0 relative z-10;
 }
 
 .oyatsu-workshop__btn {

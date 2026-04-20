@@ -19,8 +19,6 @@ const heroGamePlaying = ref(false);
 /** CatMascot おやつ工房連動リアクション */
 type CatFaceReaction = 'idle' | OyatsuCatchCatReactionKind;
 const catGameReaction = ref<CatFaceReaction>('idle');
-/** 工房を開いているときのごきげん 0〜100（メーター表示） */
-const catMoodPercent = ref<number | null>(null);
 let catReactionClearTimer: ReturnType<typeof setTimeout> | null = null;
 let lastHappyReactionAt = 0;
 
@@ -58,7 +56,6 @@ function onHeroGameClose() {
   heroGameOpen.value = false;
   clearCatReactionTimer();
   catGameReaction.value = 'idle';
-  catMoodPercent.value = null;
 }
 
 watch(heroGameOpen, (open) => {
@@ -69,7 +66,6 @@ watch(heroGameOpen, (open) => {
   } else {
     clearCatReactionTimer();
     catGameReaction.value = 'idle';
-    catMoodPercent.value = null;
   }
 });
 
@@ -123,7 +119,6 @@ useHead({
             @close="onHeroGameClose"
             @playing-change="heroGamePlaying = $event"
             @cat-reaction="onOyatsuCatReaction"
-            @mood-sync="catMoodPercent = $event"
           />
         </div>
 
@@ -131,10 +126,7 @@ useHead({
           class="title-container__cat"
           :class="{ 'title-container__cat--game-open': heroGameOpen }"
         >
-          <MoleculesCatMascot
-            :game-reaction="catGameReaction"
-            :mood-percent="heroGameOpen ? catMoodPercent : null"
-          />
+          <MoleculesCatMascot :game-reaction="catGameReaction" />
         </div>
 
         <AtScroll v-show="!heroGamePlaying" class="title-container__scroll" />
@@ -211,7 +203,7 @@ useHead({
 }
 
 .title-container__hero-left--game-open {
-  /* 工房オープン時は猫列（ごきげんゲージ）を手前に */
+  /* 工房オープン時は猫列を手前に（スクロール誘導より猫を見せる） */
   z-index: 1;
 }
 
@@ -276,7 +268,7 @@ useHead({
   min-width: 0;
 }
 
-/* 工房表示中は猫列をスクロール誘導（--z-scroll: 5）より手前に（ごきげんメーターが隠れないように） */
+/* 工房表示中は猫列をスクロール誘導（--z-scroll: 5）より手前に */
 .title-container__cat--game-open {
   z-index: 10;
 }
