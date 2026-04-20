@@ -94,6 +94,9 @@ sw.*
 # VSCode settings
 .vscode
 
+# Cursor CLI: ローカルの allow 上書き（共有しない）
+.cursor/cli.json
+
 # Stylelint cache
 .stylelintcache
 
