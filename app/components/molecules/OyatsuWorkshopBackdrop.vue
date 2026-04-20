@@ -28,6 +28,8 @@ type FishInst = {
   durationS: number;
   driftPx: number;
   size: number;
+  /** 元 SVG は右向き想定。0〜360° でランダムに向きを変える */
+  angleDeg: number;
 };
 
 const fishes = ref<FishInst[]>([]);
@@ -56,6 +58,7 @@ function rebuildFish() {
       durationS: Math.max(10, durationBase - speedBoost),
       driftPx: (Math.random() - 0.5) * 72,
       size: isMobile.value ? 26 + Math.random() * 8 : 30 + Math.random() * 12,
+      angleDeg: Math.random() * 360,
     });
   }
   fishes.value = list;
@@ -112,7 +115,13 @@ watch([fishCount, isMobile], () => {
         '--drift': `${fish.driftPx}px`,
       }"
     >
-      <AtomsOyatsuFish class="oyatsu-workshop-backdrop__svg" :fill="fish.fill" :stroke="fish.stroke" :size="fish.size" />
+      <AtomsOyatsuFish
+        class="oyatsu-workshop-backdrop__svg"
+        :fill="fish.fill"
+        :stroke="fish.stroke"
+        :size="fish.size"
+        :style="{ transform: `rotate(${fish.angleDeg}deg)` }"
+      />
     </div>
   </div>
 </template>
@@ -138,7 +147,6 @@ watch([fishCount, isMobile], () => {
 
 .oyatsu-workshop-backdrop__svg {
   display: block;
-  transform: rotate(90deg);
   transform-origin: center center;
 }
 
