@@ -111,7 +111,10 @@ useHead({
           />
         </div>
 
-        <div class="title-container__cat">
+        <div
+          class="title-container__cat"
+          :class="{ 'title-container__cat--game-open': heroGameOpen }"
+        >
           <MoleculesCatMascot
             :game-reaction="catGameReaction"
             :mood-percent="heroGameOpen ? catMoodPercent : null"
@@ -242,6 +245,11 @@ useHead({
   z-index: 2;
   flex: 1 1 50%;
   min-width: 0;
+}
+
+/* 工房表示中は猫列をスクロール誘導（--z-scroll: 5）より手前に（ごきげんメーターが隠れないように） */
+.title-container__cat--game-open {
+  z-index: 10;
 }
 
 .title-container__play-btn {
