@@ -64,6 +64,8 @@ export function useOyatsuIncremental(
   const totalTreatsProduced = ref(0);
   const globalProductionMult = ref(1);
   const mood = ref(52);
+  const moodPeak = ref(52);
+  const choicesCompleted = ref(0);
   const nextChoiceThreshold = ref(42);
 
   const choiceModalOpen = ref(false);
@@ -82,7 +84,9 @@ export function useOyatsuIncremental(
       totalTreatsProduced: totalTreatsProduced.value,
       globalProductionMult: globalProductionMult.value,
       mood: mood.value,
+      moodPeak: moodPeak.value,
       nextChoiceThreshold: nextChoiceThreshold.value,
+      choicesCompleted: choicesCompleted.value,
     };
   }
 
@@ -109,7 +113,9 @@ export function useOyatsuIncremental(
     totalTreatsProduced.value = inc.totalTreatsProduced;
     globalProductionMult.value = inc.globalProductionMult;
     mood.value = inc.mood;
+    moodPeak.value = inc.moodPeak;
     nextChoiceThreshold.value = inc.nextChoiceThreshold;
+    choicesCompleted.value = inc.choicesCompleted;
   }
 
   function hydrateFromSave(save: OyatsuCatchSave) {
@@ -157,6 +163,7 @@ export function useOyatsuIncremental(
       0,
       100,
     );
+    moodPeak.value = Math.max(moodPeak.value, mood.value);
 
     maybeOpenChoiceModal();
 
@@ -254,6 +261,7 @@ export function useOyatsuIncremental(
     nextChoiceThreshold.value = totalTreatsProduced.value + CHOICE_GAP_TOTAL;
     choiceModalOpen.value = false;
     choiceOptions.value = [];
+    choicesCompleted.value += 1;
     scheduleSave();
   }
 
@@ -277,6 +285,8 @@ export function useOyatsuIncremental(
     totalTreatsProduced,
     globalProductionMult,
     mood,
+    moodPeak,
+    choicesCompleted,
     nextChoiceThreshold,
     productionRate,
     nextKitchenCost,

@@ -1,4 +1,5 @@
 import type { OyatsuCatchSave, OyatsuIncrementalSave } from '~/types/oyatsu-catch-save';
+import { evaluateWorkshopAchievements } from '@/utils/oyatsu-workshop-achievements';
 
 export const OYATSU_CATCH_STORAGE_KEY = 'attt:oyatsu-catch';
 
@@ -13,15 +14,18 @@ export const defaultIncrementalSave = (): OyatsuIncrementalSave => ({
   totalTreatsProduced: 0,
   globalProductionMult: 1,
   mood: 52,
+  moodPeak: 52,
   nextChoiceThreshold: FIRST_CHOICE_AT_TOTAL,
+  choicesCompleted: 0,
 });
 
 export const defaultOyatsuCatchSave = (): OyatsuCatchSave => ({
-  version: 4,
+  version: 5,
   highScore: 0,
   totalPlays: 0,
   achievements: {},
   bestCombo: 0,
+  workshopSessions: 0,
   incremental: defaultIncrementalSave(),
 });
 
@@ -55,8 +59,16 @@ function mergeIncremental(parsed: unknown): OyatsuIncrementalSave {
   if (typeof parsed.mood === 'number' && Number.isFinite(parsed.mood)) {
     d.mood = Math.min(100, Math.max(0, parsed.mood));
   }
+  if (typeof parsed.moodPeak === 'number' && Number.isFinite(parsed.moodPeak)) {
+    d.moodPeak = Math.min(100, Math.max(0, parsed.moodPeak));
+  } else {
+    d.moodPeak = Math.max(d.moodPeak, d.mood);
+  }
   if (typeof parsed.nextChoiceThreshold === 'number' && Number.isFinite(parsed.nextChoiceThreshold)) {
     d.nextChoiceThreshold = Math.max(FIRST_CHOICE_AT_TOTAL, parsed.nextChoiceThreshold);
+  }
+  if (typeof parsed.choicesCompleted === 'number' && Number.isFinite(parsed.choicesCompleted)) {
+    d.choicesCompleted = Math.max(0, Math.floor(parsed.choicesCompleted));
   }
   return d;
 }
@@ -104,6 +116,9 @@ export function mergeOyatsuCatchSave(parsed: unknown): OyatsuCatchSave {
   if (typeof parsed.bestCombo === 'number' && Number.isFinite(parsed.bestCombo)) {
     d.bestCombo = Math.max(0, Math.floor(parsed.bestCombo));
   }
+  if (typeof parsed.workshopSessions === 'number' && Number.isFinite(parsed.workshopSessions)) {
+    d.workshopSessions = Math.max(0, Math.floor(parsed.workshopSessions));
+  }
   if (parsed.incremental !== undefined) {
     d.incremental = mergeIncremental(parsed.incremental);
   } else {
@@ -114,6 +129,9 @@ export function mergeOyatsuCatchSave(parsed: unknown): OyatsuCatchSave {
   }
   if (d.version < 4) {
     d.version = 4;
+  }
+  if (d.version < 5) {
+    d.version = 5;
   }
   return d;
 }
@@ -129,16 +147,29 @@ export function saveOyatsuCatchSave(data: OyatsuCatchSave): void {
   }
 }
 
+/** 工房を開くたびに呼ぶ（セッション计数 + 実績評価） */
+export function recordWorkshopOpen(previous: OyatsuCatchSave): OyatsuCatchSave {
+  const bumped: OyatsuCatchSave = {
+    ...previous,
+    workshopSessions: previous.workshopSessions + 1,
+    version: Math.max(previous.version ?? 1, 5),
+  };
+  const next = evaluateWorkshopAchievements(bumped);
+  saveOyatsuCatchSave(next);
+  return next;
+}
+
 /** インクリメンタル状態だけをマージして保存（全体を保ったまま差し替え） */
 export function persistIncrementalSlice(
   previous: OyatsuCatchSave,
   inc: OyatsuIncrementalSave,
 ): OyatsuCatchSave {
-  const next: OyatsuCatchSave = {
+  const merged: OyatsuCatchSave = {
     ...previous,
-    version: Math.max(previous.version ?? 1, 4),
+    version: Math.max(previous.version ?? 1, 5),
     incremental: { ...inc },
   };
+  const next = evaluateWorkshopAchievements(merged);
   saveOyatsuCatchSave(next);
   return next;
 }

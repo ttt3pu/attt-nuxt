@@ -16,8 +16,12 @@ export interface OyatsuIncrementalSave {
   globalProductionMult: number;
   /** 猫のごきげん 0〜100 */
   mood: number;
+  /** ごきげんの歴代最高（実績用） */
+  moodPeak: number;
   /** 次の VS 式 3 択が出る累計生産の閾値 */
   nextChoiceThreshold: number;
+  /** 3 択で報酬を選んだ回数（「あとで」は含まない） */
+  choicesCompleted: number;
 }
 
 export interface OyatsuCatchSave {
@@ -27,6 +31,8 @@ export interface OyatsuCatchSave {
   totalPlays: number;
   achievements: Record<string, boolean>;
   bestCombo: number;
+  /** 「遊ぶ」で工房を開いた累計回数（実績・メタ） */
+  workshopSessions: number;
   /** v3 以降。未設定時はマージでデフォルト */
   incremental?: OyatsuIncrementalSave;
 }
