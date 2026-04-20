@@ -1,12 +1,15 @@
 import type { OyatsuCatchGameHooks, OyatsuCatchItem, OyatsuCatchPhase } from '~/types/oyatsu-catch';
 
 const INITIAL_LIVES = 3;
-const BASKET_WIDTH_RATIO = 0.22;
-const BASKET_HEIGHT_RATIO = 0.065;
-const BASKET_TOP_RATIO = 0.86;
+/** フィールドの短辺に対する半分の基準（当たり判定・見た目の基準） */
+const CARRIER_HALF_BASE_RATIO = 0.052;
+/** M1 固定パワー: Lv1 到達後、当たり判定を広げる（実装しやすい強化） */
+const POWER_HITBOX_WIDEN = 1.32;
 const ITEM_SIZE_RATIO = 0.09;
 const COMBO_MAX = 5;
 const BASE_SCORE = 10;
+/** ラン内 Lv1 までに必要な XP（M1 は Lv1 のみ） */
+const XP_FOR_LEVEL_1 = 80;
 
 function clamp(n: number, min: number, max: number): number {
   return Math.min(max, Math.max(min, n));
@@ -21,8 +24,18 @@ export function useOyatsuCatchGame(
   const lives = ref(INITIAL_LIVES);
   const combo = ref(1);
   const items = shallowRef<OyatsuCatchItem[]>([]);
-  /** 受け皿中心の X (px、フィールド左端基準) */
-  const basketCenterX = ref(0);
+  /** 運搬側スプライト中心 X（フィールド左端基準 px） */
+  const carrierCenterX = ref(0);
+  /** 運搬側スプライト中心 Y（フィールド上端基準 px） */
+  const carrierCenterY = ref(0);
+  /** 0 のとき未昇格、1 で Lv1（M1 はここまで） */
+  const playerLevel = ref(0);
+  /** Lv1 未満のときのみ加算 */
+  const xp = ref(0);
+  /** 0〜1、ラン中のみ（永続しない） */
+  const mood01 = ref(0.5);
+  /** このプレイで到達した最大コンボ倍率（保存用） */
+  const runPeakCombo = ref(1);
 
   let itemId = 0;
   let rafId = 0;
@@ -31,12 +44,21 @@ export function useOyatsuCatchGame(
   let difficulty = 0;
   let elapsedPlaying = 0;
 
+  const hitboxWidenMult = computed(() => (playerLevel.value >= 1 ? POWER_HITBOX_WIDEN : 1));
+
   function fieldSize() {
     const el = getFieldEl();
     if (!el) {
       return { w: 320, h: 400 };
     }
     return { w: el.clientWidth, h: el.clientHeight };
+  }
+
+  /** 当たり判定用の正方形の半辺長（px） */
+  function carrierHalfPx() {
+    const { w, h } = fieldSize();
+    const m = Math.min(w, h);
+    return m * CARRIER_HALF_BASE_RATIO * hitboxWidenMult.value;
   }
 
   function spawnIntervalSec() {
@@ -82,6 +104,16 @@ export function useOyatsuCatchGame(
     return ax + aw > bx && ax < bx + bw && ay + ah > by && ay < by + bh;
   }
 
+  function applyMoodGood(comboBefore: number, scoreAfter: number) {
+    const gain =
+      0.042 + comboBefore * 0.022 + Math.min(0.07, scoreAfter * 0.00012);
+    mood01.value = clamp(mood01.value + gain, 0, 1);
+  }
+
+  function applyMoodBad() {
+    mood01.value = clamp(mood01.value - 0.17, 0, 1);
+  }
+
   function tick(now: number) {
     if (phase.value !== 'playing') {
       return;
@@ -90,11 +122,13 @@ export function useOyatsuCatchGame(
     lastTime = now;
     elapsedPlaying += dt;
 
-    const { w, h } = fieldSize();
-    const basketW = w * BASKET_WIDTH_RATIO;
-    const basketH = h * BASKET_HEIGHT_RATIO;
-    const basketTop = h * BASKET_TOP_RATIO;
-    const basketLeft = basketCenterX.value - basketW / 2;
+    const { h } = fieldSize();
+    const half = carrierHalfPx();
+    const cx = carrierCenterX.value;
+    const cy = carrierCenterY.value;
+    const left = cx - half;
+    const top = cy - half;
+    const sizeBox = half * 2;
 
     difficulty = Math.min(18, elapsedPlaying * 0.12 + score.value * 0.02);
 
@@ -109,21 +143,32 @@ export function useOyatsuCatchGame(
     let nextLives = lives.value;
     let nextScore = score.value;
     let nextCombo = combo.value;
+    let nextXp = xp.value;
+    let nextLevel = playerLevel.value;
     let gameOver = false;
 
     for (const it of items.value) {
       const ny = it.y + it.vy * dt;
       const size = it.size;
-      const caught = rectsOverlap(it.x, ny, size, size, basketLeft, basketTop, basketW, basketH);
+      const caught = rectsOverlap(it.x, ny, size, size, left, top, sizeBox, sizeBox);
 
       if (caught) {
         if (it.kind === 'good') {
-          nextScore += BASE_SCORE * nextCombo;
+          const comboForScore = nextCombo;
+          nextScore += BASE_SCORE * comboForScore;
           nextCombo = Math.min(COMBO_MAX, nextCombo + 1);
+          applyMoodGood(comboForScore, nextScore);
+          if (nextLevel === 0) {
+            nextXp += 10 + comboForScore * 3;
+            if (nextXp >= XP_FOR_LEVEL_1) {
+              nextLevel = 1;
+            }
+          }
           hooks?.onGoodCatch?.();
         } else {
           nextCombo = 1;
           nextLives -= 1;
+          applyMoodBad();
           hooks?.onBadCatch?.();
           if (nextLives <= 0) {
             gameOver = true;
@@ -146,6 +191,9 @@ export function useOyatsuCatchGame(
     score.value = nextScore;
     lives.value = nextLives;
     combo.value = nextCombo;
+    xp.value = nextXp;
+    playerLevel.value = nextLevel;
+    runPeakCombo.value = Math.max(runPeakCombo.value, nextCombo);
 
     if (gameOver) {
       phase.value = 'gameover';
@@ -160,16 +208,18 @@ export function useOyatsuCatchGame(
     rafId = requestAnimationFrame(tick);
   }
 
-  function syncBasketFromPointer(clientX: number) {
+  function syncCarrierFromPointer(clientX: number, clientY: number) {
     const el = getFieldEl();
     if (!el) {
       return;
     }
     const rect = el.getBoundingClientRect();
-    const { w } = fieldSize();
-    const basketW = w * BASKET_WIDTH_RATIO;
+    const { w, h } = fieldSize();
+    const half = carrierHalfPx();
     const x = clientX - rect.left;
-    basketCenterX.value = clamp(x, basketW / 2, w - basketW / 2);
+    const y = clientY - rect.top;
+    carrierCenterX.value = clamp(x, half, w - half);
+    carrierCenterY.value = clamp(y, half, h - half);
   }
 
   function onPlayingPointer(ev: PointerEvent) {
@@ -177,7 +227,7 @@ export function useOyatsuCatchGame(
       return;
     }
     ev.preventDefault();
-    syncBasketFromPointer(ev.clientX);
+    syncCarrierFromPointer(ev.clientX, ev.clientY);
   }
 
   let detachPointer: (() => void) | null = null;
@@ -202,12 +252,12 @@ export function useOyatsuCatchGame(
       return;
     }
     (ev.currentTarget as HTMLElement).setPointerCapture?.(ev.pointerId);
-    syncBasketFromPointer(ev.clientX);
+    syncCarrierFromPointer(ev.clientX, ev.clientY);
     attachGlobalPointer();
   }
 
   function startRound() {
-    const { w } = fieldSize();
+    const { w, h } = fieldSize();
     phase.value = 'playing';
     score.value = 0;
     lives.value = INITIAL_LIVES;
@@ -217,7 +267,12 @@ export function useOyatsuCatchGame(
     spawnAccumulator = 0;
     difficulty = 0;
     elapsedPlaying = 0;
-    basketCenterX.value = w / 2;
+    xp.value = 0;
+    playerLevel.value = 0;
+    mood01.value = 0.5;
+    runPeakCombo.value = 1;
+    carrierCenterX.value = w / 2;
+    carrierCenterY.value = h * 0.58;
     lastTime = performance.now();
     if (rafId) {
       cancelAnimationFrame(rafId);
@@ -244,16 +299,29 @@ export function useOyatsuCatchGame(
     stopLoop();
   });
 
+  const xpToLevel1 = XP_FOR_LEVEL_1;
+
+  const xpBarRatio = computed(() =>
+    playerLevel.value >= 1 ? 1 : clamp(xp.value / xpToLevel1, 0, 1),
+  );
+
   return {
     phase,
     score,
     lives,
     combo,
     items,
-    basketCenterX,
-    BASKET_WIDTH_RATIO,
-    BASKET_HEIGHT_RATIO,
-    BASKET_TOP_RATIO,
+    carrierCenterX,
+    carrierCenterY,
+    playerLevel,
+    xp,
+    xpToLevel1,
+    xpBarRatio,
+    mood01,
+    runPeakCombo,
+    hitboxWidenMult,
+    CARRIER_HALF_BASE_RATIO,
+    POWER_HITBOX_WIDEN,
     startRound,
     resetToReady,
     stopLoop,
