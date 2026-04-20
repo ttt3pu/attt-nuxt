@@ -4,7 +4,7 @@
 export interface OyatsuIncrementalSave {
   /** 所持おやつ（小数あり） */
   treats: number;
-  /** キッチ（主生産） */
+  /** キッチン（主生産） */
   kitchenLevel: number;
   /** おやつ倉庫（副生産） */
   pantryLevel: number;
