@@ -60,13 +60,17 @@ function rebuildFish() {
     const c = randomOyatsuFishColors();
     const durationBase = 15 + Math.random() * 9;
     const speedBoost = Math.min(4, Math.log(1 + rate) * 0.35);
+    const durationS = Math.max(10, durationBase - speedBoost);
+    // 負の delay でループのランダムな位相から開始する（0〜15s の正の delay だと
+    // 多くの匹が画面外で待機し、「あまり降ってこない」ように見える）
+    const delayMs = -Math.random() * durationS * 1000;
     list.push({
       id: makeId(),
       fill: c.fill,
       stroke: c.stroke,
       leftPct: 4 + Math.random() * 88,
-      delayMs: Math.random() * 15000,
-      durationS: Math.max(10, durationBase - speedBoost),
+      delayMs,
+      durationS,
       driftPx: (Math.random() - 0.5) * 72,
       size: randomFishSizePx(isMobile.value),
       angleDeg: Math.random() * 360,
@@ -152,7 +156,7 @@ watch([fishCount, isMobile], () => {
   position: absolute;
   top: -15%;
   left: var(--left);
-  opacity: 0.32;
+  opacity: 0.38;
   animation: oyatsu-fish-fall var(--dur) linear var(--delay) infinite;
 }
 
