@@ -1,9 +1,17 @@
 <script lang="ts" setup>
 import AtScroll from '@/components/atoms/AtScroll.vue';
+import {
+  oyatsuWorkshopRuntimeKey,
+  useOyatsuWorkshopRuntime,
+} from '@/composables/useOyatsuWorkshopRuntime';
 import { usePostsStore } from '@/store';
 import type { OyatsuCatchCatReactionKind } from '@/types/oyatsu-catch';
 import type { BlogPost } from '@prisma/client';
 import type { ZennPost } from '@/types';
+import { recordWorkshopOpen } from '@/utils/oyatsu-catch-storage';
+
+const workshopRuntime = useOyatsuWorkshopRuntime();
+provide(oyatsuWorkshopRuntimeKey, workshopRuntime);
 
 const heroGameOpen = ref(false);
 /** おやつ工房を開いていて操作にフォーカスがある場合など（現状は常に false） */
@@ -55,7 +63,10 @@ function onHeroGameClose() {
 }
 
 watch(heroGameOpen, (open) => {
-  if (!open) {
+  if (open) {
+    workshopRuntime.save.value = recordWorkshopOpen(workshopRuntime.save.value);
+    workshopRuntime.hydrateFromSave(workshopRuntime.save.value);
+  } else {
     clearCatReactionTimer();
     catGameReaction.value = 'idle';
     catMoodPercent.value = null;
@@ -86,6 +97,7 @@ useHead({
 <template>
   <div>
     <MoleculesTokenForm class="fixed bottom-0 right-0 p-4 z-50" />
+    <OrganismsOyatsuWorkshopChoiceModal @cat-reaction="onOyatsuCatReaction" />
     <div class="title-container">
       <div class="title-container__inner">
         <div
