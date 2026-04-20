@@ -160,12 +160,14 @@ img {
     position: absolute;
     bottom: -2px;
     right: calc(-25% - 3vh);
+    z-index: var(--z-cat-layer);
   }
 }
 
 .cat-mascot__mood-wrap {
   position: absolute;
-  z-index: 12;
+  /* 顔・首・演出（ハート等）より手前に（--z-cat は 1、ハートは 10） */
+  z-index: 30;
   left: 14%;
   bottom: 5%;
   width: min(52%, 12rem);

@@ -88,7 +88,10 @@ useHead({
     <MoleculesTokenForm class="fixed bottom-0 right-0 p-4 z-50" />
     <div class="title-container">
       <div class="title-container__inner">
-        <div class="title-container__hero-left">
+        <div
+          class="title-container__hero-left"
+          :class="{ 'title-container__hero-left--game-open': heroGameOpen }"
+        >
           <template v-if="!heroGameOpen">
             <div class="title-container__inner-inner">
               <div class="title-container__logo">
@@ -170,9 +173,16 @@ useHead({
   flex: 1 1 50%;
   min-width: 0;
   position: relative;
+  /* 工房クローズ時は猫列より手前（遊ぶボタンが猫に隠れないように） */
+  z-index: 3;
   display: flex;
   flex-direction: column;
   height: 100%;
+}
+
+.title-container__hero-left--game-open {
+  /* 工房オープン時は猫列（ごきげんゲージ）を手前に */
+  z-index: 1;
 }
 
 .title-container__inner-inner {
@@ -229,6 +239,7 @@ useHead({
 
 .title-container__cat {
   position: relative;
+  z-index: 2;
   flex: 1 1 50%;
   min-width: 0;
 }
