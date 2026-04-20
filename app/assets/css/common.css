@@ -29,6 +29,11 @@
     --z-sns: 4;
     --z-scroll: 5;
     --z-language: 6;
+    /* title-container 左右列（数値が大きいほど手前） */
+    /* 工房オープン時: 操作 UI を猫列より手前に（SP で猫が絶対配置で重なる対策） */
+    --z-hero-workshop: 8;
+    /* 工房オープン時の猫列: スクロール誘導より前だが工房より奥 */
+    --z-hero-cat-when-game: 6;
 
     font-family: sans-serif;
     font-size: 16px;
