@@ -1,3 +1,4 @@
+import { toValue, type MaybeRefOrGetter } from 'vue';
 import type { OyatsuCatchSave, OyatsuIncrementalSave } from '~/types/oyatsu-catch-save';
 import type { WorkshopChoiceDef, WorkshopChoiceId } from '~/types/oyatsu-workshop-choice';
 import { WORKSHOP_CHOICE_POOL } from '~/types/oyatsu-workshop-choice';
@@ -56,6 +57,8 @@ function baseProductionPerSecond(
 export function useOyatsuIncremental(
   getSave: () => OyatsuCatchSave,
   onPersist: (next: OyatsuCatchSave) => void,
+  /** false のとき閾値到達でも 3 択を開かない（工房を開いたら tryOpenChoiceModalWhenEligible を呼ぶ） */
+  choiceModalAllowed: MaybeRefOrGetter<boolean> = true,
 ) {
   const treats = ref(0);
   const kitchenLevel = ref(0);
@@ -135,6 +138,22 @@ export function useOyatsuIncremental(
   const canAffordPantry = computed(() => treats.value >= nextPantryCost.value);
   const canAffordDelivery = computed(() => treats.value >= nextDeliveryCost.value);
 
+  function openChoiceModalInternal() {
+    choiceOptions.value = shufflePickThree();
+    choiceModalOpen.value = true;
+  }
+
+  /** 工房を開いた直後など。閾値を満たしていれば 3 択を表示する */
+  function tryOpenChoiceModalWhenEligible() {
+    if (choiceModalOpen.value) {
+      return;
+    }
+    if (totalTreatsProduced.value < nextChoiceThreshold.value) {
+      return;
+    }
+    openChoiceModalInternal();
+  }
+
   function maybeOpenChoiceModal() {
     if (choiceModalOpen.value) {
       return;
@@ -142,8 +161,10 @@ export function useOyatsuIncremental(
     if (totalTreatsProduced.value < nextChoiceThreshold.value) {
       return;
     }
-    choiceOptions.value = shufflePickThree();
-    choiceModalOpen.value = true;
+    if (!toValue(choiceModalAllowed)) {
+      return;
+    }
+    openChoiceModalInternal();
   }
 
   function tick(ts: number) {
@@ -306,6 +327,7 @@ export function useOyatsuIncremental(
     tryBuyDelivery,
     applyChoice,
     closeChoiceModal,
+    tryOpenChoiceModalWhenEligible,
     costForKitchen,
     costForPantry,
     costForDelivery,
