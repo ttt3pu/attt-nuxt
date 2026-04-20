@@ -96,7 +96,7 @@ useHead({
               </div>
             </div>
             <button type="button" class="title-container__play-btn" @click="heroGameOpen = true">
-              遊ぶ
+              おやつ工房
             </button>
           </template>
           <OrganismsOyatsuWorkshop

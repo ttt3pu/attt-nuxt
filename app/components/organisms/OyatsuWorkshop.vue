@@ -2,10 +2,12 @@
 import {
   defaultOyatsuCatchSave,
   loadOyatsuCatchSave,
+  recordWorkshopOpen,
 } from '@/utils/oyatsu-catch-storage';
 import type { OyatsuCatchSave } from '@/types/oyatsu-catch-save';
 import type { OyatsuCatchCatReactionKind } from '@/types/oyatsu-catch';
 import type { WorkshopChoiceId } from '@/types/oyatsu-workshop-choice';
+import { WORKSHOP_ACHIEVEMENT_DEFS } from '@/types/oyatsu-workshop-achievements';
 
 const emit = defineEmits<{
   close: [];
@@ -51,6 +53,8 @@ const {
   },
 );
 
+const achievementDefs = WORKSHOP_ACHIEVEMENT_DEFS;
+
 const treatsDisplay = computed(() =>
   treats.value < 10 ? treats.value.toFixed(1) : Math.floor(treats.value).toLocaleString('ja-JP'),
 );
@@ -58,6 +62,10 @@ const rateDisplay = computed(() => productionRate.value.toFixed(2));
 const totalDisplay = computed(() => Math.floor(totalTreatsProduced.value).toLocaleString('ja-JP'));
 const moodDisplay = computed(() => Math.round(mood.value));
 const multDisplay = computed(() => globalProductionMult.value.toFixed(2));
+
+const achievementUnlockedCount = computed(
+  () => achievementDefs.filter((d) => save.value.achievements[d.id]).length,
+);
 
 watch(
   mood,
@@ -68,7 +76,7 @@ watch(
 );
 
 onMounted(() => {
-  save.value = loadOyatsuCatchSave();
+  save.value = recordWorkshopOpen(loadOyatsuCatchSave());
   hydrateFromSave(save.value);
   startLoop();
   emit('playingChange', false);
@@ -191,6 +199,29 @@ function onDeferChoice() {
         累計生産が約 {{ Math.ceil(nextChoiceThreshold).toLocaleString('ja-JP') }} に達すると、おまけの 3 択が出るよ。
       </p>
 
+      <details class="oyatsu-workshop__achievements">
+        <summary class="oyatsu-workshop__achievements-summary">
+          実績 {{ achievementUnlockedCount }} / {{ achievementDefs.length }}
+          <span class="oyatsu-workshop__achievements-meta">（工房を開いた回数 {{ save.workshopSessions }}）</span>
+        </summary>
+        <ul class="oyatsu-workshop__achievements-list">
+          <li
+            v-for="def in achievementDefs"
+            :key="def.id"
+            class="oyatsu-workshop__achievements-item"
+            :class="{ 'oyatsu-workshop__achievements-item--ok': save.achievements[def.id] }"
+          >
+            <span class="oyatsu-workshop__achievements-mark" aria-hidden="true">{{
+              save.achievements[def.id] ? '✓' : '·'
+            }}</span>
+            <span class="oyatsu-workshop__achievements-text">
+              <span class="oyatsu-workshop__achievements-title">{{ def.title }}</span>
+              <span class="oyatsu-workshop__achievements-desc">{{ def.description }}</span>
+            </span>
+          </li>
+        </ul>
+      </details>
+
       <div class="oyatsu-workshop__actions">
         <button type="button" class="oyatsu-workshop__btn" @click="onClose">閉じる</button>
       </div>
@@ -289,6 +320,46 @@ function onDeferChoice() {
 
 .oyatsu-workshop__choice-hint {
   @apply text-xs text-white/50 leading-snug;
+}
+
+.oyatsu-workshop__achievements {
+  @apply rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2 text-sm;
+}
+
+.oyatsu-workshop__achievements-summary {
+  @apply cursor-pointer font-jp text-white/85 text-sm list-none;
+}
+
+.oyatsu-workshop__achievements-meta {
+  @apply text-xs text-white/45 font-normal;
+}
+
+.oyatsu-workshop__achievements-list {
+  @apply mt-2 space-y-1.5 list-none p-0 m-0;
+}
+
+.oyatsu-workshop__achievements-item {
+  @apply flex gap-2 text-xs text-white/45;
+}
+
+.oyatsu-workshop__achievements-item--ok {
+  @apply text-white/80;
+}
+
+.oyatsu-workshop__achievements-mark {
+  @apply shrink-0 w-4 text-primary font-en;
+}
+
+.oyatsu-workshop__achievements-text {
+  @apply flex flex-col gap-0.5;
+}
+
+.oyatsu-workshop__achievements-title {
+  @apply text-white/90;
+}
+
+.oyatsu-workshop__achievements-desc {
+  @apply text-[11px] text-white/50;
 }
 
 .oyatsu-workshop__actions {
