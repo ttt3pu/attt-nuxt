@@ -105,6 +105,10 @@ useHead({
           :class="{ 'title-container__hero-left--game-open': heroGameOpen }"
         >
           <template v-if="!heroGameOpen">
+            <MoleculesOyatsuWorkshopBackdrop
+              class="title-container__hero-fish"
+              :production-rate="workshopRuntime.productionRate"
+            />
             <div class="title-container__inner-inner">
               <div class="title-container__logo">
                 <MoleculesSiteLogo />
@@ -188,11 +192,22 @@ useHead({
   flex: 1 1 50%;
   min-width: 0;
   position: relative;
+  isolation: isolate;
   /* 工房クローズ時は猫列より手前（遊ぶボタンが猫に隠れないように） */
   z-index: 3;
   display: flex;
   flex-direction: column;
   height: 100%;
+}
+
+/* ロゴ・SNS・タイトルより奥で魚が流れる（MoleculesOyatsuWorkshopBackdrop） */
+.title-container__hero-fish {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  min-height: 0;
+  overflow: hidden;
 }
 
 .title-container__hero-left--game-open {
@@ -201,6 +216,8 @@ useHead({
 }
 
 .title-container__inner-inner {
+  position: relative;
+  z-index: 1;
   flex-grow: 1;
   height: 100%;
   display: flex;
