@@ -44,6 +44,14 @@ function makeId(): string {
   return `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
 }
 
+/** 匹ごとに SVG の一辺（px）。狭い画面は上限を抑える */
+function randomFishSizePx(compact: boolean): number {
+  if (compact) {
+    return 18 + Math.random() * 24;
+  }
+  return 22 + Math.random() * 36;
+}
+
 function rebuildFish() {
   const n = fishCount.value;
   const list: FishInst[] = [];
@@ -60,7 +68,7 @@ function rebuildFish() {
       delayMs: Math.random() * 15000,
       durationS: Math.max(10, durationBase - speedBoost),
       driftPx: (Math.random() - 0.5) * 72,
-      size: isMobile.value ? 26 + Math.random() * 8 : 30 + Math.random() * 12,
+      size: randomFishSizePx(isMobile.value),
       angleDeg: Math.random() * 360,
     });
   }
