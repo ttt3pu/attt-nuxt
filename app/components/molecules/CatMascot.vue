@@ -1,11 +1,21 @@
 <script setup lang="ts">
-withDefaults(
+const props = withDefaults(
   defineProps<{
     /** おやつキャッチ連動。未指定は idle */
     gameReaction?: 'idle' | 'happy' | 'hurt';
+    /** おやつ工房のごきげん 0〜100。未指定はメーター非表示 */
+    moodPercent?: number | null;
   }>(),
-  { gameReaction: 'idle' },
+  { gameReaction: 'idle', moodPercent: null },
 );
+
+const moodBarWidth = computed(() => {
+  const m = props.moodPercent;
+  if (m == null || Number.isNaN(m)) {
+    return 0;
+  }
+  return Math.min(100, Math.max(0, m));
+});
 </script>
 
 <template>
@@ -14,6 +24,7 @@ withDefaults(
     :class="{
       'cat-mascot--react-happy': gameReaction === 'happy',
       'cat-mascot--react-hurt': gameReaction === 'hurt',
+      'cat-mascot--mood-high': moodPercent != null && moodPercent >= 72,
     }"
   >
     <!-- <img src="~/assets/mihon.png" alt> -->
@@ -53,6 +64,12 @@ withDefaults(
     </div>
     <!-- neck -->
     <div class="neck" />
+
+    <div v-if="moodPercent != null" class="cat-mascot__mood-wrap" aria-label="ごきげんメーター">
+      <div class="cat-mascot__mood-bar" aria-hidden="true">
+        <div class="cat-mascot__mood-fill" :style="{ width: `${moodBarWidth}%` }" />
+      </div>
+    </div>
 
     <template v-if="gameReaction === 'happy'">
       <span class="cat-mascot__heart cat-mascot__heart--1" aria-hidden="true">♥</span>
@@ -144,6 +161,33 @@ img {
     bottom: -2px;
     right: calc(-25% - 3vh);
   }
+}
+
+.cat-mascot__mood-wrap {
+  position: absolute;
+  z-index: 12;
+  left: 14%;
+  bottom: 5%;
+  width: min(52%, 12rem);
+  pointer-events: none;
+}
+
+.cat-mascot__mood-bar {
+  height: 7px;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 16%);
+  overflow: hidden;
+}
+
+.cat-mascot__mood-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #fec6db, #f8e042);
+  transition: width 0.35s ease;
+}
+
+.cat-mascot--mood-high .cat-mascot__mood-fill {
+  box-shadow: 0 0 12px rgb(248 224 66 / 40%);
 }
 
 .face-wrapper {

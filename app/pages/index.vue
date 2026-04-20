@@ -12,6 +12,8 @@ const heroGamePlaying = ref(false);
 /** CatMascot おやつ工房連動リアクション */
 type CatFaceReaction = 'idle' | OyatsuCatchCatReactionKind;
 const catGameReaction = ref<CatFaceReaction>('idle');
+/** 工房を開いているときのごきげん 0〜100（メーター表示） */
+const catMoodPercent = ref<number | null>(null);
 let catReactionClearTimer: ReturnType<typeof setTimeout> | null = null;
 let lastHappyReactionAt = 0;
 
@@ -49,12 +51,14 @@ function onHeroGameClose() {
   heroGameOpen.value = false;
   clearCatReactionTimer();
   catGameReaction.value = 'idle';
+  catMoodPercent.value = null;
 }
 
 watch(heroGameOpen, (open) => {
   if (!open) {
     clearCatReactionTimer();
     catGameReaction.value = 'idle';
+    catMoodPercent.value = null;
   }
 });
 
@@ -100,11 +104,15 @@ useHead({
             @close="onHeroGameClose"
             @playing-change="heroGamePlaying = $event"
             @cat-reaction="onOyatsuCatReaction"
+            @mood-sync="catMoodPercent = $event"
           />
         </div>
 
         <div class="title-container__cat">
-          <MoleculesCatMascot :game-reaction="catGameReaction" />
+          <MoleculesCatMascot
+            :game-reaction="catGameReaction"
+            :mood-percent="heroGameOpen ? catMoodPercent : null"
+          />
         </div>
 
         <AtScroll v-show="!heroGamePlaying" class="title-container__scroll" />
