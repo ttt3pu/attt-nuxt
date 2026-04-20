@@ -1,10 +1,13 @@
 <script setup lang="ts">
+import { toValue, type MaybeRefOrGetter } from 'vue';
 import { randomOyatsuFishColors } from '@/utils/oyatsu-fish-colors';
 
 const props = defineProps<{
   /** 生産 / 秒（密度・落下時間の目安に使う） */
-  productionRate: number;
+  productionRate: MaybeRefOrGetter<number>;
 }>();
+
+const productionRateValue = computed(() => Math.max(0, toValue(props.productionRate)));
 
 const mounted = ref(false);
 const reducedMotion = ref(false);
@@ -15,7 +18,7 @@ const maxFish = computed(() => (isMobile.value ? 12 : 24));
 
 const fishCount = computed(() => {
   const max = maxFish.value;
-  const r = Math.max(0, props.productionRate);
+  const r = productionRateValue.value;
   return Math.min(max, Math.max(6, Math.floor(6 + 6 * Math.log(1 + r))));
 });
 
@@ -44,7 +47,7 @@ function makeId(): string {
 function rebuildFish() {
   const n = fishCount.value;
   const list: FishInst[] = [];
-  const rate = Math.max(0, props.productionRate);
+  const rate = productionRateValue.value;
   for (let i = 0; i < n; i++) {
     const c = randomOyatsuFishColors();
     const durationBase = 15 + Math.random() * 9;
