@@ -10,10 +10,9 @@ import type { BlogPost } from '@prisma/client';
 import type { ZennPost } from '@/types';
 import { recordWorkshopOpen } from '@/utils/oyatsu-catch-storage';
 
-const workshopRuntime = useOyatsuWorkshopRuntime();
-provide(oyatsuWorkshopRuntimeKey, workshopRuntime);
-
 const heroGameOpen = ref(false);
+const workshopRuntime = useOyatsuWorkshopRuntime(() => heroGameOpen.value);
+provide(oyatsuWorkshopRuntimeKey, workshopRuntime);
 /** おやつ工房を開いていて操作にフォーカスがある場合など（現状は常に false） */
 const heroGamePlaying = ref(false);
 
@@ -66,6 +65,7 @@ watch(heroGameOpen, (open) => {
   if (open) {
     workshopRuntime.save.value = recordWorkshopOpen(workshopRuntime.save.value);
     workshopRuntime.hydrateFromSave(workshopRuntime.save.value);
+    workshopRuntime.tryOpenChoiceModalWhenEligible();
   } else {
     clearCatReactionTimer();
     catGameReaction.value = 'idle';

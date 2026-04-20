@@ -1,4 +1,4 @@
-import type { InjectionKey } from 'vue';
+import type { InjectionKey, MaybeRefOrGetter } from 'vue';
 import type { OyatsuCatchSave } from '@/types/oyatsu-catch-save';
 import {
   defaultOyatsuCatchSave,
@@ -9,13 +9,14 @@ import {
  * トップヒーロー用のインクリメンタル状態。ページ表示中は常に tick が回る。
  * `OrganismsOyatsuWorkshop` / 3 択モーダルは inject で共有する。
  */
-export function useOyatsuWorkshopRuntime() {
+export function useOyatsuWorkshopRuntime(choiceModalAllowed: MaybeRefOrGetter<boolean>) {
   const save = ref<OyatsuCatchSave>(defaultOyatsuCatchSave());
   const incremental = useOyatsuIncremental(
     () => save.value,
     (next) => {
       save.value = next;
     },
+    choiceModalAllowed,
   );
 
   onMounted(() => {
