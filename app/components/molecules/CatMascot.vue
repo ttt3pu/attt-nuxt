@@ -3,19 +3,9 @@ const props = withDefaults(
   defineProps<{
     /** おやつキャッチ連動。未指定は idle */
     gameReaction?: 'idle' | 'happy' | 'hurt';
-    /** おやつ工房のごきげん 0〜100。未指定はメーター非表示 */
-    moodPercent?: number | null;
   }>(),
-  { gameReaction: 'idle', moodPercent: null },
+  { gameReaction: 'idle' },
 );
-
-const moodBarWidth = computed(() => {
-  const m = props.moodPercent;
-  if (m == null || Number.isNaN(m)) {
-    return 0;
-  }
-  return Math.min(100, Math.max(0, m));
-});
 </script>
 
 <template>
@@ -24,7 +14,6 @@ const moodBarWidth = computed(() => {
     :class="{
       'cat-mascot--react-happy': gameReaction === 'happy',
       'cat-mascot--react-hurt': gameReaction === 'hurt',
-      'cat-mascot--mood-high': moodPercent != null && moodPercent >= 72,
     }"
   >
     <!-- <img src="~/assets/mihon.png" alt> -->
@@ -99,13 +88,6 @@ const moodBarWidth = computed(() => {
         </svg>
       </span>
     </template>
-
-    <!-- 最後に描画し、顔・首・演出より手前に（z-index も上げる） -->
-    <div v-if="moodPercent != null" class="cat-mascot__mood-wrap" aria-label="ごきげんメーター">
-      <div class="cat-mascot__mood-bar" aria-hidden="true">
-        <div class="cat-mascot__mood-fill" :style="{ width: `${moodBarWidth}%` }" />
-      </div>
-    </div>
   </div>
 </template>
 
@@ -163,36 +145,6 @@ img {
     right: calc(-25% - 3vh);
     z-index: var(--z-cat-layer);
   }
-}
-
-.cat-mascot__mood-wrap {
-  position: absolute;
-  isolation: isolate;
-  transform: translateZ(0);
-  /* 顔・首・ハート・渦より手前（スクロール誘導 z:5 対策は index の猫列 z-index） */
-  z-index: 100;
-  left: 14%;
-  bottom: 5%;
-  width: min(52%, 12rem);
-  pointer-events: none;
-}
-
-.cat-mascot__mood-bar {
-  height: 7px;
-  border-radius: 999px;
-  background: rgb(255 255 255 / 16%);
-  overflow: hidden;
-}
-
-.cat-mascot__mood-fill {
-  height: 100%;
-  border-radius: 999px;
-  background: linear-gradient(90deg, #fec6db, #f8e042);
-  transition: width 0.35s ease;
-}
-
-.cat-mascot--mood-high .cat-mascot__mood-fill {
-  box-shadow: 0 0 12px rgb(248 224 66 / 40%);
 }
 
 .face-wrapper {
