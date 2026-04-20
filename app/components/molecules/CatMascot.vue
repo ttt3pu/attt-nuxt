@@ -65,12 +65,6 @@ const moodBarWidth = computed(() => {
     <!-- neck -->
     <div class="neck" />
 
-    <div v-if="moodPercent != null" class="cat-mascot__mood-wrap" aria-label="ごきげんメーター">
-      <div class="cat-mascot__mood-bar" aria-hidden="true">
-        <div class="cat-mascot__mood-fill" :style="{ width: `${moodBarWidth}%` }" />
-      </div>
-    </div>
-
     <template v-if="gameReaction === 'happy'">
       <span class="cat-mascot__heart cat-mascot__heart--1" aria-hidden="true">♥</span>
       <span class="cat-mascot__heart cat-mascot__heart--2" aria-hidden="true">♥</span>
@@ -105,6 +99,13 @@ const moodBarWidth = computed(() => {
         </svg>
       </span>
     </template>
+
+    <!-- 最後に描画し、顔・首・演出より手前に（z-index も上げる） -->
+    <div v-if="moodPercent != null" class="cat-mascot__mood-wrap" aria-label="ごきげんメーター">
+      <div class="cat-mascot__mood-bar" aria-hidden="true">
+        <div class="cat-mascot__mood-fill" :style="{ width: `${moodBarWidth}%` }" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -166,8 +167,10 @@ img {
 
 .cat-mascot__mood-wrap {
   position: absolute;
-  /* 顔・首・演出（ハート等）より手前に（--z-cat は 1、ハートは 10） */
-  z-index: 30;
+  isolation: isolate;
+  transform: translateZ(0);
+  /* 顔・首・ハート・渦より手前（スクロール誘導 z:5 対策は index の猫列 z-index） */
+  z-index: 100;
   left: 14%;
   bottom: 5%;
   width: min(52%, 12rem);
