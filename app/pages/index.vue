@@ -185,6 +185,7 @@ useHead({
   min-width: 0;
   position: relative;
   isolation: isolate;
+
   /* 工房クローズ時は猫列より手前（遊ぶボタンが猫に隠れないように） */
   z-index: 3;
   display: flex;
@@ -203,8 +204,8 @@ useHead({
 }
 
 .title-container__hero-left--game-open {
-  /* 工房オープン時は猫列を手前に（スクロール誘導より猫を見せる） */
-  z-index: 1;
+  /* 工房・閉じる・施設ボタンを猫より手前（猫は SP で左列に重なる） */
+  z-index: var(--z-hero-workshop);
 }
 
 .title-container__inner-inner {
@@ -268,9 +269,12 @@ useHead({
   min-width: 0;
 }
 
-/* 工房表示中は猫列をスクロール誘導（--z-scroll: 5）より手前に */
+/* 工房表示中: 猫はスクロールより前だが工房（--z-hero-workshop）より奥 */
 .title-container__cat--game-open {
-  z-index: 10;
+  z-index: var(--z-hero-cat-when-game);
+
+  /* 重なり残りのクリックを工房へ通す（装飾のみのため） */
+  pointer-events: none;
 }
 
 .title-container__play-btn {
