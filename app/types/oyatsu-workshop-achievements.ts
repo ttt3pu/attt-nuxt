@@ -35,7 +35,7 @@ export const WORKSHOP_ACHIEVEMENT_DEFS: WorkshopAchievementDef[] = [
   {
     id: 'kitchen_8',
     title: '板前の片鱗',
-    description: 'キッチ Lv8 以上',
+    description: 'キッチン Lv8 以上',
     check: (s) => (s.incremental?.kitchenLevel ?? 0) >= 8,
   },
   {
@@ -53,7 +53,7 @@ export const WORKSHOP_ACHIEVEMENT_DEFS: WorkshopAchievementDef[] = [
   {
     id: 'triple_lv3',
     title: '三種そろい',
-    description: 'キッチ・倉庫・お届けがすべて Lv3 以上',
+    description: 'キッチン・倉庫・お届けがすべて Lv3 以上',
     check: (s) => {
       const i = s.incremental;
       if (!i) {

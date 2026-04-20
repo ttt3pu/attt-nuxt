@@ -161,7 +161,7 @@ function onDeferChoice() {
         <p class="oyatsu-workshop__facilities-title">施設</p>
         <ul class="oyatsu-workshop__facility-list">
           <li class="oyatsu-workshop__facility">
-            <span class="oyatsu-workshop__fname">キッチ Lv {{ kitchenLevel }}</span>
+            <span class="oyatsu-workshop__fname">キッチン Lv {{ kitchenLevel }}</span>
             <button
               type="button"
               class="oyatsu-workshop__btn oyatsu-workshop__btn--primary"
