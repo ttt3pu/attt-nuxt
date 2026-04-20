@@ -1,6 +1,6 @@
 # おやつキャッチ（Oyatsu Catch）実装プラン
 
-> **ステータス**: Phase 1 完了（本ファイルは `docs/plans/done/` にアーカイブ）。Vampire Survivors 系への発展・やり応え強化は [Phase 2 プラン](../oyatsu-catch-phase2.md) を参照。
+> **ステータス**: Phase 1 完了（本ファイルは `docs/plans/done/` にアーカイブ）。Vampire Survivors 系への発展・やり応え強化は [Phase 2 プラン](oyatsu-catch-phase2.md) を参照。
 
 ## 0. 引き継ぎ・読み方
 

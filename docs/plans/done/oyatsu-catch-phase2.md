@@ -1,5 +1,7 @@
 # おやつキャッチ Phase 2 — 猫・おやつテーマの軽量インクリメンタル
 
+> **ステータス**: Phase 2 完了（本ファイルは `docs/plans/done/` にアーカイブ）。
+
 **用語（本ファイル）**
 
 - **VS** は *Vampire Survivors* の略（**レベルアップ時の 2〜3 択**など、**ビルドを選ぶ UI の比喩**として使う）。**「対戦」や Visual Studio の意味ではない。**
@@ -11,7 +13,7 @@
 
 | 項目 | 内容 |
 |------|------|
-| **前身** | Phase 1 は [完了・アーカイブ](done/oyatsu-catch.md)。**現行実装はインクリメンタル（おやつ工房）**に置き換え済み。キャッチ時代の記録は `localStorage` に互換で残る場合あり。 |
+| **前身** | Phase 1 は [完了・アーカイブ](oyatsu-catch.md)。**現行実装はインクリメンタル（おやつ工房）**に置き換え済み。キャッチ時代の記録は `localStorage` に互換で残る場合あり。 |
 | **現在の主軸（確定）** | **猫・おやつ**というテーマに合わせ、**操作をほぼ要らない／放置に近い形**で進み、**やりごたえはビルド・倍率・解放の組み合わせ**から出す。**軽量インクリメンタル**を採用する（参考: *Cookie Clicker*、*TFT* の「監督して選ぶ」感のごく薄い版）。 |
 | **やらないこと** | フル画面専用の長期放置ゲーム、本格的なオートバトラー専用クライアント。**トップヒーロー左の枠**に収まる **脇役としての深度**を維持する。 |
 
@@ -123,7 +125,7 @@
 
 ## 8. 関連ファイル（現状の起点）
 
-- Phase 1 プラン（アーカイブ）: [docs/plans/done/oyatsu-catch.md](done/oyatsu-catch.md)
+- Phase 1 プラン（アーカイブ）: [oyatsu-catch.md](oyatsu-catch.md)
 - 現実装（工房）: `app/components/organisms/OyatsuWorkshop.vue`、`app/composables/useOyatsuIncremental.ts`
 - 永続: `app/utils/oyatsu-catch-storage.ts`
 - トップ: `app/pages/index.vue`
