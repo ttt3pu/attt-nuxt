@@ -1,17 +1,41 @@
-import type { OyatsuCatchSave } from '~/types/oyatsu-catch-save';
+import type { OyatsuCatchSave, OyatsuIncrementalSave } from '~/types/oyatsu-catch-save';
 
 export const OYATSU_CATCH_STORAGE_KEY = 'attt:oyatsu-catch';
 
+export const defaultIncrementalSave = (): OyatsuIncrementalSave => ({
+  treats: 0,
+  kitchenLevel: 0,
+  totalTreatsProduced: 0,
+});
+
 export const defaultOyatsuCatchSave = (): OyatsuCatchSave => ({
-  version: 2,
+  version: 3,
   highScore: 0,
   totalPlays: 0,
   achievements: {},
   bestCombo: 0,
+  incremental: defaultIncrementalSave(),
 });
 
 function isRecord(v: unknown): v is Record<string, unknown> {
   return typeof v === 'object' && v !== null && !Array.isArray(v);
+}
+
+function mergeIncremental(parsed: unknown): OyatsuIncrementalSave {
+  const d = defaultIncrementalSave();
+  if (!isRecord(parsed)) {
+    return d;
+  }
+  if (typeof parsed.treats === 'number' && Number.isFinite(parsed.treats)) {
+    d.treats = Math.max(0, parsed.treats);
+  }
+  if (typeof parsed.kitchenLevel === 'number' && Number.isFinite(parsed.kitchenLevel)) {
+    d.kitchenLevel = Math.max(0, Math.floor(parsed.kitchenLevel));
+  }
+  if (typeof parsed.totalTreatsProduced === 'number' && Number.isFinite(parsed.totalTreatsProduced)) {
+    d.totalTreatsProduced = Math.max(0, parsed.totalTreatsProduced);
+  }
+  return d;
 }
 
 /** localStorage から読み込み。破損時はデフォルト。 */
@@ -57,6 +81,14 @@ export function mergeOyatsuCatchSave(parsed: unknown): OyatsuCatchSave {
   if (typeof parsed.bestCombo === 'number' && Number.isFinite(parsed.bestCombo)) {
     d.bestCombo = Math.max(0, Math.floor(parsed.bestCombo));
   }
+  if (parsed.incremental !== undefined) {
+    d.incremental = mergeIncremental(parsed.incremental);
+  } else {
+    d.incremental = defaultIncrementalSave();
+  }
+  if (d.version < 3) {
+    d.version = 3;
+  }
   return d;
 }
 
@@ -71,29 +103,16 @@ export function saveOyatsuCatchSave(data: OyatsuCatchSave): void {
   }
 }
 
-/** 1 プレイ終了時にハイスコア・累計・実績を更新して保存 */
-export function persistAfterRun(
+/** インクリメンタル状態だけをマージして保存（全体を保ったまま差し替え） */
+export function persistIncrementalSlice(
   previous: OyatsuCatchSave,
-  score: number,
-  runStats?: { maxCombo: number },
+  inc: OyatsuIncrementalSave,
 ): OyatsuCatchSave {
-  const prevCombo = previous.bestCombo ?? 0;
-  const maxComboThisRun = runStats?.maxCombo ?? 0;
   const next: OyatsuCatchSave = {
     ...previous,
-    version: Math.max(previous.version ?? 1, 2),
-    totalPlays: previous.totalPlays + 1,
-    highScore: Math.max(previous.highScore, score),
-    bestCombo: Math.max(prevCombo, maxComboThisRun),
-    achievements: { ...previous.achievements },
+    version: Math.max(previous.version ?? 1, 3),
+    incremental: { ...inc },
   };
-  next.achievements.first_play = true;
-  if (score >= 100) {
-    next.achievements.score_100 = true;
-  }
-  if (score >= 500) {
-    next.achievements.score_500 = true;
-  }
   saveOyatsuCatchSave(next);
   return next;
 }

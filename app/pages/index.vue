@@ -6,10 +6,10 @@ import type { BlogPost } from '@prisma/client';
 import type { ZennPost } from '@/types';
 
 const heroGameOpen = ref(false);
-/** おやつキャッチのプレイ中のみ true（scroll down 非表示用） */
+/** おやつ工房を開いていて操作にフォーカスがある場合など（現状は常に false） */
 const heroGamePlaying = ref(false);
 
-/** CatMascot おやつキャッチ連動リアクション */
+/** CatMascot おやつ工房連動リアクション */
 type CatFaceReaction = 'idle' | OyatsuCatchCatReactionKind;
 const catGameReaction = ref<CatFaceReaction>('idle');
 let catReactionClearTimer: ReturnType<typeof setTimeout> | null = null;
@@ -95,7 +95,7 @@ useHead({
               遊ぶ
             </button>
           </template>
-          <OrganismsOyatsuCatch
+          <OrganismsOyatsuWorkshop
             v-else
             @close="onHeroGameClose"
             @playing-change="heroGamePlaying = $event"
