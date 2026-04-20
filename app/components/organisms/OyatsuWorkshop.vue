@@ -128,6 +128,7 @@ function onDeferChoice() {
 
 <template>
   <div class="oyatsu-workshop" role="region" aria-label="おやつ工房">
+    <MoleculesOyatsuWorkshopBackdrop :production-rate="productionRate" />
     <div class="oyatsu-workshop__panel">
       <p class="oyatsu-workshop__lead">
         おやつがじわじわたまるよ。施設を育てて、ときどきの「おまけ」で伸ばそう。
@@ -263,11 +264,11 @@ function onDeferChoice() {
 @reference "~/assets/css/tailwind.css";
 
 .oyatsu-workshop {
-  @apply relative flex flex-1 flex-col min-h-[min(52vh,420px)] min-w-0 px-4 pb-4 text-white font-jp;
+  @apply relative isolate flex flex-1 flex-col min-h-[min(52vh,420px)] min-w-0 px-4 pb-4 text-white font-jp;
 }
 
 .oyatsu-workshop__panel {
-  @apply flex flex-1 flex-col gap-3 justify-center max-w-md mx-auto w-full min-h-0 overflow-y-auto;
+  @apply relative z-10 flex flex-1 flex-col gap-3 justify-center max-w-md mx-auto w-full min-h-0 overflow-y-auto;
 }
 
 .oyatsu-workshop__lead {
