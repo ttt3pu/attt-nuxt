@@ -268,15 +268,15 @@ function onDeferChoice() {
 }
 
 .oyatsu-workshop__panel {
-  @apply relative z-10 flex flex-1 flex-col gap-3 justify-center max-w-md mx-auto w-full min-h-0 overflow-y-auto;
+  @apply relative z-10 flex flex-1 flex-col gap-3 justify-center max-w-md mx-auto w-full min-h-0 overflow-y-auto bg-transparent;
 }
 
 .oyatsu-workshop__lead {
-  @apply text-sm text-white/85 leading-relaxed;
+  @apply text-sm text-white/85 leading-relaxed rounded-lg border border-white/12 bg-white/[0.07] backdrop-blur-md px-3 py-2.5;
 }
 
 .oyatsu-workshop__stats {
-  @apply grid gap-2 text-sm rounded-lg border border-white/15 bg-white/5 px-4 py-3;
+  @apply grid gap-2 text-sm rounded-lg border border-white/15 bg-white/[0.08] backdrop-blur-md px-4 py-3;
 }
 
 .oyatsu-workshop__row {
@@ -300,7 +300,7 @@ function onDeferChoice() {
 }
 
 .oyatsu-workshop__facilities {
-  @apply rounded-lg border border-white/12 bg-white/[0.04] px-3 py-3;
+  @apply rounded-lg border border-white/12 bg-white/[0.08] backdrop-blur-md px-3 py-3;
 }
 
 .oyatsu-workshop__facilities-title {
@@ -320,11 +320,11 @@ function onDeferChoice() {
 }
 
 .oyatsu-workshop__choice-hint {
-  @apply text-xs text-white/50 leading-snug;
+  @apply text-xs text-white/50 leading-snug rounded-lg border border-white/10 bg-white/[0.06] backdrop-blur-md px-3 py-2;
 }
 
 .oyatsu-workshop__achievements {
-  @apply rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2 text-sm;
+  @apply rounded-lg border border-white/10 bg-white/[0.07] backdrop-blur-md px-3 py-2 text-sm;
 }
 
 .oyatsu-workshop__achievements-summary {
@@ -364,7 +364,7 @@ function onDeferChoice() {
 }
 
 .oyatsu-workshop__actions {
-  @apply flex flex-wrap gap-3 pt-1;
+  @apply flex flex-wrap gap-3 pt-1 rounded-lg border border-white/12 bg-white/[0.06] backdrop-blur-md px-3 py-3;
 }
 
 .oyatsu-workshop__btn {
@@ -376,7 +376,7 @@ function onDeferChoice() {
 }
 
 .oyatsu-workshop__legacy {
-  @apply text-[11px] text-white/40 leading-snug;
+  @apply text-[11px] text-white/40 leading-snug rounded-md border border-white/8 bg-white/[0.05] backdrop-blur-sm px-2 py-1.5;
 }
 
 .oyatsu-workshop__choice-backdrop {
