@@ -3,10 +3,11 @@ import type { OyatsuCatchSave } from '~/types/oyatsu-catch-save';
 export const OYATSU_CATCH_STORAGE_KEY = 'attt:oyatsu-catch';
 
 export const defaultOyatsuCatchSave = (): OyatsuCatchSave => ({
-  version: 1,
+  version: 2,
   highScore: 0,
   totalPlays: 0,
   achievements: {},
+  bestCombo: 0,
 });
 
 function isRecord(v: unknown): v is Record<string, unknown> {
@@ -53,6 +54,9 @@ export function mergeOyatsuCatchSave(parsed: unknown): OyatsuCatchSave {
     }
     d.achievements = next;
   }
+  if (typeof parsed.bestCombo === 'number' && Number.isFinite(parsed.bestCombo)) {
+    d.bestCombo = Math.max(0, Math.floor(parsed.bestCombo));
+  }
   return d;
 }
 
@@ -68,11 +72,19 @@ export function saveOyatsuCatchSave(data: OyatsuCatchSave): void {
 }
 
 /** 1 プレイ終了時にハイスコア・累計・実績を更新して保存 */
-export function persistAfterRun(previous: OyatsuCatchSave, score: number): OyatsuCatchSave {
+export function persistAfterRun(
+  previous: OyatsuCatchSave,
+  score: number,
+  runStats?: { maxCombo: number },
+): OyatsuCatchSave {
+  const prevCombo = previous.bestCombo ?? 0;
+  const maxComboThisRun = runStats?.maxCombo ?? 0;
   const next: OyatsuCatchSave = {
     ...previous,
+    version: Math.max(previous.version ?? 1, 2),
     totalPlays: previous.totalPlays + 1,
     highScore: Math.max(previous.highScore, score),
+    bestCombo: Math.max(prevCombo, maxComboThisRun),
     achievements: { ...previous.achievements },
   };
   next.achievements.first_play = true;

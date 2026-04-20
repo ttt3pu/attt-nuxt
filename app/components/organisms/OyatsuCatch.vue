@@ -25,10 +25,16 @@ const {
   lives,
   combo,
   items,
-  basketCenterX,
-  BASKET_WIDTH_RATIO,
-  BASKET_HEIGHT_RATIO,
-  BASKET_TOP_RATIO,
+  carrierCenterX,
+  carrierCenterY,
+  playerLevel,
+  xp,
+  xpToLevel1,
+  xpBarRatio,
+  mood01,
+  runPeakCombo,
+  hitboxWidenMult,
+  CARRIER_HALF_BASE_RATIO,
   startRound,
   resetToReady,
   onFieldPointerDown,
@@ -40,9 +46,12 @@ const {
 const save = ref<OyatsuCatchSave>(defaultOyatsuCatchSave());
 const showNewRecord = ref(false);
 
-const basketW = computed(() => fieldW.value * BASKET_WIDTH_RATIO);
-const basketH = computed(() => fieldH.value * BASKET_HEIGHT_RATIO);
-const basketTop = computed(() => fieldH.value * BASKET_TOP_RATIO);
+const carrierPx = computed(() => {
+  const m = Math.min(fieldW.value, fieldH.value);
+  return m * 2 * CARRIER_HALF_BASE_RATIO * hitboxWidenMult.value;
+});
+
+const moodPercent = computed(() => Math.round(mood01.value * 100));
 
 const reduceMotion = ref(false);
 
@@ -60,7 +69,6 @@ onMounted(() => {
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   nextTick(() => {
     updateFieldSize();
-    basketCenterX.value = fieldW.value / 2;
   });
   window.addEventListener('resize', updateFieldSize);
 });
@@ -93,7 +101,9 @@ watch(
     setBodyScrollLocked(p === 'playing');
     if (p === 'gameover') {
       showNewRecord.value = score.value > save.value.highScore;
-      save.value = persistAfterRun(save.value, score.value);
+      save.value = persistAfterRun(save.value, score.value, {
+        maxCombo: runPeakCombo.value,
+      });
     }
   },
   { immediate: true },
@@ -104,7 +114,6 @@ function onStart() {
   startRound();
   nextTick(() => {
     updateFieldSize();
-    basketCenterX.value = fieldW.value / 2;
   });
 }
 
@@ -132,6 +141,26 @@ function onClose() {
         </span>
         <span class="sr-only">{{ lives }}</span>
       </div>
+      <div v-if="phase === 'playing'" class="oyatsu-catch__stat oyatsu-catch__stat--grow">
+        <span class="oyatsu-catch__label">Lv</span>
+        <span class="oyatsu-catch__value">
+          <template v-if="playerLevel >= 1">1</template>
+          <template v-else>0</template>
+        </span>
+        <span v-if="playerLevel < 1" class="oyatsu-catch__xpwrap" aria-label="レベルまでの経験値">
+          <span class="sr-only">{{ xp }} / {{ xpToLevel1 }}</span>
+          <span class="oyatsu-catch__xpbar" aria-hidden="true">
+            <span class="oyatsu-catch__xpfill" :style="{ width: `${xpBarRatio * 100}%` }" />
+          </span>
+        </span>
+      </div>
+      <div v-if="phase === 'playing'" class="oyatsu-catch__stat oyatsu-catch__stat--wide">
+        <span class="oyatsu-catch__label">ごきげん</span>
+        <span class="oyatsu-catch__xpbar oyatsu-catch__xpbar--mood" aria-hidden="true">
+          <span class="oyatsu-catch__xpfill oyatsu-catch__xpfill--mood" :style="{ width: `${moodPercent}%` }" />
+        </span>
+        <span class="oyatsu-catch__moodpct" aria-live="polite">{{ moodPercent }}%</span>
+      </div>
     </div>
 
     <div
@@ -157,19 +186,26 @@ function onClose() {
         />
 
         <div
-          class="oyatsu-catch__basket"
+          class="oyatsu-catch__carrier"
+          :class="{ 'oyatsu-catch__carrier--buff': playerLevel >= 1 }"
+          aria-hidden="true"
           :style="{
-            width: `${basketW}px`,
-            height: `${basketH}px`,
-            top: `${basketTop}px`,
-            left: `${basketCenterX - basketW / 2}px`,
+            width: `${carrierPx}px`,
+            height: `${carrierPx}px`,
+            transform: `translate(${carrierCenterX - carrierPx / 2}px, ${carrierCenterY - carrierPx / 2}px)`,
           }"
         />
       </template>
 
       <div v-else-if="phase === 'ready'" class="oyatsu-catch__panel">
-        <p class="oyatsu-catch__hint">おやつを受け皿で受けよう。苦手なものはライフが減るよ。</p>
-        <p class="oyatsu-catch__meta">ハイスコア {{ save.highScore }} · 累計プレイ {{ save.totalPlays }}回</p>
+        <p class="oyatsu-catch__hint">
+          フィールド内を指でなぞって移動。おやつを取って猫に届けよう。苦手なものに触れるとライフが減るよ。
+        </p>
+        <p class="oyatsu-catch__meta">
+          ハイスコア {{ save.highScore }} · 累計 {{ save.totalPlays }}回 · 最高コンボ ×{{
+            save.bestCombo ?? 0
+          }}
+        </p>
         <button type="button" class="oyatsu-catch__btn oyatsu-catch__btn--primary" @click="onStart">
           スタート
         </button>
@@ -177,7 +213,7 @@ function onClose() {
 
       <div v-else-if="phase === 'gameover'" class="oyatsu-catch__panel">
         <p class="oyatsu-catch__over" aria-live="assertive">ゲームオーバー</p>
-        <p class="oyatsu-catch__scoreline">スコア {{ score }}</p>
+        <p class="oyatsu-catch__scoreline">スコア {{ score }}（最高コンボ ×{{ runPeakCombo }}）</p>
         <p v-if="showNewRecord" class="oyatsu-catch__record">ハイスコア更新！</p>
         <div class="oyatsu-catch__actions">
           <button type="button" class="oyatsu-catch__btn oyatsu-catch__btn--primary" @click="onStart">
@@ -210,11 +246,19 @@ function onClose() {
 }
 
 .oyatsu-catch__hud {
-  @apply flex flex-wrap items-center gap-3 px-4 py-3 text-sm;
+  @apply flex flex-wrap items-center gap-x-3 gap-y-2 px-4 py-3 text-sm;
 }
 
 .oyatsu-catch__stat {
   @apply flex items-center gap-2;
+}
+
+.oyatsu-catch__stat--grow {
+  @apply flex-1 min-w-[8rem] flex-wrap gap-x-2;
+}
+
+.oyatsu-catch__stat--wide {
+  @apply w-full sm:w-auto basis-full sm:basis-auto gap-2;
 }
 
 .oyatsu-catch__label {
@@ -223,6 +267,30 @@ function onClose() {
 
 .oyatsu-catch__value {
   @apply font-en tabular-nums font-medium text-primary;
+}
+
+.oyatsu-catch__xpwrap {
+  @apply flex min-w-[4rem] flex-1 items-center;
+}
+
+.oyatsu-catch__xpbar {
+  @apply h-1.5 flex-1 rounded-full bg-white/20 overflow-hidden;
+}
+
+.oyatsu-catch__xpbar--mood {
+  @apply min-w-[5rem] max-w-[10rem];
+}
+
+.oyatsu-catch__xpfill {
+  @apply block h-full rounded-full bg-primary transition-[width] duration-150;
+}
+
+.oyatsu-catch__xpfill--mood {
+  @apply bg-secondary;
+}
+
+.oyatsu-catch__moodpct {
+  @apply font-en tabular-nums text-xs text-white/85 w-9 text-right;
 }
 
 .oyatsu-catch__hearts {
@@ -264,8 +332,14 @@ function onClose() {
   @apply bg-gradient-to-br from-zinc-600 to-zinc-800 ring-2 ring-tertiary/80;
 }
 
-.oyatsu-catch__basket {
-  @apply absolute rounded-md border-2 border-white/40 bg-white/10 z-[2];
+.oyatsu-catch__carrier {
+  @apply absolute left-0 top-0 rounded-full border-2 border-white/50 bg-white/15 z-[2] shadow-md;
+
+  pointer-events: none;
+}
+
+.oyatsu-catch__carrier--buff {
+  @apply border-secondary/90 bg-secondary/10;
 }
 
 .oyatsu-catch__hint {
