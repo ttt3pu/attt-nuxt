@@ -267,7 +267,7 @@ function onDeferChoice() {
 }
 
 .oyatsu-workshop__panel {
-  @apply flex flex-1 flex-col gap-3 justify-start max-w-md mx-auto w-full overflow-y-auto;
+  @apply flex flex-1 flex-col gap-3 justify-center max-w-md mx-auto w-full min-h-0 overflow-y-auto;
 }
 
 .oyatsu-workshop__lead {
