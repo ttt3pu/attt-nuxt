@@ -175,13 +175,8 @@ useHead({
   .title-container__inner {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    gap: 0.5rem;
-    overflow: hidden auto;
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior-y: contain;
-    min-height: 0;
-    padding-bottom: max(0.75rem, env(safe-area-inset-bottom, 0px));
+    justify-content: space-between;
+    overflow: hidden;
   }
 }
 
@@ -196,14 +191,6 @@ useHead({
   display: flex;
   flex-direction: column;
   height: 100%;
-}
-
-@media (width <= 768px) {
-  .title-container__hero-left {
-    flex: 0 0 auto;
-    height: auto;
-    min-height: 0;
-  }
 }
 
 /* ロゴ・SNS・タイトルより奥で魚が流れる（MoleculesOyatsuWorkshopBackdrop） */
@@ -233,14 +220,6 @@ useHead({
 @media (width >= 769px) {
   .title-container__inner-inner {
     justify-content: center;
-  }
-}
-
-@media (width <= 768px) {
-  .title-container__inner-inner {
-    flex-grow: 0;
-    height: auto;
-    min-height: 42vh;
   }
 }
 
@@ -288,13 +267,6 @@ useHead({
   z-index: 2;
   flex: 1 1 50%;
   min-width: 0;
-}
-
-@media (width <= 768px) {
-  .title-container__cat {
-    flex: 0 0 auto;
-    min-height: min(40vh, 280px);
-  }
 }
 
 /* 工房表示中: 猫はスクロールより前だが工房（--z-hero-workshop）より奥 */
