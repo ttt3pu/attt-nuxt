@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const props = withDefaults(
+withDefaults(
   defineProps<{
     /** おやつキャッチ連動。未指定は idle */
     gameReaction?: 'idle' | 'happy' | 'hurt';
