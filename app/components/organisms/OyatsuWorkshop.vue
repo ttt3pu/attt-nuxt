@@ -198,23 +198,18 @@ function onBuyDelivery() {
 @reference "~/assets/css/tailwind.css";
 
 .oyatsu-workshop {
-  @apply relative isolate flex flex-1 flex-col min-h-[min(52vh,420px)] min-w-0 px-4 pb-4 text-white font-jp;
-}
-
-@media (width <= 768px) {
-  .oyatsu-workshop {
-    flex: 0 0 auto;
-    min-height: 0;
-  }
+  @apply relative isolate flex h-full min-h-0 flex-1 flex-col min-w-0 px-4 pb-4 text-white font-jp;
 }
 
 .oyatsu-workshop__panel {
-  @apply relative z-10 flex flex-1 flex-col gap-3 justify-center max-w-md mx-auto w-full min-h-0 overflow-y-auto bg-transparent;
+  @apply relative z-10 flex min-h-0 flex-1 flex-col gap-3 justify-start overflow-y-auto overscroll-y-contain max-w-md mx-auto w-full max-h-[min(70vh,540px)] bg-transparent;
+
+  -webkit-overflow-scrolling: touch;
 }
 
 @media (width <= 768px) {
   .oyatsu-workshop__panel {
-    @apply flex-none overflow-visible justify-start;
+    max-height: min(46vh, 400px);
   }
 }
 
