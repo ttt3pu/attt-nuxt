@@ -210,8 +210,15 @@ function onBuyDelivery() {
 }
 
 @media (width <= 768px) {
+  /* 親を縦いっぱいに使い、上の無駄を減らしてパネルを伸ばす */
+  .oyatsu-workshop {
+    @apply justify-start pt-[max(0.5rem,env(safe-area-inset-top,0))];
+  }
+
   .oyatsu-workshop__panel {
-    max-height: min(46vh, 400px);
+    @apply flex-1 min-h-0;
+
+    max-height: none;
   }
 }
 

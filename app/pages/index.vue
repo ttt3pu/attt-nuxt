@@ -192,10 +192,12 @@ useHead({
     gap: 0.75rem;
   }
 
+  /* 単独子で縦いっぱいにし、工房パネルの可動領域を確保（中央寄せの上下の無駄を減らす） */
   .title-container__inner--workshop-open .title-container__hero-left {
-    flex: 0 1 auto;
+    flex: 1 1 0%;
     height: auto;
     min-height: 0;
+    align-self: stretch;
   }
 
   /* 猫を flex から外し、inner（= 画面下端）基準で右下固定。中央寄せブロックの「列下端」基準だと画面上に浮いて見える */
