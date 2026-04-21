@@ -198,11 +198,13 @@ function onBuyDelivery() {
 @reference "~/assets/css/tailwind.css";
 
 .oyatsu-workshop {
-  @apply relative isolate flex h-full min-h-0 flex-1 flex-col min-w-0 px-4 pb-4 text-white font-jp;
+  /* backdrop は absolute のため、パネルだけ縦方向に中央寄せ */
+  @apply relative isolate flex h-full min-h-0 flex-1 flex-col justify-center min-w-0 px-4 pb-4 text-white font-jp;
 }
 
 .oyatsu-workshop__panel {
-  @apply relative z-10 flex min-h-0 flex-1 flex-col gap-3 justify-start overflow-y-auto overscroll-y-contain max-w-md mx-auto w-full max-h-[min(70vh,540px)] bg-transparent;
+  /* flex-1 は付けない（高さは内容〜max-height）。親の justify-center で hero 内の縦中央に載る */
+  @apply relative z-10 flex min-h-0 flex-none flex-col gap-3 justify-start overflow-y-auto overscroll-y-contain max-w-md mx-auto w-full max-h-[min(70vh,540px)] bg-transparent;
 
   -webkit-overflow-scrolling: touch;
 }
