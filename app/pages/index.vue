@@ -162,6 +162,7 @@ useHead({
   background: linear-gradient(to top, #2e3255, #081025);
   border-bottom: 1px solid var(--color-gray);
   height: calc(var(--vh) * 100);
+  position: relative;
 }
 
 .title-container__inner {
@@ -197,13 +198,17 @@ useHead({
     min-height: 0;
   }
 
+  /* 猫を flex から外し、inner（= 画面下端）基準で右下固定。中央寄せブロックの「列下端」基準だと画面上に浮いて見える */
   .title-container__inner--workshop-open .title-container__cat {
-    flex: 0 0 auto;
-    align-self: stretch;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 0;
     overflow: visible;
-
-    /* 縮小表示に合わせ余白エリアを圧縮（猫本体は absolute） */
-    min-height: min(20vh, 140px);
+    flex: none;
+    pointer-events: none;
+    z-index: var(--z-hero-cat-when-game);
   }
 }
 
