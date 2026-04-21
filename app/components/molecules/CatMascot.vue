@@ -148,10 +148,10 @@ img {
     right: calc(-25% - 3vh);
     z-index: var(--z-cat-layer);
 
-    /* SP + 工房オープン: 見た目を約 1/2 に縮小して右下に固定 */
+    /* SP + 工房オープン: 約 1/2 に縮小。正確な数式は不可視マージン＋子の transform と相性が悪いので bottom/right で実測寄せ */
     &.cat-mascot--sp-workshop-compact {
       right: 0;
-      bottom: 0;
+      bottom: -2px;
       transform: scale(0.5);
       transform-origin: bottom right;
     }
