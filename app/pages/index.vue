@@ -129,7 +129,10 @@ useHead({
           class="title-container__cat"
           :class="{ 'title-container__cat--game-open': heroGameOpen }"
         >
-          <MoleculesCatMascot :game-reaction="catGameReaction" />
+          <MoleculesCatMascot
+            :game-reaction="catGameReaction"
+            :sp-workshop-compact="heroGameOpen"
+          />
         </div>
 
         <AtScroll v-show="!heroGamePlaying" class="title-container__scroll" />
@@ -196,9 +199,11 @@ useHead({
 
   .title-container__inner--workshop-open .title-container__cat {
     flex: 0 0 auto;
+    align-self: stretch;
+    overflow: visible;
 
-    /* 猫は absolute のため、列の高さを確保 */
-    min-height: min(38vh, 260px);
+    /* 縮小表示に合わせ余白エリアを圧縮（猫本体は absolute） */
+    min-height: min(20vh, 140px);
   }
 }
 
