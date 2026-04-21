@@ -201,8 +201,21 @@ function onBuyDelivery() {
   @apply relative isolate flex flex-1 flex-col min-h-[min(52vh,420px)] min-w-0 px-4 pb-4 text-white font-jp;
 }
 
+@media (width <= 768px) {
+  .oyatsu-workshop {
+    flex: 0 0 auto;
+    min-height: 0;
+  }
+}
+
 .oyatsu-workshop__panel {
   @apply relative z-10 flex flex-1 flex-col gap-3 justify-center max-w-md mx-auto w-full min-h-0 overflow-y-auto bg-transparent;
+}
+
+@media (width <= 768px) {
+  .oyatsu-workshop__panel {
+    @apply flex-none overflow-visible justify-start;
+  }
 }
 
 .oyatsu-workshop__lead {
