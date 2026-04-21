@@ -95,7 +95,10 @@ useHead({
     <MoleculesTokenForm class="fixed bottom-0 right-0 p-4 z-50" />
     <OrganismsOyatsuWorkshopChoiceModal @cat-reaction="onOyatsuCatReaction" />
     <div class="title-container">
-      <div class="title-container__inner">
+      <div
+        class="title-container__inner"
+        :class="{ 'title-container__inner--workshop-open': heroGameOpen }"
+      >
         <div
           class="title-container__hero-left"
           :class="{ 'title-container__hero-left--game-open': heroGameOpen }"
@@ -177,6 +180,25 @@ useHead({
     flex-direction: column;
     justify-content: space-between;
     overflow: hidden;
+  }
+
+  /* 工房オープン時: 上 50% / 下 50% に分かれず、工房＋猫の塊を画面タテ中央へ */
+  .title-container__inner--workshop-open {
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .title-container__inner--workshop-open .title-container__hero-left {
+    flex: 0 1 auto;
+    height: auto;
+    min-height: 0;
+  }
+
+  .title-container__inner--workshop-open .title-container__cat {
+    flex: 0 0 auto;
+
+    /* 猫は absolute のため、列の高さを確保 */
+    min-height: min(38vh, 260px);
   }
 }
 
