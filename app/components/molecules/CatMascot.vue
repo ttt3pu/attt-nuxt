@@ -3,8 +3,10 @@ withDefaults(
   defineProps<{
     /** おやつキャッチ連動。未指定は idle */
     gameReaction?: 'idle' | 'happy' | 'hurt';
+    /** true かつ幅が狭いとき: 工房表示中に約半サイズで右下に寄せる */
+    spWorkshopCompact?: boolean;
   }>(),
-  { gameReaction: 'idle' },
+  { gameReaction: 'idle', spWorkshopCompact: false },
 );
 </script>
 
@@ -14,6 +16,7 @@ withDefaults(
     :class="{
       'cat-mascot--react-happy': gameReaction === 'happy',
       'cat-mascot--react-hurt': gameReaction === 'hurt',
+      'cat-mascot--sp-workshop-compact': spWorkshopCompact,
     }"
   >
     <!-- <img src="~/assets/mihon.png" alt> -->
@@ -144,6 +147,14 @@ img {
     bottom: -2px;
     right: calc(-25% - 3vh);
     z-index: var(--z-cat-layer);
+
+    /* SP + 工房オープン: 見た目を約 1/2 に縮小して右下に固定 */
+    &.cat-mascot--sp-workshop-compact {
+      right: 0;
+      bottom: 0;
+      transform: scale(0.5);
+      transform-origin: bottom right;
+    }
   }
 }
 
