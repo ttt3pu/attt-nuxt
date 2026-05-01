@@ -41,11 +41,13 @@ const isHigh = computed(() => props.percent >= 72);
 
 .oyatsu-mood-meter__bar {
   @apply h-[7px] rounded-full overflow-hidden;
+
   background: rgb(255 255 255 / 16%);
 }
 
 .oyatsu-mood-meter__fill {
   @apply h-full rounded-full;
+
   background: linear-gradient(90deg, #fec6db, #f8e042);
   transition: width 0.35s ease;
 }

@@ -169,6 +169,7 @@ watch([fishCount, isMobile], () => {
   0% {
     transform: translateX(-50%) translate3d(0, -18vh, 0);
   }
+
   100% {
     transform: translateX(-50%) translate3d(var(--drift), 120vh, 0);
   }
