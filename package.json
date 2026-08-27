@@ -28,7 +28,7 @@
     "@prisma/adapter-pg": "7.7.0",
     "@vuepic/vue-datepicker": "12.1.0",
     "@xmldom/xmldom": "0.9.10",
-    "markdown-it": "14.1.1",
+    "markdown-it": "14.3.1",
     "next-auth": "4.21.1",
     "nuxt": "4.4.5",
     "pg": "8.20.0",
