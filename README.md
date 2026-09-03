@@ -1,5 +1,7 @@
 # attt
 
+AI エージェント向けの指示は [AGENTS.md](AGENTS.md)。
+
 ## Requirements
 
 ### Runtime Environment
@@ -17,26 +19,6 @@ This project requires the following runtime environment:
 2. Install pnpm: `npm install -g pnpm@10.15.0`
 3. Install Docker for database services
 4. (Optional) Install direnv for environment management
-
-## AI Guidelines
-
-This project follows standard conventions for AI assistants like GitHub Copilot:
-
-- **Framework**: Nuxt 3 with TypeScript
-- **Styling**: Tailwind CSS + SCSS
-- **Database**: Prisma ORM with PostgreSQL
-- **State Management**: Pinia
-- **Code Quality**: ESLint + Prettier + Stylelint
-- **Package Structure**: Monorepo with pnpm workspaces
-
-Key directories:
-
-- `/components/` - Vue components
-- `/pages/` - Nuxt pages (file-based routing)
-- `/packages/prisma/` - Database schema and configuration
-- `/packages/resume/` - Resume-related content
-- `/assets/` - Static assets and SCSS files
-- `/types/` - TypeScript type definitions
 
 ## Palette
 

@@ -1,64 +1,7 @@
 # Copilot Instructions
 
-## 言語について
+指示はツール非依存の `AGENTS.md` に集約している。このファイルは、`AGENTS.md` を読まない Copilot 機能（github.com の Copilot Chat）向けのポインタなので、指示の本文をここに複製しない。
 
-**常に日本語で応答してください。**
+@AGENTS.md
 
-- 会話、説明、PRのタイトル・概要、コメントへの返信はすべて日本語で行ってください
-- コミットメッセージは英語で記述してください（既存の慣例に従う）
-
-## パッケージマネージャー
-
-**npmではなく、必ずpnpmを使用してください。**
-
-- このプロジェクトでは pnpm workspaces を使用したモノレポ構成を採用しています
-- パッケージのインストールは `pnpm install` を使用してください
-- スクリプトの実行は `pnpm <script>` を使用してください
-
-### Corepack に関する注意事項
-
-GitHub Actions（Copilot エージェント環境など）では `ENABLE_EXPERIMENTAL_COREPACK=1` が有効になっており、Corepack が `package.json` の `packageManager` フィールドを読み取って `pnpm-lock.yaml` にバイナリ依存（`@pnpm/exe`、`@pnpm/linux-*` 等）を書き込む場合があります。
-
-これを防ぐため、`pnpm install` を実行する GitHub Actions のステップには必ず以下の環境変数を設定してください。
-
-```yaml
-env:
-  COREPACK_ENABLE_AUTO_PIN: "0"
-```
-
-参照: `.github/actions/setup-project/action.yml`
-
-## 作業開始前の確認
-
-プロジェクトのルートにある `README.md` を読んでください。セットアップ手順や技術スタックの詳細が記載されています。
-
-## コーディング指針
-
-### ファイル構造の理解
-- Nuxt 3 のファイルベースルーティングを理解してください
-- モノレポ構造（pnpm workspaces）を考慮してください
-- TypeScript の型定義を適切に使用してください
-
-### Vue 3 + TypeScript
-- Composition API を使用してください
-- `<script setup lang="ts">` 構文を推奨します
-- 適切な型注釈を付けてください
-
-### スタイリング
-- Tailwind CSS のユーティリティクラスを優先使用してください
-- カスタムスタイルが必要な場合は SCSS を使用してください
-- 既存のデザインパターンに従ってください
-
-### データベース
-- Prisma スキーマの変更時は migration を作成してください
-- 型安全性を保つため、生成された Prisma Client の型を使用してください
-
-## 品質保証
-
-### コードフォーマット
-- ESLint、Prettier、Stylelint の設定に従ってください
-- コミット前に `pnpm prepare` を実行してください
-
-### テスト
-- 既存のテストを壊さないよう注意してください
-- 新機能にはテストの追加を検討してください
+`AGENTS.md` を読み、その内容をすべての作業に適用すること。
