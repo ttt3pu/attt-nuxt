@@ -4,35 +4,39 @@
 
 ## 指示とスキルの置き場所
 
-**skill は共有プラグインにだけ置く。このリポジトリの指示は `AGENTS.md`（このファイル）に書く。** リポジトリ内に skill を置かない。
+**複数リポジトリで共通の skill は共有プラグインに置き、このリポジトリの指示は `AGENTS.md`（このファイル）に集約する。**
 
 | パス                                | 役割                                                                      |
 | ----------------------------------- | ------------------------------------------------------------------------- |
 | `AGENTS.md`（このファイル）         | このリポジトリの指示。長くなった節だけ `docs/` へ切り出してここからリンク |
-| 共有プラグイン `ttt3pu/ai-settings` | 複数リポジトリで共通の skill。原本は向こうにあり、こちらには置かない      |
+| 共有プラグイン `ttt3pu/ai-settings` | 複数リポジトリで共通の skill。原本は向こうにあり、こちらには複製しない    |
+| `.agents/skills/<name>/SKILL.md`    | このリポジトリ固有かつ特定作業時のみ適用する skill（必要な場合のみ作成）  |
 | `.github/copilot-instructions.md`   | github.com の Copilot Chat が `AGENTS.md` を読まないための固定ポインタ    |
 
-リポジトリ内 skill（`.agents/skills/`）を使わない理由は 2 つ。ツールごとに探索パスが違い（Claude Code のプロジェクト skill は `.claude/skills/` のみで `.agents/skills/` を読まない）、置いても届かないツールがある。加えて共有プラグインと同じ話題の skill が両側にあると、どちらがどこまで読まれるかが実行するツールと状況に依存する。`AGENTS.md` は Cursor・Claude Code・Codex・Copilot（cloud agent / CLI / VS Code）がいずれも読むので、リポジトリ固有の指示はここに集約するのが最も確実。
+常時適用の指示やリポジトリの基本方針を skill ではなく `AGENTS.md` に集約する理由は、ツールごとに skill の探索パスが異なり（Claude Code のプロジェクト skill は `.claude/skills/` のみで `.agents/skills/` を読まない等）、置いても届かないツールがあるため。加えて `AGENTS.md` は Cursor・Claude Code・Codex・Copilot（cloud agent / CLI / VS Code）がいずれも読むため、リポジトリの基本指示はここに集約するのが最も確実。
 
 ### 共有 skill
 
-[ttt3pu/ai-settings](https://github.com/ttt3pu/ai-settings) から marketplace 経由で配信している。インストール手順は同リポジトリの README を参照。収録 skill は次の 2 つ。
+[ttt3pu/ai-settings](https://github.com/ttt3pu/ai-settings) から marketplace 経由で配信している。インストール手順および最新の収録 skill 一覧は同リポジトリの README を参照。
+
+主な収録 skill:
 
 - `enable-library-automerge` — Renovate の minor/patch 自動マージを、プロダクト経路の回帰テストと CI 通過を条件に有効化する
 - `shared-testing-conventions` — テストの命名規則、テスト対象の選び方、配置とスナップショットの扱い
 
 守ること。
 
-- 内容をこのリポジトリのファイルに複製しない。参照するだけにする
+- 共有 skill の内容をこのリポジトリのファイルに複製しない。参照するだけにする
 - 「適用先の構成に従う」としている箇所の答えは `AGENTS.md` に書く。同じ話題の skill をこのリポジトリに作って分割しない
-- 直したいときは `ttt3pu/ai-settings` 側を直す。こちらで上書きしたり、ローカル版を作って分岐させたりしない
-- プラグインが入っていない環境で作業する場合は、該当 `SKILL.md` を直接読んでから進める
+- 共有 skill を直したいときは `ttt3pu/ai-settings` 側を直す。こちらで上書きしたり、ローカル版を作って分岐させたりしない
+- プラグインが入っていない環境で作業する場合は、`ttt3pu/ai-settings` の該当 `SKILL.md` を直接読んでから進める
 
 ### ルールを追加するとき
 
-1. このリポジトリ固有なら `AGENTS.md` に節を足す。分量が増えたら `docs/` に切り出して `AGENTS.md` からリンクする
-2. 他のリポジトリでも通用する内容なら `ttt3pu/ai-settings` に skill として追加する。このリポジトリには置かない
-3. ツール固有のファイルは作らない。`.cursor/rules/*.mdc` や `.github/instructions/*.instructions.md` に内容を複製しない
+1. このリポジトリ固有の全体ルールなら `AGENTS.md` に節を足す。分量が増えたら `docs/` に切り出して `AGENTS.md` からリンクする
+2. このリポジトリ固有かつ特定作業でのみ読み込ませたい詳細ガイドなら、リポジトリ内 skill（`.agents/skills/<name>/SKILL.md`）として追加する
+3. 他のリポジトリでも汎用的に使える内容なら `ttt3pu/ai-settings` に skill として追加する
+4. ツール固有のファイルは作らない。`.cursor/rules/*.mdc` や `.github/instructions/*.instructions.md` に内容を複製しない
 
 ### 新しいエージェントを追加するとき
 
