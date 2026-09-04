@@ -2,6 +2,10 @@
   "extends": ["github>ttt3pu/renovate-settings"],
   "cloneSubmodules": true,
   "cloneSubmodulesFilter": ["packages/prisma"],
+  "git-submodules": {
+    "enabled": true
+  },
+  "ignoreDeps": ["packages/resume"],
   "packageRules": [
     {
       "description": "Automerge @xmldom/xmldom minor/patch when tests pass",
