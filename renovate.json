@@ -1,5 +1,13 @@
 {
   "extends": ["github>ttt3pu/renovate-settings"],
   "cloneSubmodules": true,
-  "cloneSubmodulesFilter": ["packages/prisma"]
+  "cloneSubmodulesFilter": ["packages/prisma"],
+  "packageRules": [
+    {
+      "description": "Automerge @xmldom/xmldom minor/patch when tests pass",
+      "matchPackageNames": ["@xmldom/xmldom"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true
+    }
+  ]
 }
