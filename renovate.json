@@ -8,6 +8,11 @@
   "ignoreDeps": ["packages/resume"],
   "packageRules": [
     {
+      "description": "Disable minimumReleaseAge for git submodules",
+      "matchManagers": ["git-submodules"],
+      "minimumReleaseAge": null
+    },
+    {
       "description": "Automerge @xmldom/xmldom minor/patch when tests pass",
       "matchPackageNames": ["@xmldom/xmldom"],
       "matchUpdateTypes": ["minor", "patch"],
