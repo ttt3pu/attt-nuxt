@@ -1,22 +1,14 @@
 <script lang="ts" setup>
 import AtScroll from '@/components/atoms/AtScroll.vue';
-import { oyatsuWorkshopRuntimeKey, useOyatsuWorkshopRuntime } from '@/composables/useOyatsuWorkshopRuntime';
 import { usePostsStore } from '@/store';
-import type { OyatsuCatchCatReactionKind } from '@/types/oyatsu-catch';
+import type { CatReactionKind } from '@/types/oyatsu-toss';
 import type { BlogPost } from '@prisma/client';
 import type { ZennPost } from '@/types';
-import { recordWorkshopOpen } from '@/utils/oyatsu-catch-storage';
 
-const heroGameOpen = ref(false);
 const tossGameOpen = ref(false);
-const workshopRuntime = useOyatsuWorkshopRuntime(() => heroGameOpen.value);
-provide(oyatsuWorkshopRuntimeKey, workshopRuntime);
-/** おやつ工房やトスゲームを開いていて操作にフォーカスがある場合など */
-const heroGamePlaying = computed(() => heroGameOpen.value || tossGameOpen.value);
 
-/** CatMascot おやつ工房連動リアクション */
-type CatFaceReaction = 'idle' | OyatsuCatchCatReactionKind;
-const catGameReaction = ref<CatFaceReaction>('idle');
+/** CatMascot リアクション */
+const catGameReaction = ref<CatReactionKind>('idle');
 let catReactionClearTimer: ReturnType<typeof setTimeout> | null = null;
 let lastHappyReactionAt = 0;
 
@@ -27,7 +19,7 @@ function clearCatReactionTimer() {
   }
 }
 
-function triggerCatReaction(kind: OyatsuCatchCatReactionKind) {
+function triggerCatReaction(kind: CatReactionKind) {
   clearCatReactionTimer();
   catGameReaction.value = kind;
   const ms = kind === 'hurt' ? 520 : 400;
@@ -37,7 +29,7 @@ function triggerCatReaction(kind: OyatsuCatchCatReactionKind) {
   }, ms);
 }
 
-function onOyatsuCatReaction(kind: OyatsuCatchCatReactionKind) {
+function onOyatsuCatReaction(kind: 'happy' | 'hurt') {
   if (kind === 'hurt') {
     triggerCatReaction('hurt');
     return;
@@ -50,28 +42,11 @@ function onOyatsuCatReaction(kind: OyatsuCatchCatReactionKind) {
   triggerCatReaction('happy');
 }
 
-function onHeroGameClose() {
-  heroGameOpen.value = false;
-  clearCatReactionTimer();
-  catGameReaction.value = 'idle';
-}
-
 function onTossGameClose() {
   tossGameOpen.value = false;
   clearCatReactionTimer();
   catGameReaction.value = 'idle';
 }
-
-watch(heroGameOpen, (open) => {
-  if (open) {
-    workshopRuntime.save.value = recordWorkshopOpen(workshopRuntime.save.value);
-    workshopRuntime.hydrateFromSave(workshopRuntime.save.value);
-    workshopRuntime.tryOpenChoiceModalWhenEligible();
-  } else {
-    clearCatReactionTimer();
-    catGameReaction.value = 'idle';
-  }
-});
 
 onBeforeUnmount(() => {
   clearCatReactionTimer();
@@ -97,24 +72,10 @@ useHead({
 <template>
   <div>
     <MoleculesTokenForm class="fixed bottom-0 right-0 p-4 z-50" />
-    <OrganismsOyatsuWorkshopChoiceModal @cat-reaction="onOyatsuCatReaction" />
     <div class="title-container">
-      <div
-        class="title-container__inner"
-        :class="{
-          'title-container__inner--workshop-open': heroGameOpen,
-          'title-container__inner--toss-open': tossGameOpen,
-        }"
-      >
-        <div
-          class="title-container__hero-left"
-          :class="{ 'title-container__hero-left--game-open': heroGameOpen || tossGameOpen }"
-        >
-          <template v-if="!heroGameOpen && !tossGameOpen">
-            <MoleculesOyatsuWorkshopBackdrop
-              class="title-container__hero-fish"
-              :production-rate="workshopRuntime.productionRate"
-            />
+      <div class="title-container__inner" :class="{ 'title-container__inner--toss-open': tossGameOpen }">
+        <div class="title-container__hero-left" :class="{ 'title-container__hero-left--game-open': tossGameOpen }">
+          <template v-if="!tossGameOpen">
             <div class="title-container__inner-inner">
               <div class="title-container__logo">
                 <MoleculesSiteLogo />
@@ -128,39 +89,16 @@ useHead({
               >
                 🐟 PLAY FISH TOSS
               </button>
-              <button
-                type="button"
-                class="title-container__play-btn title-container__play-btn--secondary"
-                @click="heroGameOpen = true"
-              >
-                おやつ工房
-              </button>
             </div>
           </template>
-          <OrganismsOyatsuTossGame
-            v-else-if="tossGameOpen"
-            @close="onTossGameClose"
-            @cat-reaction="onOyatsuCatReaction"
-          />
-          <OrganismsOyatsuWorkshop
-            v-else
-            @close="onHeroGameClose"
-            @playing-change="heroGamePlaying = $event"
-            @cat-reaction="onOyatsuCatReaction"
-          />
+          <OrganismsOyatsuTossGame v-else @close="onTossGameClose" @cat-reaction="onOyatsuCatReaction" />
         </div>
 
-        <div
-          class="title-container__cat"
-          :class="{
-            'title-container__cat--game-open': heroGameOpen,
-            'title-container__cat--toss-open': tossGameOpen,
-          }"
-        >
-          <MoleculesCatMascot :game-reaction="catGameReaction" :sp-workshop-compact="heroGameOpen" />
+        <div class="title-container__cat" :class="{ 'title-container__cat--toss-open': tossGameOpen }">
+          <MoleculesCatMascot :game-reaction="catGameReaction" />
         </div>
 
-        <AtScroll v-show="!heroGamePlaying" class="title-container__scroll" />
+        <AtScroll v-show="!tossGameOpen" class="title-container__scroll" />
       </div>
     </div>
     <!-- /title-container -->
@@ -211,12 +149,6 @@ useHead({
     overflow: hidden;
   }
 
-  /* 工房オープン時: 上 50% / 下 50% に分かれず、工房＋猫の塊を画面タテ中央へ */
-  .title-container__inner--workshop-open {
-    justify-content: center;
-    gap: 0.75rem;
-  }
-
   /* トスゲーム時: 画面全域をプレイ領域へ拡張 */
   .title-container__inner--toss-open {
     position: relative;
@@ -230,27 +162,6 @@ useHead({
     width: 100%;
     height: 100%;
     z-index: 10;
-  }
-
-  /* 単独子で縦いっぱいにし、工房パネルの可動領域を確保（中央寄せの上下の無駄を減らす） */
-  .title-container__inner--workshop-open .title-container__hero-left {
-    flex: 1 1 0%;
-    height: auto;
-    min-height: 0;
-    align-self: stretch;
-  }
-
-  /* 猫を flex から外し、inner（= 画面下端）基準で右下固定。中央寄せブロックの「列下端」基準だと画面上に浮いて見える */
-  .title-container__inner--workshop-open .title-container__cat {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    height: 0;
-    overflow: visible;
-    flex: none;
-    pointer-events: none;
-    z-index: var(--z-hero-cat-when-game);
   }
 
   /* トスゲーム時の猫: 画面下端・背景化してプレイの邪魔にならず、リアクション時のみ発光 */
@@ -281,27 +192,14 @@ useHead({
   min-width: 0;
   position: relative;
   isolation: isolate;
-
-  /* 工房クローズ時は猫列より手前（遊ぶボタンが猫に隠れないように） */
   z-index: 3;
   display: flex;
   flex-direction: column;
   height: 100%;
 }
 
-/* ロゴ・SNS・タイトルより奥で魚が流れる（MoleculesOyatsuWorkshopBackdrop） */
-.title-container__hero-fish {
-  pointer-events: none;
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  min-height: 0;
-  overflow: hidden;
-}
-
 .title-container__hero-left--game-open {
-  /* 工房・閉じる・施設ボタンを猫より手前（猫は SP で左列に重なる） */
-  z-index: var(--z-hero-workshop);
+  z-index: 8;
 }
 
 .title-container__inner-inner {
@@ -365,14 +263,6 @@ useHead({
   min-width: 0;
 }
 
-/* 工房表示中: 猫はスクロールより前だが工房（--z-hero-workshop）より奥 */
-.title-container__cat--game-open {
-  z-index: var(--z-hero-cat-when-game);
-
-  /* 重なり残りのクリックを工房へ通す（装飾のみのため） */
-  pointer-events: none;
-}
-
 .title-container__btn-group {
   position: absolute;
   z-index: 6;
@@ -387,7 +277,7 @@ useHead({
   cursor: pointer;
   font-family: var(--font-family-jp), sans-serif;
   font-size: 0.875rem;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.25rem;
   border-radius: 9999px;
   transition: all 0.2s ease;
   white-space: nowrap;
@@ -408,26 +298,15 @@ useHead({
   box-shadow: 0 6px 16px rgb(56 189 248 / 35%);
 }
 
-.title-container__play-btn--secondary {
-  border: 1px solid rgb(249 248 113 / 40%);
-  background: rgb(249 248 113 / 10%);
-  color: var(--primary-color);
-}
-
-.title-container__play-btn--secondary:hover {
-  background: rgb(249 248 113 / 20%);
-}
-
 @media (width <= 768px) {
   .title-container__btn-group {
     right: var(--padding-lr-sp);
     bottom: 16px;
-    gap: 0.5rem;
   }
 
   .title-container__play-btn {
     font-size: 0.8rem;
-    padding: 0.4rem 0.8rem;
+    padding: 0.4rem 0.9rem;
   }
 }
 </style>

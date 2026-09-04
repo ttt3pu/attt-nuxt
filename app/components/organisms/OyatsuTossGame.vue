@@ -15,11 +15,10 @@ import type {
   ParticleObject,
   ScorePopupObject,
 } from '@/types/oyatsu-toss';
-import type { OyatsuCatchCatReactionKind } from '@/types/oyatsu-catch';
 
 const emit = defineEmits<{
   close: [];
-  catReaction: [kind: OyatsuCatchCatReactionKind];
+  catReaction: [kind: 'happy' | 'hurt'];
 }>();
 
 const canvasRef = ref<HTMLCanvasElement | null>(null);

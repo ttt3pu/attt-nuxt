@@ -70,3 +70,4 @@ export interface PaddleState {
 
 export type GameMode = 'timed' | 'endless';
 export type GamePlayState = 'ready' | 'playing' | 'gameover';
+export type CatReactionKind = 'idle' | 'happy' | 'hurt';
