@@ -126,7 +126,7 @@ useHead({
                 class="title-container__play-btn title-container__play-btn--primary"
                 @click="tossGameOpen = true"
               >
-                🐟 お魚トスで遊ぶ！
+                🐟 PLAY FISH TOSS
               </button>
               <button
                 type="button"

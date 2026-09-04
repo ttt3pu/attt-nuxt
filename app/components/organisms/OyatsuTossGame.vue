@@ -97,11 +97,11 @@ function spawnFish(forcedKind?: FishKind) {
 
   const spawnFromLeft = Math.random() < 0.5;
   const startX = spawnFromLeft ? -def.radius : canvas.width + def.radius;
-  const startY = Math.random() * (canvas.height * 0.4) + 60;
+  const startY = Math.random() * (canvas.height * 0.35) + 60;
 
-  // 中央寄りに放り投げる初速
-  const baseVx = (Math.random() * 3 + 2) * (spawnFromLeft ? 1 : -1);
-  const baseVy = -(Math.random() * 4 + 3);
+  // 放物線初速
+  const baseVx = (Math.random() * 3 + 2.2) * (spawnFromLeft ? 1 : -1);
+  const baseVy = -(Math.random() * 4 + 3.5);
 
   fishes.push({
     id: nextFishId++,
@@ -150,17 +150,17 @@ function createSparks(
   }
 }
 
-// ポップアップテキスト生成
-function createScorePopup(x: number, y: number, text: string, color = '#ffd54f') {
+// ポップアップテキスト生成（洗練された英語・シンボル）
+function createScorePopup(x: number, y: number, text: string, color = '#38bdf8') {
   popups.push({
     id: nextPopupId++,
     x,
     y,
     text,
     color,
-    scale: 1.3,
+    scale: 1.25,
     life: 1,
-    maxLife: 40,
+    maxLife: 35,
   });
 }
 
@@ -185,7 +185,7 @@ function startGame(mode: GameMode = 'timed') {
   spawnFish('normal');
   setTimeout(() => {
     if (gameState.value === 'playing') spawnFish('gold');
-  }, 1000);
+  }, 800);
 
   // 定期スポーン
   if (spawnIntervalId) clearInterval(spawnIntervalId);
@@ -194,7 +194,7 @@ function startGame(mode: GameMode = 'timed') {
     if (fishes.filter((f) => f.isAlive && !f.eaten).length < 4) {
       spawnFish();
     }
-  }, 2200);
+  }, 2000);
 
   // タイマー
   if (timerIntervalId) clearInterval(timerIntervalId);
@@ -240,8 +240,8 @@ function updatePaddlePosition(clientX: number, clientY: number) {
   paddle.y = targetY;
 
   // 速度ベクトル（前フレームとの差分を平滑化）
-  paddle.vx = (paddle.x - paddle.prevX) * 0.7;
-  paddle.vy = (paddle.y - paddle.prevY) * 0.7;
+  paddle.vx = (paddle.x - paddle.prevX) * 0.75;
+  paddle.vy = (paddle.y - paddle.prevY) * 0.75;
 }
 
 function onMouseMove(e: MouseEvent) {
@@ -278,9 +278,9 @@ function updatePhysics() {
 
   // 猫のキャッチターゲットゾーン（右上端）
   const catZone = {
-    x: width - 60,
-    y: 80,
-    radius: 70,
+    x: width - 55,
+    y: 75,
+    radius: 75,
   };
 
   // 魚の物理更新
@@ -290,11 +290,11 @@ function updatePhysics() {
 
     if (fish.eaten) {
       // 食べられた演出（回転しながら縮小して消滅）
-      fish.x += (catZone.x - fish.x) * 0.15;
-      fish.y += (catZone.y - fish.y) * 0.15;
-      fish.squashX *= 0.88;
-      fish.squashY *= 0.88;
-      fish.rotation += 0.25;
+      fish.x += (catZone.x - fish.x) * 0.18;
+      fish.y += (catZone.y - fish.y) * 0.18;
+      fish.squashX *= 0.85;
+      fish.squashY *= 0.85;
+      fish.rotation += 0.3;
       if (fish.squashX < 0.05) {
         fishes.splice(i, 1);
       }
@@ -315,14 +315,14 @@ function updatePhysics() {
     fish.x += fish.vx;
     fish.y += fish.vy;
 
-    // 回転角（移動方向に少し合わせる）
+    // 回転角（移動方向に合わせる）
     const targetRot = Math.atan2(fish.vy, fish.vx) * 0.3;
     fish.rotation += (targetRot - fish.rotation) * 0.1 + fish.vRot;
     fish.vRot *= 0.95;
 
     // スカッシュ復元
-    fish.squashX += (1 - fish.squashX) * 0.12;
-    fish.squashY += (1 - fish.squashY) * 0.12;
+    fish.squashX += (1 - fish.squashX) * 0.14;
+    fish.squashY += (1 - fish.squashY) * 0.14;
 
     // パドルとの衝突判定
     const dx = fish.x - paddle.x;
@@ -353,11 +353,11 @@ function updatePhysics() {
 
       fish.vx = bounceVx;
       fish.vy = bounceVy * def.restitution;
-      fish.vRot = (Math.random() - 0.5) * 0.3;
+      fish.vRot = (Math.random() - 0.5) * 0.35;
 
       // スカッシュ＆ストレッチ変形
-      fish.squashX = 1.35;
-      fish.squashY = 0.65;
+      fish.squashX = 1.4;
+      fish.squashY = 0.6;
 
       fish.bounceCount++;
       combo.value++;
@@ -366,15 +366,15 @@ function updatePhysics() {
       }
 
       // スコア加算
-      const comboMult = 1 + Math.min(combo.value, 10) * 0.1;
+      const comboMult = 1 + Math.min(combo.value, 15) * 0.1;
       const pts = Math.round(def.scoreValue * comboMult);
       score.value += pts;
 
       // パーティクル＆エフェクト
-      createSparks(fish.x, fish.y, isSmash ? '#ffeb3b' : def.color, isSmash ? 14 : 7, isSmash ? 'star' : 'sparkle');
+      createSparks(fish.x, fish.y, isSmash ? '#facc15' : def.color, isSmash ? 14 : 7, isSmash ? 'star' : 'sparkle');
 
-      const hitText = isSmash ? `SMASH! +${pts}` : combo.value > 1 ? `${combo.value} COMBO! +${pts}` : `+${pts}`;
-      createScorePopup(fish.x, fish.y - 20, hitText, isSmash ? '#ff9800' : '#4fc3f7');
+      const hitText = isSmash ? `SMASH +${pts}` : combo.value > 1 ? `+${pts}` : `+${pts}`;
+      createScorePopup(fish.x, fish.y - 20, hitText, isSmash ? '#f59e0b' : '#38bdf8');
     }
 
     // 左右の壁バウンド
@@ -397,20 +397,20 @@ function updatePhysics() {
     const catDy = fish.y - catZone.y;
     const catDist = Math.sqrt(catDx * catDx + catDy * catDy);
 
-    if (catDist < catZone.radius && !fish.eaten && fish.vy < 3) {
+    if (catDist < catZone.radius && !fish.eaten && fish.vy < 4) {
       // 猫ちゃんがキャッチ！
       fish.eaten = true;
       fedCount.value++;
 
-      const comboBonus = combo.value * 20;
+      const comboBonus = combo.value * 25;
       const eatScore = def.eatScoreBonus + comboBonus;
       score.value += eatScore;
 
       // 猫リアクションを発火！
       emit('catReaction', 'happy');
 
-      createSparks(catZone.x, catZone.y, '#ff4081', 18, 'heart');
-      createScorePopup(catZone.x - 30, catZone.y - 10, `DELICIOUS! +${eatScore}`, '#ff4081');
+      createSparks(catZone.x, catZone.y, '#f43f5e', 20, 'heart');
+      createScorePopup(catZone.x - 20, catZone.y - 10, `+${eatScore}`, '#f43f5e');
       continue;
     }
 
@@ -431,7 +431,7 @@ function updatePhysics() {
     if (!p) continue;
     p.x += p.vx;
     p.y += p.vy;
-    p.vy += 0.08; // 軽い重力
+    p.vy += 0.08;
     p.rotation += p.vRot;
     p.life++;
     if (p.life >= p.maxLife) {
@@ -443,8 +443,8 @@ function updatePhysics() {
   for (let i = popups.length - 1; i >= 0; i--) {
     const pop = popups[i];
     if (!pop) continue;
-    pop.y -= 1.2;
-    pop.scale = Math.max(1, pop.scale - 0.01);
+    pop.y -= 1.4;
+    pop.scale = Math.max(1, pop.scale - 0.008);
     pop.life++;
     if (pop.life >= pop.maxLife) {
       popups.splice(i, 1);
@@ -465,36 +465,56 @@ function drawGame() {
   // クリア
   ctx.clearRect(0, 0, width, height);
 
-  // 背景の柔らかいグリッド/水玉パターン
+  // 背景の洗練されたドットグリッド
   ctx.save();
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.03)';
-  for (let x = 20; x < width; x += 40) {
-    for (let y = 20; y < height; y += 40) {
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.04)';
+  for (let x = 24; x < width; x += 36) {
+    for (let y = 24; y < height; y += 36) {
       ctx.beginPath();
-      ctx.arc(x, y, 1.5, 0, Math.PI * 2);
+      ctx.arc(x, y, 1.2, 0, Math.PI * 2);
       ctx.fill();
     }
   }
   ctx.restore();
 
-  // 猫のキャッチターゲットエリア（ガイド表示）
-  const catZoneX = width - 60;
-  const catZoneY = 80;
+  // 猫のキャッチターゲットエリア（テキストなし・モダンなパルスリング＆ターゲットマーク）
+  const catZoneX = width - 55;
+  const catZoneY = 75;
+  const now = Date.now();
+  const pulse = Math.sin(now * 0.004) * 0.12 + 0.88;
+  const spinAngle = (now * 0.0012) % (Math.PI * 2);
+
   ctx.save();
-  const pulse = Math.sin(Date.now() * 0.005) * 0.15 + 0.85;
-  const zoneGrad = ctx.createRadialGradient(catZoneX, catZoneY, 10, catZoneX, catZoneY, 70 * pulse);
-  zoneGrad.addColorStop(0, 'rgba(255, 105, 180, 0.3)');
-  zoneGrad.addColorStop(1, 'rgba(255, 105, 180, 0)');
+  // 外側の淡いグロー
+  const zoneGrad = ctx.createRadialGradient(catZoneX, catZoneY, 15, catZoneX, catZoneY, 75 * pulse);
+  zoneGrad.addColorStop(0, 'rgba(244, 63, 94, 0.25)');
+  zoneGrad.addColorStop(1, 'rgba(244, 63, 94, 0)');
   ctx.fillStyle = zoneGrad;
   ctx.beginPath();
-  ctx.arc(catZoneX, catZoneY, 70 * pulse, 0, Math.PI * 2);
+  ctx.arc(catZoneX, catZoneY, 75 * pulse, 0, Math.PI * 2);
   ctx.fill();
 
-  // 目印のテキスト
-  ctx.font = 'bold 12px sans-serif';
-  ctx.fillStyle = 'rgba(255, 182, 193, 0.7)';
-  ctx.textAlign = 'center';
-  ctx.fillText('🐾 ここへトス！', catZoneX, catZoneY + 65);
+  // スタイリッシュな破線回転サークル
+  ctx.save();
+  ctx.translate(catZoneX, catZoneY);
+  ctx.rotate(spinAngle);
+  ctx.beginPath();
+  ctx.arc(0, 0, 48 * pulse, 0, Math.PI * 2);
+  ctx.strokeStyle = 'rgba(244, 63, 94, 0.45)';
+  ctx.lineWidth = 1.5;
+  ctx.setLineDash([6, 6]);
+  ctx.stroke();
+
+  // コーナーターゲットマーク
+  for (let i = 0; i < 4; i++) {
+    const a = (i * Math.PI) / 2;
+    const r = 58 * pulse;
+    ctx.beginPath();
+    ctx.arc(Math.cos(a) * r, Math.sin(a) * r, 2, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+    ctx.fill();
+  }
+  ctx.restore();
   ctx.restore();
 
   // 魚の描画
@@ -510,18 +530,18 @@ function drawGame() {
     // 魚の影
     ctx.beginPath();
     ctx.ellipse(2, 6, r * 0.9, r * 0.45, 0, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.18)';
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
     ctx.fill();
 
-    // 魚の本体（滑らかな魚シェイプ）
+    // 魚の本体
     ctx.beginPath();
-    ctx.moveTo(r * 1.1, 0); // 鼻先
-    ctx.quadraticCurveTo(0, -r * 0.8, -r * 0.9, 0); // 上腹
-    ctx.lineTo(-r * 1.4, -r * 0.6); // 尾ビレ上
-    ctx.lineTo(-r * 1.1, 0); // 尾ビレ中央くびれ
-    ctx.lineTo(-r * 1.4, r * 0.6); // 尾ビレ下
-    ctx.lineTo(-r * 0.9, 0); // 尾ビレ付け根
-    ctx.quadraticCurveTo(0, r * 0.8, r * 1.1, 0); // 下腹
+    ctx.moveTo(r * 1.1, 0);
+    ctx.quadraticCurveTo(0, -r * 0.8, -r * 0.9, 0);
+    ctx.lineTo(-r * 1.4, -r * 0.6);
+    ctx.lineTo(-r * 1.1, 0);
+    ctx.lineTo(-r * 1.4, r * 0.6);
+    ctx.lineTo(-r * 0.9, 0);
+    ctx.quadraticCurveTo(0, r * 0.8, r * 1.1, 0);
     ctx.closePath();
 
     ctx.fillStyle = def.color;
@@ -543,20 +563,20 @@ function drawGame() {
     ctx.fillStyle = def.accentColor;
     ctx.fill();
 
-    // 魚の目（白目＋黒目＋ハイライト）
+    // 目
     const eyeX = r * 0.55;
     const eyeY = -r * 0.15;
     ctx.beginPath();
     ctx.arc(eyeX, eyeY, r * 0.22, 0, Math.PI * 2);
     ctx.fillStyle = '#ffffff';
     ctx.fill();
-    ctx.strokeStyle = '#333333';
+    ctx.strokeStyle = '#222222';
     ctx.lineWidth = 1.2;
     ctx.stroke();
 
     ctx.beginPath();
     ctx.arc(eyeX + 1, eyeY, r * 0.12, 0, Math.PI * 2);
-    ctx.fillStyle = '#222222';
+    ctx.fillStyle = '#1e293b';
     ctx.fill();
 
     ctx.beginPath();
@@ -564,11 +584,11 @@ function drawGame() {
     ctx.fillStyle = '#ffffff';
     ctx.fill();
 
-    // 黄金魚のキラキラエフェクト
+    // 黄金魚のオーラ
     if (fish.kind === 'gold') {
       ctx.beginPath();
-      ctx.arc(0, 0, r * 1.2, 0, Math.PI * 2);
-      ctx.strokeStyle = 'rgba(255, 235, 59, 0.4)';
+      ctx.arc(0, 0, r * 1.25, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(250, 204, 21, 0.5)';
       ctx.lineWidth = 2;
       ctx.stroke();
     }
@@ -618,11 +638,11 @@ function drawGame() {
     ctx.save();
     const alpha = 1 - pop.life / pop.maxLife;
     ctx.globalAlpha = Math.max(0, alpha);
-    ctx.font = `bold ${Math.round(18 * pop.scale)}px 'Fredoka', 'M PLUS Rounded 1c', sans-serif`;
+    ctx.font = `800 ${Math.round(18 * pop.scale)}px system-ui, -apple-system, sans-serif`;
     ctx.fillStyle = pop.color;
     ctx.textAlign = 'center';
-    ctx.shadowColor = 'rgba(0,0,0,0.5)';
-    ctx.shadowBlur = 4;
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.4)';
+    ctx.shadowBlur = 6;
     ctx.fillText(pop.text, pop.x, pop.y);
     ctx.restore();
   }
@@ -632,35 +652,33 @@ function drawGame() {
     ctx.save();
     ctx.translate(paddle.x, paddle.y);
 
-    // パドルのオーラ（スピードがある時）
     const pSpeed = Math.sqrt(paddle.vx * paddle.vx + paddle.vy * paddle.vy);
     if (pSpeed > 4) {
       ctx.beginPath();
-      ctx.arc(0, 0, paddle.radius * 1.3, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(255, 215, 0, 0.25)';
+      ctx.arc(0, 0, paddle.radius * 1.35, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(56, 189, 248, 0.2)';
       ctx.fill();
     }
 
-    // 肉球ベース円（クッション皿）
+    // パドル本体
     ctx.beginPath();
     ctx.arc(0, 0, paddle.radius, 0, Math.PI * 2);
-    ctx.fillStyle = '#fff0f5';
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
     ctx.fill();
-    ctx.lineWidth = 3;
-    ctx.strokeStyle = '#ff80ab';
+    ctx.lineWidth = 2.5;
+    ctx.strokeStyle = '#38bdf8';
     ctx.stroke();
 
-    // 肉球マーク（中央の大きな肉球パッド）
-    ctx.fillStyle = '#ff4081';
+    // 肉球マーク
+    ctx.fillStyle = '#0284c7';
     ctx.beginPath();
-    ctx.ellipse(0, 4, 12, 10, 0, 0, Math.PI * 2);
+    ctx.ellipse(0, 4, 11, 9, 0, 0, Math.PI * 2);
     ctx.fill();
 
-    // 肉球の指 3つ
     const toeOffsets = [
-      { x: -11, y: -7, r: 4.5 },
-      { x: 0, y: -12, r: 5 },
-      { x: 11, y: -7, r: 4.5 },
+      { x: -10, y: -7, r: 4 },
+      { x: 0, y: -11, r: 4.5 },
+      { x: 10, y: -7, r: 4 },
     ];
     for (const toe of toeOffsets) {
       ctx.beginPath();
@@ -718,116 +736,73 @@ onBeforeUnmount(() => {
       @touchmove.passive="onTouchMove"
     />
 
-    <!-- プレイ中ヘッダー UI -->
+    <!-- ミニマル HUD -->
     <div v-if="gameState === 'playing'" class="oyatsu-toss__hud">
       <div class="oyatsu-toss__stats-group">
-        <div class="oyatsu-toss__hud-item">
-          <span class="oyatsu-toss__label">SCORE</span>
-          <span class="oyatsu-toss__value">{{ score }}</span>
+        <div class="oyatsu-toss__hud-badge">
+          <span class="oyatsu-toss__badge-label">SCORE</span>
+          <span class="oyatsu-toss__badge-val">{{ score }}</span>
         </div>
-        <div v-if="gameMode === 'timed'" class="oyatsu-toss__hud-item">
-          <span class="oyatsu-toss__label">TIME</span>
-          <span class="oyatsu-toss__value" :class="{ 'oyatsu-toss__value--warning': timeLeft <= 5 }">
-            {{ timeLeft }}s
+        <div v-if="gameMode === 'timed'" class="oyatsu-toss__hud-badge">
+          <span class="oyatsu-toss__badge-label">TIME</span>
+          <span class="oyatsu-toss__badge-val" :class="{ 'oyatsu-toss__badge-val--warn': timeLeft <= 5 }">
+            {{ timeLeft }}
           </span>
         </div>
-        <div class="oyatsu-toss__hud-item">
-          <span class="oyatsu-toss__label">COMBO</span>
-          <span
-            class="oyatsu-toss__value oyatsu-toss__value--combo"
-            :class="{ 'oyatsu-toss__value--combo-active': combo > 1 }"
-          >
-            {{ combo }}
-          </span>
+        <div v-if="combo > 1" class="oyatsu-toss__hud-badge oyatsu-toss__hud-badge--combo">
+          <span class="oyatsu-toss__badge-label">COMBO</span>
+          <span class="oyatsu-toss__badge-val">×{{ combo }}</span>
         </div>
       </div>
-      <div class="oyatsu-toss__hud-actions">
-        <button type="button" class="oyatsu-toss__icon-btn" aria-label="終了する" @click="endGame">✕</button>
-      </div>
+      <button type="button" class="oyatsu-toss__close-icon" aria-label="Exit" @click="endGame">✕</button>
     </div>
 
-    <!-- スタート待機画面（Ready） -->
+    <!-- スタート画面（ミニマル＆クール） -->
     <div v-if="gameState === 'ready'" class="oyatsu-toss__overlay">
-      <div class="oyatsu-toss__card">
-        <h2 class="oyatsu-toss__title">🐟 お魚トス＆ジャグリング 🐾</h2>
-        <p class="oyatsu-toss__desc">
-          マウスや指で<strong>肉球パドル</strong>を動かして、落ちてくる魚をポンポン弾こう！<br />
-          右上にいる<strong>お腹を空かせた猫ちゃん</strong>の口へトスすると大喜び！♥
-        </p>
+      <div class="oyatsu-toss__modal">
+        <div class="oyatsu-toss__hero-badge">MINI GAME</div>
+        <h2 class="oyatsu-toss__main-title">FISH TOSS</h2>
 
-        <div class="oyatsu-toss__tips">
-          <div class="oyatsu-toss__tip-item">
-            <span class="oyatsu-toss__tip-icon">🏓</span>
-            <span>マウスを素早く振って<strong>スマッシュトス</strong>！</span>
-          </div>
-          <div class="oyatsu-toss__tip-item">
-            <span class="oyatsu-toss__tip-icon">✨</span>
-            <span>落とさずに連続トスで<strong>コンボ倍率アップ</strong>！</span>
-          </div>
+        <div v-if="highScore > 0" class="oyatsu-toss__best-pill">BEST {{ highScore }}</div>
+
+        <div class="oyatsu-toss__action-row">
+          <button type="button" class="oyatsu-toss__btn-hero" @click="startGame('timed')">PLAY (30s)</button>
+          <button type="button" class="oyatsu-toss__btn-ghost" @click="startGame('endless')">ENDLESS</button>
         </div>
 
-        <div v-if="highScore > 0" class="oyatsu-toss__highscore-badge">
-          👑 ハイスコア: <strong>{{ highScore }}</strong> pt
-        </div>
-
-        <div class="oyatsu-toss__btn-group">
-          <button
-            type="button"
-            class="oyatsu-toss__start-btn oyatsu-toss__start-btn--primary"
-            @click="startGame('timed')"
-          >
-            30秒チャレンジで遊ぶ！
-          </button>
-          <button
-            type="button"
-            class="oyatsu-toss__start-btn oyatsu-toss__start-btn--secondary"
-            @click="startGame('endless')"
-          >
-            エンドレスで練習
-          </button>
-          <button type="button" class="oyatsu-toss__close-btn" @click="handleClose">もどる</button>
-        </div>
+        <button type="button" class="oyatsu-toss__exit-link" @click="handleClose">BACK</button>
       </div>
     </div>
 
-    <!-- ゲームオーバー画面（Result） -->
+    <!-- リザルト画面（洗練されたスコアカード） -->
     <div v-if="gameState === 'gameover'" class="oyatsu-toss__overlay">
-      <div class="oyatsu-toss__card">
-        <h2 class="oyatsu-toss__title">
-          {{ isNewRecord ? '🎉 NEW RECORD! 🎉' : '🏁 FINISH! 🏁' }}
-        </h2>
+      <div class="oyatsu-toss__modal">
+        <div class="oyatsu-toss__hero-badge">
+          {{ isNewRecord ? 'NEW RECORD' : 'RESULT' }}
+        </div>
 
-        <div class="oyatsu-toss__result-score">
-          <div class="oyatsu-toss__score-main">
-            <span class="oyatsu-toss__score-num">{{ score }}</span>
-            <span class="oyatsu-toss__score-unit">pt</span>
+        <div class="oyatsu-toss__score-display">
+          {{ score }}
+        </div>
+
+        <div class="oyatsu-toss__grid-stats">
+          <div class="oyatsu-toss__stat-cell">
+            <span class="oyatsu-toss__cell-label">MAX COMBO</span>
+            <span class="oyatsu-toss__cell-val">{{ maxCombo }}</span>
+          </div>
+          <div class="oyatsu-toss__stat-cell">
+            <span class="oyatsu-toss__cell-label">FED</span>
+            <span class="oyatsu-toss__cell-val">{{ fedCount }}</span>
+          </div>
+          <div class="oyatsu-toss__stat-cell">
+            <span class="oyatsu-toss__cell-label">BEST</span>
+            <span class="oyatsu-toss__cell-val">{{ highScore }}</span>
           </div>
         </div>
 
-        <div class="oyatsu-toss__result-details">
-          <div class="oyatsu-toss__detail-row">
-            <span>最大コンボ</span>
-            <strong>{{ maxCombo }} 連続</strong>
-          </div>
-          <div class="oyatsu-toss__detail-row">
-            <span>猫ちゃんが食べた魚</span>
-            <strong>{{ fedCount }} 匹</strong>
-          </div>
-          <div class="oyatsu-toss__detail-row">
-            <span>ハイスコア</span>
-            <strong>{{ highScore }} pt</strong>
-          </div>
-        </div>
-
-        <div class="oyatsu-toss__btn-group">
-          <button
-            type="button"
-            class="oyatsu-toss__start-btn oyatsu-toss__start-btn--primary"
-            @click="startGame(gameMode)"
-          >
-            もう一度遊ぶ！
-          </button>
-          <button type="button" class="oyatsu-toss__close-btn" @click="handleClose">トップへ戻る</button>
+        <div class="oyatsu-toss__action-row">
+          <button type="button" class="oyatsu-toss__btn-hero" @click="startGame(gameMode)">RETRY</button>
+          <button type="button" class="oyatsu-toss__btn-ghost" @click="handleClose">CLOSE</button>
         </div>
       </div>
     </div>
@@ -852,12 +827,12 @@ onBeforeUnmount(() => {
   cursor: none;
 }
 
-/* HUD */
+/* ミニマル HUD */
 .oyatsu-toss__hud {
   position: absolute;
-  top: 1rem;
-  left: 1rem;
-  right: 1rem;
+  top: 1.25rem;
+  left: 1.25rem;
+  right: 1.25rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -867,245 +842,240 @@ onBeforeUnmount(() => {
 
 .oyatsu-toss__stats-group {
   display: flex;
-  gap: 1rem;
+  gap: 0.5rem;
 }
 
-.oyatsu-toss__hud-item {
-  background: rgb(15 23 42 / 75%);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgb(255 255 255 / 15%);
+.oyatsu-toss__hud-badge {
+  background: rgb(15 23 42 / 65%);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgb(255 255 255 / 12%);
   border-radius: 9999px;
-  padding: 0.35rem 0.9rem;
+  padding: 0.3rem 0.85rem;
   display: flex;
   align-items: baseline;
-  gap: 0.4rem;
-  box-shadow: 0 4px 12px rgb(0 0 0 / 30%);
+  gap: 0.45rem;
+  box-shadow: 0 4px 16px rgb(0 0 0 / 25%);
 }
 
-.oyatsu-toss__label {
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: #94a3b8;
-  letter-spacing: 0.05em;
+.oyatsu-toss__hud-badge--combo {
+  border-color: rgb(56 189 248 / 40%);
+  background: rgb(56 189 248 / 15%);
+  animation: pulse-warn 0.4s ease alternate;
 }
 
-.oyatsu-toss__value {
-  font-size: 1.15rem;
+.oyatsu-toss__badge-label {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #64748b;
+  letter-spacing: 0.08em;
+}
+
+.oyatsu-toss__badge-val {
+  font-size: 1.1rem;
   font-weight: 800;
   color: #f8fafc;
   font-variant-numeric: tabular-nums;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
 }
 
-.oyatsu-toss__value--warning {
-  color: #ef4444;
-  animation: pulse-warn 0.6s infinite alternate;
+.oyatsu-toss__badge-val--warn {
+  color: #f43f5e;
+  animation: pulse-warn 0.5s infinite alternate;
 }
 
-.oyatsu-toss__value--combo {
-  color: #38bdf8;
-  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.oyatsu-toss__value--combo-active {
-  color: #facc15;
-  transform: scale(1.2);
-}
-
-.oyatsu-toss__hud-actions {
+.oyatsu-toss__close-icon {
   pointer-events: auto;
-}
-
-.oyatsu-toss__icon-btn {
-  background: rgb(15 23 42 / 75%);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgb(255 255 255 / 15%);
-  color: #cbd5e1;
+  background: rgb(15 23 42 / 65%);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgb(255 255 255 / 12%);
+  color: #94a3b8;
   width: 2.2rem;
   height: 2.2rem;
   border-radius: 9999px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1rem;
+  font-size: 0.85rem;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.oyatsu-toss__icon-btn:hover {
-  background: rgb(239 68 68 / 80%);
+.oyatsu-toss__close-icon:hover {
+  background: rgb(244 63 94 / 80%);
   color: #fff;
-  border-color: #ef4444;
+  border-color: #f43f5e;
 }
 
-/* オーバーレイ（開始前 / 終了後） */
+/* オーバーレイ */
 .oyatsu-toss__overlay {
   position: absolute;
   inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgb(8 16 37 / 82%);
-  backdrop-filter: blur(10px);
+  background: rgb(8 16 37 / 75%);
+  backdrop-filter: blur(16px);
   z-index: 20;
   padding: 1.5rem;
-  animation: fade-in 0.3s ease;
+  animation: fade-in 0.25s ease-out;
 }
 
-.oyatsu-toss__card {
-  background: rgb(30 41 59 / 95%);
-  border: 1px solid rgb(255 255 255 / 15%);
-  border-radius: 1.5rem;
-  padding: 2rem;
-  max-width: 440px;
+.oyatsu-toss__modal {
+  background: rgb(15 23 42 / 85%);
+  border: 1px solid rgb(255 255 255 / 12%);
+  border-radius: 1.75rem;
+  padding: 2.25rem 2rem;
+  max-width: 360px;
   width: 100%;
   text-align: center;
-  box-shadow: 0 20px 40px rgb(0 0 0 / 50%);
+  box-shadow: 0 24px 48px rgb(0 0 0 / 50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.oyatsu-toss__title {
-  font-size: 1.35rem;
+.oyatsu-toss__hero-badge {
+  font-size: 0.7rem;
   font-weight: 800;
-  color: #f8fafc;
+  letter-spacing: 0.15em;
+  color: #38bdf8;
+  background: rgb(56 189 248 / 12%);
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
   margin-bottom: 0.75rem;
 }
 
-.oyatsu-toss__desc {
-  font-size: 0.875rem;
-  color: #cbd5e1;
-  line-height: 1.6;
-  margin-bottom: 1.25rem;
+.oyatsu-toss__main-title {
+  font-size: 1.75rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  color: #f8fafc;
+  margin-bottom: 0.5rem;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
 }
 
-.oyatsu-toss__tips {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  background: rgb(15 23 42 / 60%);
-  border-radius: 0.75rem;
-  padding: 0.75rem 1rem;
-  margin-bottom: 1.25rem;
-  text-align: left;
+.oyatsu-toss__best-pill {
   font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
   color: #94a3b8;
+  margin-bottom: 1.75rem;
 }
 
-.oyatsu-toss__tip-item {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.oyatsu-toss__tip-icon {
-  font-size: 1.1rem;
-}
-
-.oyatsu-toss__highscore-badge {
-  display: inline-block;
-  background: rgb(250 204 21 / 15%);
-  border: 1px solid rgb(250 204 21 / 30%);
-  color: #fde047;
-  font-size: 0.85rem;
-  padding: 0.3rem 0.8rem;
-  border-radius: 9999px;
-  margin-bottom: 1.25rem;
-}
-
-.oyatsu-toss__result-score {
-  margin: 1.5rem 0;
-}
-
-.oyatsu-toss__score-main {
-  display: flex;
-  align-items: baseline;
-  justify-content: center;
-  gap: 0.3rem;
-}
-
-.oyatsu-toss__score-num {
-  font-size: 3.5rem;
+.oyatsu-toss__score-display {
+  font-size: 4rem;
   font-weight: 900;
   color: #38bdf8;
   line-height: 1;
+  margin: 1rem 0 1.5rem;
   font-variant-numeric: tabular-nums;
-  text-shadow: 0 0 20px rgb(56 189 248 / 40%);
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+  text-shadow: 0 0 28px rgb(56 189 248 / 40%);
 }
 
-.oyatsu-toss__score-unit {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #94a3b8;
+.oyatsu-toss__grid-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  width: 100%;
+  background: rgb(30 41 59 / 50%);
+  border-radius: 1rem;
+  padding: 0.85rem 0.5rem;
+  margin-bottom: 1.75rem;
 }
 
-.oyatsu-toss__result-details {
-  background: rgb(15 23 42 / 60%);
-  border-radius: 0.75rem;
-  padding: 0.75rem 1.25rem;
-  margin-bottom: 1.5rem;
+.oyatsu-toss__stat-cell {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  font-size: 0.875rem;
+  gap: 0.25rem;
 }
 
-.oyatsu-toss__detail-row {
-  display: flex;
-  justify-content: space-between;
-  color: #cbd5e1;
+.oyatsu-toss__cell-label {
+  font-size: 0.6rem;
+  font-weight: 800;
+  color: #64748b;
+  letter-spacing: 0.05em;
 }
 
-.oyatsu-toss__detail-row strong {
+.oyatsu-toss__cell-val {
+  font-size: 1.15rem;
+  font-weight: 800;
   color: #f8fafc;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
 }
 
-.oyatsu-toss__btn-group {
+.oyatsu-toss__action-row {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
+  width: 100%;
 }
 
-.oyatsu-toss__start-btn {
+.oyatsu-toss__btn-hero {
+  width: 100%;
+  padding: 0.85rem 1.5rem;
+  border-radius: 9999px;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  background: linear-gradient(135deg, #38bdf8, #0284c7);
+  color: #fff;
+  border: none;
+  box-shadow: 0 6px 20px rgb(2 132 199 / 40%);
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.oyatsu-toss__btn-hero:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgb(2 132 199 / 60%);
+}
+
+.oyatsu-toss__btn-ghost {
   width: 100%;
   padding: 0.75rem 1.5rem;
   border-radius: 9999px;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   font-weight: 700;
+  letter-spacing: 0.05em;
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-  border: none;
+  background: transparent;
+  border: 1px solid rgb(255 255 255 / 15%);
+  color: #cbd5e1;
+  transition: all 0.2s ease;
 }
 
-.oyatsu-toss__start-btn--primary {
-  background: linear-gradient(135deg, #38bdf8, #0284c7);
+.oyatsu-toss__btn-ghost:hover {
+  background: rgb(255 255 255 / 10%);
   color: #fff;
-  box-shadow: 0 6px 16px rgb(2 132 199 / 40%);
 }
 
-.oyatsu-toss__start-btn--primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgb(2 132 199 / 60%);
-}
-
-.oyatsu-toss__start-btn--secondary {
-  background: rgb(255 255 255 / 8%);
-  border: 1px solid rgb(255 255 255 / 20%);
-  color: #e2e8f0;
-}
-
-.oyatsu-toss__start-btn--secondary:hover {
-  background: rgb(255 255 255 / 15%);
-}
-
-.oyatsu-toss__close-btn {
+.oyatsu-toss__exit-link {
   background: transparent;
   border: none;
-  color: #94a3b8;
-  font-size: 0.85rem;
-  padding: 0.4rem;
+  color: #64748b;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin-top: 1.25rem;
   cursor: pointer;
+  transition: color 0.2s ease;
 }
 
-.oyatsu-toss__close-btn:hover {
-  color: #fff;
+.oyatsu-toss__exit-link:hover {
+  color: #cbd5e1;
 }
 
 @keyframes pulse-warn {
@@ -1114,7 +1084,7 @@ onBeforeUnmount(() => {
   }
 
   to {
-    transform: scale(1.15);
+    transform: scale(1.1);
   }
 }
 
