@@ -1,4 +1,5 @@
 import { prisma } from '#server/utils/prisma';
+import { createBlogPost } from '#server/utils/blogPost';
 import { getServerSession } from '#auth';
 import { deployWebhook } from '~/utils/server/deployWebhook';
 
@@ -20,13 +21,7 @@ export default defineEventHandler<{
 
   const requestBody = await readBody(e);
 
-  await prisma.blogPost.create({
-    data: {
-      content: requestBody.content,
-      title: requestBody.title,
-      published_at: requestBody.published_at,
-    },
-  });
+  await createBlogPost(prisma, requestBody);
 
   await deployWebhook();
 });
