@@ -16,6 +16,12 @@
       "automerge": true
     },
     {
+      "description": "Automerge @sidebase/nuxt-auth minor/patch when tests pass",
+      "matchPackageNames": ["@sidebase/nuxt-auth"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true
+    },
+    {
       "description": "Keep pnpm/action-setup at v4 for pnpm v10 (migrate to pnpm/setup when upgrading to pnpm v11)",
       "matchPackageNames": ["pnpm/action-setup"],
       "allowedVersions": "^4.0.0"
