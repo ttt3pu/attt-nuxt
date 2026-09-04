@@ -7,12 +7,12 @@ on:
   pull_request:
     types: [opened, synchronize]
 
-jobs:
-  ci:
-    runs-on: ubuntu-latest
-    env:
-      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+env:
+  DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
+jobs:
+  lint-js:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
         with:
@@ -27,8 +27,62 @@ jobs:
       - name: Lint JS
         run: pnpm lint:js
 
+  lint-style:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          submodules: true
+          token: ${{ secrets.GH_PERSONAL_TOKEN }}
+
+      - name: Setup project
+        uses: ./.github/actions/setup-project
+        with:
+          database_url: ${{ secrets.DATABASE_URL }}
+
       - name: Lint Style
         run: pnpm lint:style
 
+  type-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          submodules: true
+          token: ${{ secrets.GH_PERSONAL_TOKEN }}
+
+      - name: Setup project
+        uses: ./.github/actions/setup-project
+        with:
+          database_url: ${{ secrets.DATABASE_URL }}
+
       - name: Type check
         run: pnpm typeCheck
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          submodules: true
+          token: ${{ secrets.GH_PERSONAL_TOKEN }}
+
+      - name: Setup project
+        uses: ./.github/actions/setup-project
+        with:
+          database_url: ${{ secrets.DATABASE_URL }}
+
+      - name: Test
+        run: pnpm test
+
+  ci:
+    if: ${{ always() }}
+    needs: [lint-js, lint-style, type-check, test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check results
+        run: |
+          test "${{ needs.lint-js.result }}" = "success"
+          test "${{ needs.lint-style.result }}" = "success"
+          test "${{ needs.type-check.result }}" = "success"
+          test "${{ needs.test.result }}" = "success"

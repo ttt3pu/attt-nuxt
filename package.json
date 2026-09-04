@@ -16,6 +16,9 @@
     "prepare": "nuxi prepare",
     "typeCheck": "nuxi typecheck",
     "preview": "http-server ./.output/public",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:update": "vitest run -u",
     "lint:js": "eslint .",
     "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore",
     "lint": "pnpm lint:js && pnpm lint:style",
@@ -66,6 +69,7 @@
     "stylelint-scss": "7.2.0",
     "tsx": "4.22.4",
     "typescript": "6.0.3",
+    "vitest": "5.0.0",
     "vue-material-design-icons": "5.3.1",
     "vue-tsc": "3.3.3",
     "zod": "4.5.4"
