@@ -217,6 +217,21 @@ useHead({
     gap: 0.75rem;
   }
 
+  /* トスゲーム時: 画面全域をプレイ領域へ拡張 */
+  .title-container__inner--toss-open {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .title-container__inner--toss-open .title-container__hero-left {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+  }
+
   /* 単独子で縦いっぱいにし、工房パネルの可動領域を確保（中央寄せの上下の無駄を減らす） */
   .title-container__inner--workshop-open .title-container__hero-left {
     flex: 1 1 0%;
@@ -236,6 +251,28 @@ useHead({
     flex: none;
     pointer-events: none;
     z-index: var(--z-hero-cat-when-game);
+  }
+
+  /* トスゲーム時の猫: 画面下端・背景化してプレイの邪魔にならず、リアクション時のみ発光 */
+  .title-container__cat--toss-open {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 0;
+    overflow: visible;
+    flex: none;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.35;
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  .title-container__cat--toss-open:has(.cat-mascot--react-happy) {
+    opacity: 0.95;
+    transform: scale(1.05);
   }
 }
 

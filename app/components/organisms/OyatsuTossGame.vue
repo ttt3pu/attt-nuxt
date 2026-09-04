@@ -268,6 +268,15 @@ function onTouchStart(e: TouchEvent) {
   }
 }
 
+function getCatZone(width: number, _height: number) {
+  const isSp = width <= 768;
+  return {
+    x: isSp ? width - 50 : width - 55,
+    y: isSp ? 70 : 75,
+    radius: isSp ? 65 : 75,
+  };
+}
+
 // 物理演算＆更新ループ
 function updatePhysics() {
   const canvas = canvasRef.value;
@@ -276,12 +285,8 @@ function updatePhysics() {
   const width = canvas.width;
   const height = canvas.height;
 
-  // 猫のキャッチターゲットゾーン（右上端）
-  const catZone = {
-    x: width - 55,
-    y: 75,
-    radius: 75,
-  };
+  // 猫のキャッチターゲットゾーン
+  const catZone = getCatZone(width, height);
 
   // 魚の物理更新
   for (let i = fishes.length - 1; i >= 0; i--) {
@@ -478,20 +483,22 @@ function drawGame() {
   ctx.restore();
 
   // 猫のキャッチターゲットエリア（テキストなし・モダンなパルスリング＆ターゲットマーク）
-  const catZoneX = width - 55;
-  const catZoneY = 75;
+  const catZone = getCatZone(width, height);
+  const catZoneX = catZone.x;
+  const catZoneY = catZone.y;
+  const targetRadius = catZone.radius;
   const now = Date.now();
   const pulse = Math.sin(now * 0.004) * 0.12 + 0.88;
   const spinAngle = (now * 0.0012) % (Math.PI * 2);
 
   ctx.save();
   // 外側の淡いグロー
-  const zoneGrad = ctx.createRadialGradient(catZoneX, catZoneY, 15, catZoneX, catZoneY, 75 * pulse);
+  const zoneGrad = ctx.createRadialGradient(catZoneX, catZoneY, 15, catZoneX, catZoneY, targetRadius * pulse);
   zoneGrad.addColorStop(0, 'rgba(244, 63, 94, 0.25)');
   zoneGrad.addColorStop(1, 'rgba(244, 63, 94, 0)');
   ctx.fillStyle = zoneGrad;
   ctx.beginPath();
-  ctx.arc(catZoneX, catZoneY, 75 * pulse, 0, Math.PI * 2);
+  ctx.arc(catZoneX, catZoneY, targetRadius * pulse, 0, Math.PI * 2);
   ctx.fill();
 
   // スタイリッシュな破線回転サークル
@@ -499,7 +506,7 @@ function drawGame() {
   ctx.translate(catZoneX, catZoneY);
   ctx.rotate(spinAngle);
   ctx.beginPath();
-  ctx.arc(0, 0, 48 * pulse, 0, Math.PI * 2);
+  ctx.arc(0, 0, targetRadius * 0.65 * pulse, 0, Math.PI * 2);
   ctx.strokeStyle = 'rgba(244, 63, 94, 0.45)';
   ctx.lineWidth = 1.5;
   ctx.setLineDash([6, 6]);
@@ -508,7 +515,7 @@ function drawGame() {
   // コーナーターゲットマーク
   for (let i = 0; i < 4; i++) {
     const a = (i * Math.PI) / 2;
-    const r = 58 * pulse;
+    const r = targetRadius * 0.78 * pulse;
     ctx.beginPath();
     ctx.arc(Math.cos(a) * r, Math.sin(a) * r, 2, 0, Math.PI * 2);
     ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
