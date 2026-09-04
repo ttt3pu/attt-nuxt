@@ -1,9 +1,6 @@
 <script lang="ts" setup>
 import AtScroll from '@/components/atoms/AtScroll.vue';
-import {
-  oyatsuWorkshopRuntimeKey,
-  useOyatsuWorkshopRuntime,
-} from '@/composables/useOyatsuWorkshopRuntime';
+import { oyatsuWorkshopRuntimeKey, useOyatsuWorkshopRuntime } from '@/composables/useOyatsuWorkshopRuntime';
 import { usePostsStore } from '@/store';
 import type { OyatsuCatchCatReactionKind } from '@/types/oyatsu-catch';
 import type { BlogPost } from '@prisma/client';
@@ -11,10 +8,11 @@ import type { ZennPost } from '@/types';
 import { recordWorkshopOpen } from '@/utils/oyatsu-catch-storage';
 
 const heroGameOpen = ref(false);
+const tossGameOpen = ref(false);
 const workshopRuntime = useOyatsuWorkshopRuntime(() => heroGameOpen.value);
 provide(oyatsuWorkshopRuntimeKey, workshopRuntime);
-/** おやつ工房を開いていて操作にフォーカスがある場合など（現状は常に false） */
-const heroGamePlaying = ref(false);
+/** おやつ工房やトスゲームを開いていて操作にフォーカスがある場合など */
+const heroGamePlaying = computed(() => heroGameOpen.value || tossGameOpen.value);
 
 /** CatMascot おやつ工房連動リアクション */
 type CatFaceReaction = 'idle' | OyatsuCatchCatReactionKind;
@@ -58,6 +56,12 @@ function onHeroGameClose() {
   catGameReaction.value = 'idle';
 }
 
+function onTossGameClose() {
+  tossGameOpen.value = false;
+  clearCatReactionTimer();
+  catGameReaction.value = 'idle';
+}
+
 watch(heroGameOpen, (open) => {
   if (open) {
     workshopRuntime.save.value = recordWorkshopOpen(workshopRuntime.save.value);
@@ -97,13 +101,16 @@ useHead({
     <div class="title-container">
       <div
         class="title-container__inner"
-        :class="{ 'title-container__inner--workshop-open': heroGameOpen }"
+        :class="{
+          'title-container__inner--workshop-open': heroGameOpen,
+          'title-container__inner--toss-open': tossGameOpen,
+        }"
       >
         <div
           class="title-container__hero-left"
-          :class="{ 'title-container__hero-left--game-open': heroGameOpen }"
+          :class="{ 'title-container__hero-left--game-open': heroGameOpen || tossGameOpen }"
         >
-          <template v-if="!heroGameOpen">
+          <template v-if="!heroGameOpen && !tossGameOpen">
             <MoleculesOyatsuWorkshopBackdrop
               class="title-container__hero-fish"
               :production-rate="workshopRuntime.productionRate"
@@ -113,10 +120,28 @@ useHead({
                 <MoleculesSiteLogo />
               </div>
             </div>
-            <button type="button" class="title-container__play-btn" @click="heroGameOpen = true">
-              おやつ工房
-            </button>
+            <div class="title-container__btn-group">
+              <button
+                type="button"
+                class="title-container__play-btn title-container__play-btn--primary"
+                @click="tossGameOpen = true"
+              >
+                🐟 お魚トスで遊ぶ！
+              </button>
+              <button
+                type="button"
+                class="title-container__play-btn title-container__play-btn--secondary"
+                @click="heroGameOpen = true"
+              >
+                おやつ工房
+              </button>
+            </div>
           </template>
+          <OrganismsOyatsuTossGame
+            v-else-if="tossGameOpen"
+            @close="onTossGameClose"
+            @cat-reaction="onOyatsuCatReaction"
+          />
           <OrganismsOyatsuWorkshop
             v-else
             @close="onHeroGameClose"
@@ -127,12 +152,12 @@ useHead({
 
         <div
           class="title-container__cat"
-          :class="{ 'title-container__cat--game-open': heroGameOpen }"
+          :class="{
+            'title-container__cat--game-open': heroGameOpen,
+            'title-container__cat--toss-open': tossGameOpen,
+          }"
         >
-          <MoleculesCatMascot
-            :game-reaction="catGameReaction"
-            :sp-workshop-compact="heroGameOpen"
-          />
+          <MoleculesCatMascot :game-reaction="catGameReaction" :sp-workshop-compact="heroGameOpen" />
         </div>
 
         <AtScroll v-show="!heroGamePlaying" class="title-container__scroll" />
@@ -311,29 +336,61 @@ useHead({
   pointer-events: none;
 }
 
-.title-container__play-btn {
+.title-container__btn-group {
   position: absolute;
   z-index: 6;
   right: var(--padding-lr-pc);
   bottom: 24px;
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.title-container__play-btn {
   cursor: pointer;
   font-family: var(--font-family-jp), sans-serif;
   font-size: 0.875rem;
   padding: 0.5rem 1rem;
-  border-radius: 4px;
-  border: 1px solid rgb(249 248 113 / 50%);
-  background: rgb(249 248 113 / 12%);
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.title-container__play-btn--primary {
+  border: 1px solid rgb(56 189 248 / 60%);
+  background: linear-gradient(135deg, rgb(56 189 248 / 25%), rgb(2 132 199 / 35%));
+  color: #38bdf8;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgb(56 189 248 / 20%);
+}
+
+.title-container__play-btn--primary:hover {
+  background: linear-gradient(135deg, rgb(56 189 248 / 40%), rgb(2 132 199 / 50%));
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgb(56 189 248 / 35%);
+}
+
+.title-container__play-btn--secondary {
+  border: 1px solid rgb(249 248 113 / 40%);
+  background: rgb(249 248 113 / 10%);
   color: var(--primary-color);
 }
 
-.title-container__play-btn:hover {
-  background: rgb(249 248 113 / 22%);
+.title-container__play-btn--secondary:hover {
+  background: rgb(249 248 113 / 20%);
 }
 
 @media (width <= 768px) {
-  .title-container__play-btn {
+  .title-container__btn-group {
     right: var(--padding-lr-sp);
     bottom: 16px;
+    gap: 0.5rem;
+  }
+
+  .title-container__play-btn {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
   }
 }
 </style>
