@@ -1,3 +1,5 @@
+import type { Session } from 'next-auth';
+
 export function useRuntimeConfig() {
   return {
     public: {
@@ -17,3 +19,31 @@ export function createError(err: { statusCode?: number; statusMessage?: string; 
   const error = new Error(err.statusMessage || err.message || 'Error');
   return Object.assign(error, err);
 }
+
+export function defineNuxtRouteMiddleware<T>(fn: T): T {
+  return fn;
+}
+
+export function navigateTo(to: string) {
+  return { redirect: to };
+}
+
+export const authMock = {
+  currentSession: null as Session | null,
+};
+
+export function useAuth() {
+  return {
+    getSession: async () => authMock.currentSession,
+    signOut: async () => {},
+  };
+}
+
+// Nuxt の auto-imports をグローバルスコープに登録
+Object.assign(globalThis, {
+  defineNuxtRouteMiddleware,
+  navigateTo,
+  useAuth,
+  useRuntimeConfig,
+  createError,
+});

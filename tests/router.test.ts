@@ -1,6 +1,14 @@
+import type { Session } from 'next-auth';
 import { describe, expect, it } from 'vitest';
-import { createMemoryHistory, createRouter, type RouteRecordRaw } from 'vue-router';
+import {
+  createMemoryHistory,
+  createRouter,
+  type RouteLocationNormalized,
+  type RouteRecordRaw,
+} from 'vue-router';
+import adminCheckMiddleware from '@/middleware/admin-check';
 import type { BreadCrumb } from '@/types';
+import * as mockImports from '#imports';
 
 // プロダクトで定義されているルーティング構成
 const appRoutes: RouteRecordRaw[] = [
@@ -196,7 +204,80 @@ describe('プロダクトのルーティング解決とパラメータ抽出', (
   });
 });
 
-describe('ページメタデータとパンくずリスト（breadcrumbs）の解決', () => {
+describe('プロダクトのルートミドルウェア（admin-check）と vue-router 連携', () => {
+  const adminSession: Session = {
+    user: { email: 'ttt3pu@gmail.com', name: 'Admin User' },
+    expires: '2026-12-31T23:59:59.999Z',
+  };
+  const generalSession: Session = {
+    user: { email: 'general@example.com', name: 'General User' },
+    expires: '2026-12-31T23:59:59.999Z',
+  };
+
+  const dummyFrom = {
+    path: '/',
+    fullPath: '/',
+    name: 'index',
+    params: {},
+    query: {},
+    hash: '',
+    matched: [],
+    meta: {},
+    redirectedFrom: undefined,
+  } as RouteLocationNormalized;
+
+  it('未ログイン状態で管理画面ルートへアクセスした場合は /admin/login へリダイレクトされること', async () => {
+    const router = createTestRouter();
+    mockImports.authMock.currentSession = null;
+
+    const route = router.resolve('/admin/blog/create') as unknown as RouteLocationNormalized;
+    const result = await adminCheckMiddleware(route, dummyFrom);
+
+    expect(result).toEqual({ redirect: '/admin/login' });
+  });
+
+  it('一般ユーザーが管理画面ルートへアクセスした場合は /admin/login へリダイレクトされること', async () => {
+    const router = createTestRouter();
+    mockImports.authMock.currentSession = generalSession;
+
+    const route = router.resolve('/admin/blog/123/edit') as unknown as RouteLocationNormalized;
+    const result = await adminCheckMiddleware(route, dummyFrom);
+
+    expect(result).toEqual({ redirect: '/admin/login' });
+  });
+
+  it('管理者ユーザーが管理画面ルートへアクセスした場合はリダイレクトされず通過すること', async () => {
+    const router = createTestRouter();
+    mockImports.authMock.currentSession = adminSession;
+
+    const route = router.resolve('/admin/blog/create') as unknown as RouteLocationNormalized;
+    const result = await adminCheckMiddleware(route, dummyFrom);
+
+    expect(result).toBeUndefined();
+  });
+
+  it('管理者ユーザーがログイン画面（/admin/login）へアクセスした場合は /admin へリダイレクトされること', async () => {
+    const router = createTestRouter();
+    mockImports.authMock.currentSession = adminSession;
+
+    const route = router.resolve('/admin/login') as unknown as RouteLocationNormalized;
+    const result = await adminCheckMiddleware(route, dummyFrom);
+
+    expect(result).toEqual({ redirect: '/admin' });
+  });
+
+  it('未ログインユーザーがログイン画面（/admin/login）へアクセスした場合はそのまま表示されること', async () => {
+    const router = createTestRouter();
+    mockImports.authMock.currentSession = null;
+
+    const route = router.resolve('/admin/login') as unknown as RouteLocationNormalized;
+    const result = await adminCheckMiddleware(route, dummyFrom);
+
+    expect(result).toBeUndefined();
+  });
+});
+
+describe('ページメタデータとヘッダー表示・パンくずリスト（breadcrumbs）の解決', () => {
   it('パンくずリストが定義された管理画面ルートで meta.breadcrumbs が取得できること', async () => {
     const router = createTestRouter();
 
@@ -224,7 +305,9 @@ describe('ページメタデータとパンくずリスト（breadcrumbs）の�
         to: '/',
         name: 'Main page',
       },
-      ...((route.meta.breadcrumbs as BreadCrumb[] | undefined)?.length ? (route.meta.breadcrumbs as BreadCrumb[]) : []),
+      ...((route.meta.breadcrumbs as BreadCrumb[] | undefined)?.length
+        ? (route.meta.breadcrumbs as BreadCrumb[])
+        : []),
     ];
 
     expect(computedBreadcrumbs).toEqual([
@@ -246,6 +329,22 @@ describe('ページメタデータとパンくずリスト（breadcrumbs）の�
     const route = router.currentRoute.value;
 
     expect(route.meta.breadcrumbs).toBeUndefined();
+  });
+
+  it('レイアウトおよび HeaderLogo のルーティング判定フラグ（ロゴ表示有無、Admin表示判定）が正しいこと', () => {
+    const router = createTestRouter();
+
+    const topRoute = router.resolve('/');
+    expect(topRoute.path !== '/').toBe(false); // default.vue でトップならロゴ非表示
+    expect(topRoute.path.startsWith('/admin')).toBe(false);
+
+    const blogRoute = router.resolve('/blog/123');
+    expect(blogRoute.path !== '/').toBe(true); // ブログページならロゴ表示
+    expect(blogRoute.path.startsWith('/admin')).toBe(false);
+
+    const adminRoute = router.resolve('/admin/blog/create');
+    expect(adminRoute.path !== '/').toBe(true);
+    expect(adminRoute.path.startsWith('/admin')).toBe(true); // HeaderLogo で ( Admin ) 表示
   });
 });
 
