@@ -25,6 +25,7 @@ export default defineConfig({
       DATABASE_URL: process.env.TEST_DATABASE_URL ?? '',
     },
     exclude: ['**/node_modules/**', '**/.output/**', '**/packages/prisma/**'],
+    setupFiles: [fileURLToPath(new URL('./tests/mocks/imports.ts', import.meta.url))],
     server: {
       deps: {
         inline: ['@sidebase/nuxt-auth'],
