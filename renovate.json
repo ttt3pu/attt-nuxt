@@ -20,11 +20,6 @@
       "automerge": true
     },
     {
-      "description": "Group prisma packages together",
-      "matchPackageNames": ["prisma", "@prisma/**"],
-      "groupName": "prisma monorepo"
-    },
-    {
       "description": "Automerge prisma / pg minor/patch when tests pass",
       "matchPackageNames": ["prisma", "@prisma/client", "@prisma/adapter-pg", "pg"],
       "matchUpdateTypes": ["minor", "patch"],
