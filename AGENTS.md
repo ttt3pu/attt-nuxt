@@ -48,7 +48,6 @@
 
 **npm ではなく、必ず pnpm を使用する。**
 
-- このプロジェクトでは pnpm workspaces を使用したモノレポ構成を採用している
 - パッケージのインストールは `pnpm install` を使用する
 - スクリプトの実行は `pnpm <script>` を使用する
 
@@ -81,7 +80,7 @@ env:
 ## コーディング指針
 
 - 最小限の変更で問題を解決する。既存の動作を壊さない
-- Nuxt 3 のファイルベースルーティングおよびモノレポ構造（pnpm workspaces）を考慮する
+- Nuxt 4 のファイルベースルーティングを考慮する
 - TypeScript の型安全性を維持する
 - Vue 3 では Composition API および `<script setup lang="ts">` を使用する
 - スタイリングは Tailwind CSS のユーティリティクラスを優先し、カスタムスタイルが必要な場合は SCSS を使用する
