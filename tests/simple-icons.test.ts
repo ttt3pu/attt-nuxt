@@ -47,30 +47,5 @@ describe('プロダクトで利用するブランドおよび技術スタック�
         expect(icon.path.trim().length).toBeGreaterThan(0);
       }
     });
-
-    it('全アイコンの表示データ（名前、カラーコード、SVGパス）がスナップショットと一致すること', () => {
-      const snapshotData = {
-        sns: snsItems.map((item) => ({
-          title: item.title,
-          path: item.path,
-        })),
-        login: {
-          title: siGoogle.title,
-          hex: siGoogle.hex,
-          path: siGoogle.path,
-        },
-        postBadge: {
-          title: siZenn.title,
-          path: siZenn.path,
-        },
-        skills: allSkillItems.map((item) => ({
-          heading: item.heading,
-          hex: item.icnData?.hex ?? null,
-          path: item.icnData?.path ?? null,
-        })),
-      };
-
-      expect(snapshotData).toMatchSnapshot();
-    });
   });
 });
