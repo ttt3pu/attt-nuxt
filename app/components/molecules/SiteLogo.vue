@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { siGithub, siX, siZenn } from 'simple-icons';
+import { snsItems } from '~/constants/sns';
 
 const props = defineProps({
   isActiveLogo: {
@@ -7,24 +7,6 @@ const props = defineProps({
     default: true,
   },
 });
-
-const snsItems = ref([
-  {
-    title: 'GitHub',
-    path: siGithub.path,
-    href: 'https://github.com/ttt3pu',
-  },
-  {
-    title: 'Zenn',
-    path: siZenn.path,
-    href: 'https://zenn.dev/attt',
-  },
-  {
-    title: 'X',
-    path: siX.path,
-    href: 'https://x.com/ttt3pu',
-  },
-]);
 </script>
 
 <template>
