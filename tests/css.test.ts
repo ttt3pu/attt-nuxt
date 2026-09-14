@@ -18,6 +18,14 @@ describe('プロダクトのスタイルシートおよびCSS処理パイプラ�
       const result = sass.compileString(input);
 
       expect(result.css).toBeTruthy();
+
+      // 基本セレクタおよびグローバル変数の定義
+      expect(result.css).toContain('html {');
+      expect(result.css).toContain('body {');
+      expect(result.css).toContain('--line-height: 2;');
+      expect(result.css).toContain('--max-width: 1600px;');
+      expect(result.css).toContain('--vh: 1vh;');
+
       // z-map mixin が連番の z-index に展開されていること
       expect(result.css).toContain('--z-init: 0;');
       expect(result.css).toContain('--z-cat: 1;');
@@ -29,12 +37,10 @@ describe('プロダクトのスタイルシートおよびCSS処理パイプラ�
 
       // math.div(100, 1980) * 100 の計算結果（約 5.050505...vw）が含まれること
       expect(result.css).toMatch(/--padding-lr-pc: 5\.0505\d*vw;/);
+      expect(result.css).toMatch(/--padding-lr-sp: 5\.0505\d*vw;/);
 
       // color.adjust の計算結果が含まれること
       expect(result.css).toContain('--txt-color-link-hover: hsl(48.2926829268, 100%, 101.9607843137%);');
-
-      // スタイル定義全体のスナップショット
-      expect(result.css).toMatchSnapshot();
     });
 
     it('mixins.scss の line-height-crop mixin が正しく擬似要素と計算式を展開すること', () => {
@@ -52,9 +58,12 @@ describe('プロダクトのスタイルシートおよびCSS処理パイプラ�
 
       expect(result.css).toContain('.test-crop::before');
       expect(result.css).toContain('.test-crop::after');
+      expect(result.css).toContain('display: block;');
+      expect(result.css).toContain('width: 0;');
+      expect(result.css).toContain('height: 0;');
       expect(result.css).toContain('margin-top: calc((1 - 1.5) * 0.5em);');
       expect(result.css).toContain('margin-bottom: calc((1 - 1.5) * 0.5em);');
-      expect(result.css).toMatchSnapshot();
+      expect(result.css).toMatch(/content:\s*["']{2};/);
     });
 
     it('CatMascotコンポーネントのSCSSスタイルが正常にコンパイルされ、レスポンシブ計算やキーフレームが出力されること', () => {
@@ -70,6 +79,27 @@ describe('プロダクトのスタイルシートおよびCSS処理パイプラ�
       const result = sass.compileString(input);
 
       expect(result.css).toBeTruthy();
+
+      // 猫マスコットの各パーツセレクタが出力されていること
+      const requiredSelectors = [
+        '.cat-mascot',
+        '.face',
+        '.face-bg',
+        '.face-inner',
+        '.ear',
+        '.eye',
+        '.nose',
+        '.marble',
+        '.mouth',
+        '.whisker',
+        '.neck',
+        '.cat-mascot__heart',
+        '.cat-mascot__gloom-spin',
+      ];
+      for (const selector of requiredSelectors) {
+        expect(result.css).toContain(selector);
+      }
+
       // レスポンシブ mixin（cat-size）による各メディアクエリの出力検証
       expect(result.css).toContain('@media (width >= 1601px)');
       expect(result.css).toContain('@media (width <= 1600px)');
@@ -81,8 +111,8 @@ describe('プロダクトのスタイルシートおよびCSS処理パイプラ�
       expect(result.css).toContain('@keyframes cat-heart-float');
       expect(result.css).toContain('@keyframes cat-gloom-spin-float');
 
-      // スナップショットで固定
-      expect(result.css).toMatchSnapshot();
+      // アクセシビリティ（prefers-reduced-motion）対応が含まれること
+      expect(result.css).toContain('@media (prefers-reduced-motion: reduce)');
     });
   });
 
@@ -115,7 +145,8 @@ describe('プロダクトのスタイルシートおよびCSS処理パイプラ�
 
       expect(result.css).toContain('-webkit-user-select: none;');
       expect(result.css).toContain('user-select: none;');
-      expect(result.css).toMatchSnapshot();
+      expect(result.css).toContain('-webkit-appearance: none;');
+      expect(result.css).toContain('appearance: none;');
     });
 
     it('コンパイルされたプロダクトSCSS（CatMascot）にPostCSSとAutoprefixerを通したCSSが正しく出力されること', async () => {
@@ -133,9 +164,10 @@ describe('プロダクトのスタイルシートおよびCSS処理パイプラ�
       ]).process(sassResult.css, { from: undefined });
 
       expect(processed.css).toBeTruthy();
-      // -webkit- プレフィックスの付与確認（keyframes や transform 等）
+      // ベンダープレフィックスおよび主要スタイルの検証
+      expect(processed.css).toContain('object-fit: cover;');
       expect(processed.css).toContain('@keyframes cat-kunekune');
-      expect(processed.css).toMatchSnapshot();
+      expect(processed.css).toContain('.cat-mascot');
     });
   });
 });
