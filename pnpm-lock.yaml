@@ -222,8 +222,8 @@ importers:
         specifier: 17.0.0
         version: 17.0.0(postcss@8.5.28)(stylelint@17.15.0(supports-color@10.2.2)(typescript@6.0.3))
       stylelint-scss:
-        specifier: 7.2.0
-        version: 7.2.0(stylelint@17.15.0(supports-color@10.2.2)(typescript@6.0.3))
+        specifier: 7.3.0
+        version: 7.3.0(stylelint@17.15.0(supports-color@10.2.2)(typescript@6.0.3))
       tsx:
         specifier: 4.23.15
         version: 4.23.15
@@ -3878,6 +3878,10 @@ packages:
     resolution: {integrity: sha512-VRSzKkbMm5jMDoKLbltAkFQ5Qr7VDiTFGXxYFXXowVj387GeGNOCsOH6Msy00SGZ3Fp84b1Naa1psqgcCIEP5Q==}
     engines: {node: '>=0.10.0'}
 
+  is-plain-object@5.1.0:
+    resolution: {integrity: sha512-bUi/yjmtKYcRVUtWRGr0UA6xEFh2I6zWUwMrUXB3s7bmYCaZ8a+0ZsTRkrawh/mzlSD1Y0Ph8bp/U+TvBpWDNw==}
+    engines: {node: '>=0.10.0'}
+
   is-property@1.0.2:
     resolution: {integrity: sha512-Ks/IoX00TtClbGQr4TWXemAnktAQvYB7HzcCxDGqEZU6oCmb2INHuOoKxbtR+HFkmYWBKv/dOZtGRiAjDhj92g==}
 
@@ -4913,6 +4917,10 @@ packages:
     resolution: {integrity: sha512-KvvtD7SrlBP7dlgkBghEE3r84CABm5SmV2aNcG4oCA+qDnJ/tvKonFVvwWAyyWUEwxuNawdfEAZKP9zM3oZ2Uw==}
     engines: {node: '>=4'}
 
+  postcss-selector-parser@7.1.6:
+    resolution: {integrity: sha512-7qASPzhKF2l2KLboRZux8CCTRMdGiV08vWmyKzPz22qZ7ZjQBOeY7rNzNoCLSUiftJ7HUq0GERHmxw/t0dCdMw==}
+    engines: {node: '>=4'}
+
   postcss-svgo@8.0.6:
     resolution: {integrity: sha512-auQHNmduFFHzz1sWYM3sroW7IDMzxshlLjnwAALfkrAgPegHFats+jMK6BRCcdIulxPmqXFSQvgoAX4vw8I59g==}
     engines: {node: ^22.11.0 || ^24.11.0 || >=26.0}
@@ -5515,6 +5523,12 @@ packages:
 
   stylelint-scss@7.2.0:
     resolution: {integrity: sha512-6E79Bachv0Iz0gqRUZgdqdXCsiq26DWBWIBNHYtjTmAp3wJu6cp/I37VfW7BPntmh2puF3bY09XWl4HZGrLhzw==}
+    engines: {node: '>=20.19.0'}
+    peerDependencies:
+      stylelint: ^16.8.2 || ^17.0.0
+
+  stylelint-scss@7.3.0:
+    resolution: {integrity: sha512-FBz075AUFoEJ1WQKsgsRr6EJKcjy7jxQjV8xsAqbPcnhNiXnJ7C489vqUyDZccBy1GorewlshERkaMuCyOKXaw==}
     engines: {node: '>=20.19.0'}
     peerDependencies:
       stylelint: ^16.8.2 || ^17.0.0
@@ -10302,6 +10316,8 @@ snapshots:
 
   is-plain-object@5.0.0: {}
 
+  is-plain-object@5.1.0: {}
+
   is-property@1.0.2: {}
 
   is-reference@1.2.1:
@@ -11459,6 +11475,11 @@ snapshots:
       cssesc: 3.0.0
       util-deprecate: 1.0.2
 
+  postcss-selector-parser@7.1.6:
+    dependencies:
+      cssesc: 3.0.0
+      util-deprecate: 1.0.2
+
   postcss-svgo@8.0.6(postcss@8.5.28):
     dependencies:
       postcss: 8.5.28
@@ -12059,6 +12080,21 @@ snapshots:
       postcss-media-query-parser: 0.2.3
       postcss-resolve-nested-selector: 0.1.6
       postcss-selector-parser: 7.1.1
+      postcss-value-parser: 4.2.0
+      stylelint: 17.15.0(supports-color@10.2.2)(typescript@6.0.3)
+
+  stylelint-scss@7.3.0(stylelint@17.15.0(supports-color@10.2.2)(typescript@6.0.3)):
+    dependencies:
+      '@csstools/css-calc': 3.3.0(@csstools/css-parser-algorithms@4.0.0(@csstools/css-tokenizer@4.0.0))(@csstools/css-tokenizer@4.0.0)
+      '@csstools/css-parser-algorithms': 4.0.0(@csstools/css-tokenizer@4.0.0)
+      '@csstools/css-syntax-patches-for-csstree': 1.1.12(css-tree@3.2.1)
+      '@csstools/css-tokenizer': 4.0.0
+      css-tree: 3.2.1
+      is-plain-object: 5.1.0
+      known-css-properties: 0.37.0
+      postcss-media-query-parser: 0.2.3
+      postcss-resolve-nested-selector: 0.1.6
+      postcss-selector-parser: 7.1.6
       postcss-value-parser: 4.2.0
       stylelint: 17.15.0(supports-color@10.2.2)(typescript@6.0.3)
 
