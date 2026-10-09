@@ -80,19 +80,17 @@ describe('プロダクトのスタイルシートおよびCSS処理パイプラ�
 
       expect(result.css).toBeTruthy();
 
-      // 猫マスコットの各パーツセレクタが出力されていること
+      // SVG の描画・表情・周辺エフェクトのスタイルが出力されていること
       const requiredSelectors = [
         '.cat-mascot',
-        '.face',
-        '.face-bg',
-        '.face-inner',
-        '.ear',
-        '.eye',
-        '.nose',
-        '.marble',
+        '.cat-mascot__drawing',
+        '.cat-mascot__head',
+        '.cat-mascot__face',
+        '.cat-mascot__ears',
         '.mouth',
-        '.whisker',
-        '.neck',
+        '.mouth-left',
+        '.mouth-right',
+        '.mouth-line',
         '.cat-mascot__heart',
         '.cat-mascot__gloom-spin',
       ];
@@ -164,8 +162,18 @@ describe('プロダクトのスタイルシートおよびCSS処理パイプラ�
       ]).process(sassResult.css, { from: undefined });
 
       expect(processed.css).toBeTruthy();
-      // ベンダープレフィックスおよび主要スタイルの検証
-      expect(processed.css).toContain('object-fit: cover;');
+      // CSS 処理後も SVG がコンテナ全体に表示され、顔の揺れが維持されること
+      const drawingRule = processed.root.nodes.find(
+        (node) => node.type === 'rule' && node.selector === '.cat-mascot__drawing',
+      );
+      expect(drawingRule?.toString()).toContain('width: 100%;');
+      expect(drawingRule?.toString()).toContain('height: 100%;');
+      expect(drawingRule?.toString()).toContain('overflow: visible;');
+      const headRule = processed.root.nodes.find(
+        (node) => node.type === 'rule' && node.selector === '.cat-mascot__head',
+      );
+      expect(headRule?.toString()).toContain('animation: cat-kunekune 15s infinite');
+      expect(headRule?.toString()).toContain('transform-box: view-box;');
       expect(processed.css).toContain('@keyframes cat-kunekune');
       expect(processed.css).toContain('.cat-mascot');
     });
