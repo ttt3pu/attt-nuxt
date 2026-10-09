@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { useId } from 'vue';
+
+const svgId = useId();
+
 withDefaults(
   defineProps<{
     /** ゲーム連動。未指定は idle */
@@ -16,43 +20,97 @@ withDefaults(
       'cat-mascot--react-hurt': gameReaction === 'hurt',
     }"
   >
-    <!-- <img src="~/assets/mihon.png" alt> -->
-    <div class="face-wrapper">
-      <!-- face -->
-      <div class="face">
-        <div class="face-inner face-inner--l" />
-        <div class="face-inner face-inner--r" />
-        <div class="face-inner face-inner--c" />
-        <div class="face-bg" />
-      </div>
-      <!-- ear -->
-      <div class="ear ear--l" />
-      <div class="ear ear--r" />
-      <!-- eye -->
-      <div class="eye eye--l" />
-      <div class="eye eye--r" />
-      <!-- nose -->
-      <div class="nose" />
-      <!-- marble -->
-      <div class="marble" />
-      <!-- mouth -->
-      <div class="mouth">
-        <div class="mouth-line" />
-      </div>
-      <!-- whisker -->
-      <div class="whisker whisker--l">
-        <span />
-        <span />
-        <span />
-      </div>
-      <div class="whisker whisker--r">
-        <span />
-        <span />
-        <span />
-      </div>
-    </div>
-    <!-- neck -->
-    <div class="neck" />
+    <svg class="cat-mascot__drawing" viewBox="0 0 500 500" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient :id="`${svgId}-pupil`" x2="0" y2="1">
+          <stop stop-color="#121212" />
+          <stop offset="1" stop-color="#333" />
+        </linearGradient>
+        <radialGradient
+          :id="`${svgId}-ear`"
+          gradientUnits="userSpaceOnUse"
+          cx="90"
+          cy="82.5"
+          r="93.841622"
+          gradientTransform="translate(0 -13.915179) scale(1 1.168669)"
+        >
+          <stop stop-color="#cecece" />
+          <stop offset="1" stop-color="#fff" />
+        </radialGradient>
+        <mask :id="`${svgId}-face`" maskUnits="userSpaceOnUse" x="0" y="0" width="500" height="500">
+          <path
+            fill="#fff"
+            d="M 252.323944 135 H 257.676056 A 187.323944 161.619718 0 0 1 445 296.619718 V 296.619718 A 181.971831 108.380282 0 0 1 263.028169 405 H 246.971831 A 181.971831 108.380282 0 0 1 65 296.619718 V 296.619718 A 187.323944 161.619718 0 0 1 252.323944 135 Z"
+          />
+        </mask>
+      </defs>
+      <path fill="#fff" d="M156 500 A100 168 0 0 1 356 500 Z" />
+      <!-- 元の高さ 0 の face-wrapper と同じ、(250, 0) を中心に傾ける。 -->
+      <g class="cat-mascot__head">
+        <g fill="#121212" class="cat-mascot__ears">
+          <g transform="translate(60 90) rotate(14 90 82.5)">
+            <path d="M0 0 A180 165 0 0 1 180 165 H70.2 A70.2 165 0 0 1 0 0 Z" />
+            <path
+              :fill="`url(#${svgId}-ear)`"
+              d="M20.539433 21.199707 A160 145 0 0 1 160 165 L70.2 145 A50.2 145 0 0 1 20.539433 21.199707 Z"
+            />
+          </g>
+          <g transform="translate(270 90) rotate(-14 90 82.5) translate(180 0) scale(-1 1)">
+            <path d="M0 0 A180 165 0 0 1 180 165 H70.2 A70.2 165 0 0 1 0 0 Z" />
+            <path
+              :fill="`url(#${svgId}-ear)`"
+              d="M20.539433 21.199707 A160 145 0 0 1 160 165 L70.2 145 A50.2 145 0 0 1 20.539433 21.199707 Z"
+            />
+          </g>
+        </g>
+        <!-- 下地と模様をまとめてマスクし、矩形の継ぎ目と輪郭の白い縁を防ぐ。 -->
+        <g class="cat-mascot__face">
+          <g :mask="`url(#${svgId}-face)`">
+            <rect x="65" y="135" width="380" height="270" fill="#fff" />
+            <g fill="#121212">
+              <ellipse cx="65" cy="220" rx="190" ry="100" />
+              <ellipse cx="445" cy="220" rx="190" ry="100" />
+              <ellipse cx="255" cy="129.7" rx="190" ry="100" />
+            </g>
+          </g>
+        </g>
+        <g fill="#f8e042">
+          <circle cx="180" cy="270" r="40" />
+          <circle cx="330" cy="270" r="40" />
+        </g>
+        <g :fill="`url(#${svgId}-pupil)`">
+          <circle cx="180" cy="270" r="26" />
+          <circle cx="330" cy="270" r="26" />
+        </g>
+        <path
+          fill="#121212"
+          transform="rotate(-14 233 345.5)"
+          d="M 233 333 H 233 A 23 12 0 0 1 256 345 V 345 A 25.760000 13 0 0 1 230.240000 358 H 230.240000 A 20.240000 8.750000 0 0 1 210 349.250000 V 349.250000 A 23 16.250000 0 0 1 233 333 Z"
+        />
+        <g transform="translate(256 360)" fill="#121212">
+          <g class="mouth">
+            <rect class="mouth-line" x="-2.5" y="-30" width="5" height="30" />
+            <rect class="mouth-left" x="-30" width="30" height="5" />
+            <rect class="mouth-right" width="30" height="5" />
+          </g>
+        </g>
+        <path
+          fill="#fec6db"
+          d="M 255 320 H 255 A 15 11.400000 0 0 1 270 331.400000 V 331.400000 A 15 3.600000 0 0 1 255 335 H 255 A 15 3.600000 0 0 1 240 331.400000 V 331.400000 A 15 11.400000 0 0 1 255 320 Z"
+        />
+        <g fill="#ddd">
+          <g
+            v-for="side in ['left', 'right']"
+            :key="side"
+            :transform="side === 'left' ? 'translate(80 340) rotate(-7)' : 'translate(425 340) scale(-1 1) rotate(-7)'"
+          >
+            <rect y="-20" width="80" height="3" rx="24" ry="0.9" transform="rotate(15 40 -18.5)" />
+            <rect width="80" height="3" rx="24" ry="0.9" />
+            <rect y="22" width="80" height="3" rx="24" ry="0.9" transform="rotate(-15 40 23.5)" />
+          </g>
+        </g>
+      </g>
+    </svg>
 
     <template v-if="gameReaction === 'happy'">
       <span class="cat-mascot__heart cat-mascot__heart--1" aria-hidden="true">♥</span>
@@ -97,10 +155,6 @@ withDefaults(
     #{$prop}: #{$px * 1.7}px;
   }
 
-  // @media (max-width: 1600px) {
-  //   #{$prop}: #{math.div($px, 1000) * 100}vw;
-  // }
-
   @media (width <= 1600px) {
     #{$prop}: #{math.div($px, 800) * 100}vw;
   }
@@ -112,13 +166,6 @@ withDefaults(
   @media (width <= 568px) {
     #{$prop}: #{math.div($px * 1.1, 768) * 100}vh;
   }
-}
-
-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.5;
 }
 
 .cat-mascot {
@@ -147,282 +194,71 @@ img {
   }
 }
 
-.face-wrapper {
-  position: relative;
-  z-index: var(--z-cat);
-  transform: translateX(5%) rotate(5deg);
-  animation: cat-kunekune 15s infinite cubic-bezier(0.82, -0.005, 0.21, 1.13);
-
-  /* stylelint-disable-next-line selector-type-no-unknown */
-  *::-ms-backdrop,
-  & {
-    animation: none;
-  }
-
-  @keyframes cat-kunekune {
-    50% {
-      transform: translateX(-5%) rotate(-5deg);
-    }
-  }
-}
-
-.face {
-  position: absolute;
-  border-radius: 70% 70% 68% 68% / 85% 85% 57% 57%;
-  overflow: hidden;
-  box-shadow: 0 2px 9px rgba(#000, 0.1);
-
-  @include cat-size(top, 135);
-  @include cat-size(left, 65);
-  @include cat-size(width, 380);
-  @include cat-size(height, 270);
-}
-
-.face-bg {
+.cat-mascot__drawing {
+  display: block;
   width: 100%;
   height: 100%;
-  z-index: var(--z-cat);
+  overflow: visible;
+}
 
-  &::before {
-    content: '';
-    display: block;
-    position: absolute;
-    background-color: #fff;
-    width: 100%;
-    height: 32%;
-    bottom: 0;
-  }
+.cat-mascot__head {
+  transform-box: view-box;
+  transform-origin: 250px 0;
+  transform: translateX(25px) rotate(5deg);
+  animation: cat-kunekune 15s infinite cubic-bezier(0.82, -0.005, 0.21, 1.13);
+}
 
-  &::after {
-    content: '';
-    display: block;
-    position: absolute;
-    background-color: #fff;
-    width: 90%;
-    height: 33%;
-    left: 5%;
-    bottom: 32%;
+@keyframes cat-kunekune {
+  50% {
+    transform: translateX(-25px) rotate(-5deg);
   }
 }
 
-.face-inner {
-  position: absolute;
-  z-index: var(--z-cat);
-  background-color: #121212;
-  border-radius: 50%;
-
-  @include cat-size(width, 380);
-  @include cat-size(height, 200);
-
-  &--l {
-    left: -50%;
-
-    @include cat-size(top, -15);
-  }
-
-  &--r {
-    transform: scale(-1, 1);
-    left: 50%;
-
-    @include cat-size(top, -15);
-  }
-
-  &--c {
-    top: -39%;
-  }
+.cat-mascot__face {
+  filter: drop-shadow(0 2px 4.5px rgb(0 0 0 / 10%));
 }
 
-.ear {
-  position: absolute;
-  border-radius: 0% 100% 61% 39% / 0% 100%;
-  background: radial-gradient(#cecece, #fff);
-  border: solid #121212;
-  box-shadow: 0 3px 6px rgba(#000, 0.16);
-
-  @include cat-size(border-width, 20);
-  @include cat-size(width, 180);
-  @include cat-size(height, 165);
-  @include cat-size(top, 90);
-
-  &--l {
-    transform: rotate(14deg);
-
-    @include cat-size(left, 60);
-  }
-
-  &--r {
-    transform: rotate(-14deg) scale(-1, 1);
-
-    @include cat-size(left, 270);
-  }
+.cat-mascot__ears {
+  filter: drop-shadow(0 3px 3px rgb(0 0 0 / 16%));
 }
 
-.eye {
-  position: absolute;
-  z-index: var(--z-cat-layer);
-  background-color: #f8e042;
-  border-radius: 50%;
-
-  @include cat-size(width, 80);
-  @include cat-size(height, 80);
-  @include cat-size(top, 230);
-
-  &--l {
-    @include cat-size(left, 140);
-  }
-
-  &--r {
-    @include cat-size(left, 290);
-  }
-
-  &::before {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 65%;
-    height: 65%;
-    background: linear-gradient(#121212, #333);
-    border-radius: 50%;
-  }
-}
-
-.nose {
-  position: absolute;
-  z-index: var(--z-cat);
-  background-color: #fec6db;
-  border-radius: 50% / 76% 76% 24% 24%;
-
-  @include cat-size(width, 30);
-  @include cat-size(height, 15);
-  @include cat-size(top, 320);
-  @include cat-size(left, 240);
-}
-
-.marble {
-  position: absolute;
-  background-color: #121212;
-  border-radius: 50% 50% 56% 44% / 65% 48% 52% 35%;
-  transform: rotate(-14deg);
-
-  @include cat-size(width, 46);
-  @include cat-size(height, 25);
-  @include cat-size(top, 333);
-  @include cat-size(left, 210);
-}
-
-.mouth {
-  position: absolute;
+.mouth,
+.mouth-left,
+.mouth-right,
+.mouth-line {
   transition: transform 0.22s ease;
+}
 
-  @include cat-size(left, 256);
-  @include cat-size(top, 360);
+.mouth-left {
+  transform-origin: -15px 2.5px;
+  transform: rotate(-15deg);
+}
 
-  &::before,
-  &::after {
-    position: absolute;
-    display: block;
-    content: '';
-    background-color: #121212;
-    transition: transform 0.22s ease;
-
-    @include cat-size(width, 30);
-    @include cat-size(height, 5);
-  }
-
-  &::before {
-    left: 100%;
-    transform: rotate(15deg);
-  }
-
-  &::after {
-    right: 100%;
-    transform: rotate(-15deg) scale(-1, 1);
-  }
+.mouth-right {
+  transform-origin: 15px 2.5px;
+  transform: rotate(15deg);
 }
 
 .mouth-line {
-  position: absolute;
-  background-color: #121212;
-  transform-origin: bottom center;
-  transition:
-    transform 0.22s ease,
-    opacity 0.22s ease;
-
-  @include cat-size(width, 5);
-  @include cat-size(height, 30);
-  @include cat-size(top, -30);
-  @include cat-size(left, -2.5);
+  transform-origin: 0 0;
 }
 
-.whisker {
-  position: absolute;
-  z-index: var(--z-cat);
-
-  @include cat-size(top, 340);
-
-  span {
-    position: absolute;
-    background: #ddd;
-    border-radius: 30%;
-
-    @include cat-size(width, 80);
-    @include cat-size(height, 3);
-
-    &:first-child {
-      transform: rotate(15deg);
-
-      @include cat-size(top, -20);
-    }
-
-    &:last-child {
-      transform: rotate(-15deg);
-
-      @include cat-size(bottom, -25);
-    }
+.cat-mascot--react-hurt {
+  .mouth {
+    transform: translateY(4px);
   }
 
-  &--l {
-    transform: rotate(-7deg);
-
-    @include cat-size(left, 80);
+  .mouth-left {
+    transform: rotate(-26deg);
   }
 
-  &--r {
-    transform: scale(-1, 1) rotate(-7deg);
-
-    @include cat-size(left, 425);
-  }
-}
-
-.neck {
-  bottom: 0;
-  position: absolute;
-  border-radius: 50% / 100% 100% 0% 0%;
-  background-color: #fff;
-
-  @include cat-size(left, 156);
-  @include cat-size(width, 200);
-  @include cat-size(height, 168);
-}
-
-/* おやつキャッチ連動 — 喜びは口は通常のまま＋周囲ハート。怒りのみ口形状を変える */
-.cat-mascot--react-hurt .mouth {
-  transform: translateY(4px);
-
-  &::before {
+  .mouth-right {
     transform: rotate(26deg);
   }
 
-  &::after {
-    transform: rotate(-26deg) scale(-1, 1);
+  .mouth-line {
+    transform: scaleY(1.12);
   }
-}
-
-.cat-mascot--react-hurt .mouth-line {
-  transform: scaleY(1.12);
 }
 
 /* 喜び：猫の周りのハート */
@@ -552,9 +388,13 @@ img {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .cat-mascot__head {
+    animation: none;
+  }
+
   .mouth,
-  .mouth::before,
-  .mouth::after,
+  .mouth-left,
+  .mouth-right,
   .mouth-line {
     transition-duration: 0.01ms;
   }
