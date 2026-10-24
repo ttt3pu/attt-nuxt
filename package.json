@@ -33,7 +33,7 @@
     "@xmldom/xmldom": "0.9.12",
     "markdown-it": "15.0.1",
     "next-auth": "4.21.1",
-    "nuxt": "4.5.2",
+    "nuxt": "4.6.2",
     "pg": "8.23.1",
     "postcss": "8.5.30",
     "postcss-html": "2.0.0",
