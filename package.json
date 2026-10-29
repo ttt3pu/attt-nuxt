@@ -57,7 +57,7 @@
     "eslint-config-prettier": "10.1.8",
     "http-server": "14.1.1",
     "nuxt-gtag": "5.0.0",
-    "pinia": "4.0.3",
+    "pinia": "4.1.0",
     "postcss": "8.5.31",
     "prettier": "3.9.10",
     "prisma": "7.10.1",
