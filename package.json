@@ -47,7 +47,7 @@
     "@pinia/nuxt": "1.0.2",
     "@prisma/client": "7.10.1",
     "@sidebase/nuxt-auth": "1.4.0",
-    "@tailwindcss/vite": "4.3.3",
+    "@tailwindcss/vite": "4.3.5",
     "@types/eslint-config-prettier": "6.11.3",
     "@types/markdown-it": "14.2.0",
     "@types/pg": "8.23.1",
