@@ -90,6 +90,9 @@ jobs:
       - name: Test
         run: pnpm test
 
+      - name: Test Nuxt application
+        run: pnpm test:nuxt
+
   ci:
     if: ${{ always() }}
     needs: [lint-js, lint-style, type-check, test]
