@@ -7,6 +7,7 @@ const require = createRequire(import.meta.url);
 export default defineConfig({
   resolve: {
     alias: {
+      vue: require.resolve('vue', { paths: [require.resolve('nuxt/package.json')] }),
       h3: require.resolve('h3', { paths: [require.resolve('nuxt/package.json')] }),
       '@resume': fileURLToPath(new URL('./packages/resume/src', import.meta.url)),
       '~': fileURLToPath(new URL('./app', import.meta.url)),
