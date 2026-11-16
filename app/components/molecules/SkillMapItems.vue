@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { SimpleIcon } from 'simple-icons';
 import type { CustomIcon } from '~/constants/awsIcons';
-import md from 'markdown-it';
+import { renderMarkdown } from '~/utils/renderMarkdown';
 
 type SkillIconData = SimpleIcon | CustomIcon;
 
@@ -19,12 +19,9 @@ const props = defineProps({
   },
 });
 
-// Use markdown-it directly to render descriptions without creating nested computed refs
-const mdRenderer = md();
-
 const renderedDescriptions = computed(() => {
   return props.items.map((item) => {
-    return mdRenderer.render(item.description);
+    return renderMarkdown(item.description);
   });
 });
 </script>
@@ -47,10 +44,7 @@ const renderedDescriptions = computed(() => {
         >
           <path :d="item.icnData.path" />
         </svg>
-        <div
-          v-else
-          class="w-8 h-8 mr-3 shrink-0 rounded bg-gray-600 flex items-center justify-center"
-        >
+        <div v-else class="w-8 h-8 mr-3 shrink-0 rounded bg-gray-600 flex items-center justify-center">
           <span class="text-gray-400 text-xs font-bold">{{ item.heading.charAt(0) }}</span>
         </div>
         <span class="text-white text-xl font-medium">{{ item.heading }}</span>
