@@ -1,0 +1,42 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`スキル説明の表示 > 段落と強調・リンクを表示し本文専用の閲覧制限変換を適用しないこと 1`] = `
+"<p><strong>画面開発</strong>を担当しています。</p>
+<p><a href="https://example.com/demo">制作例</a></p>
+<p>[secret]補足[/secret]</p>
+"
+`;
+
+exports[`保存された本文やスキル説明の安全な表示 > スキル説明 に含まれる HTML と危険なリンクが実行可能な要素にならないこと 1`] = `
+"<p>&lt;script&gt;alert(1)&lt;/script&gt;</p>
+<p>&lt;img src=x onerror=alert(1)&gt;</p>
+<p>[開く](javascript:alert(1))</p>
+<p>[secret]&lt;img src=x onerror=alert(1)&gt;[/secret]</p>
+"
+`;
+
+exports[`保存された本文やスキル説明の安全な表示 > 本文 に含まれる HTML と危険なリンクが実行可能な要素にならないこと 1`] = `
+"<p>&lt;script&gt;alert(1)&lt;/script&gt;</p>
+<p>&lt;img src=x onerror=alert(1)&gt;</p>
+<p>[開く](javascript:alert(1))</p>
+<p><span title="この内容を閲覧するにはアクセストークンが必要です。">&lt;img src=x onerror=alert(1)&gt;</span></p>
+"
+`;
+
+exports[`記事・プロフィール・職歴の本文表示 > 本番相当の本文構造と閲覧制限の注記が維持されること 1`] = `
+"<h2>開発記録</h2>
+<p><strong>試作版</strong>の紹介です。</p>
+<h3>利用方法</h3>
+<p>詳細は<a href="https://example.com/guide">案内</a>を参照。</p>
+<p><a href="https://example.com">https://example.com</a></p>
+<ul>
+<li>設計</li>
+<li>実装</li>
+</ul>
+<ol>
+<li>確認</li>
+<li>公開</li>
+</ol>
+<p><span title="この内容を閲覧するにはアクセストークンが必要です。">非公開の案件名</span></p>
+"
+`;

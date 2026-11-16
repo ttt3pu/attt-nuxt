@@ -8,6 +8,18 @@
   "ignoreDeps": ["packages/resume"],
   "packageRules": [
     {
+      "description": "Automerge nuxt minor/patch when tests pass",
+      "matchPackageNames": ["nuxt"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true
+    },
+    {
+      "description": "Automerge markdown-it minor/patch when tests pass",
+      "matchPackageNames": ["markdown-it"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true
+    },
+    {
       "description": "Disable minimumReleaseAge and enable automerge for git submodules when tests pass",
       "matchManagers": ["git-submodules"],
       "minimumReleaseAge": null,
