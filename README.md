@@ -55,4 +55,9 @@ Prisma 経路のテストは実 DB を通す。テーブルを空にしてから
 ```sh
 make test-db
 pnpm test
+pnpm test:nuxt
 ```
+
+`test:nuxt` は既存の DB テストの後に単独で実行する。テスト用 DB に記事を追加し、
+実アプリの Nuxt 開発サーバーを一時起動して API・SSR・管理画面の配信を検証する。
+終了時に追加記事とサーバーを片付ける。

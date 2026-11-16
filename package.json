@@ -17,6 +17,7 @@
     "typeCheck": "nuxi typecheck",
     "preview": "http-server ./.output/public",
     "test": "vitest run",
+    "test:nuxt": "vitest run --config vitest.nuxt.config.ts",
     "test:watch": "vitest",
     "test:update": "vitest run -u",
     "lint:js": "eslint .",
