@@ -8,6 +8,12 @@
   "ignoreDeps": ["packages/resume"],
   "packageRules": [
     {
+      "description": "Automerge zod minor/patch when tests pass",
+      "matchPackageNames": ["zod"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true
+    },
+    {
       "description": "Automerge nuxt minor/patch when tests pass",
       "matchPackageNames": ["nuxt"],
       "matchUpdateTypes": ["minor", "patch"],
