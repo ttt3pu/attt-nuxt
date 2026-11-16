@@ -1,0 +1,81 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`職務経歴 API のトークン検証と秘密情報の公開 > トークン未入力または不一致の場合は秘密部分だけが伏せ字になること（{"token":""}） 1`] = `
+{
+  "body": {
+    "isPassed": false,
+    "jobs": "## 開発の経歴
+
+公開プロジェクトの説明。
+
+[secret]█████[/secret]で開発を担当。",
+    "profile": "# プロフィール
+
+公開の紹介文。
+
+所属: [secret]█████[/secret]
+連絡先: [secret]███████████████████[/secret]",
+  },
+  "status": 200,
+}
+`;
+
+exports[`職務経歴 API のトークン検証と秘密情報の公開 > トークン未入力または不一致の場合は秘密部分だけが伏せ字になること（{"token":"wrong-token"}） 1`] = `
+{
+  "body": {
+    "isPassed": false,
+    "jobs": "## 開発の経歴
+
+公開プロジェクトの説明。
+
+[secret]█████[/secret]で開発を担当。",
+    "profile": "# プロフィール
+
+公開の紹介文。
+
+所属: [secret]█████[/secret]
+連絡先: [secret]███████████████████[/secret]",
+  },
+  "status": 200,
+}
+`;
+
+exports[`職務経歴 API のトークン検証と秘密情報の公開 > トークン未入力または不一致の場合は秘密部分だけが伏せ字になること（{}） 1`] = `
+{
+  "body": {
+    "isPassed": false,
+    "jobs": "## 開発の経歴
+
+公開プロジェクトの説明。
+
+[secret]█████[/secret]で開発を担当。",
+    "profile": "# プロフィール
+
+公開の紹介文。
+
+所属: [secret]█████[/secret]
+連絡先: [secret]███████████████████[/secret]",
+  },
+  "status": 200,
+}
+`;
+
+exports[`職務経歴 API のトークン検証と秘密情報の公開 > 正しいトークンの場合はプロフィールと職歴が伏せ字なしで返ること 1`] = `
+{
+  "body": {
+    "isPassed": true,
+    "jobs": "## 開発の経歴
+
+公開プロジェクトの説明。
+
+[secret]非公開案件[/secret]で開発を担当。",
+    "profile": "# プロフィール
+
+公開の紹介文。
+
+所属: [secret]架空研究所[/secret]
+連絡先: [secret]sample@example.test[/secret]",
+  },
+  "status": 200,
+}
+`;

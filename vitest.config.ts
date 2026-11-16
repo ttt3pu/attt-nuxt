@@ -1,9 +1,14 @@
 import { defineConfig } from 'vitest/config';
 import { fileURLToPath } from 'node:url';
+import { createRequire } from 'node:module';
+
+const require = createRequire(import.meta.url);
 
 export default defineConfig({
   resolve: {
     alias: {
+      h3: require.resolve('h3', { paths: [require.resolve('nuxt/package.json')] }),
+      '@resume': fileURLToPath(new URL('./packages/resume/src', import.meta.url)),
       '~': fileURLToPath(new URL('./app', import.meta.url)),
       '@': fileURLToPath(new URL('./app', import.meta.url)),
       '~~': fileURLToPath(new URL('./', import.meta.url)),
