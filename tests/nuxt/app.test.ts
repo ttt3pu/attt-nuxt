@@ -38,7 +38,7 @@ beforeAll(async () => {
   origin = `http://127.0.0.1:${port}`;
 
   // プロダクトの設定、ページ、API、自動 import をそのまま使う。外部のフィード取得は呼ばない。
-  server = spawn('pnpm', ['dev', '--host', '127.0.0.1', '--port', String(port)], {
+  server = spawn('pnpm', ['dev', '--host', '127.0.0.1', '--port', String(port), '--extends', './tests/nuxt/fixtures'], {
     detached: true,
     stdio: ['ignore', 'pipe', 'pipe'],
     env: {
@@ -86,6 +86,36 @@ afterAll(async () => {
 });
 
 describe('Nuxt を通したブログと管理画面の配信', () => {
+  it('Pinia に取り込んだ記事が SSR で日付順のリンクとして描画され、復元用の状態も配信されること', async () => {
+    const response = await request('/__test/posts');
+    const html = await response.text();
+    expect(response.status).toBe(200);
+    const items = [...html.matchAll(/<a\b[^>]*role="listitem"[^>]*>[\s\S]*?<\/a>/g)].map(([item]) => item);
+    expect(items).toHaveLength(4);
+    expect(items[0]).toContain('最新のブログ検証記事');
+    expect(items[0]).toContain('href="/blog/42"');
+    expect(items[0]).toContain('2024.05.01');
+    expect(items[1]).toContain('外部フィードの検証記事');
+    expect(items[1]).toContain('href="https://example.com/articles/feed-sample"');
+    expect(items[1]).toContain('target="_blank"');
+    expect(items[2]).toContain('ブログ一覧の検証記事');
+    expect(items[2]).toContain('href="/blog/41"');
+    const payload = html.match(/<script[^>]*id="__NUXT_DATA__"[^>]*>([\s\S]*?)<\/script>/)?.[1];
+    expect(payload).toBeDefined();
+    expect(payload).toContain('"pinia"');
+    expect(payload).toContain('最新のブログ検証記事');
+  });
+
+  it('次の SSR リクエストに前のリクエストの記事が漏れないこと', async () => {
+    expect((await request('/__test/posts')).status).toBe(200);
+    const response = await request('/__test/posts?empty=1');
+    const html = await response.text();
+    expect(response.status).toBe(200);
+    expect([...html.matchAll(/role="listitem"/g)]).toHaveLength(1);
+    expect(html).not.toContain('最新のブログ検証記事');
+    expect(html).not.toContain('外部フィードの検証記事');
+  });
+
   it('動的な記事 API が DB の記事と公開日時を JSON で返すこと', async () => {
     const response = await request(`/api/blog/${articleId}`);
     expect(response.status).toBe(200);

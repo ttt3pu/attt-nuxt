@@ -8,6 +8,13 @@
   "ignoreDeps": ["packages/resume"],
   "packageRules": [
     {
+      "description": "Group and automerge pinia minor/patch when tests pass",
+      "matchPackageNames": ["pinia", "@pinia/nuxt"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "pinia",
+      "automerge": true
+    },
+    {
       "description": "Automerge zod minor/patch when tests pass",
       "matchPackageNames": ["zod"],
       "matchUpdateTypes": ["minor", "patch"],
