@@ -52,28 +52,20 @@ export default defineNuxtConfig({
 
   components: true,
 
-  modules: [
-    '@nuxtjs/google-fonts',
-    '@pinia/nuxt',
-    '@nuxtjs/stylelint-module',
-    '@sidebase/nuxt-auth',
-    'nuxt-gtag',
-    '@nuxt/eslint',
-  ],
-
-  auth: {
-    originEnvKey: 'NUXT_AUTH_BASE_URL',
-  },
+  modules: ['@nuxt/fonts', '@pinia/nuxt', '@nuxtjs/stylelint-module', 'nuxt-auth-utils', 'nuxt-gtag', '@nuxt/eslint'],
 
   gtag: {
     id: 'G-YY7ZSN9HY4',
   },
 
-  googleFonts: {
-    families: {
-      Poppins: [400, 500],
-      'Noto Sans JP': [400],
+  fonts: {
+    defaults: {
+      styles: ['normal'],
     },
+    families: [
+      { name: 'Poppins', provider: 'google', weights: [400, 500] },
+      { name: 'Noto Sans JP', provider: 'google', weights: [400] },
+    ],
   },
 
   vite: {
@@ -101,6 +93,12 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
+    // 旧環境変数をビルドに埋め込まず、サーバー起動時に展開する。
+    nitro: { envExpansion: true },
+    // 接頭辞は旧 secret の長さに依存せず新セッションの入力形式を満たすためのもの。
+    // secret 自体の強度は AUTH_SECRET に依存する。
+    appSecret: 'attt-nuxt:legacy-auth-session-secret:{{AUTH_SECRET}}',
+    session: { maxAge: 60 * 60 * 24 * 30 },
     SECRET_TOKEN: '',
     DEPLOY_WEBHOOK_URL: '',
   },
