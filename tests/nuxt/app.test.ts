@@ -3,6 +3,7 @@ import { readFile } from 'node:fs/promises';
 import { createServer } from 'node:net';
 import { setTimeout as delay } from 'node:timers/promises';
 import { promisify } from 'node:util';
+import postcss from 'postcss';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { createPrismaClient } from '../../server/utils/prisma';
 
@@ -106,6 +107,65 @@ afterAll(async () => {
 });
 
 describe('Nuxt を通したブログと管理画面の配信', () => {
+  it.runIf(production)(
+    '記事ページで使う和文・欧文フォントが指定のウェイトで同一オリジンから配信されること',
+    async () => {
+      const html = await (await request(`/blog/${articleId}`)).text();
+      expect(html).not.toMatch(/https?:\/\/fonts\.(?:googleapis|gstatic)\.com/);
+      const stylesheets = [...html.matchAll(/<link\b[^>]*rel="stylesheet"[^>]*href="([^"]+)"[^>]*>/g)];
+      expect(stylesheets.length).toBeGreaterThan(0);
+      // Nuxt はページの CSS と @font-face を SSR HTML にインライン化する場合もある。
+      const css = [
+        ...[...html.matchAll(/<style\b[^>]*>([\s\S]*?)<\/style>/g)].map((match) => match[1]),
+        ...(await Promise.all(
+          stylesheets.map(async ([, href]) => {
+            const response = await request(href!);
+            expect(response.status).toBe(200);
+            return response.text();
+          }),
+        )),
+      ].join('\n');
+      expect(css).not.toMatch(/https?:\/\/fonts\.(?:googleapis|gstatic)\.com/);
+      expect(css).toMatch(/--font-family-en:\s*["']?Poppins/);
+      expect(css).toMatch(/--font-family-jp:\s*["']Noto Sans JP["']/);
+      expect(css).toMatch(/font-family:\s*var\(--font-family-jp\)/);
+
+      const faces: { family: string; weight: string; style: string; urls: string[] }[] = [];
+      postcss.parse(css).walkAtRules('font-face', (rule) => {
+        const declarations: Record<string, string> = {};
+        rule.walkDecls((decl) => {
+          declarations[decl.prop] = decl.value;
+        });
+        const family = declarations['font-family']?.replace(/["']/g, '');
+        if (family !== 'Poppins' && family !== 'Noto Sans JP') return;
+        faces.push({
+          family,
+          weight: declarations['font-weight']!,
+          style: declarations['font-style']!,
+          urls: [...(declarations.src ?? '').matchAll(/url\(["']?([^"')]+)["']?\)/g)].map((match) => match[1]!),
+        });
+      });
+      expect([...new Set(faces.map(({ family, weight, style }) => `${family}: ${weight} ${style}`))].sort()).toEqual([
+        'Noto Sans JP: 400 normal',
+        'Poppins: 400 normal',
+        'Poppins: 500 normal',
+      ]);
+      // サブセットごとに出力されたファイルも確認し、日本語の一部だけ欠ける退行を検知する。
+      for (const face of faces) {
+        expect(face.urls.length).toBeGreaterThan(0);
+        for (const url of face.urls) {
+          expect(new URL(url, origin).origin).toBe(origin);
+          const response = await request(url);
+          expect(response.status, url).toBe(200);
+          expect(response.headers.get('content-type')).toMatch(/font\//);
+          const bytes = Buffer.from(await response.arrayBuffer());
+          expect(bytes.subarray(0, 4).toString()).toBe('wOF2');
+          expect(bytes.length).toBeGreaterThan(100);
+        }
+      }
+    },
+  );
+
   it('Pinia に取り込んだ記事が SSR で日付順のリンクとして描画され、復元用の状態も配信されること', async () => {
     const response = await request('/__test/posts');
     const html = await response.text();
