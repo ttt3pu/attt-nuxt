@@ -2,7 +2,9 @@ import type { H3Event } from 'h3';
 import { createError } from 'h3';
 import type { UserSession } from '#auth-utils';
 
-export const ADMIN_EMAIL = 'ttt3pu@gmail.com';
+import { ADMIN_EMAIL } from '../../shared/constants/auth';
+
+export { ADMIN_EMAIL };
 
 export function isAdminSession(session?: Pick<UserSession, 'user'> | null): boolean {
   return session?.user?.email === ADMIN_EMAIL;

@@ -14,6 +14,14 @@
   - 依存先：P2
   - 完了条件：認証テスト、lint、typeCheck と実行可能な統合テストが成功する
   - 証跡／阻害要因／再開メモ：互換実装の `pnpm test` 72 件、`pnpm test:nuxt` 8 件（本番専用 1 件スキップ）が成功。`pnpm test:nuxt:build` 9 件も成功。認証情報なしでビルドし、実行時だけ旧変数を設定。`pnpm lint` と `pnpm typeCheck` が成功。既存の v-html 警告 1 件あり。
+- [x] P4 自動更新に備えた認証の製品経路テスト
+  - 依存先：P3
+  - 完了条件：実 OAuth ハンドラーから Cookie 発行・復元・権限制御・ログアウト・不正 state 拒否を開発と本番で検証
+  - 証跡／阻害要因／再開メモ：Google の外部通信だけを一時 HTTP サーバーで代替。`pnpm test` 72 件、`pnpm test:nuxt` 12 件（本番専用 1 件スキップ）、`pnpm test:nuxt:build` 13 件成功。lint・typeCheck も成功。既存 CI が両統合テストを実行する。
+- [x] P5 nuxt-auth-utils の minor/patch 自動マージ
+  - 依存先：P4
+  - 完了条件：リポジトリの Renovate 設定で対象ライブラリの minor/patch を許可し、回帰テストが CI で実行される
+  - 証跡／阻害要因／再開メモ：共有プリセットに対象パッケージが含まれていないことを確認し、renovate.json に対象限定の packageRule を追加。extends と共有プリセットは維持。
 
 完了日：2026-11-18
 
