@@ -8,6 +8,12 @@
   "ignoreDeps": ["packages/resume"],
   "packageRules": [
     {
+      "description": "Automerge unstorage minor/patch when production build tests pass",
+      "matchPackageNames": ["unstorage"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true
+    },
+    {
       "description": "Group and automerge pinia minor/patch when tests pass",
       "matchPackageNames": ["pinia", "@pinia/nuxt"],
       "matchUpdateTypes": ["minor", "patch"],

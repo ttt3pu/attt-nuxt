@@ -1,6 +1,8 @@
-import { spawn, type ChildProcess } from 'node:child_process';
+import { execFile, spawn, type ChildProcess } from 'node:child_process';
+import { readFile } from 'node:fs/promises';
 import { createServer } from 'node:net';
 import { setTimeout as delay } from 'node:timers/promises';
+import { promisify } from 'node:util';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { createPrismaClient } from '../../server/utils/prisma';
 
@@ -20,6 +22,7 @@ let articleId: number | undefined;
 let server: ChildProcess | undefined;
 let origin: string;
 let serverOutput = '';
+const production = process.env.NUXT_TEST_BUILD === '1';
 
 async function request(path: string, init?: RequestInit) {
   return fetch(new URL(path, origin), { signal: AbortSignal.timeout(60_000), ...init });
@@ -37,18 +40,35 @@ beforeAll(async () => {
   await new Promise<void>((resolve, reject) => socket.close((error) => (error ? reject(error) : resolve())));
   origin = `http://127.0.0.1:${port}`;
 
+  const env: NodeJS.ProcessEnv = {
+    ...process.env,
+    NODE_ENV: production ? 'production' : 'development',
+    NUXT_AUTH_BASE_URL: `${origin}/api/auth`,
+    AUTH_SECRET: 'nuxt-regression-test-secret',
+    NUXT_TELEMETRY_DISABLED: '1',
+    BROWSER: 'none',
+    HOST: '127.0.0.1',
+    PORT: String(port),
+    NUXT_TEST_PRERENDER_ARTICLE: production ? String(articleId) : '',
+  };
+  if (production) {
+    // Nitro が生成する unstorage の import も含め、本番と同じビルド経路を通す。
+    await promisify(execFile)('pnpm', ['build', '--extends', './tests/nuxt/fixtures'], {
+      env,
+      timeout: 240_000,
+      maxBuffer: 4 * 1024 * 1024,
+    });
+  }
+
   // プロダクトの設定、ページ、API、自動 import をそのまま使う。外部のフィード取得は呼ばない。
-  server = spawn('pnpm', ['dev', '--host', '127.0.0.1', '--port', String(port), '--extends', './tests/nuxt/fixtures'], {
+  const command = production ? process.execPath : 'pnpm';
+  const args = production
+    ? ['.output/server/index.mjs']
+    : ['dev', '--host', '127.0.0.1', '--port', String(port), '--extends', './tests/nuxt/fixtures'];
+  server = spawn(command, args, {
     detached: true,
     stdio: ['ignore', 'pipe', 'pipe'],
-    env: {
-      ...process.env,
-      NODE_ENV: 'development',
-      NUXT_AUTH_BASE_URL: `${origin}/api/auth`,
-      AUTH_SECRET: 'nuxt-regression-test-secret',
-      NUXT_TELEMETRY_DISABLED: '1',
-      BROWSER: 'none',
-    },
+    env,
   });
   for (const stream of [server.stdout, server.stderr]) {
     stream?.on('data', (chunk) => {
@@ -139,6 +159,10 @@ describe('Nuxt を通したブログと管理画面の配信', () => {
     expect(html).toContain('&lt;script&gt;');
     expect(html).not.toContain('<script>alert("sample")</script>');
     expect(html).toContain('__NUXT_DATA__');
+    if (production) {
+      // SSR の成功だけでなく、事前生成された記事がそのまま配信されることを確認する。
+      expect(html).toBe(await readFile(`.output/public/blog/${articleId}/index.html`, 'utf8'));
+    }
   });
 
   it('管理画面は記事編集フォームを SSR せずクライアント用スクリプトを配信すること', async () => {

@@ -93,6 +93,9 @@ jobs:
       - name: Test Nuxt application
         run: pnpm test:nuxt
 
+      - name: Test production build and prerendered articles
+        run: pnpm test:nuxt:build
+
   ci:
     if: ${{ always() }}
     needs: [lint-js, lint-style, type-check, test]
