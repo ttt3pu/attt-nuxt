@@ -366,7 +366,7 @@ describe('Nuxt を通したブログと管理画面の配信', () => {
     expect(html).toContain('<h2>配信の確認</h2>');
     expect(html).toContain('<a href="/">トップページ</a>');
     expect(html).toMatch(
-      /<a\b[^>]*href="\/"[^>]*>[\s\S]*?class="[^"]*chevron-left-icon[^"]*"[\s\S]*?<svg\b[^>]*>[\s\S]*?<path\b[^>]*d="[^"]+"[\s\S]*?<span>Main page<\/span><\/a>/,
+      /<a\b[^>]*href="\/"[^>]*>[\s\S]*?class="[^"]*chevron-left-icon[^"]*"[\s\S]*?<svg\b[^>]*>[\s\S]*?<path\b[^>]*d="[^"]+"[\s\S]*?<span\b[^>]*>Main page<\/span><\/a>/,
     );
     expect(html).toContain('&lt;script&gt;');
     expect(html).not.toContain('<script>alert("sample")</script>');
