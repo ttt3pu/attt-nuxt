@@ -9,11 +9,11 @@
 - [x] P2 認証・設定・依存・ドキュメントの移行
   - 依存先：P1
   - 完了条件：旧依存を削除し、Google OAuth と管理者ガードが新セッションで動作する
-  - 証跡／阻害要因／再開メモ：認証ルート、画面、依存、環境変数と README を更新。旧セッションは引き継がず再ログインする。
+  - 証跡／阻害要因／再開メモ：認証ルートを従来の URL に変更し、既存環境変数を実行時に参照。.sample.envrc を旧設定に戻し README を更新。旧セッションは引き継がず再ログインする。
 - [x] P3 回帰テストと静的検証
   - 依存先：P2
   - 完了条件：認証テスト、lint、typeCheck と実行可能な統合テストが成功する
-  - 証跡／阻害要因／再開メモ：`pnpm test` 67 件、`pnpm test:nuxt` 7 件（本番専用 1 件スキップ）、`pnpm test:nuxt:build` 8 件が成功。`pnpm lint` と `pnpm typeCheck` が成功。既存の v-html 警告 1 件あり。
+  - 証跡／阻害要因／再開メモ：互換実装の `pnpm test` 72 件、`pnpm test:nuxt` 8 件（本番専用 1 件スキップ）が成功。`pnpm test:nuxt:build` 9 件も成功。認証情報なしでビルドし、実行時だけ旧変数を設定。`pnpm lint` と `pnpm typeCheck` が成功。既存の v-html 警告 1 件あり。
 
 完了日：2026-11-18
 
@@ -24,8 +24,8 @@ Issue #849 の Google OAuth と管理者メール判定を nuxt-auth-utils へ�
 
 ## 決定事項・制約
 
-Google のコールバックを `/auth/google` に変更する。セッションの最大有効期間は旧実装と同じ 30 日。
-本番環境では `NUXT_APP_SECRET` と Google OAuth 環境変数を設定する。
+Google のコールバック `/api/auth/callback/google` と既存の環境変数を維持する。セッションの最大有効期間は旧実装と同じ 30 日。
+既存の `AUTH_SECRET` を実行時に利用し、環境変数や Google 側の設定変更を不要にする。
 
 ## 計画全体の完成条件
 
@@ -36,4 +36,4 @@ Google のコールバックを `/auth/google` に変更する。セッション
 既存 DB は PostgreSQL 16 のデータと PostgreSQL 17 の不整合で起動できなかった。
 初回の全体テストは DB タイムアウトで失敗。Nuxt 統合テストの初回実行は DB 待機中に終了した。
 既存データを変更せず、別ポートの一時 PostgreSQL 17 にマイグレーションを適用し、全体・開発サーバー・本番ビルドの順で再検証した。
-実 Google アカウントによる OAuth ログインは未実施。Google Cloud と本番の環境変数は README に沿って切り替える。
+実 Google アカウントによる OAuth ログインは未実施。Google Cloud と本番の環境変数は既存設定を維持する。

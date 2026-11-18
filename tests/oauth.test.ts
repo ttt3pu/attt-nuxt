@@ -12,7 +12,7 @@ vi.mock('nuxt/server', () => ({ sendRedirect: mocks.redirect }));
 vi.stubGlobal('defineOAuthGoogleEventHandler', (options: unknown) => options);
 vi.stubGlobal('replaceUserSession', mocks.replace);
 vi.stubGlobal('clearUserSession', mocks.clear);
-const { default: handler } = await import('../server/routes/auth/google.get');
+const { default: handler } = await import('../server/api/auth/callback/google.get');
 const callbacks = handler as unknown as {
   onSuccess: (event: RequestEvent, result: { user: Record<string, unknown> }) => Promise<unknown>;
   onError: (event: RequestEvent) => Promise<unknown>;

@@ -10,7 +10,7 @@ definePageMeta({
 });
 
 async function handleSignIn() {
-  await navigateTo('/auth/google', { external: true });
+  await navigateTo('/api/auth/callback/google', { external: true });
 }
 
 async function handleSignOut() {

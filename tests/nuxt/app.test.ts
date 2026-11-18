@@ -44,17 +44,37 @@ beforeAll(async () => {
   const env: NodeJS.ProcessEnv = {
     ...process.env,
     NODE_ENV: production ? 'production' : 'development',
-    NUXT_APP_SECRET: 'nuxt-regression-test-secret-at-least-32-characters',
+    AUTH_SECRET: 'legacy-test-secret',
+    AUTH_CLIENT_ID_GOOGLE: 'legacy-test-client-id',
+    AUTH_CLIENT_SECRET_GOOGLE: 'legacy-test-client-secret',
+    NUXT_AUTH_BASE_URL: `${origin}/api/auth`,
     NUXT_TELEMETRY_DISABLED: '1',
     BROWSER: 'none',
     HOST: '127.0.0.1',
     PORT: String(port),
     NUXT_TEST_PRERENDER_ARTICLE: production ? String(articleId) : '',
   };
+  // 新しい変数に依存せず、既存の短い secret でも実行できることを検証する。
+  delete env.NUXT_APP_SECRET;
+  delete env.NITRO_APP_SECRET;
+  delete env.NUXT_APP_SECRET_GENERATED;
+  delete env.NUXT_OAUTH_GOOGLE_CLIENT_ID;
+  delete env.NUXT_OAUTH_GOOGLE_CLIENT_SECRET;
+  delete env.NUXT_OAUTH_GOOGLE_REDIRECT_URL;
   if (production) {
+    const buildEnv = { ...env };
+    for (const key of [
+      'AUTH_SECRET',
+      'AUTH_CLIENT_ID_GOOGLE',
+      'AUTH_CLIENT_SECRET_GOOGLE',
+      'NUXT_AUTH_BASE_URL',
+      'NEXTAUTH_URL',
+      'AUTH_ORIGIN',
+    ])
+      Reflect.deleteProperty(buildEnv, key);
     // Nitro が生成する unstorage の import も含め、本番と同じビルド経路を通す。
     await promisify(execFile)('pnpm', ['build', '--extends', './tests/nuxt/fixtures'], {
-      env,
+      env: buildEnv,
       timeout: 240_000,
       maxBuffer: 4 * 1024 * 1024,
     });
@@ -106,6 +126,17 @@ afterAll(async () => {
 });
 
 describe('Nuxt を通したブログと管理画面の配信', () => {
+  it('旧環境変数だけで Google 認証を開始し登録済みのコールバックに戻ること', async () => {
+    const response = await request('/api/auth/callback/google', { redirect: 'manual' });
+    expect(response.status).toBe(302);
+    const location = new URL(response.headers.get('location')!);
+    expect(location.origin).toBe('https://accounts.google.com');
+    expect(location.searchParams.get('client_id')).toBe('legacy-test-client-id');
+    expect(location.searchParams.get('redirect_uri')).toBe(`${origin}/api/auth/callback/google`);
+    expect(location.searchParams.get('state')).toBeTruthy();
+    expect(response.headers.get('set-cookie')).toBeTruthy();
+  });
+
   it('未ログインでは公開セッションにユーザーが含まれずログアウトできること', async () => {
     const response = await request('/api/_auth/session');
     expect(response.status).toBe(200);

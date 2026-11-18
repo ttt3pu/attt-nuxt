@@ -69,16 +69,15 @@ pnpm test:nuxt:build
 
 ## Google ログインの設定
 
-認証には `nuxt-auth-utils` を使用する。`.sample.envrc` を参考に、ローカル・本番それぞれで次の環境変数を設定する。
+認証には `nuxt-auth-utils` を使用する。既存の環境変数と Google Cloud の登録済みリダイレクト URI はそのまま利用できる。
 
-- `NUXT_OAUTH_GOOGLE_CLIENT_ID`：Google OAuth クライアント ID
-- `NUXT_OAUTH_GOOGLE_CLIENT_SECRET`：Google OAuth クライアントシークレット
-- `NUXT_OAUTH_GOOGLE_REDIRECT_URL`：公開オリジンに `/auth/google` を付けた URL
-- `NUXT_APP_SECRET`：32 文字以上のランダム値（`openssl rand -base64 32` などで生成）。本番では必須で、同一環境の全インスタンスで共通にする
+- `AUTH_CLIENT_ID_GOOGLE`：既存の Google OAuth クライアント ID
+- `AUTH_CLIENT_SECRET_GOOGLE`：既存の Google OAuth クライアントシークレット
+- `AUTH_SECRET`：既存のセッション用シークレット
+- `NUXT_AUTH_BASE_URL`：既存の認証ベース URL（例：`http://localhost:3000/api/auth`）
 
-Google Cloud Console の「承認済みのリダイレクト URI」にも同じ URL を登録する。
-ローカルでは `http://localhost:3000/auth/google`、本番では `https://<公開ホスト>/auth/google` を使う。
-
-旧 `AUTH_CLIENT_ID_GOOGLE`、`AUTH_CLIENT_SECRET_GOOGLE`、`AUTH_SECRET`、`AUTH_ORIGIN`、`NEXTAUTH_URL`、`NUXT_AUTH_BASE_URL` は不要。
-NextAuth からセッションは引き継がれないため、切り替え後は再ログインする。
-Google が確認済みのメールアドレスでログインし、既存の管理者メール判定で管理画面と更新 API を保護する。
+コールバックは従来と同じ `/api/auth/callback/google`。
+固定 URL は `NUXT_AUTH_BASE_URL`、`NEXTAUTH_URL`、`AUTH_ORIGIN` の順で参照し、すべて未設定なら現在のリクエスト URL を使う。
+新しい `NUXT_OAUTH_*` や `NUXT_APP_SECRET` の追加は不要。
+旧 secret はサーバー起動時に展開し、固定の用途識別用接頭辞を付けて Nuxt のセッション鍵導出に渡す。接頭辞は secret 自体の強度を増やすものではない。
+NextAuth のセッションは引き継がれないため、切り替え後は再ログインする。
