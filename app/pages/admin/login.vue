@@ -1,26 +1,27 @@
 <script setup lang="ts">
 import { siGoogle } from 'simple-icons';
-const { status, signIn, signOut, getSession } = useAuth();
-const session = await getSession();
-const loggedIn = computed(() => status.value === 'authenticated');
-const roleError = computed(() => loggedIn.value && session?.user?.email !== 'ttt3pu@gmail.com');
+const { loggedIn, user, clear } = useUserSession();
+const route = useRoute();
+const roleError = computed(() => loggedIn.value && user.value?.email !== 'ttt3pu@gmail.com');
+const oauthError = computed(() => route.query.error === 'oauth');
 
 definePageMeta({
   middleware: ['admin-check'],
 });
 
 async function handleSignIn() {
-  await signIn('google');
+  await navigateTo('/api/auth/callback/google', { external: true });
 }
 
 async function handleSignOut() {
-  await signOut();
+  await clear();
 }
 </script>
 
 <template>
   <div class="text-center">
     <AtomsContentsBox :color="2">
+      <p v-if="oauthError" class="mb-8 text-red-400">ログインに失敗しました。もう一度お試しください。</p>
       <p v-if="roleError" class="font-en text-red-400 text-3xl mb-8">Access Denied.</p>
 
       <button v-if="loggedIn" @click="handleSignOut">Logout</button>

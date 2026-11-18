@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import icnBack from 'vue-material-design-icons/ChevronLeft.vue';
 const route = useRoute();
-const { signOut, getSession } = useAuth();
+const { loggedIn, clear } = useUserSession();
 
 const breadcrumbs = computed(() => [
   {
@@ -12,13 +12,11 @@ const breadcrumbs = computed(() => [
 ]);
 
 async function handleSignOut() {
-  await signOut();
+  await clear();
+  await navigateTo('/admin/login');
 }
 
 const isAdminPage = computed(() => route.path.startsWith('/admin'));
-
-const session = await getSession();
-const loggedIn = computed(() => !!session?.user);
 </script>
 
 <template>

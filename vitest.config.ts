@@ -16,9 +16,6 @@ export default defineConfig({
       '@@': fileURLToPath(new URL('./', import.meta.url)),
       '#server': fileURLToPath(new URL('./server', import.meta.url)),
       '#imports': fileURLToPath(new URL('./tests/mocks/imports.ts', import.meta.url)),
-      '#auth': fileURLToPath(
-        new URL('./node_modules/@sidebase/nuxt-auth/dist/runtime/server/services/index.js', import.meta.url),
-      ),
     },
   },
   test: {
@@ -32,10 +29,5 @@ export default defineConfig({
     },
     exclude: ['**/node_modules/**', '**/.output/**', '**/packages/prisma/**', 'tests/nuxt/**'],
     setupFiles: [fileURLToPath(new URL('./tests/mocks/imports.ts', import.meta.url))],
-    server: {
-      deps: {
-        inline: ['@sidebase/nuxt-auth'],
-      },
-    },
   },
 });

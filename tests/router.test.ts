@@ -1,11 +1,6 @@
-import type { Session } from 'next-auth';
+import type { UserSession as Session } from '#auth-utils';
 import { describe, expect, it } from 'vitest';
-import {
-  createMemoryHistory,
-  createRouter,
-  type RouteLocationNormalized,
-  type RouteRecordRaw,
-} from 'vue-router';
+import { createMemoryHistory, createRouter, type RouteLocationNormalized, type RouteRecordRaw } from 'vue-router';
 import adminCheckMiddleware from '@/middleware/admin-check';
 import type { BreadCrumb } from '@/types';
 import * as mockImports from '#imports';
@@ -207,11 +202,11 @@ describe('プロダクトのルーティング解決とパラメータ抽出', (
 describe('プロダクトのルートミドルウェア（admin-check）と vue-router 連携', () => {
   const adminSession: Session = {
     user: { email: 'ttt3pu@gmail.com', name: 'Admin User' },
-    expires: '2026-12-31T23:59:59.999Z',
+    id: 'test-session',
   };
   const generalSession: Session = {
     user: { email: 'general@example.com', name: 'General User' },
-    expires: '2026-12-31T23:59:59.999Z',
+    id: 'test-session',
   };
 
   const dummyFrom = {
@@ -305,9 +300,7 @@ describe('ページメタデータとヘッダー表示・パンくずリスト�
         to: '/',
         name: 'Main page',
       },
-      ...((route.meta.breadcrumbs as BreadCrumb[] | undefined)?.length
-        ? (route.meta.breadcrumbs as BreadCrumb[])
-        : []),
+      ...((route.meta.breadcrumbs as BreadCrumb[] | undefined)?.length ? (route.meta.breadcrumbs as BreadCrumb[]) : []),
     ];
 
     expect(computedBreadcrumbs).toEqual([
