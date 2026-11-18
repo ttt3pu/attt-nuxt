@@ -1,39 +1,10 @@
 import { describe, expect, it, vi } from 'vitest';
 import type { H3Event } from 'h3';
-import type { Session } from 'next-auth';
-import { NuxtAuthHandler } from '#auth';
-import * as authServices from '#auth';
-import { ADMIN_EMAIL, createAuthOptions, isAdminSession, requireAdmin } from './auth';
+import type { UserSession as Session } from '#auth-utils';
+import { ADMIN_EMAIL, isAdminSession, requireAdmin } from './auth';
 
-describe('認証設定の生成', () => {
-  it('環境変数から Google OAuth プロバイダーと secret が設定された AuthOptions が生成されること', () => {
-    const options = createAuthOptions({
-      AUTH_CLIENT_ID_GOOGLE: 'dummy-google-client-id',
-      AUTH_CLIENT_SECRET_GOOGLE: 'dummy-google-client-secret',
-      AUTH_SECRET: 'dummy-auth-secret',
-    });
-
-    expect(options.secret).toBe('dummy-auth-secret');
-    expect(options.providers).toHaveLength(1);
-    const provider = options.providers[0] as unknown as {
-      id: string;
-      options: { clientId: string; clientSecret: string };
-    };
-    expect(provider.id).toBe('google');
-    expect(provider.options.clientId).toBe('dummy-google-client-id');
-    expect(provider.options.clientSecret).toBe('dummy-google-client-secret');
-  });
-
-  it('NuxtAuthHandler に AuthOptions を渡してイベントハンドラーが初期化されること', () => {
-    const options = createAuthOptions({
-      AUTH_CLIENT_ID_GOOGLE: 'test-client-id',
-      AUTH_CLIENT_SECRET_GOOGLE: 'test-client-secret',
-      AUTH_SECRET: 'test-secret',
-    });
-    const handler = NuxtAuthHandler(options);
-    expect(typeof handler).toBe('function');
-  });
-});
+const getUserSessionMock = vi.fn();
+vi.stubGlobal('getUserSession', getUserSessionMock);
 
 describe('管理者セッションの判定', () => {
   it('管理者メールアドレスを持つセッションの場合は管理者として判定されること', () => {
@@ -43,7 +14,7 @@ describe('管理者セッションの判定', () => {
         email: ADMIN_EMAIL,
         image: 'https://example.com/avatar.png',
       },
-      expires: '2026-12-31T23:59:59.999Z',
+      id: 'test-session',
     };
     expect(isAdminSession(session)).toBe(true);
   });
@@ -54,7 +25,7 @@ describe('管理者セッションの判定', () => {
         name: 'General User',
         email: 'general-user@example.com',
       },
-      expires: '2026-12-31T23:59:59.999Z',
+      id: 'test-session',
     };
     expect(isAdminSession(session)).toBe(false);
   });
@@ -68,11 +39,12 @@ describe('管理者セッションの判定', () => {
     const sessionWithoutEmail: Session = {
       user: {
         name: 'No Email User',
+        email: '',
       },
-      expires: '2026-12-31T23:59:59.999Z',
+      id: 'test-session',
     };
     expect(isAdminSession(sessionWithoutEmail)).toBe(false);
-    expect(isAdminSession({ expires: '2026-12-31T23:59:59.999Z' } as Session)).toBe(false);
+    expect(isAdminSession({ id: 'test-session' } as Session)).toBe(false);
   });
 });
 
@@ -83,10 +55,10 @@ describe('管理者権限の検証（サーバーサイドガード）', () => {
         name: 'Admin User',
         email: ADMIN_EMAIL,
       },
-      expires: '2026-12-31T23:59:59.999Z',
+      id: 'test-session',
     };
 
-    vi.spyOn(authServices, 'getServerSession').mockResolvedValueOnce(adminSession);
+    getUserSessionMock.mockResolvedValueOnce(adminSession);
 
     const dummyEvent = {} as H3Event;
     const result = await requireAdmin(dummyEvent);
@@ -94,7 +66,7 @@ describe('管理者権限の検証（サーバーサイドガード）', () => {
   });
 
   it('未ログイン（セッションが null）の場合は 401 エラーが送出されること', async () => {
-    vi.spyOn(authServices, 'getServerSession').mockResolvedValueOnce(null);
+    getUserSessionMock.mockResolvedValueOnce({ id: 'visitor' });
 
     const dummyEvent = {} as H3Event;
     await expect(requireAdmin(dummyEvent)).rejects.toMatchObject({
@@ -108,10 +80,10 @@ describe('管理者権限の検証（サーバーサイドガード）', () => {
         name: 'General User',
         email: 'other@example.com',
       },
-      expires: '2026-12-31T23:59:59.999Z',
+      id: 'test-session',
     };
 
-    vi.spyOn(authServices, 'getServerSession').mockResolvedValueOnce(generalSession);
+    getUserSessionMock.mockResolvedValueOnce(generalSession);
 
     const dummyEvent = {} as H3Event;
     await expect(requireAdmin(dummyEvent)).rejects.toMatchObject({

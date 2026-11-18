@@ -44,8 +44,7 @@ beforeAll(async () => {
   const env: NodeJS.ProcessEnv = {
     ...process.env,
     NODE_ENV: production ? 'production' : 'development',
-    NUXT_AUTH_BASE_URL: `${origin}/api/auth`,
-    AUTH_SECRET: 'nuxt-regression-test-secret',
+    NUXT_APP_SECRET: 'nuxt-regression-test-secret-at-least-32-characters',
     NUXT_TELEMETRY_DISABLED: '1',
     BROWSER: 'none',
     HOST: '127.0.0.1',
@@ -81,7 +80,7 @@ beforeAll(async () => {
   while (Date.now() < deadline) {
     if (server.exitCode !== null) throw new Error(`Nuxt が終了しました。\n${serverOutput}`);
     try {
-      const response = await fetch(new URL('/api/auth/session', origin), { signal: AbortSignal.timeout(2000) });
+      const response = await fetch(new URL('/api/_auth/session', origin), { signal: AbortSignal.timeout(2000) });
       if (response.ok && response.headers.get('content-type')?.includes('application/json')) return;
     } catch {
       /* 起動中は接続できるまで待つ。 */
@@ -107,6 +106,15 @@ afterAll(async () => {
 });
 
 describe('Nuxt を通したブログと管理画面の配信', () => {
+  it('未ログインでは公開セッションにユーザーが含まれずログアウトできること', async () => {
+    const response = await request('/api/_auth/session');
+    expect(response.status).toBe(200);
+    expect((await response.json()).user).toBeUndefined();
+    const logout = await request('/api/_auth/session', { method: 'DELETE' });
+    expect(logout.status).toBe(200);
+    expect(logout.headers.get('set-cookie')).toContain('nuxt-auth-session=');
+  });
+
   it.runIf(production)(
     '記事ページで使う和文・欧文フォントが指定のウェイトで同一オリジンから配信されること',
     async () => {

@@ -1,18 +1,8 @@
-import type { Session } from 'next-auth';
+import type { UserSession } from '#auth-utils';
+import { computed } from 'vue';
 
 export function useRuntimeConfig() {
-  return {
-    public: {
-      auth: {
-        provider: {
-          type: 'authjs',
-          trustHost: false,
-        },
-        baseURL: 'http://localhost:3000/api/auth',
-        originEnvKey: 'NUXT_AUTH_BASE_URL',
-      },
-    },
-  };
+  return {};
 }
 
 export function createError(err: { statusCode?: number; statusMessage?: string; message?: string }) {
@@ -29,21 +19,27 @@ export function navigateTo(to: string) {
 }
 
 export const authMock = {
-  currentSession: null as Session | null,
+  currentSession: null as UserSession | null,
 };
 
-export function useAuth() {
+export async function getUserSession() {
+  return authMock.currentSession ?? { id: 'visitor' };
+}
+
+export function useUserSession() {
   return {
-    getSession: async () => authMock.currentSession,
-    signOut: async () => {},
+    user: computed(() => authMock.currentSession?.user),
+    fetch: async () => {},
+    clear: async () => {
+      authMock.currentSession = null;
+    },
   };
 }
 
-// Nuxt の auto-imports をグローバルスコープに登録
 Object.assign(globalThis, {
   defineNuxtRouteMiddleware,
   navigateTo,
-  useAuth,
+  useUserSession,
   useRuntimeConfig,
   createError,
 });

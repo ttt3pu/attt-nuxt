@@ -63,12 +63,6 @@
       "automerge": true
     },
     {
-      "description": "Automerge @sidebase/nuxt-auth minor/patch when tests pass",
-      "matchPackageNames": ["@sidebase/nuxt-auth"],
-      "matchUpdateTypes": ["minor", "patch"],
-      "automerge": true
-    },
-    {
       "description": "Automerge vue-router minor/patch when tests pass",
       "matchPackageNames": ["vue-router"],
       "matchUpdateTypes": ["minor", "patch"],
@@ -91,11 +85,6 @@
       "matchPackageNames": ["sass", "autoprefixer", "postcss", "tailwindcss", "@tailwindcss/postcss"],
       "matchUpdateTypes": ["minor", "patch"],
       "automerge": true
-    },
-    {
-      "description": "Keep next-auth at ~4.21.1 due to @sidebase/nuxt-auth incompatibility with next-auth >=4.22.0",
-      "matchPackageNames": ["next-auth"],
-      "allowedVersions": "~4.21.1"
     }
   ]
 }

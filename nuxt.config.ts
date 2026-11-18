@@ -52,18 +52,7 @@ export default defineNuxtConfig({
 
   components: true,
 
-  modules: [
-    '@nuxt/fonts',
-    '@pinia/nuxt',
-    '@nuxtjs/stylelint-module',
-    '@sidebase/nuxt-auth',
-    'nuxt-gtag',
-    '@nuxt/eslint',
-  ],
-
-  auth: {
-    originEnvKey: 'NUXT_AUTH_BASE_URL',
-  },
+  modules: ['@nuxt/fonts', '@pinia/nuxt', '@nuxtjs/stylelint-module', 'nuxt-auth-utils', 'nuxt-gtag', '@nuxt/eslint'],
 
   gtag: {
     id: 'G-YY7ZSN9HY4',
@@ -104,6 +93,7 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
+    session: { maxAge: 60 * 60 * 24 * 30 },
     SECRET_TOKEN: '',
     DEPLOY_WEBHOOK_URL: '',
   },
