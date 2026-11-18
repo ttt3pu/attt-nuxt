@@ -53,7 +53,7 @@ export default defineNuxtConfig({
   components: true,
 
   modules: [
-    '@nuxtjs/google-fonts',
+    '@nuxt/fonts',
     '@pinia/nuxt',
     '@nuxtjs/stylelint-module',
     '@sidebase/nuxt-auth',
@@ -69,11 +69,14 @@ export default defineNuxtConfig({
     id: 'G-YY7ZSN9HY4',
   },
 
-  googleFonts: {
-    families: {
-      Poppins: [400, 500],
-      'Noto Sans JP': [400],
+  fonts: {
+    defaults: {
+      styles: ['normal'],
     },
+    families: [
+      { name: 'Poppins', provider: 'google', weights: [400, 500] },
+      { name: 'Noto Sans JP', provider: 'google', weights: [400] },
+    ],
   },
 
   vite: {

@@ -8,6 +8,12 @@
   "ignoreDeps": ["packages/resume"],
   "packageRules": [
     {
+      "description": "Automerge @nuxt/fonts minor/patch when production font delivery tests pass",
+      "matchPackageNames": ["@nuxt/fonts"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true
+    },
+    {
       "description": "Automerge unstorage minor/patch when production build tests pass",
       "matchPackageNames": ["unstorage"],
       "matchUpdateTypes": ["minor", "patch"],
