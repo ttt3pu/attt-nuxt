@@ -18,6 +18,7 @@
     "preview": "http-server ./.output/public",
     "test": "vitest run",
     "test:nuxt": "vitest run --config vitest.nuxt.config.ts",
+    "test:nuxt:build": "vitest run --config vitest.nuxt.config.ts --mode production",
     "test:watch": "vitest",
     "test:update": "vitest run -u",
     "lint:js": "eslint .",
@@ -39,7 +40,7 @@
     "postcss": "8.5.32",
     "postcss-html": "2.0.0",
     "tailwindcss": "4.3.5",
-    "unstorage": "1.17.5",
+    "unstorage": "1.17.6",
     "vue-router": "5.4.0",
     "vue-toast-notification": "3.1.3"
   },
