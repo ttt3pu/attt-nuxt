@@ -311,11 +311,24 @@ describe('Nuxt を通したブログと管理画面の配信', () => {
     expect(items[0]).toContain('最新のブログ検証記事');
     expect(items[0]).toContain('href="/blog/42"');
     expect(items[0]).toContain('2024.05.01');
+    expect(items[0]).toMatch(/class="[^"]*pencil-box-icon[^"]*"[\s\S]*?<svg\b[^>]*>[\s\S]*?<path\b[^>]*d="[^"]+"/);
     expect(items[1]).toContain('外部フィードの検証記事');
     expect(items[1]).toContain('href="https://example.com/articles/feed-sample"');
     expect(items[1]).toContain('target="_blank"');
     expect(items[2]).toContain('ブログ一覧の検証記事');
     expect(items[2]).toContain('href="/blog/41"');
+    expect(items[3]).toMatch(
+      /class="[^"]*pencil-box-multiple-icon[^"]*"[\s\S]*?<svg\b[^>]*>[\s\S]*?<path\b[^>]*d="[^"]+"/,
+    );
+    expect(html).toMatch(
+      /<button\b[^>]*aria-label="Prev"[^>]*>[\s\S]*?class="[^"]*chevron-left-icon[^"]*"[\s\S]*?<svg\b[^>]*>[\s\S]*?<path\b[^>]*d="[^"]+"/,
+    );
+    expect(html).toMatch(
+      /<button\b[^>]*aria-label="Next"[^>]*>[\s\S]*?class="[^"]*chevron-right-icon[^"]*"[\s\S]*?<svg\b[^>]*>[\s\S]*?<path\b[^>]*d="[^"]+"/,
+    );
+    expect(html).toMatch(
+      /<form\b[\s\S]*?class="[^"]*lock-open-icon[^"]*"[\s\S]*?<svg\b[^>]*width="20"[^>]*height="20"[^>]*>[\s\S]*?<path\b[^>]*d="[^"]+"/,
+    );
     const payload = html.match(/<script[^>]*id="__NUXT_DATA__"[^>]*>([\s\S]*?)<\/script>/)?.[1];
     expect(payload).toBeDefined();
     expect(payload).toContain('"pinia"');
@@ -352,6 +365,9 @@ describe('Nuxt を通したブログと管理画面の配信', () => {
     expect(html).toContain('2024.04.01');
     expect(html).toContain('<h2>配信の確認</h2>');
     expect(html).toContain('<a href="/">トップページ</a>');
+    expect(html).toMatch(
+      /<a\b[^>]*href="\/"[^>]*>[\s\S]*?class="[^"]*chevron-left-icon[^"]*"[\s\S]*?<svg\b[^>]*>[\s\S]*?<path\b[^>]*d="[^"]+"[\s\S]*?<span\b[^>]*>Main page<\/span><\/a>/,
+    );
     expect(html).toContain('&lt;script&gt;');
     expect(html).not.toContain('<script>alert("sample")</script>');
     expect(html).toContain('__NUXT_DATA__');

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import TokenForm from '~/components/molecules/TokenForm.vue';
 import PostList from '~/components/organisms/PostList.vue';
 import { usePostsStore } from '~/store';
 import { postsResponse } from '../../fixtures/posts';
@@ -10,5 +11,8 @@ if (useRoute().query.empty !== '1') {
 </script>
 
 <template>
-  <PostList />
+  <div>
+    <TokenForm />
+    <PostList />
+  </div>
 </template>
