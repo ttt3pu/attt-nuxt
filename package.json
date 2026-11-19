@@ -46,7 +46,7 @@
   },
   "devDependencies": {
     "@nuxtjs/stylelint-module": "5.2.1",
-    "@pinia/nuxt": "1.0.2",
+    "@pinia/nuxt": "1.0.3",
     "@prisma/client": "7.10.1",
     "@tailwindcss/vite": "4.3.3",
     "@types/eslint-config-prettier": "6.11.3",
@@ -58,7 +58,7 @@
     "eslint-config-prettier": "10.1.8",
     "http-server": "14.1.1",
     "nuxt-gtag": "5.0.0",
-    "pinia": "4.0.3",
+    "pinia": "4.1.0",
     "postcss": "8.5.32",
     "prettier": "3.9.10",
     "prisma": "7.10.1",
