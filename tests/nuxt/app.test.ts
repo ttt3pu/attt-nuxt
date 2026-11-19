@@ -244,6 +244,68 @@ describe('Nuxt を通したブログと管理画面の配信', () => {
   });
 
   it.runIf(production)(
+    '記事の配信 CSS に Tailwind のテーマ・レスポンシブ指定と本文のスタイルが生成されること',
+    async () => {
+      const response = await request(`/blog/${articleId}`);
+      expect(response.status).toBe(200);
+      const html = await response.text();
+      expect(html).toMatch(/<h1\b[^>]*class="[^"]*text-primary/);
+      expect(html).toContain('md:flex');
+      const stylesheets = [...html.matchAll(/<link\b[^>]*rel="stylesheet"[^>]*href="([^"]+)"[^>]*>/g)];
+      expect(stylesheets.length).toBeGreaterThan(0);
+      const css = [
+        ...[...html.matchAll(/<style\b[^>]*>([\s\S]*?)<\/style>/g)].map((match) => match[1]),
+        ...(await Promise.all(
+          stylesheets.map(async ([, href]) => {
+            const stylesheet = await request(href!);
+            expect(stylesheet.status).toBe(200);
+            return stylesheet.text();
+          }),
+        )),
+      ].join('\n');
+      const root = postcss.parse(css);
+      function declarations(selector: string) {
+        const result: Record<string, string> = {};
+        root.walkRules(selector, (rule) => {
+          rule.walkDecls((decl) => {
+            result[decl.prop] = decl.value;
+          });
+        });
+        return result;
+      }
+      expect(declarations('.text-primary')).toMatchObject({ color: 'var(--color-primary)' });
+      expect(declarations('.bg-bg-300')).toMatchObject({ 'background-color': 'var(--color-bg-300)' });
+      let primaryColor: string | undefined;
+      root.walkDecls('--color-primary', (decl) => {
+        primaryColor = decl.value;
+      });
+      expect(primaryColor).toBe('#f9f871');
+      expect(declarations('.flex')).toMatchObject({ display: 'flex' });
+      let responsiveLayout = false;
+      root.walkRules('.md\\:flex', (rule) => {
+        const media = rule.parent;
+        if (media?.type === 'atrule' && media.name === 'media' && /width\s*>=\s*48rem/.test(media.params)) {
+          rule.walkDecls('display', (decl) => {
+            if (decl.value === 'flex') responsiveLayout = true;
+          });
+        }
+      });
+      expect(responsiveLayout).toBe(true);
+      // BlogPost.vue の @reference / @apply を通る本文の余白を確認する。
+      let paragraphSpacing = false;
+      root.walkRules((rule) => {
+        if (/\.post\s*>\s*\*/.test(rule.selector)) {
+          rule.walkDecls('margin-top', (decl) => {
+            if (/calc\(var\(--spacing(?:,\s*\.25rem)?\)\s*\*\s*6\)/.test(decl.value)) paragraphSpacing = true;
+          });
+        }
+      });
+      expect(paragraphSpacing).toBe(true);
+      expect(css).not.toMatch(/@(?:apply|reference|tailwind)\b/);
+    },
+  );
+
+  it.runIf(production)(
     '記事ページで使う和文・欧文フォントが指定のウェイトで同一オリジンから配信されること',
     async () => {
       const html = await (await request(`/blog/${articleId}`)).text();

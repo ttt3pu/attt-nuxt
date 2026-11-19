@@ -94,8 +94,17 @@
     },
     {
       "description": "Automerge css related packages minor/patch when tests pass",
-      "matchPackageNames": ["sass", "autoprefixer", "postcss", "tailwindcss", "@tailwindcss/postcss"],
+      "matchPackageNames": [
+        "sass",
+        "autoprefixer",
+        "postcss",
+        "tailwindcss",
+        "@tailwindcss/postcss",
+        "@tailwindcss/vite"
+      ],
       "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "css related packages",
+      "platformAutomerge": false,
       "automerge": true
     }
   ]
