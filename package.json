@@ -73,6 +73,6 @@
     "vitest": "5.1.0",
     "vue-material-design-icons": "5.4.0",
     "vue-tsc": "3.3.14",
-    "zod": "4.6.6"
+    "zod": "4.6.7"
   }
 }
