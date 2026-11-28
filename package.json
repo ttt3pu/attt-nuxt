@@ -52,7 +52,7 @@
     "@types/eslint-config-prettier": "6.11.3",
     "@types/markdown-it": "14.2.0",
     "@types/pg": "8.23.1",
-    "autoprefixer": "10.6.2",
+    "autoprefixer": "10.7.0",
     "dayjs": "1.11.23",
     "eslint": "10.15.0",
     "eslint-config-prettier": "10.1.8",
